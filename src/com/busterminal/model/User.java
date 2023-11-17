@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class User implements Serializable {
+public abstract class User implements Serializable {
     private String firstname,lastname,address,language,gender;
     private String phonenumber;
     protected String email,password;
