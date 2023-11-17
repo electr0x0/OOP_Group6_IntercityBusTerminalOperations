@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public abstract class User implements Serializable {
     private String firstname,lastname,address,language,gender;
+    private int id;
     private String phonenumber;
     protected String email,password;
     private LocalDate dateofbirth;

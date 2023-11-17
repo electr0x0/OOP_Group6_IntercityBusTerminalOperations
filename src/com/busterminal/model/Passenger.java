@@ -10,9 +10,6 @@ package com.busterminal.model;
  */
 public class Passenger {
     
-<<<<<<< Updated upstream
-}
-=======
     private String name,email,seatNumber;
    private  int contactNum;
 
@@ -58,5 +55,3 @@ public class Passenger {
         this.contactNum = contactNum;
     }
 }
-
->>>>>>> Stashed changes
