@@ -6,24 +6,15 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public abstract class User implements Serializable {
-    private String firstname,lastname,address,language,gender;
-    private int id;
+public class BasicUser implements Serializable {
+
+    public String firstname;
+    private String lastname,address,language,gender;
     private String phonenumber;
     protected String email,password;
     private LocalDate dateofbirth;
 
-    public User(String firstname, String lastname,String gender,String email, String phonenumber,LocalDate dateofbirth,String address) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.gender = gender;
-        this.phonenumber = phonenumber;
-        this.email = email;
-        this.dateofbirth = dateofbirth;
-    }
-
-    public User(String firstname) {
+    public BasicUser(String firstname, String lastname, String address, String language, String gender, String phonenumber, String email, String password, LocalDate dateofbirth) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -35,7 +26,28 @@ public abstract class User implements Serializable {
         this.dateofbirth = dateofbirth;
     }
 
-    public User() {
+    @Override
+    public String toString() {
+        return "firstname:" + firstname + ", lastname:" + lastname + ", address:" + address + ", language:" + language + ", gender:" + gender + ", phonenumber:" + phonenumber + ", email:" + email + ", dateofbirth: " + dateofbirth ;
+    }
+    
+    public void submitReport(){
+        
+    }
+
+    public BasicUser(String firstname, String lastname,String gender,String email, String phonenumber,LocalDate dateofbirth,String address) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.gender = gender;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.dateofbirth = dateofbirth;
+    }
+
+   
+
+    public BasicUser() {
     }
 
     public String getFirstname() {
