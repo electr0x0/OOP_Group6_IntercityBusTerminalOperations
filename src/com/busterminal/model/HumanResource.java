@@ -8,14 +8,18 @@ import java.time.LocalDate;
 
 /**
  *
- * @author electr0
+ * @author User
  */
-public class Manager extends Employee {
+public class HumanResource extends Employee {
 
-    public Manager(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
+    public HumanResource(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
         super(Salary, empType, firstname, lastname, gender, email, phonenumber, dateofbirth, address);
     }
+
+    
+
     
     
+   
     
 }
