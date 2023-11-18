@@ -33,7 +33,7 @@ public class ShowTicketDetailsController implements Initializable {
 
     @FXML
     private void swicthToPurchaseHistoryScene(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorpaneShowTicketDetails,"views/passenger/PurchaseHistory.fxml");
+        new SceneSwicth(anchorpaneShowTicketDetails,"/com/busterminal/views/passenger/PurchaseHistory.fxml");
     }
     
 }

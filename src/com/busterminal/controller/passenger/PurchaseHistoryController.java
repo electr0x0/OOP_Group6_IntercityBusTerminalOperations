@@ -37,17 +37,17 @@ public class PurchaseHistoryController implements Initializable {
 
     @FXML
     private void switchToCancelTicketScene(ActionEvent event) throws IOException {
-        new SceneSwicth(purchaseHistoryAnchorpane,"views/passenger/Schedule.fxml");
+        new SceneSwicth(purchaseHistoryAnchorpane,"/com/busterminal/views/passenger/Schedule.fxml");
     }
 
     @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {
-        new SceneSwicth(purchaseHistoryAnchorpane,"views/passenger/Dashboard_Passenger.fxml");
+        new SceneSwicth(purchaseHistoryAnchorpane,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
     }
 
     @FXML
     private void switchToShowTicketDetailsScene(ActionEvent event) throws IOException {
-        new SceneSwicth(purchaseHistoryAnchorpane,"views/passenger/ShowTicketDetails.fxml");
+        new SceneSwicth(purchaseHistoryAnchorpane,"/com/busterminal/views/passenger/ShowTicketDetails.fxml");
     }
     
 }

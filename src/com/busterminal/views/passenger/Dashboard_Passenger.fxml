@@ -14,7 +14,7 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Button layoutX="810.0" layoutY="606.0" mnemonicParsing="false" onAction="#switchToScene1" text="Log out" />
+      <Button layoutX="805.0" layoutY="601.0" mnemonicParsing="false" onAction="#switchToScene1" text="Log out" />
       <Button layoutX="3.0" layoutY="297.0" mnemonicParsing="false" onAction="#switchToScheduleInfoScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Check Bus Schedule">
          <font>
             <Font size="18.0" />
@@ -31,7 +31,7 @@
          </font>
       </Button>
       <ButtonBar layoutX="-266.0" layoutY="-122.0" prefHeight="40.0" prefWidth="200.0" />
-      <Button layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#switchToSupportScene" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #C19A6B;" text="Support" />
+      <Button layoutX="14.0" layoutY="576.0" mnemonicParsing="false" onAction="#switchToSupportScene" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #C19A6B;" text="Support" />
       <Button layoutX="3.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToOffersScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Special Promotions">
          <font>
             <Font size="18.0" />
@@ -47,6 +47,6 @@
             <URL value="@design.css" />
          </stylesheets>
       </Button>
-      <Button defaultButton="true" layoutX="173.0" layoutY="594.0" mnemonicParsing="false" onAction="#switchToContactScene" text="Contact Us" />
+      <Button defaultButton="true" layoutX="161.0" layoutY="576.0" mnemonicParsing="false" onAction="#switchToContactScene" text="Contact Us" />
    </children>
 </AnchorPane>

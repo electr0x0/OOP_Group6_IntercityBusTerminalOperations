@@ -41,7 +41,7 @@ public class MatchingSchedulesController implements Initializable {
 
     @FXML
     private void switchToSchedule(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorpane4,"views/passenger/Schedule.fxml");
+        new SceneSwicth(anchorpane4,"/com/busterminal/views/passenger/Schedule.fxml");
         
     }
     void displayBus1Label(String text){
@@ -53,7 +53,7 @@ public class MatchingSchedulesController implements Initializable {
 
     @FXML
     private void switchToTicketbuyScene(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorpane4,"views/passenger/TicketDetails.fxml");
+        new SceneSwicth(anchorpane4,"/com/busterminal/views/passenger/TicketDetails.fxml");
         
     }
 } 

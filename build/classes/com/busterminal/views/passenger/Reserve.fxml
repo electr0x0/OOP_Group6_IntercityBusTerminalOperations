@@ -5,45 +5,65 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorpaneReserve" prefHeight="645.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.ReserveController">
    <children>
-      <Label layoutX="45.0" layoutY="35.0" text="Select the type of bus ">
+      <Label layoutX="250.0" layoutY="170.0" prefHeight="27.0" prefWidth="103.0" text="Bus Type">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="272.0" layoutY="35.0" mnemonicParsing="false" text="Mini Bus">
+      <RadioButton layoutX="596.0" layoutY="174.0" mnemonicParsing="false" text="AC ">
          <font>
-            <Font size="16.0" />
+            <Font size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="acType" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="660.0" layoutY="174.0" mnemonicParsing="false" text="non AC" toggleGroup="$acType">
+         <font>
+            <Font size="13.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="419.0" layoutY="37.0" mnemonicParsing="false" text="AC ">
+      <Button layoutX="318.0" layoutY="463.0" mnemonicParsing="false" onAction="#swichSceneToReservedBusListsScene" prefHeight="31.0" prefWidth="193.0" style="-fx-border-color: black;" text="Search Available Bus" wrapText="true">
          <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton layoutX="531.0" layoutY="37.0" mnemonicParsing="false" text="non AC">
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <DatePicker layoutX="427.0" layoutY="230.0" prefHeight="25.0" prefWidth="143.0" promptText="Select date" />
+      <Label layoutX="250.0" layoutY="292.0" prefHeight="21.0" prefWidth="182.0" text="Select City">
          <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <Button layoutX="354.0" layoutY="389.0" mnemonicParsing="false" onAction="#swichSceneTo" prefHeight="25.0" prefWidth="182.0" text="Search Available Bus" />
-      <DatePicker layoutX="37.0" layoutY="107.0" promptText="Select date" />
-      <Label layoutX="37.0" layoutY="166.0" text="Select City">
-         <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox layoutX="140.0" layoutY="164.0" prefHeight="25.0" prefWidth="111.0" promptText="Dhaka" />
-      <Label layoutX="37.0" layoutY="233.0" text="How long do you need the bus?">
+      <ComboBox fx:id="citySelectCombo" layoutX="427.0" layoutY="293.0" prefHeight="25.0" prefWidth="143.0" promptText="Select City" />
+      <Label layoutX="250.0" layoutY="362.0" text="Duration">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox layoutX="262.0" layoutY="231.0" prefHeight="25.0" prefWidth="111.0" promptText="Select Days" />
-      <Button layoutX="815.0" layoutY="597.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="61.0" text="Back" />
+      <ComboBox fx:id="daySelectCombo" layoutX="424.0" layoutY="363.0" prefHeight="25.0" prefWidth="151.0" promptText="Select Days" />
+      <Button layoutX="772.0" layoutY="595.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #77BFC7;" text="Back" />
+      <Label layoutX="250.0" layoutY="229.0" prefHeight="27.0" prefWidth="182.0" text="Date">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="busTypeCombo" layoutX="426.0" layoutY="171.0" prefHeight="25.0" prefWidth="143.0" promptText="Select type" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../storage/assets/ezgif-3-1c1a24d34a.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="180.0" layoutY="14.0" prefHeight="17.0" prefWidth="361.0" text="Reserve Bus">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

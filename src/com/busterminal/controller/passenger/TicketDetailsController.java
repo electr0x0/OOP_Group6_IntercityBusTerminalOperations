@@ -32,7 +32,6 @@ public class TicketDetailsController implements Initializable {
     private AnchorPane anchorPane5;
     @FXML
     private ComboBox<String> seatNumberCombo;
-    @FXML
     private ComboBox<Integer> quantityCombo;
     @FXML
     private TextField emailTextField;
@@ -54,7 +53,7 @@ public class TicketDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         seatNumberCombo.getItems().addAll("A1","A2","B1","B2","C1","C2","D1","D2","E1","E2","F1","F2","G1","G2","H1","H2");
-        quantityCombo.getItems().addAll(1,2,3,4,5,6);
+        //quantityCombo.getItems().addAll(1,2,3,4,5,6);
         passengerList= new ArrayList();
     }    
 
@@ -73,7 +72,7 @@ public class TicketDetailsController implements Initializable {
     alert.showAndWait().ifPresent(buttonType -> {
     if (buttonType == okButton ) {
         try {
-            new SceneSwicth(anchorPane5,"views/passenger/Dashboard_Passenger.fxml");
+            new SceneSwicth(anchorPane5,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
         } catch (IOException ex) {
             Logger.getLogger(TicketDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,7 +118,7 @@ public class TicketDetailsController implements Initializable {
 
     @FXML
     private void switchToMatchingScheduleScene(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorPane5,"views/passenger/MatchingSchedules.fxml");
+        new SceneSwicth(anchorPane5,"/com/busterminal/views/passenger/MatchingSchedules.fxml");
         
     }
 }

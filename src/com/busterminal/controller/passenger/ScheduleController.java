@@ -56,7 +56,7 @@ public class ScheduleController implements Initializable {
     String to = toCombo.getSelectionModel().getSelectedItem();
 
     if ("Dhaka".equals(from) && "Rajshahi".equals(to)) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/passenger/MatchingSchedules.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
         root = loader.load();
         MatchingSchedulesController matchingScheduleController = loader.getController();
         matchingScheduleController.displayBus1Label("KTC HANIF\n" +
@@ -74,7 +74,7 @@ public class ScheduleController implements Initializable {
            }
 
     else if ("Dhaka".equals(from) && "Chittagong".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/passenger/MatchingSchedules.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
         root = loader.load();
         MatchingSchedulesController matchingScheduleController = loader.getController();
         matchingScheduleController.displayBus1Label("GREEN LINE\n" +
@@ -93,7 +93,7 @@ public class ScheduleController implements Initializable {
        
 
     else if ("Dhaka".equals(from) && "Khulna".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/passenger/MatchingSchedules.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
         root = loader.load();
         MatchingSchedulesController matchingScheduleController = loader.getController();
         matchingScheduleController.displayBus1Label("WELCOME EXPRESS\n" +
@@ -114,7 +114,7 @@ public class ScheduleController implements Initializable {
     
     
     else if ("Dhaka".equals(from) && "Sylhet".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/passenger/MatchingSchedules.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
         root = loader.load();
         MatchingSchedulesController matchingScheduleController = loader.getController();
         matchingScheduleController.displayBus1Label("SHYAMOLI NR TRAVELS\n" +
@@ -142,7 +142,7 @@ public class ScheduleController implements Initializable {
 
     @FXML
     private void switchtoScene2(ActionEvent event) throws IOException {
-         new SceneSwicth(anchorpane3,"views/passenger/Dashboard_Passenger.fxml");
+         new SceneSwicth(anchorpane3,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
         
     }
     

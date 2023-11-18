@@ -50,7 +50,7 @@ public class SupportController implements Initializable {
     alert.showAndWait().ifPresent(buttonType -> {
     if (buttonType == okButton ) {
         try {
-            new SceneSwicth (anchorpaneSupport,"views/passenger/Dashboard_Passenger.fxml");
+            new SceneSwicth (anchorpaneSupport,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
         } catch (IOException ex) {
             Logger.getLogger(TicketDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,7 +60,7 @@ public class SupportController implements Initializable {
 
     @FXML
     private void switchToDashboardScene(ActionEvent event) throws IOException {
-        new SceneSwicth( anchorpaneSupport,"views/passenger/Dashboard_Passenger.fxml");
+        new SceneSwicth( anchorpaneSupport,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
     }
     
 }

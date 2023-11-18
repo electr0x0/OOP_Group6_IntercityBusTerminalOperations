@@ -66,16 +66,17 @@ public class PassengerInfoController implements Initializable {
                   pList.add(p1);
                   
                   tableViewOfPassengerInfo.setItems(pList);
-                
+                  //di.close();
             }
+           
             
         }
         catch (Exception e){
-           try {
-               di.close();
-           } catch (IOException ex) {
-               Logger.getLogger(PassengerInfoController.class.getName()).log(Level.SEVERE, null, ex);
-           }
+           //try {
+               //di.close();
+           //} catch (IOException ex) {
+               //Logger.getLogger(PassengerInfoController.class.getName()).log(Level.SEVERE, null, ex);
+          // }
             
         }
                 
@@ -84,7 +85,7 @@ public class PassengerInfoController implements Initializable {
     @FXML
     private void switchToDashboardScene(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Dashboard_Driver.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);

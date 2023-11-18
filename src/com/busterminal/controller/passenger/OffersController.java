@@ -33,7 +33,7 @@ public class OffersController implements Initializable {
 
     @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {
-        new SceneSwicth(offerAnchorpane,"views/passenger/Dashboard_Passenger.fxml");
+        new SceneSwicth(offerAnchorpane,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
     }
     
 }

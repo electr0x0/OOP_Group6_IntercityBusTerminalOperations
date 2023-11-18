@@ -35,7 +35,7 @@ public class ChatBodyController implements Initializable {
     @FXML
     private void switchToChatScene(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Dashboard_Driver.fxml"));
         root = (Parent) someLoader.load();       
         Scene someScene = new Scene (root);
         
