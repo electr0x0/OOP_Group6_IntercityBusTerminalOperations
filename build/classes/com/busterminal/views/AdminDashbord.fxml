@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1487.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.AdminController">
+   <children>
+      <VBox prefHeight="709.0" prefWidth="287.0" style="-fx-background-color: #353A56;">
+         <children>
+            <AnchorPane fx:id="slide_AnchorPane" prefHeight="811.0" prefWidth="286.0" styleClass="slide_AnchorPane" stylesheets="@../../../style/AdminDashBord.css">
+               <children>
+                  <Pane fx:id="inner_Pane" layoutX="17.0" layoutY="8.0" prefHeight="124.0" prefWidth="256.0" styleClass="inner_Pane" stylesheets="@../../../style/AdminDashBord.css">
+                     <children>
+                        <ImageView fitHeight="103.0" fitWidth="119.0" layoutX="9.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../asset/login.png.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Button layoutX="27.0" layoutY="149.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="dashboardMenuButton" stylesheets="@../../../style/AdminDashBord.css" text="Dashboard" textAlignment="CENTER" textFill="#f5f7f6" />
+                  <MenuButton fx:id="departureMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="304.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" stylesheets="@../../../style/AdminDashBord.css" text="Departure" textAlignment="CENTER" textFill="#fcfcfc">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#scheduleShowOnMouseClick" text="Schedule" />
+                      <MenuItem mnemonicParsing="false" onAction="#ticketCancleRequestShowOnMouseClick" text="Ticket Cancel Request" />
+                        <MenuItem mnemonicParsing="false" onAction="#ticketPriceInfoOnMouseClick" text="Ticket Price" />
+                        <MenuItem mnemonicParsing="false" onAction="#routeInfoOnMouseClick" text="Route" />
+                        <MenuItem mnemonicParsing="false" onAction="#cochInfoOnMouseClick" text="Coach" />
+                    </items>
+                     <styleClass>
+                        <String fx:value="departuremenuButton" />
+                        <String fx:value="departureMenuButton" />
+                     </styleClass>
+                  </MenuButton>
+                  <MenuButton fx:id="itsupportMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="394.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" stylesheets="@../../../style/AdminDashBord.css" text="It Sopport" textAlignment="CENTER" textFill="#fcfcfc">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#TransactionOnMouseClick" text="Transaction" />
+                        <MenuItem mnemonicParsing="false" onAction="#fuelPaymentInfoOnMouseClick" text="Fuel Payment" />
+                        <MenuItem mnemonicParsing="false" onAction="#salaryInfoOnMouseClick" text="Sallary" />
+                     </items>
+                     <styleClass>
+                        <String fx:value="departuremenuButton" />
+                        <String fx:value="itsupportMenuButton" />
+                     </styleClass>
+                  </MenuButton>
+                  <MenuButton fx:id="reportMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="478.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="reportMenuButton" stylesheets="@../../../style/AdminDashBord.css" text="Report" textAlignment="CENTER" textFill="#fcfcfc">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#staffDutyReportShowOnMouseClick" text="Staff Duty Report" />
+                        <MenuItem mnemonicParsing="false" onAction="#saleReportSInfoShowOnMouseClick" text="Sale Report" />
+                        <MenuItem mnemonicParsing="false" onAction="#fuelConsumtionReportOnMouseClick" text="Fuel Consumtion Report" />
+                        <MenuItem mnemonicParsing="false" onAction="#customerJouurneyReportOnMouseClick" text="Customer Journey Report" />
+                        <MenuItem mnemonicParsing="false" onAction="#dateWiseReportOnMouseClick" text="Date Wise Departure Report" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="reservationMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="561.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="reservationMenuButton" stylesheets="@../../../style/AdminDashBord.css" text="Reservation" textAlignment="CENTER" textFill="#fcfcfc">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#reservationQuatationOnMouseClick" text="Reservation Qutaion" />
+                        <MenuItem mnemonicParsing="false" onAction="#reservationDetailsOnMouseClick" text="Reservation Details" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="userMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="231.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="userMenuButoon" stylesheets="@../../../style/AdminDashBord.css" text="User &amp; Control" textAlignment="CENTER" textFill="#fcfcfc">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#userOnMouseClick" text="User" />
+                        <MenuItem mnemonicParsing="false" onAction="#adminGroupOnMouseClick" text="Admin Group" />
+                        <MenuItem mnemonicParsing="false" onAction="#privilegeOnMouseClick" text="Privilege" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="notificationMenuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="639.0" lineSpacing="3.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="notificationMenuButton" stylesheets="@../../../style/AdminDashBord.css" text="Notification" textAlignment="CENTER" textFill="#fcfcfc">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showComplainOnMouseClick" text="Inbox" />
+                        <MenuItem mnemonicParsing="false" text="Passenger Feadback" />
+                        <MenuItem mnemonicParsing="false" onAction="#showComplainOnMouseClick" text="Complain" />
+                     </items>
+                  </MenuButton>
+                  <Button fx:id="logoutButton" layoutX="23.0" layoutY="716.0" lineSpacing="3.0" mnemonicParsing="false" onAction="#logOutOnMoseClick" prefHeight="64.0" prefWidth="237.0" styleClass="logOutButton" stylesheets="@../../../style/AdminDashBord.css" text="LogOut" textAlignment="CENTER" textFill="#f5f7f6" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="anchorPaneShow" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" />
+   </children>
+</HBox>

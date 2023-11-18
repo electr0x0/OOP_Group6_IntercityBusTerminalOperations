@@ -31,13 +31,13 @@
             <PasswordField fx:id="passwordField" layoutX="282.0" layoutY="133.0" prefHeight="40.0" prefWidth="258.0" promptText="Password" style="-fx-background-color: #677797;" />
             <FontAwesomeIconView fill="#b4ffff" glyphName="KEY" layoutX="239.17142868041992" layoutY="165.0" size="2.8em" text="" AnchorPane.rightAnchor="287.228572845459" />
             <FontAwesomeIconView fill="#b4ffff" glyphName="USER" layoutX="244.2858123779297" layoutY="100.0" size="3em" AnchorPane.rightAnchor="287.4284725189209" />
-            <Label fx:id="label" layoutX="220.0" layoutY="194.0" prefHeight="40.0" prefWidth="231.0" textFill="#eee8e8">
+            <Label fx:id="label" layoutX="220.0" layoutY="194.0" prefHeight="40.0" prefWidth="231.0" textFill="RED">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
             <ComboBox fx:id="accountTypeComboBox" layoutX="282.0" layoutY="9.0" onAction="#accountTypeOnAction" prefHeight="40.0" prefWidth="258.0" promptText="Admin" style="-fx-background-color: #677797;" />
-            <Button fx:id="loginButton" layoutX="440.0" layoutY="194.0" mnemonicParsing="false" onAction="#loginButtonOnMouseClick" style="-fx-background-color: #1B2B4B;" text="Login">
+            <Button fx:id="loginButton" layoutX="451.0" layoutY="195.0" mnemonicParsing="false" onAction="#loginButtonOnMouseClick" style="-fx-background-color: #1B2B4B;" text="Login">
                <font>
                   <Font name="Arial Bold Italic" size="20.0" />
                </font>
@@ -55,7 +55,20 @@
             <DropShadow color="#2f2828" />
          </effect>
       </AnchorPane>
-      <Button fx:id="forgotPasswordButton" layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#onMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Forgot Password">
+      <Button fx:id="forgotPasswordButton" layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#forgetPassWordonMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Forgot Password">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#219494" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="signupbutton" layoutX="224.0" layoutY="349.0" mnemonicParsing="false" onAction="#signUpButtononMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Sign Up">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
