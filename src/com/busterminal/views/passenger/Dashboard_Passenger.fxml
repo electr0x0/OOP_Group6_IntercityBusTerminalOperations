@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorpane2" prefHeight="645.0" prefWidth="889.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.DashboardController">
+   <children>
+      <Label layoutX="271.0" layoutY="14.0" prefHeight="39.0" prefWidth="200.0" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Button layoutX="810.0" layoutY="606.0" mnemonicParsing="false" onAction="#switchToScene1" text="Log out" />
+      <Button layoutX="3.0" layoutY="297.0" mnemonicParsing="false" onAction="#switchToScheduleInfoScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Check Bus Schedule">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="3.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToScheduleInfoScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Purchase Ticket">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="3.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchTopurchaseHistoryScene" prefHeight="12.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Purchase History">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ButtonBar layoutX="-266.0" layoutY="-122.0" prefHeight="40.0" prefWidth="200.0" />
+      <Button layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#switchToSupportScene" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #C19A6B;" text="Support" />
+      <Button layoutX="3.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToOffersScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Special Promotions">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Line endX="-69.0" endY="398.0" layoutX="323.0" layoutY="247.0" startX="-69.0" startY="-242.0" />
+      <Button layoutX="3.0" layoutY="442.0" mnemonicParsing="false" onAction="#switchToReserveScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" text="Reserve  Bus">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <stylesheets>
+            <URL value="@style.css" />
+            <URL value="@design.css" />
+         </stylesheets>
+      </Button>
+      <Button defaultButton="true" layoutX="173.0" layoutY="594.0" mnemonicParsing="false" onAction="#switchToContactScene" text="Contact Us" />
+   </children>
+</AnchorPane>

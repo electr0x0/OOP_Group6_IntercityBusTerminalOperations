@@ -1,5 +1,6 @@
 
-package com.busterminal.controller;
+package com.busterminal.controller.driver;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 
@@ -25,9 +25,9 @@ public class DashboardController implements Initializable {
     }    
 
     @FXML
-    private void switchToRouteSceneOnClick(ActionEvent event) throws IOException {
-        Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("Route.fxml"));
+   private void switchToRouteSceneOnClick(ActionEvent event) throws IOException {
+     Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/Route.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
@@ -38,12 +38,18 @@ public class DashboardController implements Initializable {
         
         someStage.setScene(someScene);
         someStage.show();
-    }
-
+   
+}
+   
+  
+    
+   
+  
+   
     @FXML
     private void switchToPassangerInfoSceneOnClick(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("PassengerInfo.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/PassengerInfo.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
@@ -59,8 +65,8 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void switchToBusInfoSceneOnClick(ActionEvent event) throws IOException {
-         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("BusInfo.fxml"));
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/BusInfo.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
@@ -76,7 +82,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void switchToReportSceneOnClick(ActionEvent event) throws IOException {
          Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("Report.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/Report.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
@@ -97,7 +103,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void switchToChatSceneOnClick(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("ChatBody.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/ChatBody.fxml"));
         root = (Parent) someLoader.load();       
         Scene someScene = new Scene (root);
         
@@ -114,7 +120,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void switchToTripHistorySceneOnClick(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("TripHistory.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/TripHistory.fxml"));
         root = (Parent) someLoader.load();       
         Scene someScene = new Scene (root);
         
@@ -127,7 +133,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void switchToInboxSceneOnClick(ActionEvent event) throws IOException {
         Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("Inbox.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("views/driver/Inbox.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
