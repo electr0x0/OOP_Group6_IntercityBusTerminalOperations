@@ -20,7 +20,11 @@ public class ReserveBus {
         this.duration = duration;
         this.date = date;
     }
-
+    
+    public void createReserveBus(){
+        
+    }
+    
     public String getBusType() {
         return busType;
     }

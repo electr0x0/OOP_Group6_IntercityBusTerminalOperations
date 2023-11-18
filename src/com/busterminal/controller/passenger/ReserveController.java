@@ -4,16 +4,27 @@
  */
 package com.busterminal.controller.passenger;
 
+import com.busterminal.model.ReserveBus;
 import com.busterminal.model.SceneSwicth;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,7 +43,51 @@ public class ReserveController implements Initializable {
     private ComboBox<Integer> daySelectCombo;
     @FXML
     private ComboBox<String> busTypeCombo;
+    @FXML
+    private RadioButton acRB;
+    @FXML
+    private RadioButton nonacRB;
 
+    public RadioButton getAcRB() {
+        return acRB;
+    }
+
+    public RadioButton getNonacRB() {
+        return nonacRB;
+    }
+
+    public ToggleGroup getAcType() {
+        return acType;
+    }
+
+    public ComboBox<String> getCitySelectCombo() {
+        return citySelectCombo;
+    }
+
+    public ComboBox<Integer> getDaySelectCombo() {
+        return daySelectCombo;
+    }
+
+    public ComboBox<String> getBusTypeCombo() {
+        return busTypeCombo;
+    }
+
+    public DatePicker getDateDatePicker() {
+        return dateDatePicker;
+    }
+    @FXML
+    private DatePicker dateDatePicker;
+    
+    private ObservableList<ReserveBus> reserveBusList = FXCollections.observableArrayList();
+
+    public ObservableList<ReserveBus> getReserveBusList() {
+        return reserveBusList;
+    }
+
+    public void setReserveBusList(ObservableList<ReserveBus> reserveBusList) {
+        this.reserveBusList = reserveBusList;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -41,16 +96,54 @@ public class ReserveController implements Initializable {
         citySelectCombo.getItems().addAll("Dhaka","Rajshahi","Sylhet","Chittagong","Khulna");
         daySelectCombo.getItems().addAll(1,2,3,4,5);
         busTypeCombo.getItems().addAll("Minibus","Coach","Double Decker Bus");
+        //reserveBusList = FXCollections.observableArrayList();
     }    
 
 
     @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {
         new SceneSwicth(anchorpaneReserve,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
+        
     }
 
     @FXML
-    private void swichSceneToReservedBusListsScene(ActionEvent event) {
+    private void swichSceneToReservedBusListsScene(ActionEvent event) throws IOException {
+        
+        ReserveBus  r1 = new ReserveBus("Mini bus","Ac","Dhaka",3, dateDatePicker.getValue());
+        ReserveBus  r2 = new ReserveBus("Coach","nonAc","Dhaka",3, dateDatePicker.getValue());
+        ReserveBus  r3 = new ReserveBus("Coach","nonAc","Rajshahi",3, dateDatePicker.getValue());
+        ReserveBus  r4 = new ReserveBus("Mini bus","ac","Sylhet",3, dateDatePicker.getValue());
+        ReserveBus  r5 = new ReserveBus("Double Decker Bus","nonAc","Chittagong",3, dateDatePicker.getValue());
+        ReserveBus  r6 = new ReserveBus("Coach","ac","Dhaka",3, dateDatePicker.getValue());
+        ReserveBus  r7 = new ReserveBus("Double Decker","nonAc","Khulna",3, dateDatePicker.getValue());
+        ReserveBus  r8 = new ReserveBus("Mini Bus","Ac","Khulna",3, dateDatePicker.getValue());
+        ReserveBus  r9 = new ReserveBus("Coach","nonAc","Rajshahi",3, dateDatePicker.getValue());
+        ReserveBus  r10 = new ReserveBus("Mini bus","nonAc","Dhaka",3, dateDatePicker.getValue());
+        ReserveBus  r11 = new ReserveBus("Mini Bus","Ac","Sylhet",3, dateDatePicker.getValue());
+        ReserveBus  r12 = new ReserveBus("Coach","ac","Dhaka",3, dateDatePicker.getValue());
+        
+        reserveBusList.addAll(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12);
+        //System.out.println(reserveBusList);
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/ReservedBusList.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        ReservedBusListController p = someLoader.getController();
+        p.setReserveBusList(reserveBusList);
+        p.setBus(busTypeCombo.getValue());
+        p.setCity(citySelectCombo.getValue());
+        p.setDate(dateDatePicker.getValue());
+        p.setDay(daySelectCombo.getValue());
+       
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+   
+        
+        
         
     }
     
