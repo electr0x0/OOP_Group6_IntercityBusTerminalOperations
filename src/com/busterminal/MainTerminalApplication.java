@@ -18,7 +18,11 @@ public class MainTerminalApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+<<<<<<< Updated upstream
         Parent root = FXMLLoader.load(getClass().getResource("views/FXMLDocument.fxml"));
+=======
+        Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
+>>>>>>> Stashed changes
         
         Scene scene = new Scene(root);
         
