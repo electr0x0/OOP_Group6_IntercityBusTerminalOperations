@@ -103,8 +103,8 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
         MenuItem option1 = new MenuItem("Set Destination Locations and Define the Schedule List");
         option1.setOnAction(e -> setSceneToDestinationAndTimeDefiner());
         
-        MenuItem option2 = new MenuItem("View All available Destination Locations and Schedule List");
-        option2.setOnAction(e -> setSceneToDestinationAndTimeDefiner());
+        MenuItem option2 = new MenuItem("View All available Destination Locations and Time Slots");
+        option2.setOnAction(e -> setSceneToAllCurrentAvaialableLocationTimeTableView());
         
         contextMenu.getItems().addAll(option1, option2);
         
@@ -125,7 +125,7 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
             TerminalManagerDestinationAndTimeDefinerController controller = loader.getController();
 
             
-            controller.setLocationAndTimeArrayList(allLocations,allTimes);
+            controller.setLocationAndTimeArrayList(allLocations,allTimes,allBusStands);
 
             rootPane.getChildren().setAll(newContent);
             
@@ -134,10 +134,32 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
             alertDialog.openMFXDialog();
         }
     }
+    
+    private void setSceneToAllCurrentAvaialableLocationTimeTableView(){
+        try {
+            // Load the new content FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerCurrentBusRoutesAndStands.fxml"));
+            AnchorPane newContent = loader.load();
 
-    public void setComboItems(ArrayList<String> allLocations, ArrayList<String> allTimes) {
+            // Get the controller
+            TerminalManagerCurrentBusRoutesAndStandsController controller = loader.getController();
+
+            
+            controller.setDataArrays(allLocations,allTimes,allBusStands);
+
+            rootPane.getChildren().setAll(newContent);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
+            alertDialog.openMFXDialog();
+        }
+    }
+    
+    public void setComboItems(ArrayList<String> allLocations, ArrayList<String> allTimes, ArrayList<String> allBusStands ) {
        this.allLocations = allLocations;
        this.allTimes = allTimes;
+       this.allBusStands = allBusStands;
     }
     
     public void setAllCombo(){

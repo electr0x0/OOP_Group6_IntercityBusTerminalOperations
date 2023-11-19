@@ -28,6 +28,7 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
     private AnchorPane rootPane;
     private  ArrayList<String> allLocations;
     private  ArrayList<String> allTimes;
+    private  ArrayList<String> allBusStands;
     @FXML
     private MFXTextField txtFieldLocation;
     @FXML
@@ -43,7 +44,13 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    public void setLocationAndTimeArrayList(ArrayList<String> allLocations, ArrayList<String> allTimes,ArrayList<String> allBusStands ) {
+        this.allLocations = allLocations;
+        this.allTimes = allTimes;
+        this.allBusStands = allBusStands;
+    }
 
     @FXML
     private void onClickBackBtn(ActionEvent event) {
@@ -56,7 +63,7 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
             TerminalManagerTicketPricingController controller = loader.getController();
 
             
-            controller.setComboItems(allLocations,allTimes);
+            controller.setComboItems(allLocations,allTimes,allBusStands);
             controller.setAllCombo();
                     
 
@@ -68,10 +75,7 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
         }
     }
 
-    public void setLocationAndTimeArrayList(ArrayList<String> allLocations, ArrayList<String> allTimes) {
-        this.allLocations = allLocations;
-        this.allTimes = allTimes;
-    }
+    
 
     @FXML
     private void onClickAddLocation(ActionEvent event) {
@@ -97,8 +101,8 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
     @FXML
     private void onClickAddTimeSchedule(ActionEvent event) {
         if (!txtFieldTimeSchedule.getText().isEmpty()){
-            for(String location: allTimes){
-                if (location.equals(txtFieldTimeSchedule.getText())){
+            for(String time: allTimes){
+                if (time.equals(txtFieldTimeSchedule.getText())){
                     dialogBox = new MFXDialog("Duplicate Entry", "Sorry, the entry already exists in the database. Please add a new entry", "Close", rootPane);
                     dialogBox.openMFXDialog();
                     return;
@@ -115,8 +119,22 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
 
     @FXML
     private void onClickAddBusStandLocation(ActionEvent event) {
+        if (!txtFieldBusStandLocation.getText().isEmpty()){
+            for(String location: allBusStands){
+                if (location.equals(txtFieldBusStandLocation.getText())){
+                    dialogBox = new MFXDialog("Duplicate Entry", "Sorry, the entry already exists in the database. Please add a new entry", "Close", rootPane);
+                    dialogBox.openMFXDialog();
+                    return;
+                }
+            }
+            allBusStands.add(txtFieldBusStandLocation.getText());
+            dialogBox = new MFXDialog("Successfully Added", "The Bus Stand entry has been successfully Added", "Close", rootPane);
+            dialogBox.openMFXDialog();
+        }else{
+            dialogBox = new MFXDialog("Empty Entry", "Sorry, the entry field is empty. Plese input the entry and then press Add", "Close", rootPane);
+            dialogBox.openMFXDialog();
+        }
     }
-    
-    
+
     
 }
