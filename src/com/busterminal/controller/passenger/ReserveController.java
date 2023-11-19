@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -36,7 +37,6 @@ public class ReserveController implements Initializable {
 
     @FXML
     private AnchorPane anchorpaneReserve;
-    @FXML
     private ToggleGroup acType;
     @FXML
     private ComboBox<String> citySelectCombo;
@@ -44,10 +44,11 @@ public class ReserveController implements Initializable {
     private ComboBox<Integer> daySelectCombo;
     @FXML
     private ComboBox<String> busTypeCombo;
-    @FXML
     private RadioButton acRB;
-    @FXML
     private RadioButton nonacRB;
+    
+    @FXML
+    private Label errorLabel;
 
     public RadioButton getAcRB() {
         return acRB;
@@ -140,6 +141,10 @@ public class ReserveController implements Initializable {
         
        String city = citySelectCombo.getValue();
        String bus = busTypeCombo.getValue();
+        System.out.println(bus);
+       if (bus !=null){
+           
+      
         //System.out.println(reserveBusList);
        for(ReserveBus x: reserveBusList){
            //System.out.println(x.getBusType());
@@ -151,6 +156,9 @@ public class ReserveController implements Initializable {
             
                
            }
+       }}
+       else{
+           errorLabel.setText("Please select all fields");
        }
         System.out.println(helperList);
         if (helperList.isEmpty()){

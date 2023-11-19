@@ -50,5 +50,10 @@
             <Font name="System Bold Italic" size="32.0" />
          </font>
       </Label>
+      <Label fx:id="errorLabel" layoutX="307.0" layoutY="527.0" prefHeight="17.0" prefWidth="216.0" textFill="#f82424">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
