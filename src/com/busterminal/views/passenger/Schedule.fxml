@@ -4,23 +4,48 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorpane3" prefHeight="645.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.ScheduleController">
    <children>
-      <ComboBox fx:id="fromCombo" layoutX="326.0" layoutY="154.0" prefHeight="25.0" prefWidth="174.0" />
-      <ComboBox fx:id="toCombo" layoutX="326.0" layoutY="237.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="249.0" layoutY="158.0" text="From" />
-      <Label layoutX="251.0" layoutY="241.0" text="To" />
-      <DatePicker layoutX="326.0" layoutY="332.0" />
-      <Label layoutX="258.0" layoutY="336.0" text="Date" />
-      <Button defaultButton="true" layoutX="387.0" layoutY="430.0" mnemonicParsing="false" onAction="#switchToMatchingSchedule" text="Search" />
-      <Label layoutX="295.0" layoutY="61.0" prefHeight="17.0" prefWidth="220.0" text="Bus Schedule Information">
+      <ComboBox fx:id="fromCombo" layoutX="417.0" layoutY="215.0" prefHeight="25.0" prefWidth="174.0" promptText="Select City" />
+      <ComboBox fx:id="toCombo" layoutX="417.0" layoutY="294.0" prefHeight="25.0" prefWidth="174.0" promptText="Select City" />
+      <Label layoutX="288.0" layoutY="212.0" prefHeight="17.0" prefWidth="64.0" text="From">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="22.0" />
+         </font></Label>
+      <Label layoutX="288.0" layoutY="290.0" prefHeight="17.0" prefWidth="49.0" text="To">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font></Label>
+      <DatePicker layoutX="417.0" layoutY="374.0" />
+      <Label layoutX="280.0" layoutY="371.0" prefHeight="17.0" prefWidth="64.0" text="Date">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Label>
+      <Button layoutX="358.0" layoutY="454.0" mnemonicParsing="false" onAction="#switchToMatchingSchedule" prefHeight="31.0" prefWidth="174.0" text="Search Available Bus">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label layoutX="344.0" layoutY="137.0" prefHeight="54.0" prefWidth="231.0" text="Select Destination">
+         <font>
+            <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="799.0" layoutY="598.0" mnemonicParsing="false" onAction="#switchtoScene2" prefHeight="25.0" prefWidth="52.0" text="Back" />
+      <Button layoutX="754.0" layoutY="598.0" mnemonicParsing="false" onAction="#switchtoScene2" prefHeight="25.0" prefWidth="108.0" text="Back" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="125.0" fitWidth="148.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../storage/assets/2154901.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="154.0" layoutY="14.0" prefHeight="54.0" prefWidth="174.0" text="Bus Schedule ">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

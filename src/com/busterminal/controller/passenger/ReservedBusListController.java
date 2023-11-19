@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,6 +46,18 @@ public class ReservedBusListController implements Initializable {
 
     private ObservableList<ReserveBus> reserveBusList=FXCollections.observableArrayList();
     private ObservableList<ReserveBus> helperList= FXCollections.observableArrayList();
+
+    public ObservableList<ReserveBus> getHelperList() {
+        return helperList;
+    }
+
+    public void setHelperList(ObservableList<ReserveBus> helperList) {
+        this.helperList = helperList;
+       
+        tableViewReserveBus.setItems(this.helperList);
+       
+        
+    }
     private String bus;
     private String city;
     private int day;
@@ -122,37 +132,21 @@ public class ReservedBusListController implements Initializable {
     }    
 
     @FXML
-    private void reserveConfirmAlert(ActionEvent event) {
-        Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/Reserve.fxml"));
-        try {
-            root = (Parent) someLoader.load();
-        } catch (IOException ex) {
-            Logger.getLogger(ReservedBusListController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ReserveController q = someLoader.getController();
+    private void reserveConfirmAlert(ActionEvent event) throws IOException {
+        Parent fileChooserViewParent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/passenger/ReserveBusPassengerInfo.fxml"));
+        Scene fileChooserViewScene = new Scene(fileChooserViewParent);
+        //Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage newWindow  = new Stage();
         
-        String bus = q.getBusTypeCombo().getValue();
-        String city = q.getCitySelectCombo().getValue();
-        String ac = q.getAcType().toString();
-        Integer duration = q.getDaySelectCombo().getValue();
-        String date = q.getDateDatePicker().toString();
-        
-        System.out.println(reserveBusList);
-        System.out.println(bus);  
-        for(ReserveBus x: reserveBusList){
-            if (x.getBusType().equals(bus) && x.getCity().equals(city)){
-                helperList.add(x);
-            }
-                tableViewReserveBus.setItems(helperList);
-        }
+        newWindow.setTitle("Enter Details");
+        newWindow.setScene(fileChooserViewScene);
+        newWindow.show();
     }
-    
      
         
     @FXML
     private void switchToReserveBusSceneOnClick(ActionEvent event) throws IOException {
-         Parent root = null;
+        Parent root = null;
         FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/Reserve.fxml"));
         root = (Parent) someLoader.load();
         

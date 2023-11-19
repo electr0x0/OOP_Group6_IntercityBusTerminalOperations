@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -79,6 +80,7 @@ public class ReserveController implements Initializable {
     private DatePicker dateDatePicker;
     
     private ObservableList<ReserveBus> reserveBusList = FXCollections.observableArrayList();
+    private ObservableList<ReserveBus> helperList = FXCollections.observableArrayList();
 
     public ObservableList<ReserveBus> getReserveBusList() {
         return reserveBusList;
@@ -95,7 +97,7 @@ public class ReserveController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         citySelectCombo.getItems().addAll("Dhaka","Rajshahi","Sylhet","Chittagong","Khulna");
         daySelectCombo.getItems().addAll(1,2,3,4,5);
-        busTypeCombo.getItems().addAll("Minibus","Coach","Double Decker Bus");
+        busTypeCombo.getItems().addAll("Mini Bus","Coach","Double Decker Bus");
         //reserveBusList = FXCollections.observableArrayList();
     }    
 
@@ -109,18 +111,18 @@ public class ReserveController implements Initializable {
     @FXML
     private void swichSceneToReservedBusListsScene(ActionEvent event) throws IOException {
         
-        ReserveBus  r1 = new ReserveBus("Mini bus","Ac","Dhaka",3, dateDatePicker.getValue());
-        ReserveBus  r2 = new ReserveBus("Coach","nonAc","Dhaka",3, dateDatePicker.getValue());
-        ReserveBus  r3 = new ReserveBus("Coach","nonAc","Rajshahi",3, dateDatePicker.getValue());
-        ReserveBus  r4 = new ReserveBus("Mini bus","ac","Sylhet",3, dateDatePicker.getValue());
-        ReserveBus  r5 = new ReserveBus("Double Decker Bus","nonAc","Chittagong",3, dateDatePicker.getValue());
-        ReserveBus  r6 = new ReserveBus("Coach","ac","Dhaka",3, dateDatePicker.getValue());
-        ReserveBus  r7 = new ReserveBus("Double Decker","nonAc","Khulna",3, dateDatePicker.getValue());
-        ReserveBus  r8 = new ReserveBus("Mini Bus","Ac","Khulna",3, dateDatePicker.getValue());
-        ReserveBus  r9 = new ReserveBus("Coach","nonAc","Rajshahi",3, dateDatePicker.getValue());
-        ReserveBus  r10 = new ReserveBus("Mini bus","nonAc","Dhaka",3, dateDatePicker.getValue());
-        ReserveBus  r11 = new ReserveBus("Mini Bus","Ac","Sylhet",3, dateDatePicker.getValue());
-        ReserveBus  r12 = new ReserveBus("Coach","ac","Dhaka",3, dateDatePicker.getValue());
+        ReserveBus  r1 = new ReserveBus("Mini Bus","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r2 = new ReserveBus("Coach","Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r3 = new ReserveBus("Coach","Non AC","Rajshahi", daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r4 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r5 = new ReserveBus("Double Decker Bus","Non AC","Chittagong",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r6 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r7 = new ReserveBus("Double Decker Bus","Non AC","Khulna",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r8 = new ReserveBus("Mini Bus","AC","Khulna",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r9 = new ReserveBus("Coach","Non AC","Rajshahi",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r10 = new ReserveBus("Mini Bus","Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r11 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r12 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
         
         reserveBusList.addAll(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12);
         //System.out.println(reserveBusList);
@@ -131,12 +133,37 @@ public class ReserveController implements Initializable {
         Scene someScene = new Scene (root);
         ReservedBusListController p = someLoader.getController();
         p.setReserveBusList(reserveBusList);
-        p.setBus(busTypeCombo.getValue());
-        p.setCity(citySelectCombo.getValue());
-        p.setDate(dateDatePicker.getValue());
-        p.setDay(daySelectCombo.getValue());
-       
+        //p.setBus(busTypeCombo.getValue());
+        //p.setCity(citySelectCombo.getValue());
+        //p.setDate(dateDatePicker.getValue());
+        //p.setDay(daySelectCombo.getValue());
         
+       String city = citySelectCombo.getValue();
+       String bus = busTypeCombo.getValue();
+        //System.out.println(reserveBusList);
+       for(ReserveBus x: reserveBusList){
+           //System.out.println(x.getBusType());
+           if (x.getBusType().equals(bus) && x.getCity().equals(city)){
+               //System.out.println(x);
+               helperList.add(x);
+               p.setHelperList(helperList);
+               System.out.println(helperList);
+            
+               
+           }
+       }
+        System.out.println(helperList);
+        if (helperList.isEmpty()){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(" ");
+        alert.setTitle("No Available bus Found");
+        alert.setHeaderText("Sorry, there are no available buses in your desired city");
+        alert.show();
+       }
+        //System.out.println(helperList);
+       
+        //System.out.println(helperList);
+        //p.setHelperList(helperList);
         Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         someStage.setScene(someScene);
