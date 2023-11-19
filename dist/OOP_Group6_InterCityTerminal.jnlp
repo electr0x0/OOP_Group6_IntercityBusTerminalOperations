@@ -8,8 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="OOP_Group6_InterCityTerminal.jar" size="355087" download="eager" />
-    <jar href="lib\jakarta.persistence-2.2.3.jar" size="173811" download="eager" />
+    <jar href="OOP_Group6_InterCityTerminal.jar" size="355082" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.busterminal.MainTerminalApplication"  name="OOP_Group6_InterCityTerminal" />
   <update check="always"/>

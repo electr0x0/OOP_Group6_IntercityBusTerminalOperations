@@ -10,20 +10,20 @@
 
 <AnchorPane id="AnchorPane" fx:id="purchaseHistoryAnchorpane" prefHeight="645.0" prefWidth="889.0" style="-fx-background-color: #D5D6EA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.PurchaseHistoryController">
    <children>
-      <Button layoutX="300.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchToShowTicketDetailsScene" prefHeight="42.0" prefWidth="209.0" style="-fx-background-color: blue;" stylesheets="@design.css" text="Ticket Details" textFill="WHITE">
+      <Button layoutX="325.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToShowTicketDetailsScene" prefHeight="42.0" prefWidth="209.0" style="-fx-background-color: blue;" stylesheets="@design.css" text="Ticket Details" textFill="WHITE">
          <styleClass>
             <String fx:value="record-sales" />
             <String fx:value="details" />
          </styleClass>
       </Button>
-      <Button layoutX="303.0" layoutY="351.0" mnemonicParsing="false" onAction="#switchToCancelTicketScene" prefHeight="42.0" prefWidth="203.0" style="-fx-background-color: red;" styleClass="record-sales" stylesheets="@design.css" text="Cancel Ticket" textFill="WHITE" />
-      <Label layoutX="263.0" layoutY="21.0" prefHeight="59.0" prefWidth="282.0" text="Purchase History">
+      <Button layoutX="328.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchToCancelTicketScene" prefHeight="42.0" prefWidth="203.0" style="-fx-background-color: red;" styleClass="record-sales" stylesheets="@design.css" text="Cancel Ticket" textFill="WHITE" />
+      <Label layoutX="169.0" layoutY="7.0" prefHeight="84.0" prefWidth="312.0" text="Purchase History">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Button defaultButton="true" layoutX="754.0" layoutY="529.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="80.0" text="Back" />
-      <ImageView fitHeight="93.0" fitWidth="106.0" layoutX="160.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <Button defaultButton="true" layoutX="755.0" layoutY="589.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="112.0" text="Back" />
+      <ImageView fitHeight="131.0" fitWidth="131.0" layoutX="26.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../storage/assets/purchase.png" />
          </image>
