@@ -1,34 +1,29 @@
 package com.busterminal.controller;
 
-import com.busterminal.model.BasicUser;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import mainPkg.Interface.Account;
+import mainPkg.Interface.Administrator;
+import mainPkg.Interface.PopUp;
+import mainPkg.model.Client;
 
 public class SignUpController implements Initializable {
 
@@ -50,7 +45,6 @@ public class SignUpController implements Initializable {
     private DatePicker birthdayDP;
     @FXML
     private TextField addressTF;
-    @FXML
     private ComboBox<String> languageCB;
     @FXML
     private RadioButton maleRB;
@@ -58,74 +52,42 @@ public class SignUpController implements Initializable {
     private ToggleGroup gender;
     @FXML
     private RadioButton femaleRB;
-    private List<BasicUser> data;
     @FXML
-    private Button signUpButton;
-    private BasicUser person;
+    private Button backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        data = new ArrayList<>();
-        languageCB.getItems().addAll("English", "Bangla");
-        System.out.println(data);
-
     }
 
     @FXML
     private void signUpOnMouseClick(ActionEvent event) throws IOException {
-        person = new BasicUser(firstNameTF.getText(), lastNameTF.getText(), addressTF.getText(), languageCB.getValue(), (maleRB.isSelected() ? "Male" : "Famale"), phoneNumberTF.getText(), emailTF.getText().trim(), passwordTF.getText().trim(),
-        birthdayDP.getValue());
-        
-        data.add(person);
-        filewrite();
-        sceneSwitch();
-    }
-
-    private void filewrite() {
-        File file = null;
-        FileInputStream fos = null;
-        ObjectOutputStream dos = null;
-        try {
-            String location = "userdata.bin";
-            file = new File(location);
-            if (file.exists()) {
-                dos = new AppendableObjectOutputStream(new FileOutputStream(location, true));
+        String firstname = firstNameTF.getText();
+        String lastname = lastNameTF.getText();
+        String address = addressTF.getText();
+        String contactNumber = phoneNumberTF.getText();
+        String email = emailTF.getText();
+        LocalDate dob = birthdayDP.getValue();
+        String password = passwordTF.getText();
+        String gender = (maleRB.isSelected() ? "Male" : "Famale");
+        String confirmPassword = confirmPasswordTF.getText();
+        int clientID = Account.generateClientID();
+        if (password.equals(confirmPassword)) {
+            if (Account.checkClientEmailExistence(email)) {
+                PopUp.showMessage("Information", "Account Already Exists !");
             } else {
-                dos = new ObjectOutputStream(new FileOutputStream(location));
+                Client c = new Client(clientID, firstname, lastname, address,email, dob, password,contactNumber,   gender);
+                Administrator.clientCreateNewAccount(c);
+                PopUp.showMessage("Information", "Account has been Succesfully Created\n"
+                        + "Your Customer ID is: " + Integer.toString(clientID));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-            dos.writeObject(person);
-            System.out.println(person.toString());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                if (dos != null) {
-                    dos.close();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } else {
+            PopUp.showMessage("Password didn't Match", "Confirmpasswoed and password must be same:");
         }
-        clear();
-    }
-
-    private void sceneSwitch() {
-        signUpButton.getScene().getWindow().hide();
-        Stage login = new Stage();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../Fxml/login.fxml"));
-            Scene scene = new Scene(root);
-            login.setScene(scene);
-            login.show();
-            // Create a object For using Label which is located login scene    
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        LoginController loginController = new LoginController();
-        loginController.updateLabel("Sign up Successfully..!", "-fx-text-fill: green;");
 
     }
 
@@ -134,9 +96,18 @@ public class SignUpController implements Initializable {
         lastNameTF.clear();
         passwordTF.clear();
         confirmPasswordTF.clear();
-        languageCB.setValue("");
         emailTF.clear();
         addressTF.clear();
         phoneNumberTF.clear();
+    }
+
+    @FXML
+    private void goLogInOnMouseClick(ActionEvent event) throws IOException {
+        backButton.getScene().getWindow().hide();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

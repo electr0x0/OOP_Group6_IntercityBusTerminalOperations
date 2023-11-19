@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,10 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-
-
-public class LoginController implements Initializable{
+import mainPkg.Interface.PopUp;
+import mainPkg.Interface.Account;
+public class LoginController implements Initializable {
 
     @FXML
     private TextField userNameTextField;
@@ -34,90 +34,116 @@ public class LoginController implements Initializable{
     private ComboBox<String> accountTypeComboBox;  // set default type as a String
     @FXML
     private Button signupbutton;
-    
-        @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-        // Set Account Type
-        accountTypeComboBox.getItems().addAll("Administrator","Maintenance Staff","Driver","Manager","Passenger");
-            
-    
-}
 
-    private void loginUser(){
-         
-        
-        //We verify the username and password
-        if(!userNameTextField.getText().trim().equals("") 
-                && !passwordField.getText().trim().equals("")){
-            
-            //When we click login button our login scene will hide and get new scene
-            loginButton.getScene().getWindow().hide();
-            
-            //Now we are ready to go the next scene
-            
-            Stage adminDashBoard = new Stage();
-            
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("../Fxml/Admin/AdminDashBord.fxml"));
-                //now create a scene
-                Scene scene = new Scene(root);
-                adminDashBoard.setScene(scene);
-                adminDashBoard.show();
-                adminDashBoard.setResizable(false);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            
-            
-        }else label.setText("Enter username & password!");
-        
-        
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // Set Account Type
+        accountTypeComboBox.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
+                "Terminal Manager", "Passenger", "Human Resource");
+
     }
-    public void updateLabel(String text, String style) {
-        if (label == null) {
-            label.setText(text);
-            label.setStyle(style);
-        } else {
-            System.out.println("Label is null. Make sure the label is properly defined in your FXML file.");
+    @FXML
+    private void loginButtonOnMouseClick(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = null;
+        String email = userNameTextField.getText();
+        String password = passwordField.getText();
+        System.out.println(password);
+        if (Account.verifyEmailSuffix(email) && Account.verifyPasswordLength(password)){
+            
+       
+        switch (accountTypeComboBox.getValue()) {
+            case "Administrator":
+                if (Account.employeepasswordMatch(accountTypeComboBox.getValue(),email, password)==true) {
+                    loader = new FXMLLoader(getClass().getResource("AdminDashbord.fxml"));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Maintenance Staff":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Ticket Vendor":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Driver":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Terminal Manager":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Beef":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Human Resource":
+                if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
+                    loader = new FXMLLoader(getClass().getResource(""));
+                } else {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                }
+                break;
+            case "Passenger":
+                //email
+                //password
+                if (!Account.checkClientEmailExistence(email)) {
+                    PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                    return;
+                }
+                if (!Account.clientpasswordMatch(email, password)) {
+                   PopUp.showMessage("Wrong credentials", "Invalid username or password");
+                    return;
+                }else{
+                    loader = new FXMLLoader(getClass().getResource(""));
+                }
+                break;
+        }
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }else{
+            userNameTextField.clear();
+            passwordField.clear();
+            PopUp.showMessage("Alert", "Invalid Email Or Password"+"\n"+"suffix of email should be @gmail.com"+"\n"+"Password length should be 8");
         }
     }
 
     @FXML
-    private void loginButtonOnMouseClick(ActionEvent event) {
-        loginUser();
+    private void signUpButtononMouseClick(ActionEvent event) throws IOException {
+        //signupbutton.getScene().getWindow().hide();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        root.resize(0, 0);
     }
 
-
-    @FXML
-    private void accountTypeOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void signUpButtononMouseClick(ActionEvent event) {
-            //When we click login button our login scene will hide and get new scene
-            signupbutton.getScene().getWindow().hide();
-            //Now we are ready to go the next scene         
-            Stage signup = new Stage();
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("../Fxml/user/SignUp.fxml"));
-                if (root!=null){
-                    // Handle the case where the fxml file not found
-                    System.out.println("Fxml file not found!");
-                    return;
-                }
-                //now create a scene
-                Scene scene = new Scene(root);
-                signup.setScene(scene);
-                signup.show();
-                signup.setResizable(false);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-}
     @FXML
     private void forgetPassWordonMouseClick(ActionEvent event) {
     }
-}
+    
 
+
+}

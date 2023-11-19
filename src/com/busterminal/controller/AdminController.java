@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+
 public class AdminController implements Initializable {
 
     @FXML
@@ -47,18 +48,19 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        sceneSwithch("../../Fxml/Admin/Home.fxml");
+        //sceneSwithch("Home.fxml");
+        sceneSwithch("AddNewEmploye.fxml");
        
 
     }
     @FXML
     private void scheduleShowOnMouseClick(ActionEvent event) {
-        label.setText("I am Schedule");
+        
     }
 
     @FXML
     private void ticketCancleRequestShowOnMouseClick(ActionEvent event) {
-        label.setText("I am Ticket Cancle show button");
+        
     }
 
     @FXML
@@ -116,12 +118,9 @@ public class AdminController implements Initializable {
 
     @FXML
     private void userOnMouseClick(ActionEvent event) throws IOException {
-        sceneSwithch("../../Fxml/user/userDataTable.fxml");
+          sceneSwithch("AddNewEmploye.fxml");
     }
 
-    @FXML
-    private void adminGroupOnMouseClick(ActionEvent event) {
-    }
 
     @FXML
     private void privilegeOnMouseClick(ActionEvent event) {
@@ -136,7 +135,7 @@ public class AdminController implements Initializable {
         logoutButton.getScene().getWindow().hide();
         Stage login = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../Fxml/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Scene scene = new Scene(root);
             login.setScene(scene);
             login.show();
@@ -144,8 +143,7 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LoginController loginController = new LoginController();
-        loginController.updateLabel("Log out Successfully..!", "-fx-text-fill: green;");
+       
 
     }
 
