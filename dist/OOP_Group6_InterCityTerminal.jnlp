@@ -8,11 +8,20 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <jar href="OOP_Group6_InterCityTerminal.jar" size="372124" download="eager" />
 =======
     <jar href="OOP_Group6_InterCityTerminal.jar" size="355958" download="eager" />
 >>>>>>> Stashed changes
+=======
+    <jar href="OOP_Group6_InterCityTerminal.jar" size="3595399" download="eager" />
+    <jar href="lib\adapter-0.2.0.jar" size="12415" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib\jfoenix-9.0.10.jar" size="2432549" download="eager" />
+    <jar href="lib\materialfx-11.13.5.jar" size="3226858" download="eager" />
+    <jar href="lib\virtualizedfx-11.2.6.1.jar" size="64010" download="eager" />
+>>>>>>> TerminalManager
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.busterminal.MainTerminalApplication"  name="OOP_Group6_InterCityTerminal" />
   <update check="always"/>

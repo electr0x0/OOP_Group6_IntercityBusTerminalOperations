@@ -1,0 +1,16 @@
+.sidePanel{
+    -fx-background-color: linear-gradient(to bottom,#82ccdd,#60a3bc);
+}
+
+.sideBtn{
+    -fx-background-color: #4a69bd;
+    -fx-text-fill: whitesmoke;  
+}
+
+.sideBtn:hover{
+    -fx-background-color: #1e3799;
+}
+
+.mainLayout{
+    -fx-background-color: linear-gradient(to right,#4a69bd,#60a3bc);
+}

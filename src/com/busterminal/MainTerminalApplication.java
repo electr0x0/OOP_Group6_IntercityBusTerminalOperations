@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
- */
+
 package com.busterminal;
 
 import javafx.application.Application;
@@ -18,8 +15,27 @@ public class MainTerminalApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+<<<<<<< HEAD
          Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
+=======
+        Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
+>>>>>>> main
+        
+=======
+        //Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/AdminDashbord.fxml"));
+>>>>>>> Administrator
+=======
+          Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+>>>>>>> Passenger
+>>>>>>> TerminalManager
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
