@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< Updated upstream
     <jar href="OOP_Group6_InterCityTerminal.jar" size="372124" download="eager" />
+=======
+    <jar href="OOP_Group6_InterCityTerminal.jar" size="355958" download="eager" />
+>>>>>>> Stashed changes
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.busterminal.MainTerminalApplication"  name="OOP_Group6_InterCityTerminal" />
   <update check="always"/>

@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class RelationshipDatabaseClass {
 
     private static RelationshipDatabaseClass instance;
-
+    
+    
     private ArrayList<String> allLocations;
     private ArrayList<String> allTimes;
     private ArrayList<String> allBusStands;
