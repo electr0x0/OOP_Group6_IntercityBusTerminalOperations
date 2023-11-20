@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.busterminal.model;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,6 +48,32 @@ public class Employee extends User {
         this.email = email;
     }
 
+=======
+import java.io.Serializable;
+import java.time.LocalDate;
+import mainPkg.Interface.User;
+
+public class Employee extends User implements Serializable {
+
+    private String designation;
+    private LocalDate dateofJoining;
+
+    public Employee(String designation, LocalDate dateofJoining, int iD, String firstName, String lastName, String address, String email, LocalDate dateOfBirth, String password, String phoneNumber, String gender) {
+        super(iD, firstName, lastName, address, email, dateOfBirth, password, phoneNumber, gender);
+        this.designation = designation;
+        this.dateofJoining = dateofJoining;
+    }
+
+    public int getiD() {
+        return iD;
+    }
+
+    public void setiD(int iD) {
+        this.iD = iD;
+    }
+
+    @Override
+>>>>>>> Administrator
     public String getPassword() {
         return password;
     }
@@ -59,6 +82,7 @@ public class Employee extends User {
         this.password = password;
     }
 
+<<<<<<< HEAD
     public String getId() {
         return id;
     }
@@ -106,5 +130,27 @@ public class Employee extends User {
     }
 
     
+=======
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String Designation) {
+        this.designation = Designation;
+    }
+
+    public LocalDate getDateofJoining() {
+        return dateofJoining;
+    }
+
+    public void setDateofJoining(LocalDate DateofJoining) {
+        this.dateofJoining = DateofJoining;
+    }
+
+    public void submitReport() {
+    }
+>>>>>>> Administrator
     
+    
+
 }

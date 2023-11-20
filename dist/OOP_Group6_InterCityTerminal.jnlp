@@ -9,6 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <jar href="OOP_Group6_InterCityTerminal.jar" size="3595482" download="eager" />
 =======
     <jar href="OOP_Group6_InterCityTerminal.jar" size="3595084" download="eager" />
@@ -18,6 +19,12 @@
     <jar href="lib\jfoenix-9.0.10.jar" size="2432549" download="eager" />
     <jar href="lib\materialfx-11.13.5.jar" size="3226858" download="eager" />
     <jar href="lib\virtualizedfx-11.2.6.1.jar" size="64010" download="eager" />
+=======
+    <jar href="OOP_Group6_InterCityTerminal.jar" size="215602" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib\jfoenix-9.0.10.jar" size="2432549" download="eager" />
+>>>>>>> Administrator
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.busterminal.MainTerminalApplication"  name="OOP_Group6_InterCityTerminal" />
   <update check="always"/>
