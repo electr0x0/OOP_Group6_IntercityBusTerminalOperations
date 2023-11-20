@@ -61,7 +61,12 @@ public class PassengerInfoController implements Initializable {
             
             while(true){
                 
-                  Passenger p1 = new Passenger(di.readUTF(),di.readUTF(),di.readUTF(),di.readInt());     
+                  Passenger p1 = new Passenger(di.readUTF(),di.readUTF(),
+                          
+                          
+                          
+                          
+                          di.readInt());     
                   
                   pList.add(p1);
                   

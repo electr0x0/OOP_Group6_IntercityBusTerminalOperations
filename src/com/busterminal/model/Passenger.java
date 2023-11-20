@@ -4,21 +4,40 @@
  */
 package com.busterminal.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author electr0
  */
 public class Passenger {
     
-    private String name,email,seatNumber;
-   private  int contactNum;
+    private String name,email;
+    private ArrayList<String> seatNumber;
 
-    public Passenger(String name, String email, String seatNumber, int contactNum) {
+    public Passenger(String name, String email, int contactNum) {
+        this.name = name;
+        this.email = email;
+        this.contactNum = contactNum;
+    }
+
+    public ArrayList<String> getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(ArrayList<String> seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+    private  int contactNum;
+
+    public Passenger(String name, String email, ArrayList<String> seatNumber, int contactNum) {
         this.name = name;
         this.email = email;
         this.seatNumber = seatNumber;
         this.contactNum = contactNum;
     }
+
+    
 
     public Passenger() {
     }
@@ -39,13 +58,8 @@ public class Passenger {
         this.email = email;
     }
 
-    public String getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(String seatNumber) {
-        this.seatNumber = seatNumber;
-    }
+  
+   
 
     public int getContactNum() {
         return contactNum;

@@ -52,88 +52,27 @@ public class ScheduleController implements Initializable {
     private void switchToMatchingSchedule(ActionEvent event) throws IOException {
       
     
-    String from = fromCombo.getSelectionModel().getSelectedItem().toString();
-    String to = toCombo.getSelectionModel().getSelectedItem();
+    //String from = fromCombo.getSelectionModel().getSelectedItem().toString();
+    //String to = toCombo.getSelectionModel().getSelectedItem();
 
-    if ("Dhaka".equals(from) && "Rajshahi".equals(to)) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
-        root = loader.load();
-        MatchingSchedulesController matchingScheduleController = loader.getController();
-        matchingScheduleController.displayBus1Label("KTC HANIF\n" +
-"115 NON_AC\n" +
-"Starting Point: Kallyanpur KP1\n" +
-"End Point: Rajshahi");
-        matchingScheduleController.displayBus2Label("DESH TRAVELS\n" +
-"011-DHK-CHAP Non AC\n" +
-"Starting Point: Kallaynpur\n" +
-"End Point: Chapai");
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-           }
-
-    else if ("Dhaka".equals(from) && "Chittagong".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
-        root = loader.load();
-        MatchingSchedulesController matchingScheduleController = loader.getController();
-        matchingScheduleController.displayBus1Label("GREEN LINE\n" +
-"101-DD-Kalabagan-Upper AC\n" +
-"Starting Point: Kalabagan1\n" +
-"End Point:");
-        matchingScheduleController.displayBus2Label(" SHYAMOLI NR TRAVELS\n" +
-"102-CTG Non AC\n" +
-"Starting Point: Gabtoli 06 No.\n" +
-"End Point: CTG- BRTC-02");
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-           }
-       
-
-    else if ("Dhaka".equals(from) && "Khulna".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
-        root = loader.load();
-        MatchingSchedulesController matchingScheduleController = loader.getController();
-        matchingScheduleController.displayBus1Label("WELCOME EXPRESS\n" +
-"70 MIR-KHU (PADMA) Non AC\n" +
-"\n" +
-"Starting Point: Kocukhet\n" +
-"\n" +
-"End Point: Fultola");
-        matchingScheduleController.displayBus2Label("HANIF ENTERPRISE\n" +
-"12-Magura-Jessore NON_AC\n" +
-"Starting Point: Abdullahpur\n" +
-"End Point:");
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-           }      
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+   
+        
     
     
-    else if ("Dhaka".equals(from) && "Sylhet".equals(to)){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/MatchingSchedules.fxml"));
-        root = loader.load();
-        MatchingSchedulesController matchingScheduleController = loader.getController();
-        matchingScheduleController.displayBus1Label("SHYAMOLI NR TRAVELS\n" +
-"906-SYLHET Non AC\n" +
-"Starting Point: KP BRTC NR\n" +
-"End Point: SYLHET KODOMTOLI-02");
-        matchingScheduleController.displayBus2Label("GREEN LINE\n" +
-"502-B-R/B AC\n" +
-"Starting Point: Razarbagh1\n" +
-"End Point:");
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-           }
-    
+        
     }  
-        
-        
             
         
     

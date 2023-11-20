@@ -35,7 +35,10 @@ public class ReserveBusPassengerInfoController implements Initializable {
     @FXML
     private TextField nameTextField1;
     
+    
+    
     private ArrayList<Passenger> passengerList= new ArrayList();
+    private ArrayList<String> helperList= new ArrayList();
     /**
      * Initializes the controller class.
      */
@@ -67,7 +70,7 @@ public class ReserveBusPassengerInfoController implements Initializable {
     
     
     
-    Passenger p = new Passenger(name,email,"A1",phone);
+    Passenger p = new Passenger(name,email,helperList,phone);
     
     passengerList.add(p);
     
@@ -78,7 +81,10 @@ public class ReserveBusPassengerInfoController implements Initializable {
             for(Passenger x : passengerList){
                 ds.writeUTF(x.getName());
                 ds.writeUTF(x.getEmail());
-                ds.writeUTF(x.getSeatNumber());
+                for(String y: x.getSeatNumber()){
+                    ds.writeUTF(y);
+                    
+                }
                 ds.writeInt(x.getContactNum());
                 
                 
