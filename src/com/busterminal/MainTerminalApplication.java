@@ -17,6 +17,7 @@ public class MainTerminalApplication extends Application {
     public void start(Stage stage) throws Exception {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
 =======
         Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
@@ -26,6 +27,10 @@ public class MainTerminalApplication extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("views/AdminDashbord.fxml"));
 >>>>>>> Administrator
+=======
+          Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+>>>>>>> Passenger
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
