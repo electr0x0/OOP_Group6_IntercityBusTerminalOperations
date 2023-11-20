@@ -7,10 +7,12 @@ package com.busterminal.views.HumanResourceViews;
 import com.busterminal.model.Employee;
 import com.busterminal.model.HumanResource;
 import com.busterminal.utilityclass.Validator;
+import static com.busterminal.views.HumanResourceViews.MyEmployeeController.readEmployeesFromFile;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,7 +77,8 @@ public class CreateEmployeeController implements Initializable {
     private Label missingLabel;
 
     String genderList[] = {"Select Gender","Male","Female","Other"};
-    String designationList [] = {"Select Designation","Manager","Human Resource"};
+    String designationList [] = {"Select Designation","Maintenance Staff","System Administrator","Manager","Human Resource"
+    ,"Terminal Manager","Accountant","Passenger","Driver","Ticket Vendor"};
     @FXML
     private Label emailLabel;
     @FXML
@@ -128,7 +131,7 @@ private void switchPage(ActionEvent event) {
 }
 
     @FXML
-    private void createNewEmployee(ActionEvent event) {
+    private void createNewEmployee(ActionEvent event) throws IOException {
         Boolean isEmail = Validator.validateEmail(email.getText());
         Boolean age = Validator.isOldEnough( dob.getValue());
         Boolean pass = Validator.validatePassword(password.getText());
@@ -142,14 +145,18 @@ private void switchPage(ActionEvent event) {
         if(!num){validOutput+="\n Invalid Phone Number! \n";}
         if(!sal){validOutput+="\n Salary given not valid!";}
         if(isEmail && age && pass && num && sal){
-           if("Human Resource".equals(designation.getValue())) {
-            HumanResource newEmployee = new HumanResource(Integer.parseInt(salary.getText()),
+           
+            Employee newEmployee = new Employee(Integer.parseInt(salary.getText()),
             designation.getValue(), firstName.getText(), lastName.getText(),
             gender.getValue(), email.getText(), phoneNumber.getText(), dob.getValue(),
             address.getText()
-    );
-     writeEmployeeToFile("MyEmployee.txt", newEmployee);
-}
+            );
+             writeEmployeeToFile("MyEmployee.bin", newEmployee);
+             root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
             
         } else{
             missingLabel.setText(validOutput);
@@ -198,7 +205,6 @@ private void switchPage(ActionEvent event) {
             passwordLabel.setText("");
         } else {
             passwordLabel.setText("Passwords do not match!");
-            
         }
     }
 
@@ -211,11 +217,18 @@ private void switchPage(ActionEvent event) {
         stage.show();
     }
     
-    public static void writeEmployeeToFile(String filename, Employee employee) {
+   public static void writeEmployeeToFile(String filename, Employee employee) {
     String filePath = filename;
 
-    try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath,true))) {
-        outputStream.writeObject(employee);
+    // Read existing employees from the file
+    ArrayList<Employee> employees = readEmployeesFromFile(filePath);
+
+    // Add the new employee
+    employees.add(employee);
+
+    try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+        // Write the entire list back to the file
+        outputStream.writeObject(employees);
         System.out.println("Employee written to file: " + filePath);
     } catch (IOException e) {
         e.printStackTrace();

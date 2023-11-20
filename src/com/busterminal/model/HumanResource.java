@@ -4,12 +4,7 @@
  */
 package com.busterminal.model;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -18,16 +13,16 @@ import java.util.ArrayList;
  */
 public class HumanResource extends Employee {
     
-    private ArrayList<Employee> MyEmps;
+    ArrayList<Employee> myEmployees = new ArrayList<>();
 
     public HumanResource(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
         super(Salary, empType, firstname, lastname, gender, email, phonenumber, dateofbirth, address);
-        this.id = generateID(firstname,MyEmps);
-        MyEmps.add(this);
     }
-    
+
     
 
- 
+    
+    
    
+    
 }

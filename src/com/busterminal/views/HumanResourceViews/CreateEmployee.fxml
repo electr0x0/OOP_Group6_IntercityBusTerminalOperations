@@ -232,10 +232,10 @@
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Button layoutX="157.0" layoutY="299.0" mnemonicParsing="false" onAction="#closeMissing" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: skyblue;" text="Button" textFill="#00c8ff" />
+                  <Button layoutX="157.0" layoutY="299.0" mnemonicParsing="false" onAction="#closeMissing" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: skyblue;" text="Okay" textFill="#00c8ff" />
                </children>
             </AnchorPane>
-            <Button alignment="TOP_CENTER" layoutX="484.0" layoutY="8.0" mnemonicParsing="false" onAction="#cancelScene" prefHeight="92.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="x" textFill="RED">
+            <Button alignment="TOP_CENTER" layoutX="484.0" layoutY="8.0" mnemonicParsing="false" onAction="#cancelScene" prefHeight="92.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="x" textFill="#00ff12">
                <font>
                   <Font name="System Bold" size="34.0" />
                </font>
