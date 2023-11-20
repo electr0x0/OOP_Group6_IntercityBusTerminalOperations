@@ -4,6 +4,10 @@
  */
 package com.busterminal.model;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,20 +17,18 @@ import java.util.ArrayList;
  *
  * @author electr0
  */
-public class Employee extends User {
+public class Employee extends User implements Serializable {
     int Salary;
     String empType;
     String id;
-    
-    ArrayList<Employee> myEmployees = new ArrayList<>();
+    Boolean onLeave = false;
 
     public Employee(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
         super(firstname, lastname, gender, email, phonenumber, dateofbirth, address);
         this.Salary = Salary;
         this.empType = empType;
-        this.id = generateID(firstname,myEmployees);
     }
-
+    
     public int getSalary() {
         return Salary;
     }
@@ -41,6 +43,14 @@ public class Employee extends User {
 
     public void setEmpType(String empType) {
         this.empType = empType;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -59,21 +69,7 @@ public class Employee extends User {
         this.password = password;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public ArrayList<Employee> getMyEmployees() {
-        return myEmployees;
-    }
-
-    
-    @Override
-    public String toString() {
-        return "Employee{" + "Salary=" + Salary + ", empType=" + empType + '}';
-    }
-    
-    public static String generateID(String input, ArrayList<Employee> employees) {
+     public static String generateID(String input, ArrayList<Employee> employees) {
         int asciiValue = (int) input.charAt(0);
         LocalDateTime now = LocalDateTime.now();
         String date = now.format(DateTimeFormatter.ofPattern("MMdd"));
@@ -104,7 +100,13 @@ public class Employee extends User {
             tempID = generatedID + counter++;
         }
     }
+    
+     
+
 
     
+    
+    
+ 
     
 }
