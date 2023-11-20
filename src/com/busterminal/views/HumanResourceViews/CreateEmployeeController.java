@@ -2,15 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.busterminal.views;
+package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
+import com.busterminal.model.HumanResource;
 import com.busterminal.utilityclass.Validator;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -19,6 +27,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,6 +40,12 @@ public class CreateEmployeeController implements Initializable {
     @FXML
     private HBox page1;
     @FXML
+    private Button pagebtn1;
+    @FXML
+    private HBox page2;
+    @FXML
+    private Button pagebtn2;
+    @FXML
     private TextField firstName;
     @FXML
     private TextField email;
@@ -38,37 +54,22 @@ public class CreateEmployeeController implements Initializable {
     @FXML
     private TextField lastName;
     @FXML
-    private Label emailLabel;
-    @FXML
     private TextField confirmEmail;
     @FXML
     private TextField phoneNumber;
     @FXML
     private TextField address;
     @FXML
-    private ChoiceBox<?> gender;
-    @FXML
-    private Button pagebtn1;
-    @FXML
-    private Button pagebtn2;
-    @FXML
-    private HBox page2;
-    @FXML
-    private ChoiceBox<?> designation;
+    private ChoiceBox<String> designation;
     @FXML
     private PasswordField password;
     @FXML
     private TextField salary;
     @FXML
-    private Label passwordLabel;
-    @FXML
     private PasswordField confirmPassword;
     @FXML
-<<<<<<< HEAD
     private ChoiceBox<String> gender;
     @FXML
-=======
->>>>>>> HumanResource
     private AnchorPane alertMissing;
     @FXML
     private Label missingLabel;
@@ -79,6 +80,10 @@ public class CreateEmployeeController implements Initializable {
     private Label emailLabel;
     @FXML
     private Label passwordLabel;
+    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,7 +110,6 @@ public class CreateEmployeeController implements Initializable {
         });
     }    
 
-<<<<<<< HEAD
  @FXML
 private void switchPage(ActionEvent event) {
     Boolean isValid = areFirstFieldsEmpty(firstName,email,dob,lastName,confirmEmail,phoneNumber,address,gender);
@@ -120,11 +124,8 @@ private void switchPage(ActionEvent event) {
         page1.setVisible(true);
         pagebtn2.setTextFill(Color.BLACK);
         pagebtn1.setTextFill(Color.SKYBLUE);
-=======
-    @FXML
-    private void switchPage(ActionEvent event) {
->>>>>>> HumanResource
     }
+}
 
     @FXML
     private void createNewEmployee(ActionEvent event) {
@@ -141,19 +142,21 @@ private void switchPage(ActionEvent event) {
         if(!num){validOutput+="\n Invalid Phone Number! \n";}
         if(!sal){validOutput+="\n Salary given not valid!";}
         if(isEmail && age && pass && num && sal){
-            Employee newEmployee = new Employee(Integer.parseInt(salary.getText()),
-                    designation.getValue(),firstName.getText(),lastName.getText(),
-                    gender.getValue(),email.getText(),phoneNumber.getText(),dob.getValue(),
-                    address.getText()
-            );
-            System.out.println(newEmployee.toString());
+           if("Human Resource".equals(designation.getValue())) {
+            HumanResource newEmployee = new HumanResource(Integer.parseInt(salary.getText()),
+            designation.getValue(), firstName.getText(), lastName.getText(),
+            gender.getValue(), email.getText(), phoneNumber.getText(), dob.getValue(),
+            address.getText()
+    );
+     writeEmployeeToFile("MyEmployee.txt", newEmployee);
+}
+            
         } else{
             missingLabel.setText(validOutput);
             alertMissing.setVisible(true);
             page2.setVisible(false);
         }
     }
-<<<<<<< HEAD
       
     public static boolean areFirstFieldsEmpty(TextField firstName, TextField email, DatePicker dob,
                                           TextField lastName, TextField confirmEmail,
@@ -198,17 +201,28 @@ private void switchPage(ActionEvent event) {
             
         }
     }
+
+    @FXML
+    private void cancelScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
-    
+    public static void writeEmployeeToFile(String filename, Employee employee) {
+    String filePath = filename;
+
+    try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath,true))) {
+        outputStream.writeObject(employee);
+        System.out.println("Employee written to file: " + filePath);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
    
 }
  
-=======
-
-    @FXML
-    private void closeMissing(ActionEvent event) {
-    }
-
->>>>>>> HumanResource
     
-
