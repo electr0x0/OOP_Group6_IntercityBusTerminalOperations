@@ -13,11 +13,7 @@
             </extension>
         </buildExtensions>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
             <name>OOP_Group6_InterCityTerminal</name>
-=======
-            <name>Backup</name>
->>>>>>> main
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
