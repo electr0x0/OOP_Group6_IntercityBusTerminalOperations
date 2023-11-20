@@ -4,6 +4,7 @@
  */
 package com.busterminal.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,34 +12,42 @@ import java.util.ArrayList;
  * @author electr0
  */
 
-public class Bus {
-    private String busId;
+public class Bus implements Serializable {
+    private int busId;
     private int numberOfSeats;
     private String busType;
-    private String busModel;
+    private int busRegNum;
     private String manufacturer;
     private int yearOfManufacture;
     private ArrayList<BusSchedule> schedules;
+    private ArrayList<String> assingedDrivers;
+    private String mtStatus;
 
-    public Bus(String busId, int numberOfSeats, String busType, String busModel, String manufacturer, int yearOfManufacture) {
+    public Bus(int busId, int numberOfSeats, String busType, int busRegNum, String manufacturer, int yearOfManufacture, ArrayList<String> assingedDrivers) {
         this.busId = busId;
         this.numberOfSeats = numberOfSeats;
         this.busType = busType;
-        this.busModel = busModel;
+        this.busRegNum = busRegNum;
         this.manufacturer = manufacturer;
         this.yearOfManufacture = yearOfManufacture;
         this.schedules = new ArrayList<>();
+        this.assingedDrivers = assingedDrivers;
+    }
+
+    @Override
+    public String toString() {
+        return "Bus{" + "busId=" + busId + ", numberOfSeats=" + numberOfSeats + ", busType=" + busType + ", busRegNum=" + busRegNum + ", manufacturer=" + manufacturer + ", yearOfManufacture=" + yearOfManufacture + ", schedules=" + schedules + ", assingedDrivers=" + assingedDrivers + '}';
     }
 
     public void addSchedule(BusSchedule schedule) {
         schedules.add(schedule);
     }
 
-    public String getBusId() {
+    public int getBusId() {
         return busId;
     }
 
-    public void setBusId(String busId) {
+    public void setBusId(int busId) {
         this.busId = busId;
     }
 
@@ -58,12 +67,12 @@ public class Bus {
         this.busType = busType;
     }
 
-    public String getBusModel() {
-        return busModel;
+    public int getBusModel() {
+        return busRegNum;
     }
 
-    public void setBusModel(String busModel) {
-        this.busModel = busModel;
+    public void setbusRegNum(int busRegNum) {
+        this.busRegNum = busRegNum;
     }
 
     public String getManufacturer() {

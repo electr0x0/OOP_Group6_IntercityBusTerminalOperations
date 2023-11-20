@@ -9,9 +9,10 @@ package com.busterminal.model;
  * @author electr0
  */
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class BusSchedule {
+public class BusSchedule implements Serializable {
     private String scheduleId;
     private Bus bus; // Bus object reference for strong link
     private String source;

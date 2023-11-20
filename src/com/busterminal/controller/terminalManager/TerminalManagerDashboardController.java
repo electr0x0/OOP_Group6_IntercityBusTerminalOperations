@@ -45,9 +45,49 @@ public class TerminalManagerDashboardController implements Initializable {
 
     @FXML
     private void onClickDashboardBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerMainDashboardContent.fxml");
+    }
+
+    @FXML
+    private void onClickManageStaffBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/");
+    }
+
+    @FXML
+    private void onClickSchedulingBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/");
+    }
+
+    @FXML
+    private void onClickTicketPricingBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerTicketPricing.fxml");
+ 
+    }
+
+    @FXML
+    private void onClickFinancialBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerFinancialReports.fxml");
+    }
+
+    @FXML
+    private void onClickCommunicationHubBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/generic/CommunicationHub.fxml");
+    }
+
+    @FXML
+    private void onClickSignOutBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/");
+    }
+    
+    @FXML
+    private void onClickBusManagementBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerBusManagement.fxml");
+    }
+    
+    private void SceneSwitch(String fxmllocation){
         try {
             // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerMainDashboardContent.fxml"));
+            AnchorPane newContent = FXMLLoader.load(getClass().getResource(fxmllocation));
 
             // Clear existing content and set the new content
             dashboardContentPane.getChildren().setAll(newContent);
@@ -57,89 +97,6 @@ public class TerminalManagerDashboardController implements Initializable {
             alertDialog.openMFXDialog();
         }
     }
-
-    @FXML
-    private void onClickManageStaffBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
-
-    @FXML
-    private void onClickSchedulingBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
-
-    @FXML
-    private void onClickTicketPricingBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerTicketPricing.fxml"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
-
-    @FXML
-    private void onClickFinancialBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
-
-    @FXML
-    private void onClickCommunicationHubBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
-
-    @FXML
-    private void onClickSignOutBtn(ActionEvent event) {
-        try {
-            // Load the new content FXML file
-            AnchorPane newContent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/"));
-
-            // Clear existing content and set the new content
-            dashboardContentPane.getChildren().setAll(newContent);
-        } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
-            alertDialog.openMFXDialog();
-        }
-    }
+    
     
 }
