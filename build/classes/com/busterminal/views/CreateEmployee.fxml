@@ -110,9 +110,14 @@
                               <Insets right="10.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="207.0" textFill="RED">
+                           <font>
+                              <Font name="System Bold Italic" size="10.0" />
+                           </font>
+                        </Label>
                         <Label prefHeight="31.0" prefWidth="197.0" text="Confirm Email:" textFill="#009dff">
                            <VBox.margin>
-                              <Insets left="10.0" right="10.0" top="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="confirmEmail" prefHeight="36.0" prefWidth="197.0">
@@ -153,7 +158,7 @@
                   <Insets right="20.0" top="1.0" />
                </padding>
             </ButtonBar>
-            <HBox fx:id="page2" layoutX="130.0" layoutY="77.0" prefHeight="367.0" prefWidth="429.0" visible="false">
+            <HBox fx:id="page2" layoutX="130.0" layoutY="70.0" prefHeight="374.0" prefWidth="429.0" visible="false">
                <children>
                   <VBox prefHeight="454.0" prefWidth="198.0" style="-fx-background-color: white;">
                      <children>
@@ -191,9 +196,14 @@
                               <Insets right="10.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label fx:id="passwordLabel" prefHeight="17.0" prefWidth="208.0" textFill="RED">
+                           <font>
+                              <Font name="System Bold Italic" size="11.0" />
+                           </font>
+                        </Label>
                         <Label prefHeight="31.0" prefWidth="197.0" text="Confirm Password:" textFill="#009dff">
                            <VBox.margin>
-                              <Insets left="10.0" right="10.0" top="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </Label>
                         <PasswordField fx:id="confirmPassword" prefHeight="34.0" prefWidth="178.0">
@@ -210,6 +220,21 @@
                   </VBox>
                </children>
             </HBox>
+            <Label alignment="CENTER" layoutX="130.0" layoutY="28.0" prefHeight="45.0" prefWidth="418.0" style="-fx-background-color: white;" text="Create Employee" textFill="#00bbff">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="alertMissing" layoutX="130.0" layoutY="71.0" prefHeight="374.0" prefWidth="417.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label fx:id="missingLabel" alignment="TOP_CENTER" layoutX="50.0" layoutY="14.0" prefHeight="277.0" prefWidth="338.0" text="Label" textFill="RED">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="157.0" layoutY="299.0" mnemonicParsing="false" onAction="#closeMissing" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: skyblue;" text="Button" textFill="#00c8ff" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>
