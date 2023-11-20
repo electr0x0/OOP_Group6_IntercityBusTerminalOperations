@@ -4,6 +4,7 @@
  */
 package com.busterminal.controller.terminalManager;
 
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -95,6 +96,7 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
     @FXML
     private void onClickAddSchedule(ActionEvent event) {
         saveArrayListsToFile();
+        RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
     }
     
     private void setContextItems(){
