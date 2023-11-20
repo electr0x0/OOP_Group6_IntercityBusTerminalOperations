@@ -27,6 +27,8 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<String> allTimes;
     private ArrayList<String> allBusStands;
     private ArrayList<Bus> allAvailableBuses;
+   
+   
     
      private static final long serialVersionUID = 1L;
 
@@ -75,7 +77,7 @@ public class RelationshipDatabaseClass implements Serializable {
         System.out.println(allAvailableBuses);
     }
     
-    public void saveToFile(String filename) {
+    public void saveToFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("GlobalClassDatabase.bin"))) {
             out.writeObject(instance);
         } catch (IOException e) {

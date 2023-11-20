@@ -1,3 +1,5 @@
+/*
+
 package com.busterminal.Interface;
 
 
@@ -205,4 +207,4 @@ public interface Administrator {
     }*/
     
     
-}
+

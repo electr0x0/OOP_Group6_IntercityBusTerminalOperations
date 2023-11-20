@@ -1,3 +1,5 @@
+
+/*
 package com.busterminal.Interface;
 
 import java.io.FileInputStream;
@@ -323,3 +325,4 @@ public interface Account {
    }
     
 }
+*/

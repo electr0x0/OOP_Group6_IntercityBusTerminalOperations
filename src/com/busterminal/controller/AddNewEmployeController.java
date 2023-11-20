@@ -1,4 +1,4 @@
-
+/**
 package com.busterminal.controller;
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,15 +17,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import mainPkg.Interface.Account;
-import mainPkg.Interface.Administrator;
-import mainPkg.Interface.PopUp;
-import mainPkg.model.Employee;
+///import mainPkg.Interface.Account;
+///import mainPkg.Interface.Administrator;
+//import mainPkg.Interface.PopUp;
+///import mainPkg.model.Employee;
 /**
  * FXML Controller class
  *
  * @author DELL
- */
+ 
 public class AddNewEmployeController implements Initializable {
 
   @FXML
@@ -73,7 +73,7 @@ public class AddNewEmployeController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
@@ -125,3 +125,4 @@ public class AddNewEmployeController implements Initializable {
     }
     
 }
+*/

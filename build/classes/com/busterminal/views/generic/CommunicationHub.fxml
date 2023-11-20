@@ -6,13 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750" prefWidth="1050" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.busterminal.controller.CommunicationHubController">
+<AnchorPane id="rootPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" styleClass="rootPane" stylesheets="@chatUI.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.CommunicationHubController">
    <children>
-      <MFXComboBox floatMode="BORDER" floatingText="Select Recipient" layoutX="114.0" layoutY="68.0" prefHeight="40.0" prefWidth="244.0" />
-      <Label layoutX="47.0" layoutY="80.0" prefHeight="17.0" prefWidth="59.0" text="Recipient" />
-      <MFXTextField alignment="TOP_LEFT" floatingText="Message Content" layoutX="24.0" layoutY="535.0" prefHeight="128.0" prefWidth="978.0" />
-      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="904.0" layoutY="688.0" prefHeight="25.0" prefWidth="110.0" rippleAnimateShadow="true" text="Send Message" />
-      <Label layoutX="45.0" layoutY="120.0" prefHeight="391.0" prefWidth="965.0" text="Me : Hello" />
+      <MFXComboBox floatMode="BORDER" floatingText="Select Recipient" layoutX="24.0" layoutY="65.0" prefHeight="40.0" prefWidth="244.0" />
+      <MFXTextField alignment="TOP_LEFT" floatingText="Enter Message Content" layoutX="24.0" layoutY="596.0" prefHeight="67.0" prefWidth="978.0" styleClass="messageBody" text="Message Content" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="856.0" layoutY="688.0" prefHeight="40.0" prefWidth="146.0" rippleAnimateShadow="true" styleClass="mfx-button" stylesheets="@chatUI.css" text="Send Message" />
+      <Label layoutX="24.0" layoutY="121.0" prefHeight="462.0" prefWidth="978.0" styleClass="messageBody" stylesheets="@chatUI.css" text="Me : Hello" />
    </children>
 </AnchorPane>

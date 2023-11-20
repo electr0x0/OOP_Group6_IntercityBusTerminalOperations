@@ -1,3 +1,4 @@
+/*
 package com.busterminal.controller;
 
 import java.io.IOException;
@@ -147,3 +148,4 @@ public class LoginController implements Initializable {
 
 
 }
+*/

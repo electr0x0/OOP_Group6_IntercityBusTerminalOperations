@@ -71,16 +71,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickManageStaffBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Manage Staff" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../drawables/manage_staff-512x512.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickSchedulingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Scheduling" textFill="WHITE">
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Set Schedule and Price" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,11 +80,20 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Ticket Pricing" textFill="WHITE">
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickBusManagementBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Management" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../drawables/ticket.png" />
+                              <Image url="@../../../../drawables/dash_pane_logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickManageStaffBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Manage Staff" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/manage_staff-512x512.png" />
                            </image>
                         </ImageView>
                      </graphic>
