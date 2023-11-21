@@ -26,8 +26,8 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<String> allTimes;
     private ArrayList<String> allBusStands;
     private ArrayList<Bus> allAvailableBuses;
+    private int busIdCounter;
     
-     private static final long serialVersionUID = 1L;
 
     // Private constructor to prevent instantiation
     private RelationshipDatabaseClass() {}
@@ -73,8 +73,18 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allAvailableBuses = allAvailableBuses;
         System.out.println(allAvailableBuses);
     }
+
+    public int getBusIdCounter() {
+        System.out.println("Bus Id Counter loaded from ObjectDatabase");
+        return busIdCounter;
+    }
+
+    public void setBusIdCounter(int busIdCounter) {
+        System.out.println("Bus Id counter saved to ObjectDatabase");
+        this.busIdCounter = busIdCounter;
+    }
     
-    public void saveToFile(String filename) {
+    public void saveToFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("GlobalClassDatabase.bin"))) {
             out.writeObject(instance);
         } catch (IOException e) {
@@ -82,7 +92,7 @@ public class RelationshipDatabaseClass implements Serializable {
         }
     }
      
-    public static void loadFromFile(String filename) {
+    public static void loadFromFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("GlobalClassDatabase.bin"))) {
             instance = (RelationshipDatabaseClass) in.readObject();
         } catch (IOException | ClassNotFoundException e) {

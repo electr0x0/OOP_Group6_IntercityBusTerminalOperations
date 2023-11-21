@@ -31,8 +31,13 @@ public class TerminalManagerFinancialReportsController implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        loadObjectDB();
         availableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
-    }    
+    } 
+    
+    public void loadObjectDB(){
+        RelationshipDatabaseClass.getInstance().loadFromFile();
+    }
 
     @FXML
     private void databaseTestButton(ActionEvent event) {

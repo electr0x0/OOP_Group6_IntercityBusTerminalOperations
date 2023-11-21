@@ -1,5 +1,6 @@
 package com.busterminal.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author electr0
  */
-public class Employee extends User {
+public class Employee extends User implements Serializable{
     int Salary;
     String empType;
     String id;

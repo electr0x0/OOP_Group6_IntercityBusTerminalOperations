@@ -4,14 +4,17 @@
  */
 package com.busterminal.controller.terminalManager;
 
+import com.busterminal.model.Bus;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXContextMenuItem;
+import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +24,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +33,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -78,6 +86,25 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
     private  ArrayList<String> allLocations = new ArrayList<>();
     private  ArrayList<String> allTimes = new ArrayList<>();
     private  ArrayList<String> allBusStands = new ArrayList<>();
+    private ArrayList<Bus> allAvailableBuses;
+    @FXML
+    private TableColumn<Bus, Integer> colBusID;
+    @FXML
+    private TableColumn<Bus, String> colBusType;
+    @FXML
+    private TableColumn<Bus, Integer> colSeatCapacity;
+    @FXML
+    private TableColumn<Bus, ArrayList<String>> colAvailableDrivers;
+    @FXML
+    private TableColumn<Bus, Boolean> colMtStatus;
+    @FXML
+    private MFXComboBox<String> comboListDriver;
+    
+    private ObservableList<Bus> currentBusInfoList = FXCollections.observableArrayList();
+    @FXML
+    private MFXLegacyTableView<Bus> busInfoShowerTable;
+    @FXML
+    private MFXProgressSpinner progressSpinner;
     
 
 
@@ -86,17 +113,106 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        progressSpinner.setVisible(false);
         setContextItems();
         loadArrayListsFromFile();
         setAllCombo();
         toggleFleetAC.setToggleGroup(busType);
         toggleFleetNonAC.setToggleGroup(busType);
-    }    
+        busListSetter();
+        setupBusInfoTable();
+        // 
+        toggleFleetAC.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue) {
+            comboBusList.getItems().clear();
+            comboListDriver.getItems().clear();
+            progressSpinner.setVisible(false);
+        }});
+
+        
+    }
+    
+    
+    private void setupBusInfoTable(){
+        colBusID.setCellValueFactory(new PropertyValueFactory<>("busId"));
+        colBusType.setCellValueFactory(new PropertyValueFactory<>("busType"));
+        colSeatCapacity.setCellValueFactory(new PropertyValueFactory<>("numberOfSeats"));
+        
+       
+        colAvailableDrivers.setCellValueFactory(new PropertyValueFactory<>("AssingedDrivers"));
+        
+        colBusID.setCellValueFactory(new PropertyValueFactory<>("busId"));
+        colMtStatus.setCellValueFactory(new PropertyValueFactory<>("mtStatus"));
+    }
+    
+    @FXML
+    private void updateBusTableInformation(ActionEvent event) {
+        progressSpinner.setVisible(true);
+        currentBusInfoList.clear();
+        int busID = Integer.parseInt(comboBusList.getValue());
+
+        new Thread(() -> {
+            // Perform the delay in the background thread
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                // Handle the interruption appropriately
+            }
+
+            // Now back on the JavaFX Application Thread
+            Platform.runLater(() -> {
+                for (Bus busObj : allAvailableBuses) {
+                    if (busObj.getBusId() == busID) {
+                        currentBusInfoList.add(busObj);
+                        for (String driver:busObj.getAssingedDrivers()){
+                            comboListDriver.getItems().add(driver);
+                        }
+                    }
+                }
+                busInfoShowerTable.setItems(currentBusInfoList);
+                progressSpinner.setVisible(false);
+            });
+        }).start();
+    }
+
+
+    @FXML
+    private void updateCurrentScheduleDriver(ActionEvent event) {
+    }
 
     @FXML
     private void onClickAddSchedule(ActionEvent event) {
         saveArrayListsToFile();
         RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+    }
+    
+    private void busListSetter(){
+        RelationshipDatabaseClass.getInstance().loadFromFile();
+        allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+
+    }
+    
+    @FXML
+    private void setBusListAC(MouseEvent event) {
+       comboBusList.getItems().clear();
+       for (Bus busObj: allAvailableBuses){
+           if(busObj.getBusType().equals("AC")){
+               String busID = "" + busObj.getBusId();
+               comboBusList.getItems().add(busID);
+           }
+       }
+    }
+
+    @FXML
+    private void setBusListNonAC(MouseEvent event) {
+        comboBusList.getItems().clear();
+        for (Bus busObj: allAvailableBuses){
+           if(busObj.getBusType().equals("Non AC")){
+               String busID = "" + busObj.getBusId();
+               comboBusList.getItems().add(busID);
+           }
+       }
     }
     
     private void setContextItems(){
@@ -177,6 +293,7 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
             out.writeObject(allLocations);
             out.writeObject(allTimes);
             out.writeObject(allBusStands);
+            out.writeObject(allAvailableBuses);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -187,10 +304,15 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
             allLocations = (ArrayList<String>) in.readObject();
             allTimes = (ArrayList<String>) in.readObject();
             allBusStands = (ArrayList<String>) in.readObject();
+            allAvailableBuses = (ArrayList<Bus>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
+    
+
+    
     
     
 }

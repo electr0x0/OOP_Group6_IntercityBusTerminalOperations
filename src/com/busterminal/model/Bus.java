@@ -21,7 +21,7 @@ public class Bus implements Serializable {
     private int yearOfManufacture;
     private ArrayList<BusSchedule> schedules;
     private ArrayList<String> assingedDrivers;
-    private String mtStatus;
+    private boolean mtStatus;
 
     public Bus(int busId, int numberOfSeats, String busType, int busRegNum, String manufacturer, int yearOfManufacture, ArrayList<String> assingedDrivers) {
         this.busId = busId;
@@ -89,6 +89,30 @@ public class Bus implements Serializable {
 
     public void setYearOfManufacture(int yearOfManufacture) {
         this.yearOfManufacture = yearOfManufacture;
+    }
+
+    public ArrayList<String> getAssingedDrivers() {
+        return assingedDrivers;
+    }
+
+    public void setAssingedDrivers(ArrayList<String> assingedDrivers) {
+        this.assingedDrivers = assingedDrivers;
+    }
+
+    public int getBusRegNum() {
+        return busRegNum;
+    }
+
+    public void setBusRegNum(int busRegNum) {
+        this.busRegNum = busRegNum;
+    }
+
+    public boolean isMtStatus() {
+        return mtStatus;
+    }
+
+    public void setMtStatus(boolean mtStatus) {
+        this.mtStatus = mtStatus;
     }
     
     
