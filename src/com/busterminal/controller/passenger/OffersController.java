@@ -6,7 +6,9 @@ package com.busterminal.controller.passenger;
 
 import com.busterminal.model.SceneSwicth;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -47,8 +49,6 @@ public class OffersController implements Initializable {
 
     @FXML
     private void createTestOnClick(ActionEvent event) {
-        
-        
     }
     
 }

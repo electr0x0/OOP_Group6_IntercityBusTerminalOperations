@@ -10,8 +10,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,7 +43,21 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void switchToScheduleInfoScene(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorpane2,"views/passenger/Schedule.fxml");
+        //new SceneSwicth(anchorpane2,"views/passenger/Schedule.fxml");
+        
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/viewSchedule.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+   
     }
 
     @FXML
@@ -66,7 +85,25 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void switchToContactScene(ActionEvent event) throws IOException {
-        new SceneSwicth(anchorpane2,"views/passenger/Contact.fxml");
+        //new SceneSwicth(anchorpane2,"views/passenger/Contact.fxml");
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/Contact.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+    }
+
+    @FXML
+    private void switchToPurchaseTicketScene(ActionEvent event) throws IOException {
+        
+        new SceneSwicth(anchorpane2,"views/passenger/Schedule.fxml");
     }
     
 }

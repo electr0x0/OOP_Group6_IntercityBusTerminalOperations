@@ -8,19 +8,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.driver.DashboardController">
    <children>
-      <Button layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#switchToRouteSceneOnClick" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: transparent;" text="Route" textAlignment="CENTER">
+      <Button layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToRouteSceneOnClick" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: transparent;" text="Route" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button layoutX="37.0" layoutY="176.0" mnemonicParsing="false" onAction="#switchToPassangerInfoSceneOnClick" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Passenger Information">
+      <Button layoutX="29.0" layoutY="157.0" mnemonicParsing="false" onAction="#switchToPassangerInfoSceneOnClick" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Passenger Information">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button layoutX="29.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToBusInfoSceneOnClick" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Bus Information">
+      <Button layoutX="22.0" layoutY="209.0" mnemonicParsing="false" onAction="#switchToBusInfoSceneOnClick" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Bus Information">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button layoutX="37.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToReportSceneOnClick" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Report an incident">
+      <Button layoutX="29.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchToReportSceneOnClick" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Report an incident">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
@@ -40,7 +40,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutY="374.0" mnemonicParsing="false" onAction="#switchToTripHistorySceneOnClick" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Trip History">
+      <Button layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#switchToTripHistorySceneOnClick" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Trip History">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="8.0" layoutY="329.0" mnemonicParsing="false" onAction="#switchToReqMaintenaceSceneOnClick" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Request Maintenance">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

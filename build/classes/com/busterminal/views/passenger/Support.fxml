@@ -3,21 +3,41 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorpaneSupport" prefHeight="645.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.SupportController">
+<AnchorPane id="AnchorPane" fx:id="anchorpaneSupport" prefHeight="645.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.SupportController">
    <children>
-      <Label layoutX="283.0" layoutY="72.0" text="Give Feedback/Complaint">
+      <Label layoutX="275.0" layoutY="60.0" prefHeight="47.0" prefWidth="308.0" text="Give Feedback/Complaint">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea layoutX="72.0" layoutY="134.0" prefHeight="312.0" prefWidth="762.0" />
-      <Button layoutX="700.0" layoutY="469.0" mnemonicParsing="false" onAction="#feedbackConfirmationOnClick" prefHeight="47.0" prefWidth="134.0" text="Send Feedback">
+      <TextArea fx:id="feedbackTextArea" layoutX="80.0" layoutY="275.0" prefHeight="239.0" prefWidth="771.0" />
+      <Button layoutX="80.0" layoutY="541.0" mnemonicParsing="false" onAction="#feedbackConfirmationOnClick" prefHeight="47.0" prefWidth="134.0" text="Send Feedback">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Button layoutX="761.0" layoutY="594.0" mnemonicParsing="false" onAction="#switchToDashboardScene" prefHeight="25.0" prefWidth="88.0" text="Back" />
+      <Button layoutX="763.0" layoutY="588.0" mnemonicParsing="false" onAction="#switchToDashboardScene" prefHeight="25.0" prefWidth="88.0" text="Back" />
+      <Label layoutX="80.0" layoutY="154.0" prefHeight="15.0" prefWidth="115.0" text="Feedback ID: ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="feedbackIdTextField" editable="false" layoutX="239.0" layoutY="152.0" prefHeight="21.0" prefWidth="128.0" />
+      <TextField fx:id="passengerNameTextField" layoutX="239.0" layoutY="186.0" prefHeight="21.0" prefWidth="128.0" />
+      <Label layoutX="80.0" layoutY="188.0" prefHeight="15.0" prefWidth="115.0" text="Passenger Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="subjctTextField" layoutX="239.0" layoutY="223.0" prefHeight="21.0" prefWidth="128.0" />
+      <Label layoutX="80.0" layoutY="225.0" prefHeight="15.0" prefWidth="115.0" text="Subject: ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="readOnClick" layoutX="505.0" layoutY="576.0" mnemonicParsing="false" onAction="#readOnClick" prefHeight="25.0" prefWidth="88.0" text="Read" />
    </children>
 </AnchorPane>

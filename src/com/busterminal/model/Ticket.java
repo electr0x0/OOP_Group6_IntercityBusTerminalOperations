@@ -10,6 +10,7 @@ package com.busterminal.model;
  */
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Ticket {
     private String ticketId;
@@ -20,6 +21,7 @@ public class Ticket {
     private LocalDateTime bookingTime;
     private String bookingStatus; // "Confirmed" or "Cancelled" Status will be here (By default it will remain as Confirmed)
     private int ticketQty;
+    private ArrayList<String> seatNumber1;
 
     public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, int seatNumber, int ticketQty) {
         this.ticketId = ticketId;
@@ -29,6 +31,14 @@ public class Ticket {
         this.bookingTime = LocalDateTime.now();
         this.bookingStatus = "Confirmed";
         this.ticketQty = ticketQty;
+    }
+
+    public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, double price, ArrayList<String> seatNumber1) {
+        this.ticketId = ticketId;
+        this.passenger = passenger;
+        this.schedule = schedule;
+        this.price = price;
+        this.seatNumber1 = seatNumber1;
     }
     
     public void setTicketPrice(String busType, String source, String destination){

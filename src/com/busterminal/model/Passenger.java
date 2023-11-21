@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Passenger {
     
     private String name,email;
-    private ArrayList<String> seatNumber;
+    //private ArrayList<String> seatNumber;
 
     public Passenger(String name, String email, int contactNum) {
         this.name = name;
@@ -21,21 +21,10 @@ public class Passenger {
         this.contactNum = contactNum;
     }
 
-    public ArrayList<String> getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(ArrayList<String> seatNumber) {
-        this.seatNumber = seatNumber;
-    }
+    
     private  int contactNum;
 
-    public Passenger(String name, String email, ArrayList<String> seatNumber, int contactNum) {
-        this.name = name;
-        this.email = email;
-        this.seatNumber = seatNumber;
-        this.contactNum = contactNum;
-    }
+    
 
     
 

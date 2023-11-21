@@ -45,7 +45,7 @@
             <Image url="@../../storage/assets/ezgif-3-1c1a24d34a.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="180.0" layoutY="14.0" prefHeight="17.0" prefWidth="361.0" text="Reserve Bus">
+      <Label layoutX="173.0" layoutY="42.0" prefHeight="17.0" prefWidth="361.0" text="Reserve Bus">
          <font>
             <Font name="System Bold Italic" size="32.0" />
          </font>

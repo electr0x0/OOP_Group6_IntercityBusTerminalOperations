@@ -82,7 +82,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void switchToReportSceneOnClick(ActionEvent event) throws IOException {
          Parent root = null;
-        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Report.fxml"));
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Resign.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);
@@ -134,6 +134,24 @@ public class DashboardController implements Initializable {
     private void switchToInboxSceneOnClick(ActionEvent event) throws IOException {
         Parent root = null;
         FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Inbox.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+        
+    }
+
+    @FXML
+    private void switchToReqMaintenaceSceneOnClick(ActionEvent event) throws IOException {
+        
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/RequestMaintenance.fxml"));
         root = (Parent) someLoader.load();
         
         Scene someScene = new Scene (root);

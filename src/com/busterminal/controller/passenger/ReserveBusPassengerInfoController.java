@@ -70,7 +70,7 @@ public class ReserveBusPassengerInfoController implements Initializable {
     
     
     
-    Passenger p = new Passenger(name,email,helperList,phone);
+    Passenger p = new Passenger(name,email,phone);
     
     passengerList.add(p);
     
@@ -80,11 +80,7 @@ public class ReserveBusPassengerInfoController implements Initializable {
             
             for(Passenger x : passengerList){
                 ds.writeUTF(x.getName());
-                ds.writeUTF(x.getEmail());
-                for(String y: x.getSeatNumber()){
-                    ds.writeUTF(y);
-                    
-                }
+                ds.writeUTF(x.getEmail());              
                 ds.writeInt(x.getContactNum());
                 
                 

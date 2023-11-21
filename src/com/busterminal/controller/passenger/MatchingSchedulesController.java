@@ -37,9 +37,11 @@ public class MatchingSchedulesController implements Initializable {
     @FXML
     private TableColumn< BusSchedule , LocalDate> arrTimeCol;
     @FXML
-    private TableColumn< BusSchedule , String> availableSeatsCol;
+    private TableColumn< BusSchedule , String> sourceCol;
     @FXML
-    private TableColumn< BusSchedule , String> priceCol;
+    private TableColumn< BusSchedule , String> destinationCol;
+    @FXML
+    private TableColumn<BusSchedule , String> fareCol;
 
     
 
@@ -50,7 +52,9 @@ public class MatchingSchedulesController implements Initializable {
         busCol.setCellValueFactory(new PropertyValueFactory<>("bus"));
         depTimeCol.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
         arrTimeCol.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
-        //availableSeatsCol.setCellValueFactory(new PropertyValueFactory<>("bus"));
+        sourceCol.setCellValueFactory(new PropertyValueFactory<>("source"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        fareCol.setCellValueFactory(new PropertyValueFactory<>("adultFare"));
     }    
 
     @FXML

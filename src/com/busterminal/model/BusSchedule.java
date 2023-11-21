@@ -36,6 +36,9 @@ public class BusSchedule implements Serializable {
         this.weekendFare = weekendFare;
         this.distance = distance;
     }
+
+    public BusSchedule() {
+    }
     
     
     

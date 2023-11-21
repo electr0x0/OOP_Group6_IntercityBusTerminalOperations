@@ -4,8 +4,10 @@
  */
 package com.busterminal.controller.passenger;
 
+import com.busterminal.model.BusSchedule;
 import com.busterminal.model.Passenger;
 import com.busterminal.model.SceneSwicth;
+import com.busterminal.model.Ticket;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +41,7 @@ public class TicketDetailsController implements Initializable {
     private TextField nameTextField1;
     
     private ArrayList<Passenger> passengerList;
+    private ArrayList<Ticket> ticketList;
     @FXML
     private Label departureLabel;
     @FXML
@@ -90,6 +92,8 @@ public class TicketDetailsController implements Initializable {
     private Button b10;
     
     private ArrayList<String> seathelperList = new ArrayList();
+    @FXML
+    private TextField ticketIdTextField;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //seatNumberCombo.getItems().addAll("A1","A2","B1","B2","C1","C2","D1","D2","E1","E2","F1","F2","G1","G2","H1","H2");
@@ -133,9 +137,13 @@ public class TicketDetailsController implements Initializable {
     
     
     
-    Passenger p = new Passenger(name,email,seathelperList,phone);
+    Passenger p = new Passenger(name,email,phone);
+    BusSchedule b = new BusSchedule();
+    
+    Ticket t1 = new Ticket(ticketIdTextField.getText(),p,b,23.0,seathelperList);
     
     passengerList.add(p);
+    ticketList.add(t1);
     
     try {
             FileOutputStream fs = new FileOutputStream("PassengerData.bin",true);
@@ -143,11 +151,7 @@ public class TicketDetailsController implements Initializable {
             
             for(Passenger x : passengerList){
                 ds.writeUTF(x.getName());
-                ds.writeUTF(x.getEmail());
-                for(String y: x.getSeatNumber()){
-                    ds.writeUTF(y);
-                    
-                }
+                ds.writeUTF(x.getEmail());     
                 ds.writeInt(x.getContactNum());
                 
                 

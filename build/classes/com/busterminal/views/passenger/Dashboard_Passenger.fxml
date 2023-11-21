@@ -22,7 +22,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="3.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToScheduleInfoScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Purchase Ticket">
+      <Button layoutX="3.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToPurchaseTicketScene" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #00BFFF;" styleClass="dashBoardButton" stylesheets="@design.css" text="Purchase Ticket">
          <font>
             <Font size="18.0" />
          </font>
