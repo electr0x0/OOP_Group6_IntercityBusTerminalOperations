@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="711.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.busterminal.controller.passenger.ViewScheduleController">
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.ViewScheduleController">
    <children>
       <Label layoutX="106.0" layoutY="14.0" prefHeight="36.0" prefWidth="174.0" text="Schedule">
          <font>
@@ -19,12 +18,11 @@
       </Label>
       <TableView fx:id="tableViewSchedule" layoutX="28.0" layoutY="147.0" prefHeight="307.0" prefWidth="655.0">
         <columns>
-          <TableColumn fx:id="busCol" prefWidth="90.0" text="Bus" />
-          <TableColumn fx:id="sourceCol" prefWidth="95.0" text="Source" />
-            <TableColumn fx:id="destinationCol" prefWidth="105.0" text="Destination" />
-            <TableColumn fx:id="departureCol" prefWidth="126.0" text="Departure Time" />
-            <TableColumn fx:id="arrTimeCol" prefWidth="132.0" text="Arrival Time" />
-            <TableColumn fx:id="fareCol" prefWidth="106.0" text="Fare" />
+          <TableColumn fx:id="busCol" prefWidth="117.0" text="Bus" />
+          <TableColumn fx:id="sourceCol" prefWidth="96.0" text="Source" />
+            <TableColumn fx:id="destinationCol" prefWidth="146.0" text="Destination" />
+            <TableColumn fx:id="arrTimeCol" prefWidth="146.0" text="Time" />
+            <TableColumn fx:id="fareCol" prefWidth="149.0" text="Fare" />
         </columns>
       </TableView>
       <ImageView fitHeight="61.0" fitWidth="80.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">

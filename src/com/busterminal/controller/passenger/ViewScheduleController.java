@@ -7,9 +7,12 @@ package com.busterminal.controller.passenger;
 //import com.busterminal.views.passenger.*;
 import com.busterminal.model.Bus;
 import com.busterminal.model.BusSchedule;
+import com.busterminal.model.BusTrip;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,22 +36,22 @@ import javafx.stage.Stage;
 public class ViewScheduleController implements Initializable {
 
     @FXML
-    private TableView<BusSchedule> tableViewSchedule;
+    private TableView<BusTrip> tableViewSchedule;
     @FXML
-    private TableColumn<BusSchedule, Bus> busCol;
+    private TableColumn<BusTrip, Bus> busCol;
     @FXML
-    private TableColumn<BusSchedule, String> sourceCol;
+    private TableColumn<BusTrip, String> sourceCol;
     @FXML
-    private TableColumn<BusSchedule, String> destinationCol;
+    private TableColumn<BusTrip, String> destinationCol;
+    
     @FXML
-    private TableColumn<BusSchedule, LocalDateTime> departureCol;
+    private TableColumn<BusTrip, LocalDateTime> arrTimeCol;
     @FXML
-    private TableColumn<BusSchedule, LocalDateTime> arrTimeCol;
-    @FXML
-    private TableColumn<BusSchedule, Integer> fareCol;
+    private TableColumn<BusTrip, Integer> fareCol;
 
     
-    ObservableList<BusSchedule> scheduleList = FXCollections.observableArrayList();
+    ObservableList<BusTrip> scheduleList = FXCollections.observableArrayList();
+    ArrayList<BusTrip> helperList = new ArrayList();
     /**
      * Initializes the controller class.
      */
@@ -57,11 +60,17 @@ public class ViewScheduleController implements Initializable {
          busCol.setCellValueFactory(new PropertyValueFactory<>("bus")); 
          sourceCol.setCellValueFactory(new PropertyValueFactory<>("source")); 
          destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination")); 
-         departureCol.setCellValueFactory(new PropertyValueFactory<>("departureTime")); 
-         arrTimeCol.setCellValueFactory(new PropertyValueFactory<>("arrivalTime")); 
+         arrTimeCol.setCellValueFactory(new PropertyValueFactory<>("timeSlot")); 
+        
          fareCol.setCellValueFactory(new PropertyValueFactory<>("adultFare")); 
     
- 
+         
+         
+         RelationshipDatabaseClass.loadFromFile();
+         helperList= RelationshipDatabaseClass.getInstance().getAllTripList();
+         for(BusTrip y : helperList ){
+             scheduleList.add(y);
+         }
          tableViewSchedule.setItems(scheduleList);
                  
                  

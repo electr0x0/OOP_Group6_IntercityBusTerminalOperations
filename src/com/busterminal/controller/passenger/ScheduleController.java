@@ -4,7 +4,9 @@
  */
 package com.busterminal.controller.passenger;
 
+import com.busterminal.model.BusTripSchedule;
 import com.busterminal.model.SceneSwicth;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,6 +85,9 @@ public class ScheduleController implements Initializable {
     @FXML
     private void switchtoScene2(ActionEvent event) throws IOException {
          new SceneSwicth(anchorpane3,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
+         
+        
+         
         
     }
     

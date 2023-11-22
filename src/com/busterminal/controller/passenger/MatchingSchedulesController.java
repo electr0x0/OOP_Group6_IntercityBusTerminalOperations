@@ -4,7 +4,7 @@
  */
 package com.busterminal.controller.passenger;
 
-import com.busterminal.model.BusSchedule;
+import com.busterminal.model.BusTrip;
 import com.busterminal.model.SceneSwicth;
 import java.io.IOException;
 import java.net.URL;
@@ -29,19 +29,20 @@ public class MatchingSchedulesController implements Initializable {
     private AnchorPane anchorpane4;
 
     @FXML
-    private TableView< BusSchedule > tableViewAvailableBuses;
+    private TableView<BusTrip > tableViewAvailableBuses;
     @FXML
-    private TableColumn< BusSchedule , String> busCol;
+    private TableColumn< BusTrip , String> busCol;
     @FXML
-    private TableColumn< BusSchedule , LocalDate> depTimeCol;
+    private TableColumn< BusTrip  , LocalDate> depTimeCol;
+    
     @FXML
-    private TableColumn< BusSchedule , LocalDate> arrTimeCol;
+    private TableColumn< BusTrip  , String> sourceCol;
     @FXML
-    private TableColumn< BusSchedule , String> sourceCol;
+    private TableColumn< BusTrip  , String> destinationCol;
     @FXML
-    private TableColumn< BusSchedule , String> destinationCol;
+    private TableColumn<BusTrip  , String> fareCol;
     @FXML
-    private TableColumn<BusSchedule , String> fareCol;
+    private TableColumn<BusTrip, LocalDate> dateCol;
 
     
 
@@ -50,8 +51,7 @@ public class MatchingSchedulesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         busCol.setCellValueFactory(new PropertyValueFactory<>("bus"));
-        depTimeCol.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
-        arrTimeCol.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
+        depTimeCol.setCellValueFactory(new PropertyValueFactory<>("timeSlot"));
         sourceCol.setCellValueFactory(new PropertyValueFactory<>("source"));
         destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination"));
         fareCol.setCellValueFactory(new PropertyValueFactory<>("adultFare"));
