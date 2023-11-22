@@ -22,6 +22,7 @@ public class BusSchedule implements Serializable {
     private String fleetType;
     private int adultFare, childrenFare, weekendFare;
     private float distance;
+    private String driver;
 
     public BusSchedule(String scheduleId, Bus bus, String source, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime, String fleetType, int adultFare, int childrenFare, int weekendFare, float distance) {
         this.scheduleId = scheduleId;

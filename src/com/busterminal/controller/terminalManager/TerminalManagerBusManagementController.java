@@ -80,6 +80,8 @@ public class TerminalManagerBusManagementController implements Initializable {
         spinnerBusCapacity.valueProperty().addListener((obs, oldVal, newVal) -> {
             txtFieldBusCapacity.setText(String.valueOf(newVal.intValue()));
         });
+        
+        RelationshipDatabaseClass.getInstance().loadFromFile();
 
         // Sync text field with slider
         txtFieldBusCapacity.textProperty().addListener((obs, oldVal, newVal) -> {
@@ -90,14 +92,24 @@ public class TerminalManagerBusManagementController implements Initializable {
                 // Handle invalid input in text field
             }
         });
+        
+        if (RelationshipDatabaseClass.getInstance().getBusIdCounter() != 0){
+            idCounter = RelationshipDatabaseClass.getInstance().getBusIdCounter();
+        }
+        
+        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses() != null){
+            allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+        }
     }
-
+    
     public void AddSelectedDriversToCurrentDrivers(){
+        selectedDrivers.clear();
         String driverNames = "\n";
         for (String driverName : driverCheckListView.getSelectionModel().getSelectedValues()){
             selectedDrivers.add(driverName);
             driverNames += driverName+"\n";
         }
+        driverCheckListView.getSelectionModel().clearSelection();
         MFXDialog alertDialog = new MFXDialog("Drivers Added","Assinged Drivers:"+driverNames, "Close",rootPane);
         alertDialog.openMFXDialog();
     }
@@ -113,11 +125,16 @@ public class TerminalManagerBusManagementController implements Initializable {
         // Update the text field with the new ID
         txtFieldBusID.setText(busId);
 
+
         // Increment the counter for the next ID
         idCounter++;
+        
+        RelationshipDatabaseClass.getInstance().setBusIdCounter(idCounter);
+        RelationshipDatabaseClass.getInstance().saveToFile();
+        
+        
     }
-    
-    
+
     
     private void AddBus(){
         String busID = txtFieldBusID.getText();
@@ -165,7 +182,9 @@ public class TerminalManagerBusManagementController implements Initializable {
         
         currentBus = new Bus(Integer.parseInt(busID), Integer.parseInt(busCapacity), busType, Integer.parseInt(busRegNum), busManufacturer, Integer.parseInt(busManYear), selectedDrivers);
         allAvailableBuses.add(currentBus);
+        
         RelationshipDatabaseClass.getInstance().setAllAvailableBuses(allAvailableBuses);
+        RelationshipDatabaseClass.getInstance().saveToFile();
 
         
         showSuccessDialog("Bus Added Successfully", "The bus has been added to the system.");

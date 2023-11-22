@@ -30,16 +30,16 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1362.0" styleClass="rootPane" stylesheets="@../../css/Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerDashboardController">
-    <VBox layoutX="3.0" layoutY="3.0" prefHeight="716.0" prefWidth="295.0" styleClass="sidebar" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+    <VBox alignment="CENTER" layoutX="3.0" layoutY="3.0" prefHeight="716.0" prefWidth="295.0" styleClass="sidebar" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
         </padding>
-      <ImageView fitHeight="105.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+      <ImageView fitHeight="145.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
             <Image url="@../../../../drawables/dashboard_logo.gif" />
          </image>
       </ImageView>
-        <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="286.0" styleClass="header" text="Manager Dashboard">
+        <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="266.0" styleClass="header" text="Manager Dashboard">
             <graphic>
                 <StackPane fx:id="logoContainer" />
             </graphic>
@@ -47,7 +47,7 @@
             <Font size="6.0" />
          </font>
         </Label>
-        <Label styleClass="menu-label" text="Settings">
+        <Label prefHeight="18.0" prefWidth="74.0" styleClass="menu-label" text="Modules">
             <VBox.margin>
                 <Insets left="5.0" top="40.0" />
             </VBox.margin>
@@ -71,11 +71,11 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Set Schedule and Price" textFill="WHITE">
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Trip And Fare Management" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../drawables/transport_scheduler-512x512.png" />
+                              <Image url="@../../../../drawables/transport.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -89,11 +89,11 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickManageStaffBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Manage Staff" textFill="WHITE">
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickBusTripSchedule" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Trip Scheduling" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../drawables/manage_staff-512x512.png" />
+                              <Image url="@../../../../drawables/transport_scheduler-512x512.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -130,5 +130,5 @@
          </content>
         </MFXScrollPane>
     </VBox>
-   <AnchorPane fx:id="dashboardContentPane" layoutX="308.0" layoutY="3.0" prefHeight="750.0" prefWidth="1050.0" />
+   <AnchorPane fx:id="dashboardContentPane" layoutX="298.0" layoutY="3.0" prefHeight="750.0" prefWidth="1050.0" />
 </AnchorPane>

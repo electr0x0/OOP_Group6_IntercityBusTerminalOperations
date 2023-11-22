@@ -5,6 +5,7 @@
 package com.busterminal.controller.terminalManager;
 
 import com.busterminal.model.Bus;
+import com.busterminal.model.BusTrip;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,21 +25,25 @@ public class TerminalManagerFinancialReportsController implements Initializable 
     @FXML
     private Label dataBaseTestResult;
     
-    private ArrayList<Bus> availableBuses;
+    private ArrayList<BusTrip> availableSchedule;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        availableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
-    }    
+        availableSchedule = RelationshipDatabaseClass.getInstance().getAllTripList();
+        for (Bus bus: RelationshipDatabaseClass.getInstance().getAllAvailableBuses()){
+            System.out.println(bus.toString());
+        }
+    } 
+    
 
     @FXML
     private void databaseTestButton(ActionEvent event) {
         String labelText = "\n";
         
-        for (Bus busIns: availableBuses){
+        for (BusTrip busIns: availableSchedule){
             labelText += busIns.toString()+"\n";
         }
         
