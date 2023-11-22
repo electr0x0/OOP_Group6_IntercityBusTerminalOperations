@@ -62,17 +62,22 @@ public class SupportController implements Initializable {
 
     @FXML
     private void feedbackConfirmationOnClick(ActionEvent event) {
+        
+        if(passengerNameTextField.getText().isEmpty() == false &&  feedbackIdTextField.getText().isEmpty() ==false && subjctTextField.getText().isEmpty()==false && feedbackTextArea.getText().isEmpty() == false){
+            
+        
+        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(" Click on OK to return to Dashboard ");
         alert.setTitle("Confirmation");
         alert.setHeaderText("Feedback shared");
         //alert.showAndWait();
         ButtonType okButton = new ButtonType("OK");
-        ButtonType cancelButton = new ButtonType("Submit Another Complaint");
+        ButtonType cancelButton = new ButtonType("Submit Another Feedback");
         alert.getButtonTypes().setAll(okButton, cancelButton);
 
 
-    alert.showAndWait().ifPresent(buttonType -> {
+        alert.showAndWait().ifPresent(buttonType -> {
     if (buttonType == okButton ) {
         try {
             new SceneSwicth (anchorpaneSupport,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
@@ -114,7 +119,15 @@ public class SupportController implements Initializable {
     
     
     
-    
+        }
+        
+        else{
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(" ");
+        alert.setTitle("Error");
+        alert.setHeaderText("Please give all informations");
+        alert.showAndWait();
+        }
     }
 
     @FXML
@@ -131,15 +144,15 @@ public class SupportController implements Initializable {
         ObjectInputStream ois = null;
         
         try {
-            f = new File("ScheduleData.bin");
+            f = new File("Feedback.bin");
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            BusSchedule f2;
+            Feedback f2;
             try{
                 //outputTextArea.setText("");
                 while(true){
-                    System.out.println("Printing objects.");
-                    f2= (BusSchedule)ois.readObject();
+                    //System.out.println("Printing objects.");
+                    f2= (Feedback)ois.readObject();
                     //Object obj = ois.readObject();
                     //obj.submitReport();
                     //f2.submitReport();

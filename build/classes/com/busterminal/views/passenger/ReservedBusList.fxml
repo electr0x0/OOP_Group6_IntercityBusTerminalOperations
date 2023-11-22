@@ -16,7 +16,7 @@
             <TableColumn fx:id="acCol" prefWidth="64.0" text="AC" />
             <TableColumn fx:id="cityCol" prefWidth="88.0" text="City" />
             <TableColumn fx:id="durationCol" prefWidth="122.0" text="Duration (days)" />
-            <TableColumn prefWidth="106.0" text="Fare" />
+            <TableColumn fx:id="fareCol" prefWidth="106.0" text="Fare" />
         </columns>
       </TableView>
       <Label layoutX="231.0" layoutY="70.0" prefHeight="31.0" prefWidth="224.0" text="Available Buses">

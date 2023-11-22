@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.driver.ChatBodyController">
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.driver.ChatBodyController">
    <children>
-      <TextArea fx:id="chatTextArea" layoutX="27.0" layoutY="169.0" prefHeight="200.0" prefWidth="596.0" promptText="Type your message">
+      <TextArea fx:id="chatTextArea" layoutX="21.0" layoutY="168.0" prefHeight="168.0" prefWidth="526.0" promptText="Type your message">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <Button layoutX="196.0" layoutY="385.0" mnemonicParsing="false" onAction="#sendMessageOnClick" prefHeight="25.0" prefWidth="214.0" text="Send Message">
+      <Button layoutX="202.0" layoutY="365.0" mnemonicParsing="false" onAction="#sendMessageOnClick" prefHeight="31.0" prefWidth="164.0" text="Send Message">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="561.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToChatScene" prefHeight="20.0" prefWidth="69.0" text="Back">
+      <Button layoutX="478.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToDashboardScene" prefHeight="20.0" prefWidth="69.0" text="Back">
          <font>
             <Font size="15.0" />
          </font>

@@ -77,11 +77,7 @@ public class ContactController implements Initializable {
 
     @FXML
     private void submitResponseOnClick(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("");
-        alert.setTitle("Sent");
-        alert.setHeaderText("Successful");
-        alert.show();
+        
         
         String type = selectTypeCombo.getValue();
         String name =nameTextField.getText();
@@ -91,8 +87,15 @@ public class ContactController implements Initializable {
         String details = detailsTextField.getText();
            
         
-        //if(type.isEmpty()==false && name.isEmpty() ==false && email.isEmpty() == false && subject.isEmpty() && details.isEmpty() == false ){
-       
+        if( !name.isEmpty() && !email.isEmpty()  && !subject.isEmpty() && !details.isEmpty()  ){
+           
+           
+            
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("");
+        alert.setTitle("Sent");
+        alert.setHeaderText("Successful");
+        alert.show();
      
         Contact c = new Contact(type,name,email,subject,details);
         
@@ -126,14 +129,15 @@ public class ContactController implements Initializable {
         
         
         }
-        //else{
-        //Alert alert = new Alert(Alert.AlertType.ERROR);
-        //alert.setContentText("");
-        //alert.setTitle("Fields cant be empty");
-        //alert.setHeaderText("Plese give all details");
-        //}
+        else{
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setContentText("");
+        alert1.setTitle("Fields cant be empty");
+        alert1.setHeaderText("Plese give all details");
+        alert1.show();
+        }
         
         
-    //}
+    }
     
 }

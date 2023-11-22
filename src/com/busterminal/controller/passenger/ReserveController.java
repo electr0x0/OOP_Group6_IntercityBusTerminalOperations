@@ -112,18 +112,18 @@ public class ReserveController implements Initializable {
     @FXML
     private void swichSceneToReservedBusListsScene(ActionEvent event) throws IOException {
         
-        ReserveBus  r1 = new ReserveBus("Mini Bus","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r2 = new ReserveBus("Coach","Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r3 = new ReserveBus("Coach","Non AC","Rajshahi", daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r4 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r5 = new ReserveBus("Double Decker Bus","Non AC","Chittagong",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r6 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r7 = new ReserveBus("Double Decker Bus","Non AC","Khulna",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r8 = new ReserveBus("Mini Bus","AC","Khulna",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r9 = new ReserveBus("Coach","Non AC","Rajshahi",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r10 = new ReserveBus("Mini Bus","Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r11 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue());
-        ReserveBus  r12 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue());
+        ReserveBus  r1 = new ReserveBus("Mini Bus","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue(),1500);
+        ReserveBus  r2 = new ReserveBus("Coach","Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue(),1000);
+        ReserveBus  r3 = new ReserveBus("Coach","Non AC","Rajshahi", daySelectCombo.getValue(), dateDatePicker.getValue(),1800);
+        ReserveBus  r4 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue(),2000);
+        ReserveBus  r5 = new ReserveBus("Double Decker Bus","Non AC","Chittagong",daySelectCombo.getValue(), dateDatePicker.getValue(),1200);
+        ReserveBus  r6 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue(),2500);
+        ReserveBus  r7 = new ReserveBus("Double Decker Bus","Non AC","Khulna",daySelectCombo.getValue(), dateDatePicker.getValue(),5000);
+        ReserveBus  r8 = new ReserveBus("Mini Bus","AC", "Khulna",daySelectCombo.getValue(), dateDatePicker.getValue(),1200);
+        ReserveBus  r9 = new ReserveBus("Coach","Non AC","Rajshahi",daySelectCombo.getValue(), dateDatePicker.getValue(),1300);
+        ReserveBus  r10 = new ReserveBus("Mini Bus", "Non AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue(), 1400);
+        ReserveBus  r11 = new ReserveBus("Mini Bus","AC","Sylhet",daySelectCombo.getValue(), dateDatePicker.getValue(),1100);
+        ReserveBus  r12 = new ReserveBus("Coach","AC","Dhaka",daySelectCombo.getValue(), dateDatePicker.getValue(),2500);
         
         reserveBusList.addAll(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12);
         //System.out.println(reserveBusList);

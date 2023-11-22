@@ -1,25 +1,60 @@
 
 package com.busterminal.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author UseR
  */
-public class ReserveBus {
-    
+public class ReserveBus implements Serializable {
+
+    @Override
+    public String toString() {
+        return "ReserveBus{" + "reserveId=" + reserveId + ", busType=" + busType + ", acType=" + acType + ", city=" + city + ", duration=" + duration + ", date=" + date + ", fare=" + fare + '}';
+    }
+    private int reserveId;
     private String busType, acType, city;
     private int duration;
     private LocalDate date;
+    private int fare;
 
-    public ReserveBus(String busType, String acType, String city, int duration, LocalDate date) {
+    public ReserveBus(String busType, String acType, String city, int duration, LocalDate date, int fare) {
         this.busType = busType;
         this.acType = acType;
         this.city = city;
         this.duration = duration;
         this.date = date;
+        this.fare = fare;
     }
+
+    public ReserveBus(int reserveId, String busType, String acType, String city, int duration, LocalDate date, int fare) {
+        this.reserveId = reserveId;
+        this.busType = busType;
+        this.acType = acType;
+        this.city = city;
+        this.duration = duration;
+        this.date = date;
+        this.fare = fare;
+    }
+
+    public ReserveBus(int reserveId, String busType,  int fare) {
+        this.reserveId = reserveId;
+        this.busType = busType;
+      
+        this.fare = fare;
+    }
+    
+    
+    public int getFare() {
+        return fare;
+    }
+
+    public void setFare(int fare) {
+        this.fare = fare;
+    }
+    
     
     public void createReserveBus(){
         

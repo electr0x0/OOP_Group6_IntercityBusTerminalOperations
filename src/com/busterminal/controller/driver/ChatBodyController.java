@@ -25,15 +25,18 @@ public class ChatBodyController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        selectUserCombo.getItems().addAll("Terminal Manager","Maintenance Staff","Accountant","Ticket Seller");
+        selectUserCombo.getItems().addAll("Terminal Manager","HR Manager");
     }    
 
     @FXML
     private void sendMessageOnClick(ActionEvent event) {
     }
 
+   
+
     @FXML
-    private void switchToChatScene(ActionEvent event) throws IOException {
+    private void switchToDashboardScene(ActionEvent event) throws IOException {
+        
         Parent root = null;
         FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Dashboard_Driver.fxml"));
         root = (Parent) someLoader.load();       
