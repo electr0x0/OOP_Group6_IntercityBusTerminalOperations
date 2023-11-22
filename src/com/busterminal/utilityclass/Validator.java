@@ -51,12 +51,21 @@ public class Validator {
 
     
      //Age Validate    
-        public static boolean isOldEnough(LocalDate dateOfBirth) {
+       public static boolean isOldEnough(LocalDate dateOfBirth) {
             LocalDate currentDate = LocalDate.now(); // Get the current date from the system clock
-            Period period = Period.between(dateOfBirth, currentDate);
 
-            return period.getYears() >= 18;
+            int years = currentDate.getYear() - dateOfBirth.getYear();
+            int months = currentDate.getMonthValue() - dateOfBirth.getMonthValue();
+            int days = currentDate.getDayOfMonth() - dateOfBirth.getDayOfMonth();
+
+            // Adjust age if birth month and day are later in the year than the current month and day
+            if (months < 0 || (months == 0 && days < 0)) {
+                years--;
+            }
+
+            return years >= 18;
         }
+
 
 
      //Check if the fields are empty or not
@@ -87,35 +96,41 @@ public class Validator {
         // Check if the phone number is not null and has exactly 11 characters
         if (phoneNumber != null && phoneNumber.length() == 11) {
             // Check if the phone number contains only numeric characters
-            return phoneNumber.matches("[0-9]+") && phoneNumber.startsWith("01");
+            boolean onlyDigits = true;
+            for (char c : phoneNumber.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    onlyDigits = false;
+                    break;
+                }
+            }
+            // Check if the phone number starts with "01"
+            return onlyDigits && phoneNumber.startsWith("01");
         }
         return false;
     }
+
     
 
     public static boolean validatePassword(String password) {
-        // Minimum 8 characters check
-        if (password.length() < 8) {
-            return false;
+    boolean hasMinimumLength = password.length() >= 8;
+    boolean hasDigit = false;
+    boolean hasUppercase = false;
+
+    for (char c : password.toCharArray()) {
+        if (Character.isDigit(c)) {
+            hasDigit = true;
+        } else if (Character.isUpperCase(c)) {
+            hasUppercase = true;
         }
 
-        // At least one digit check
-        Pattern digitPattern = Pattern.compile(".*\\d.*");
-        Matcher digitMatcher = digitPattern.matcher(password);
-        if (!digitMatcher.find()) {
-            return false;
+        if (hasDigit && hasUppercase && hasMinimumLength) {
+            return true;
         }
-
-        // At least one uppercase letter check
-        Pattern uppercasePattern = Pattern.compile(".*[A-Z].*");
-        Matcher uppercaseMatcher = uppercasePattern.matcher(password);
-        if (!uppercaseMatcher.find()) {
-            return false;
-        }
-
-        // Password meets all criteria
-        return true;
     }
+
+    return false;
+}
+
 
      
     public static boolean isInteger(String str) {

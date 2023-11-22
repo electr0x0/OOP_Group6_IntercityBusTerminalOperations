@@ -5,6 +5,7 @@
 package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
+import com.busterminal.views.Employee.EmployeeDashboardController;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -72,6 +73,8 @@ public class MyEmployeeController implements Initializable {
     @FXML
     private ChoiceBox<String> sortChoice;
     String getChoices[] = {"ID","First Name","Last Name","Email","Salary","Designation"};
+    
+    String myId="721122124256";
     /**
      * Initializes the controller class.
      */
@@ -106,26 +109,19 @@ public class MyEmployeeController implements Initializable {
     }
     
     public static ArrayList<Employee> readEmployeesFromFile(String filename) {
-    ArrayList<Employee> employees = new ArrayList<>();
+        ArrayList<Employee> employees = new ArrayList<>();
 
-    try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
-        // Read all existing employees from the file
-        employees = (ArrayList<Employee>) inputStream.readObject();
-    } catch (IOException | ClassNotFoundException e) {
-        // Handle exceptions if the file doesn't exist or other issues
-        e.printStackTrace();
-    }
-    
-    return employees;
-}
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
+            // Read all existing employees from the file
+            employees = (ArrayList<Employee>) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            // Handle exceptions if the file doesn't exist or other issues
+            e.printStackTrace();
+        }
 
-    @FXML
-    private void DeleteEmplyee(ActionEvent event) {
+        return employees;
     }
 
-    @FXML
-    private void SaveChanges(ActionEvent event) {
-    }
 
     @FXML
     private void refreshTable(ActionEvent event) {
@@ -145,48 +141,70 @@ public class MyEmployeeController implements Initializable {
         employeeTable.setItems(observableEmployeeList);
     }
     
-    public ArrayList<Employee> filterEmployees(String choice, String inputString) {
-        Predicate<Employee> filterPredicate = null;
+   public ArrayList<Employee> filterEmployees(String choice, String inputString) {
+    ArrayList<Employee> filteredList = new ArrayList<>();
 
-        switch (choice) {
-            case "ID":
-                filterPredicate = employee -> employee.getId().startsWith(inputString);
-                break;
-            case "First Name":
-                filterPredicate = employee -> employee.getFirstname().startsWith(inputString);
-                break;
-            case "Last Name":
-                filterPredicate = employee -> employee.getLastname().startsWith(inputString);
-                break;
-            case "Email":
-                filterPredicate = employee -> employee.getEmail().startsWith(inputString);
-                break;
-            case "Salary":
-                // Assuming Salary is stored as a string
-                filterPredicate = employee -> String.valueOf(employee.getSalary()).startsWith(inputString);
-                break;
-            case "Designation":
-                filterPredicate = employee -> employee.getEmpType().startsWith(inputString);
-                break;
-            default:
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setContentText("No " + inputString + " found in list!");
-                alert.show();
-                return new ArrayList<>();
-        }
-
-        ArrayList<Employee> filteredList = observableEmployeeList.stream()
-                .filter(filterPredicate)
-                .collect(Collectors.toCollection(ArrayList::new));
-
-        if (filteredList.isEmpty()) {
-            Alert alert = new Alert(AlertType.INFORMATION);
+    switch (choice) {
+        case "ID":
+            for (Employee employee : observableEmployeeList) {
+                if (employee.getId().startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        case "First Name":
+            for (Employee employee : observableEmployeeList) {
+                if (employee.getFirstname().startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        case "Last Name":
+            for (Employee employee : observableEmployeeList) {
+                if (employee.getLastname().startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        case "Email":
+            for (Employee employee : observableEmployeeList) {
+                if (employee.getEmail().startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        case "Salary":
+            for (Employee employee : observableEmployeeList) {
+                if (String.valueOf(employee.getSalary()).startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        case "Designation":
+            for (Employee employee : observableEmployeeList) {
+                if (employee.getEmpType().startsWith(inputString)) {
+                    filteredList.add(employee);
+                }
+            }
+            break;
+        default:
+            Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("No " + inputString + " found in list!");
             alert.show();
-        } else {employeeTable.getItems().clear();}
-
-        return filteredList;
+            return new ArrayList<>();
     }
+
+    if (filteredList.isEmpty()) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText("No " + inputString + " found in list!");
+        alert.show();
+    } else {
+        employeeTable.getItems().clear();
+    }
+
+    return filteredList;
+}
+
 
     @FXML
     private void showSearched(ActionEvent event) {
@@ -194,6 +212,25 @@ public class MyEmployeeController implements Initializable {
         observableEmployeeList.addAll(filterEmployees(sortChoice.getValue(),toSearch));
         employeeTable.setItems(observableEmployeeList);
     }
+
+    @FXML
+    private void goToAccount(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeDashboard.fxml"));
+            root = loader.load();
+            EmployeeDashboardController controller = loader.getController();
+
+            controller.setEmpID(myId);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
 
     
 }
