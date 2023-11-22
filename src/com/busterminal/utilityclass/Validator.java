@@ -66,6 +66,19 @@ public class Validator {
             return years >= 18;
         }
 
+     public static boolean containsOnlyNumbers(String input) {
+        if (input == null || input.isEmpty()) {
+            return false;
+        }
+
+        for (char c : input.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 
      //Check if the fields are empty or not
