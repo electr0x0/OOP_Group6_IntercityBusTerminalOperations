@@ -4,14 +4,18 @@
  */
 package com.busterminal.controller.passenger;
 
+import com.busterminal.controller.AppendableObjectOutputStream;
 import com.busterminal.model.BusSchedule;
+import com.busterminal.model.Feedback;
 import com.busterminal.model.Passenger;
 import com.busterminal.model.SceneSwicth;
 import com.busterminal.model.Ticket;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -145,21 +149,36 @@ public class TicketDetailsController implements Initializable {
     passengerList.add(p);
     ticketList.add(t1);
     
-    try {
-            FileOutputStream fs = new FileOutputStream("PassengerData.bin",true);
-            DataOutputStream ds = new DataOutputStream(fs);
-            
-            for(Passenger x : passengerList){
-                ds.writeUTF(x.getName());
-                ds.writeUTF(x.getEmail());     
-                ds.writeInt(x.getContactNum());
-                
-                
+        File f = null;
+        FileOutputStream fos = null;      
+        ObjectOutputStream oos = null;
+        
+        try {
+            f = new File("TicketList.bin");
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
             }
-            ds.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TicketDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            
+            
+            oos.writeObject(t1);
+            
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if(oos != null) oos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }                
+    
         
     
             

@@ -20,9 +20,7 @@ import java.util.ArrayList;
 
 public class RelationshipDatabaseClass implements Serializable {
 
-    private static RelationshipDatabaseClass instance;
-    
-    
+    private static RelationshipDatabaseClass instance;   
     private ArrayList<String> allLocations;
     private ArrayList<String> allTimes;
     private ArrayList<String> allBusStands;

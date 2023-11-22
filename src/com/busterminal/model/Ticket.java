@@ -9,10 +9,11 @@ package com.busterminal.model;
  * @author electr0
  */
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Ticket {
+public class Ticket implements Serializable {
     private String ticketId;
     private Passenger passenger; // Passenger object who bought the ticket
     private BusSchedule schedule;
