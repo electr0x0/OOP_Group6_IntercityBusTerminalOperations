@@ -89,6 +89,11 @@ public class BusTripSchedule implements Serializable{
     public void setAssignedVehicle(String assignedVehicle) {
         this.assignedVehicle = assignedVehicle;
     }
+
+    //@Override
+    //public String toString() {
+        //return "BusTripSchedule{" + "scheduleId=" + scheduleId + ", scheduleDate=" + scheduleDate + ", tripId=" + tripId + ", time=" + time + ", sourceDestination=" + sourceDestination + ", assignedDriver=" + assignedDriver + ", assignedVehicle=" + assignedVehicle + '}';
+    //}
     
     
 

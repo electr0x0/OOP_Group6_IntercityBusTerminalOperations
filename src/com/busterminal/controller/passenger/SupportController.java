@@ -5,9 +5,10 @@
 package com.busterminal.controller.passenger;
 
 import com.busterminal.controller.AppendableObjectOutputStream;
-import com.busterminal.model.BusSchedule;
+import com.busterminal.model.BusTripSchedule;
 import com.busterminal.model.Feedback;
 import com.busterminal.model.SceneSwicth;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -133,6 +135,15 @@ public class SupportController implements Initializable {
     @FXML
     private void switchToDashboardScene(ActionEvent event) throws IOException {
         new SceneSwicth( anchorpaneSupport,"/com/busterminal/views/passenger/Dashboard_Passenger.fxml");
+        
+        RelationshipDatabaseClass.loadFromFile();
+        ArrayList<BusTripSchedule> b1 = new ArrayList();
+        b1= RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules();
+        
+        System.out.println(b1.toString());
+        
+        
+        
     }
 
     
