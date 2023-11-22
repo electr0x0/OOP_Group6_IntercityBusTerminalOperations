@@ -49,23 +49,22 @@
          <children>
             <TableView fx:id="employeeTable" editable="true" layoutX="21.0" layoutY="139.0" prefHeight="391.0" prefWidth="727.0">
               <columns>
-                <TableColumn fx:id="employeTableId" prefWidth="71.0" text="ID" />
-                <TableColumn fx:id="tableFirstName" prefWidth="97.0" text="First Name" />
-                  <TableColumn fx:id="tableLastName" prefWidth="70.0" text="Last Name" />
-                  <TableColumn fx:id="tableEmail" prefWidth="95.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="tablePhone" prefWidth="110.0" sortable="false" text="Phone No." />
-                  <TableColumn fx:id="tableSalary" prefWidth="95.0" text="Salary" />
-                  <TableColumn fx:id="tableDesignation" prefWidth="119.0" text="Designation" />
-                  <TableColumn fx:id="tableAbsent" prefWidth="69.0" text="On Leave" />
+                <TableColumn fx:id="employeTableId" prefWidth="87.0" text="ID" />
+                <TableColumn fx:id="tableFirstName" prefWidth="87.0" text="First Name" />
+                  <TableColumn fx:id="tableLastName" prefWidth="75.0" text="Last Name" />
+                  <TableColumn fx:id="tableEmail" prefWidth="100.0" sortable="false" text="Email" />
+                  <TableColumn fx:id="tablePhone" prefWidth="134.0" sortable="false" text="Phone No." />
+                  <TableColumn fx:id="tableSalary" prefWidth="82.0" text="Salary" />
+                  <TableColumn fx:id="tableDesignation" prefWidth="99.0" text="Designation" />
+                  <TableColumn fx:id="tableAbsent" prefWidth="62.0" text="On Leave" />
               </columns>
             </TableView>
             <Button layoutX="629.0" layoutY="543.0" mnemonicParsing="false" onAction="#createEmployeeScene" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="Create Employee" textFill="#03a2ff" />
-            <Button layoutX="500.0" layoutY="543.0" mnemonicParsing="false" onAction="#DeleteEmplyee" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="Delete Employee" textFill="#03a2ff" />
-            <Button layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#SaveChanges" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="Save Changes" textFill="#03a2ff" />
             <Button layoutX="21.0" layoutY="97.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="Refresh Table" textFill="#03a2ff" />
             <TextField fx:id="searchBox" layoutX="554.0" layoutY="99.0" prefHeight="28.0" prefWidth="130.0" />
             <Button layoutX="689.0" layoutY="98.0" mnemonicParsing="false" onAction="#showSearched" prefHeight="19.0" prefWidth="59.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="Show" textFill="#03a2ff" />
             <ChoiceBox fx:id="sortChoice" layoutX="428.0" layoutY="99.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: skyblue;" />
+            <Button layoutX="625.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="My Account" textFill="#03a2ff" />
          </children>
       </AnchorPane>
    </center>
