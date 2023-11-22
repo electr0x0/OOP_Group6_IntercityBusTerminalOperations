@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPkg.Login.FeedbackController">
+
+    <VBox alignment="CENTER" prefHeight="794.0" prefWidth="1200.0" spacing="10">
+        <TableView fx:id="feedbackTableView" prefHeight="438.0" prefWidth="1059.0">
+            <columns>
+                <TableColumn fx:id="feedbackIdColumn" prefWidth="238.0" text="Feedback ID" />
+                <TableColumn fx:id="passengerNameColumn" minWidth="0.0" prefWidth="249.0" text="Passenger Name" />
+                <TableColumn fx:id="commentColumn" prefWidth="303.0" text="Comment" />
+            </columns>
+        </TableView>
+        
+        <TextArea fx:id="selectedFeedbackTextArea" editable="false" prefHeight="383.0" prefWidth="1200.0" />
+    </VBox>
+</AnchorPane>

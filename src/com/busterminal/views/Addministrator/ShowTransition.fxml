@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.TextFieldTableCell?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPkg.Login.ShowTransitionController">
+    <VBox alignment="CENTER" layoutY="339.0" prefHeight="458.0" prefWidth="1200.0" spacing="10">
+        <children>
+            <TextField fx:id="filterBusNameField" prefHeight="24.0" prefWidth="1200.0" promptText="Filter by Bus Name" />
+            <TextField fx:id="filterTransitionDateField" promptText="Filter by Transition Date" />
+            <TableView fx:id="transitionTable" prefHeight="715.0" prefWidth="1200.0">
+                <columns>
+                    <TableColumn fx:id="busIdColumn" prefWidth="131.0" text="Bus ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="busId" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="busNameColumn" prefWidth="215.99996948242188" text="Bus Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="busName" />
+                        </cellValueFactory>
+                        <cellFactory>
+                            <TextFieldTableCell fx:factory="forTableColumn" />
+                        </cellFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="transitionDateColumn" prefWidth="209.0" text="Transition Date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="transitionDate" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="departureTimeColumn" prefWidth="213.0" text="Departure Time">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="departureTime" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="destinationColumn" prefWidth="225.0" text="Destination">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="destination" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="tkColumn" prefWidth="204.0" text="TK">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="tk" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    
+                </columns>
+            </TableView>
+        </children>
+    </VBox>
+   <LineChart prefHeight="318.0" prefWidth="1200.0" title="Daily Tansition">
+     <xAxis>
+       <CategoryAxis label="Day" prefHeight="25.0" prefWidth="1114.0" side="BOTTOM" />
+     </xAxis>
+     <yAxis>
+       <NumberAxis label="Amount (Tk)" side="LEFT" />
+     </yAxis>
+   </LineChart>
+</AnchorPane>

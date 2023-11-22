@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPkg.Login.SalaryStatusController">
+    <HBox alignment="CENTER" layoutX="6.0" layoutY="60.0" prefHeight="31.0" prefWidth="568.0" spacing="10" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <Label text="Filter by Name:" />
+      <ComboBox fx:id="filterCB" prefWidth="150.0" />
+      <TextField fx:id="filterTextField" />
+      <Button mnemonicParsing="false" onAction="#filterOnMouseClick" prefHeight="31.0" prefWidth="92.0" text="Filter">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+    </HBox>
+    <TableView fx:id="employeeTable" layoutX="-14.0" layoutY="134.0" prefHeight="642.0" prefWidth="1200.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="employeIdCol" prefWidth="143.0" text="Employe Id">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="nameCol" prefWidth="211.0" text="Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="designationCol" prefWidth="189.0" text="Designation">
+                <cellValueFactory>
+                    <PropertyValueFactory property="designation" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="salaryCol" prefWidth="208.0" text="Salary">
+                <cellValueFactory>
+                    <PropertyValueFactory property="salary" />
+                </cellValueFactory>
+            </TableColumn>
+         <TableColumn fx:id="paymentDate" prefWidth="281.0" text="Date">
+            <cellValueFactory>
+               <PropertyValueFactory property="salary" />
+            </cellValueFactory>
+         </TableColumn>
+            <TableColumn fx:id="statusCol" prefWidth="167.0" text="Status">
+                <cellValueFactory>
+                    <PropertyValueFactory property="status" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+   <TextArea fx:id="totalTextArea" editable="false" layoutX="554.0" layoutY="746.0" prefHeight="52.0" prefWidth="200.0" />
+   <Button layoutX="446.0" layoutY="751.0" mnemonicParsing="false" onAction="#totalAmountShowInTableColumnSalaryOnMouseClick" prefHeight="44.0" prefWidth="100.0" text="Total:">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+   </Button>
+   <HBox layoutX="-4.0" layoutY="7.0" prefHeight="38.0" prefWidth="384.0">
+      <children>
+         <Label lineSpacing="2.0" prefHeight="21.0" prefWidth="119.0" text="Payment Status:" />
+         <CheckBox fx:id="selectUnpaid" lineSpacing="2.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="106.0" text="Unpaid" />
+         <CheckBox fx:id="selectPaid" lineSpacing="2.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="92.0" text="Paid" />
+      </children>
+   </HBox>
+</AnchorPane>

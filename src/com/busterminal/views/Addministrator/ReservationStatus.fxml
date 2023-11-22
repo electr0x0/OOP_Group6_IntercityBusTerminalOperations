@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPkg.Login.ReservationStatusController">
+
+    <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" spacing="10">
+        <PieChart fx:id="weeklyPieChart" prefHeight="363.0" prefWidth="1200.0" />
+      <TextField fx:id="filter" promptText="Serch by date" />
+        
+        <TableView fx:id="busReservationTable" prefHeight="494.0" prefWidth="1200.0">
+            <columns>
+                <TableColumn fx:id="reservationIdColumn" text="Reservation ID">
+                    <prefWidth>181.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="passengerNameColumn" text="Passenger Name">
+                    <prefWidth>236.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="busIdColumn" minWidth="0.0" text="Bus Name">
+                    <prefWidth>233.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="departureDateColumn" text="Departure Date">
+                    <prefWidth>324.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="fareColumn" minWidth="2.0" text="Fare">
+                    <prefWidth>224.0</prefWidth>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
