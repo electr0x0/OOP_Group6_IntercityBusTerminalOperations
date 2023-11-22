@@ -5,6 +5,7 @@
 package com.busterminal.storage.db;
 
 import com.busterminal.model.Bus;
+import com.busterminal.model.BusTrip;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<String> allBusStands;
     private ArrayList<Bus> allAvailableBuses;
     private int busIdCounter;
+    private ArrayList<BusTrip> allTripList;
     
 
     // Private constructor to prevent instantiation
@@ -34,6 +36,7 @@ public class RelationshipDatabaseClass implements Serializable {
 
     // Static method to get the singleton instance
     public static RelationshipDatabaseClass getInstance() {
+        loadFromFile();
         if (instance == null) {
             instance = new RelationshipDatabaseClass();
         }
@@ -46,6 +49,7 @@ public class RelationshipDatabaseClass implements Serializable {
 
     public void setAllLocations(ArrayList<String> allLocations) {
         this.allLocations = allLocations;
+        saveToFile();
     }
 
     public ArrayList<String> getAllTimes() {
@@ -54,14 +58,17 @@ public class RelationshipDatabaseClass implements Serializable {
 
     public void setAllTimes(ArrayList<String> allTimes) {
         this.allTimes = allTimes;
+        saveToFile();
     }
 
     public ArrayList<String> getAllBusStands() {
+        
         return allBusStands;
     }
 
     public void setAllBusStands(ArrayList<String> allBusStands) {
         this.allBusStands = allBusStands;
+        saveToFile();
     }
 
     public ArrayList<Bus> getAllAvailableBuses() {
@@ -72,6 +79,7 @@ public class RelationshipDatabaseClass implements Serializable {
     public void setAllAvailableBuses(ArrayList<Bus> allAvailableBuses) {
         this.allAvailableBuses = allAvailableBuses;
         System.out.println(allAvailableBuses);
+        saveToFile();
     }
 
     public int getBusIdCounter() {
@@ -82,6 +90,7 @@ public class RelationshipDatabaseClass implements Serializable {
     public void setBusIdCounter(int busIdCounter) {
         System.out.println("Bus Id counter saved to ObjectDatabase");
         this.busIdCounter = busIdCounter;
+        saveToFile();
     }
     
     public void saveToFile() {
@@ -91,13 +100,22 @@ public class RelationshipDatabaseClass implements Serializable {
             e.printStackTrace();
         }
     }
-     
+    
     public static void loadFromFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("GlobalClassDatabase.bin"))) {
             instance = (RelationshipDatabaseClass) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<BusTrip> getAllTripList() {
+        return allTripList;
+    }
+
+    public void setAllTripList(ArrayList<BusTrip> allTripList) {
+        this.allTripList = allTripList;
+        saveToFile();
     }
     
     

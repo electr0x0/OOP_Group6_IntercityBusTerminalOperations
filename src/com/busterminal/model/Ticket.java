@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 public class Ticket implements Serializable{
     private String ticketId;
     private Passenger passenger; // Passenger object who bought the ticket
-    private BusSchedule schedule;
+    private BusTrip schedule;
     private int seatNumber;
     private double price;
     private LocalDateTime bookingTime;
     private String bookingStatus; // "Confirmed" or "Cancelled" Status will be here (By default it will remain as Confirmed)
     private int ticketQty;
 
-    public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, int seatNumber, int ticketQty) {
+    public Ticket(String ticketId, Passenger passenger, BusTrip schedule, int seatNumber, int ticketQty) {
         this.ticketId = ticketId;
         this.passenger = passenger;
         this.schedule = schedule;

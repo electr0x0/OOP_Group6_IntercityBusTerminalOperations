@@ -48,12 +48,10 @@ public class TerminalManagerDashboardController implements Initializable {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerMainDashboardContent.fxml");
     }
 
-    @FXML
     private void onClickManageStaffBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/");
     }
 
-    @FXML
     private void onClickSchedulingBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/");
     }
@@ -96,6 +94,11 @@ public class TerminalManagerDashboardController implements Initializable {
             MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
             alertDialog.openMFXDialog();
         }
+    }
+
+    @FXML
+    private void onClickBusTripSchedule(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerScheduleSetter.fxml");
     }
     
     

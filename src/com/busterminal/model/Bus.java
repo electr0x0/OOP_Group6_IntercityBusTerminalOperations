@@ -19,9 +19,11 @@ public class Bus implements Serializable {
     private int busRegNum;
     private String manufacturer;
     private int yearOfManufacture;
-    private ArrayList<BusSchedule> schedules;
+    private ArrayList<BusTrip> schedules;
     private ArrayList<String> assingedDrivers;
     private boolean mtStatus;
+    private ArrayList<String> availableTimeSlots;
+    private ArrayList<String> occupiedTimeSlots;
 
     public Bus(int busId, int numberOfSeats, String busType, int busRegNum, String manufacturer, int yearOfManufacture, ArrayList<String> assingedDrivers) {
         this.busId = busId;
@@ -36,10 +38,12 @@ public class Bus implements Serializable {
 
     @Override
     public String toString() {
-        return "Bus{" + "busId=" + busId + ", numberOfSeats=" + numberOfSeats + ", busType=" + busType + ", busRegNum=" + busRegNum + ", manufacturer=" + manufacturer + ", yearOfManufacture=" + yearOfManufacture + ", schedules=" + schedules + ", assingedDrivers=" + assingedDrivers + '}';
+        return "Bus{" + "busId=" + busId + ", numberOfSeats=" + numberOfSeats + ", busType=" + busType + ", busRegNum=" + busRegNum + ", manufacturer=" + manufacturer + ", yearOfManufacture=" + yearOfManufacture + ", schedules=" + schedules + ", assingedDrivers=" + assingedDrivers + ", mtStatus=" + mtStatus + ", availableTimeSlots=" + availableTimeSlots + ", occupiedTimeSlots=" + occupiedTimeSlots + '}';
     }
 
-    public void addSchedule(BusSchedule schedule) {
+    
+
+    public void addSchedule(BusTrip schedule) {
         schedules.add(schedule);
     }
 
@@ -114,6 +118,36 @@ public class Bus implements Serializable {
     public void setMtStatus(boolean mtStatus) {
         this.mtStatus = mtStatus;
     }
+    
+    public void addOccupiedTimeSlot(String timeSlot) {
+        if (occupiedTimeSlots == null) {
+            occupiedTimeSlots = new ArrayList<>();
+        }
+        occupiedTimeSlots.add(timeSlot);
+    }
+    
+    public void addAvailableTimeSlot(String timeslot){
+        if (availableTimeSlots == null) {
+            availableTimeSlots = new ArrayList<>();
+        }
+        availableTimeSlots.add(timeslot);
+    }
+    
+    public boolean isTimeSlotAvailable(String timeSlot) {
+        return (occupiedTimeSlots == null || !occupiedTimeSlots.contains(timeSlot));
+    }
+
+    public ArrayList<String> getAvailableTimeSlots() {
+        return availableTimeSlots;
+    }
+
+    public ArrayList<String> getOccupiedTimeSlots() {
+        return occupiedTimeSlots;
+    }
+    
+    
+    
+    
     
     
 

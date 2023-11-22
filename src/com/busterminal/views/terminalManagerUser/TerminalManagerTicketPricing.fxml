@@ -2,7 +2,9 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
@@ -13,10 +15,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@TerminalManagerTicketPricing.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerTicketPricingController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@TerminalManagerTicketPricing.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerTripAndFareMangement">
    <children>
-      <MFXComboBox fx:id="comboPickupPoint" floatMode="BORDER" floatingText="Travel Starting Point" layoutX="17.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
-      <MFXComboBox fx:id="comboDestinationPoint" floatMode="BORDER" floatingText="Travel Destination Point" layoutX="268.0" layoutY="79.0" prefHeight="40.0" prefWidth="257.0" />
+      <MFXFilterComboBox fx:id="comboPickupPoint" floatMode="BORDER" floatingText="Travel Starting Point" layoutX="17.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboDestinationPoint" floatMode="BORDER" floatingText="Travel Destination Point" layoutX="268.0" layoutY="79.0" prefHeight="40.0" prefWidth="257.0" />
       <Label layoutX="79.0" layoutY="48.0" prefHeight="23.0" prefWidth="87.0" text="Select Source*" />
       <Label layoutX="319.0" layoutY="48.0" prefHeight="23.0" prefWidth="101.0" text="Select Destination*" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="841.0" layoutY="344.0" prefHeight="23.0" prefWidth="87.0" text="Fleet Type" />
@@ -41,8 +43,8 @@
             <Font name="System Bold" size="12.0" />
          </font></Label>
       <MFXTextField fx:id="tFieldWeekendFare" floatMode="BORDER" floatingText="Base Price" layoutX="526.0" layoutY="375.0" prefHeight="40.0" prefWidth="227.0" />
-      <MFXComboBox fx:id="comboBusList" floatMode="BORDER" floatingText="Vehicle List" layoutX="22.0" layoutY="468.0" onAction="#updateBusTableInformation" prefHeight="40.0" prefWidth="227.0" />
-      <MFXComboBox fx:id="comboScheduleTimeList" floatMode="BORDER" floatingText="Schedule Time" layoutX="526.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboBusList" floatMode="BORDER" floatingText="Vehicle List" layoutX="22.0" layoutY="468.0" onAction="#updateBusTableInformation" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboScheduleTimeList" floatMode="BORDER" floatingText="Schedule Time" layoutX="526.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="571.0" layoutY="48.0" prefHeight="23.0" prefWidth="106.0" text="Select Time*" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="135.0" prefHeight="23.0" prefWidth="87.0" text="Boarding Point">
          <font>
@@ -50,14 +52,14 @@
          </font>
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="158.0" prefHeight="23.0" prefWidth="106.0" text="Select Bus Stand*" />
-      <MFXComboBox fx:id="comboPickupBusStand" floatMode="BORDER" floatingText="Boarding Bus Stand" layoutX="22.0" layoutY="188.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboPickupBusStand" floatMode="BORDER" floatingText="Boarding Bus Stand" layoutX="22.0" layoutY="188.0" prefHeight="40.0" prefWidth="227.0" />
       <MFXTextField fx:id="comboPickupBusStandExtraDetails" floatMode="BORDER" floatingText="Extra Details About the Boarding Point" layoutX="275.0" layoutY="188.0" prefHeight="40.0" prefWidth="227.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="239.0" prefHeight="23.0" prefWidth="106.0" text="Dropping Point">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <MFXComboBox fx:id="comboDropBusStand" floatMode="BORDER" floatingText="Dropping Bus Stand" layoutX="22.0" layoutY="285.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboDropBusStand" floatMode="BORDER" floatingText="Dropping Bus Stand" layoutX="22.0" layoutY="285.0" prefHeight="40.0" prefWidth="227.0" />
       <MFXTextField fx:id="comboDropBusStandExtraDetails" floatMode="BORDER" floatingText="Extra Details About the Dropping Point" layoutX="274.0" layoutY="282.0" prefHeight="40.0" prefWidth="227.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="262.0" prefHeight="23.0" prefWidth="106.0" text="Select Bus Stand*" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="335.0" prefHeight="23.0" prefWidth="106.0" text="Fare Section">
@@ -90,12 +92,14 @@
             <TableColumn fx:id="colMtStatus" prefWidth="190.0" text="Maintainence Status" />
          </columns>
       </MFXLegacyTableView>
-      <MFXComboBox fx:id="comboListDriver" floatMode="BORDER" floatingText="Driver List" layoutX="256.0" layoutY="468.0" onAction="#updateCurrentScheduleDriver" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboListDriver" floatMode="BORDER" floatingText="Driver List" layoutX="256.0" layoutY="468.0" onAction="#updateCurrentScheduleDriver" prefHeight="40.0" prefWidth="227.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="438.0" prefHeight="23.0" prefWidth="142.0" text="Assign Driver to Trip*">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <MFXProgressSpinner fx:id="progressSpinner" layoutX="477.0" layoutY="640.0" />
+      <MFXSlider fx:id="spinnerTravelDistance" decimalPrecision="1" layoutX="555.0" layoutY="248.0" max="500.0" min="1.0" minorTicksCount="1" popupPadding="1.0" prefHeight="0.0" prefWidth="198.0" sliderMode="SNAP_TO_TICKS" tickUnit="1.0" unitIncrement="1.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="571.0" layoutY="217.0" prefHeight="23.0" prefWidth="153.0" text="Total Travel Distance* (KM)" />
    </children>
 </AnchorPane>

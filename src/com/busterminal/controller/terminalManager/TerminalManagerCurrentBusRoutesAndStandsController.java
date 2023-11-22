@@ -102,7 +102,7 @@ public class TerminalManagerCurrentBusRoutesAndStandsController implements Initi
             AnchorPane newContent = loader.load();
 
             // Get the controller
-            TerminalManagerTicketPricingController controller = loader.getController();
+            TerminalManagerTripAndFareMangement controller = loader.getController();
 
             
             controller.setComboItems(allLocations,allTimes,allBusStands);

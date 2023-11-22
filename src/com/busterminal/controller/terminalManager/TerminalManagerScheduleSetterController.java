@@ -4,9 +4,27 @@
  */
 package com.busterminal.controller.terminalManager;
 
+import com.busterminal.model.BusTrip;
+import com.busterminal.model.BusTripSchedule;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
+import com.busterminal.utilityclass.MFXDialog;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -15,12 +33,92 @@ import javafx.fxml.Initializable;
  */
 public class TerminalManagerScheduleSetterController implements Initializable {
 
+    @FXML
+    private MFXFilterComboBox<BusTrip> comboBoxAllTrips;
+    @FXML
+    private MFXDatePicker tripDatePicker;
+    @FXML
+    private Label labelAdultFare;
+    @FXML
+    private Label labelChildFare;
+    @FXML
+    private Label labelWeekendFare;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleIntegerProperty> colScheduleId;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleStringProperty> colScheduleDate;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleIntegerProperty> colTripId;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleStringProperty> colTime;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleStringProperty> colSourceDestination;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleStringProperty> colAssignedDriver;
+    @FXML
+    private TableColumn<BusTripSchedule, SimpleStringProperty> colAssignedVehicle;
+    @FXML
+    private MFXLegacyTableView<BusTripSchedule> tripScheduleTable;
+    
+    private ArrayList<BusTrip> allAvailableTripList;
+    private ArrayList<BusTripSchedule> allAvailableBusTripSchedule;
+    @FXML
+    private AnchorPane rootPane;
+    
+    private ObservableList<BusTripSchedule> obvForTableView = FXCollections.observableArrayList();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        loadData();
+    }
     
+
+    private void loadData(){
+        try {
+        allAvailableTripList = RelationshipDatabaseClass.getInstance().getAllTripList();
+        System.out.println("Trip List assigned to Controller" + allAvailableTripList.get(0));
+        comboBoxAllTrips.getItems().addAll(allAvailableTripList);
+        }
+        catch(NullPointerException npe){
+            showErrorDialog("Error loading Data","Trip List Data loading faield, Please populate Trip Information before trying to Schedule one!");
+        }
+    }
+
+    @FXML
+    private void onClickAddScheduleButton(ActionEvent event) {
+    }
+    
+    private void setupColumns() {
+        colScheduleId.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
+        colScheduleDate.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
+        colTripId.setCellValueFactory(new PropertyValueFactory<>("tripId"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colSourceDestination.setCellValueFactory(new PropertyValueFactory<>("sourceDestination"));
+        colAssignedDriver.setCellValueFactory(new PropertyValueFactory<>("assignedDriver"));
+        colAssignedVehicle.setCellValueFactory(new PropertyValueFactory<>("assignedVehicle"));
+    }
+    
+    private void showErrorDialog(String title, String content) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        alertDialog.openMFXDialog();
+    }
+
+    private void showSuccessDialog(String title, String content) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        alertDialog.openMFXDialog();
+    }
+
+    @FXML
+    private void onTripSelection(ActionEvent event) {
+        String adFare = "Adult Fare       : "+comboBoxAllTrips.getSelectedItem().getAdultFare();
+        String chFare = "Child Fare        : "+comboBoxAllTrips.getSelectedItem().getChildrenFare();
+        String wkEndFare = "Weekend Fare  : "+comboBoxAllTrips.getSelectedItem().getWeekendFare();
+        labelAdultFare.setText(adFare);
+        labelChildFare.setText(chFare);
+        labelWeekendFare.setText(wkEndFare);
+        
+    }
 }
