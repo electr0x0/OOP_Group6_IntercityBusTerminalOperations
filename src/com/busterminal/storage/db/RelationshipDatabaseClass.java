@@ -27,6 +27,9 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<String> allTimes;
     private ArrayList<String> allBusStands;
     private ArrayList<Bus> allAvailableBuses;
+    
+    
+              
    
    
     
