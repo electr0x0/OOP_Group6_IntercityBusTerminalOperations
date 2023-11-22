@@ -12,6 +12,7 @@ import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -44,19 +45,19 @@ public class TerminalManagerScheduleSetterController implements Initializable {
     @FXML
     private Label labelWeekendFare;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleIntegerProperty> colScheduleId;
+    private TableColumn<BusTripSchedule, Integer> colScheduleId;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleStringProperty> colScheduleDate;
+    private TableColumn<BusTripSchedule, String> colScheduleDate;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleIntegerProperty> colTripId;
+    private TableColumn<BusTripSchedule, Integer> colTripId;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleStringProperty> colTime;
+    private TableColumn<BusTripSchedule, String> colTime;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleStringProperty> colSourceDestination;
+    private TableColumn<BusTripSchedule, String> colSourceDestination;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleStringProperty> colAssignedDriver;
+    private TableColumn<BusTripSchedule, String> colAssignedDriver;
     @FXML
-    private TableColumn<BusTripSchedule, SimpleStringProperty> colAssignedVehicle;
+    private TableColumn<BusTripSchedule, String> colAssignedVehicle;
     @FXML
     private MFXLegacyTableView<BusTripSchedule> tripScheduleTable;
     
@@ -66,13 +67,23 @@ public class TerminalManagerScheduleSetterController implements Initializable {
     private AnchorPane rootPane;
     
     private ObservableList<BusTripSchedule> obvForTableView = FXCollections.observableArrayList();
-
+    
+    private ArrayList<BusTripSchedule> allAvailableTripSchedules = new ArrayList<>();
+    
+    private BusTripSchedule currentSchedule;
+    
+    private int currentScheduleID = 0;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadData();
+        
+//        if (RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules() != null){
+//            allAvailableTripSchedules = RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules();
+//        }
     }
     
 
@@ -86,9 +97,24 @@ public class TerminalManagerScheduleSetterController implements Initializable {
             showErrorDialog("Error loading Data","Trip List Data loading faield, Please populate Trip Information before trying to Schedule one!");
         }
     }
+    
+    public void generateScheduleID(){
+        currentScheduleID++;
+    }
 
     @FXML
     private void onClickAddScheduleButton(ActionEvent event) {
+        BusTrip currentTrip = comboBoxAllTrips.getSelectedItem();
+        LocalDate selectedDate = tripDatePicker.getValue();
+        String sourceAndDestination = currentTrip.getSource() + "-" + currentTrip.getDestination();
+        String assignedDriver = currentTrip.getDriver();
+        String busID = ""+currentTrip.getBus().getBusId();
+        currentSchedule = new BusTripSchedule(currentScheduleID,selectedDate,5, currentTrip.getTimeSlot(), sourceAndDestination,assignedDriver,busID  );
+        generateScheduleID();
+        allAvailableTripSchedules.add(currentSchedule);
+        obvForTableView.addAll(allAvailableTripSchedules);
+        tripScheduleTable.setItems(obvForTableView);
+        RelationshipDatabaseClass.getInstance().setAllAvailableTripSchedules(allAvailableTripSchedules);
     }
     
     private void setupColumns() {

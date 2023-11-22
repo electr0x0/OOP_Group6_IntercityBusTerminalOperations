@@ -6,6 +6,7 @@ package com.busterminal.controller.terminalManager;
 
 import com.busterminal.model.Bus;
 import com.busterminal.model.BusTrip;
+import com.busterminal.model.BusTripSchedule;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,16 +26,16 @@ public class TerminalManagerFinancialReportsController implements Initializable 
     @FXML
     private Label dataBaseTestResult;
     
-    private ArrayList<BusTrip> availableSchedule;
+    private ArrayList<BusTripSchedule> allAvailableTripSchedules;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        availableSchedule = RelationshipDatabaseClass.getInstance().getAllTripList();
-        for (Bus bus: RelationshipDatabaseClass.getInstance().getAllAvailableBuses()){
-            System.out.println(bus.toString());
+        allAvailableTripSchedules = RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules();
+        for (BusTripSchedule busSche: RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules()){
+            System.out.println(busSche.toString());
         }
     } 
     
@@ -43,8 +44,8 @@ public class TerminalManagerFinancialReportsController implements Initializable 
     private void databaseTestButton(ActionEvent event) {
         String labelText = "\n";
         
-        for (BusTrip busIns: availableSchedule){
-            labelText += busIns.toString()+"\n";
+        for (BusTripSchedule busSche: allAvailableTripSchedules){
+            labelText += busSche.getAssignedDriver()+"\n"+busSche.getAssignedDriver()+"\n"+busSche.getSourceDestination()+"\n"+busSche.getTime()+"\n";
         }
         
         dataBaseTestResult.setText(labelText);

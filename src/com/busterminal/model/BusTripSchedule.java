@@ -15,50 +15,82 @@ import javafx.beans.property.SimpleStringProperty;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BusTripSchedule implements Serializable {
-    private SimpleIntegerProperty scheduleId;
-    private SimpleStringProperty scheduleDate;
-    private SimpleIntegerProperty tripId;
-    private SimpleStringProperty time;
-    private SimpleStringProperty sourceDestination;
-    private SimpleStringProperty assignedDriver;
-    private SimpleStringProperty assignedVehicle;
-    
+public class BusTripSchedule implements Serializable{
+    private int scheduleId;
+    private LocalDate scheduleDate;
+    private int tripId;
+    private String time;
+    private String sourceDestination;
+    private String assignedDriver;
+    private String assignedVehicle;
 
     public BusTripSchedule(int scheduleId, LocalDate scheduleDate, int tripId, String time, String sourceDestination, String assignedDriver, String assignedVehicle) {
-        this.scheduleId = new SimpleIntegerProperty(scheduleId);
-        this.scheduleDate = new SimpleStringProperty(scheduleDate.toString());
-        this.tripId = new SimpleIntegerProperty(tripId);
-        this.time = new SimpleStringProperty(time);
-        this.sourceDestination = new SimpleStringProperty(sourceDestination);
-        this.assignedDriver = new SimpleStringProperty(assignedDriver);
-        this.assignedVehicle = new SimpleStringProperty(assignedVehicle);
+        this.scheduleId = scheduleId;
+        this.scheduleDate = scheduleDate;
+        this.tripId = tripId;
+        this.time = time;
+        this.sourceDestination = sourceDestination;
+        this.assignedDriver = assignedDriver;
+        this.assignedVehicle = assignedVehicle;
     }
 
-    // Getters and Setters for Simple Properties
     public int getScheduleId() {
-        return scheduleId.get();
-    }
-
-    public void setScheduleId(int scheduleId) {
-        this.scheduleId.set(scheduleId);
-    }
-
-    public SimpleIntegerProperty scheduleIdProperty() {
         return scheduleId;
     }
 
-    public String getScheduleDate() {
-        return scheduleDate.get();
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public LocalDate getScheduleDate() {
+        return scheduleDate;
     }
 
     public void setScheduleDate(LocalDate scheduleDate) {
-        this.scheduleDate.set(scheduleDate.toString());
+        this.scheduleDate = scheduleDate;
     }
 
-    public SimpleStringProperty scheduleDateProperty() {
-        return scheduleDate;
+    public int getTripId() {
+        return tripId;
     }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getSourceDestination() {
+        return sourceDestination;
+    }
+
+    public void setSourceDestination(String sourceDestination) {
+        this.sourceDestination = sourceDestination;
+    }
+
+    public String getAssignedDriver() {
+        return assignedDriver;
+    }
+
+    public void setAssignedDriver(String assignedDriver) {
+        this.assignedDriver = assignedDriver;
+    }
+
+    public String getAssignedVehicle() {
+        return assignedVehicle;
+    }
+
+    public void setAssignedVehicle(String assignedVehicle) {
+        this.assignedVehicle = assignedVehicle;
+    }
+    
+    
 
 }
 
