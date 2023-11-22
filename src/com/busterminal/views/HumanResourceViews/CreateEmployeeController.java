@@ -5,7 +5,6 @@
 package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
-import com.busterminal.model.HumanResource;
 import com.busterminal.utilityclass.Validator;
 import static com.busterminal.views.HumanResourceViews.MyEmployeeController.readEmployeesFromFile;
 import java.io.FileOutputStream;
@@ -151,7 +150,7 @@ private void switchPage(ActionEvent event) {
             gender.getValue(), email.getText(), phoneNumber.getText(), dob.getValue(),
             address.getText()
             );
-             writeEmployeeToFile("MyEmployee.bin", newEmployee);
+             writeEmployeeToFile("Employee.bin", newEmployee);
              root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
