@@ -5,12 +5,15 @@
 package com.busterminal.controller.terminalManager;
 
 import com.busterminal.model.Bus;
+import com.busterminal.model.BusTrip;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXContextMenuItem;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
+import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -47,12 +50,12 @@ import javafx.scene.layout.AnchorPane;
  * @author electr0
  */
 
-public class TerminalManagerTicketPricingController implements Initializable, Serializable {
+public class TerminalManagerTripAndFareMangement implements Initializable, Serializable {
 
     @FXML
-    private MFXComboBox<String> comboPickupPoint;
+    private MFXFilterComboBox<String> comboPickupPoint;
     @FXML
-    private MFXComboBox<String> comboDestinationPoint;
+    private MFXFilterComboBox<String> comboDestinationPoint;
     @FXML
     private MFXToggleButton toggleFleetAC;
     @FXML
@@ -64,15 +67,16 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
     @FXML
     private MFXTextField tFieldWeekendFare;
     @FXML
-    private MFXComboBox<String> comboBusList;
+    private MFXFilterComboBox<String> comboBusList;
     @FXML
-    private MFXComboBox<String> comboScheduleTimeList;
+    private MFXFilterComboBox<String> comboScheduleTimeList;
     @FXML
-    private MFXComboBox<String> comboPickupBusStand;
+    private MFXFilterComboBox<String> comboPickupBusStand;
     @FXML
     private MFXTextField comboPickupBusStandExtraDetails;
     @FXML
-    private MFXComboBox<String> comboDropBusStand;
+    private MFXFilterComboBox<String> comboDropBusStand;
+    
     @FXML
     private MFXTextField comboDropBusStandExtraDetails;
     
@@ -98,13 +102,21 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
     @FXML
     private TableColumn<Bus, Boolean> colMtStatus;
     @FXML
-    private MFXComboBox<String> comboListDriver;
+    private MFXFilterComboBox<String> comboListDriver;
     
     private ObservableList<Bus> currentBusInfoList = FXCollections.observableArrayList();
     @FXML
     private MFXLegacyTableView<Bus> busInfoShowerTable;
     @FXML
     private MFXProgressSpinner progressSpinner;
+    
+    private int scheduleCounter = 0;
+    
+    private BusTrip currentSchedule;
+    
+    private ArrayList<BusTrip> allTripList = new ArrayList<>();
+    @FXML
+    private MFXSlider spinnerTravelDistance;
     
 
 
@@ -121,13 +133,22 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
         toggleFleetNonAC.setToggleGroup(busType);
         busListSetter();
         setupBusInfoTable();
-        // 
+        RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+        //
         toggleFleetAC.selectedProperty().addListener((observable, oldValue, newValue) -> {
         if (!newValue) {
             comboBusList.getItems().clear();
             comboListDriver.getItems().clear();
             progressSpinner.setVisible(false);
         }});
+        
+        RelationshipDatabaseClass.getInstance().setAllBusStands(allBusStands);
+        RelationshipDatabaseClass.getInstance().setAllTimes(allTimes);
+        RelationshipDatabaseClass.getInstance().setAllBusStands(allBusStands);
+        
+        if (RelationshipDatabaseClass.getInstance().getAllTripList() != null){
+            allTripList = RelationshipDatabaseClass.getInstance().getAllTripList();
+        }
 
         
     }
@@ -152,12 +173,12 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
         int busID = Integer.parseInt(comboBusList.getValue());
 
         new Thread(() -> {
-            // Perform the delay in the background thread
+            // Fake delay
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                // Handle the interruption appropriately
+                
             }
 
             // Now back on the JavaFX Application Thread
@@ -179,18 +200,116 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
 
     @FXML
     private void updateCurrentScheduleDriver(ActionEvent event) {
+        
     }
 
     @FXML
     private void onClickAddSchedule(ActionEvent event) {
+        
+        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses()!= null){
+            allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+        }
+        
+        Bus selectedBus = null;
+        int busID;
+        try {
+            busID = Integer.parseInt(comboBusList.getText());
+            for (Bus busObj : allAvailableBuses) {
+                if (busObj.getBusId() == busID) {
+                    selectedBus = busObj;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            showErrorDialog("Bus ID Not Selected", "Please select a bus ID.");
+            return;
+        }
+        
+        String timeslot = comboScheduleTimeList.getValue();
+        if (timeslot == null){
+            showErrorDialog("Select Time Slot", "Please select a time Slot");
+            return;
+        }
+        
+        if (!selectedBus.isTimeSlotAvailable(timeslot)) {
+            showErrorDialog("Schedule Conflict", "This bus is already scheduled or not available for this time slot.");
+            return;
+        }
+        
+        double totalDistance;
+        if(spinnerTravelDistance.getValue() != 0){
+            totalDistance = spinnerTravelDistance.getValue();
+        }
+        else{
+            showErrorDialog("Distance Value Error", "Please define the travel distance");
+            return; 
+        }
+        
+        String source = comboPickupPoint.getValue();
+        if(source == null){
+            showErrorDialog("Value not selected", "Please select a departure City");
+            return; 
+        }
+        
+        String destination = comboDestinationPoint.getValue();
+        if(destination == null){
+            showErrorDialog("Value not selected", "Please select a destination City");
+            return; 
+        }
+        
+        int adultFare;
+        try {
+            adultFare = Integer.parseInt(tFieldAdultFare.getText());
+        } catch (NumberFormatException e) {
+            showErrorDialog("Invalid Adult Fare Value/Not entered", "Please enter a integer value for Adult Fare");
+            return;
+        }
+        
+        int childFare;
+        try {
+            childFare = Integer.parseInt(tFieldChildFare.getText());
+        } catch (NumberFormatException e) {
+            showErrorDialog("Invalid Child Fare Value/Not entered", "Please enter a integer value for Child Fare");
+            return;
+        }
+        
+        int weekendFare;
+        try {
+            weekendFare = Integer.parseInt(tFieldWeekendFare.getText());
+        } catch (NumberFormatException e) {
+            showErrorDialog("Invalid Child Fare Value/Not entered", "Please enter a integer value for Child Fare");
+            return;
+        }
+        
+        String assignedDriver = comboListDriver.getValue();
+        if(assignedDriver == null){
+            showErrorDialog("Value not selected", "Please select a Driver from the List");
+            return;
+        }
+
+        generateScheduleID();
+        
+        
+        
+        currentSchedule = new BusTrip(scheduleCounter, selectedBus, source, destination,timeslot,adultFare,childFare,weekendFare,totalDistance,assignedDriver );
+        
+        allTripList.add(currentSchedule);
+        showSuccessDialog("Sucess", "Sucessfully Added The Schedule to system");
+        
+        RelationshipDatabaseClass.getInstance().setAllTripList(allTripList);
         saveArrayListsToFile();
-        RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+    }
+    
+    private void generateScheduleID(){
+       
+       int format = 000;
+       scheduleCounter = format;
+       
+       format++;
     }
     
     private void busListSetter(){
-        RelationshipDatabaseClass.getInstance().loadFromFile();
         allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
-
     }
     
     @FXML
@@ -297,6 +416,16 @@ public class TerminalManagerTicketPricingController implements Initializable, Se
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void showErrorDialog(String title, String content) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        alertDialog.openMFXDialog();
+    }
+
+    private void showSuccessDialog(String title, String content) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        alertDialog.openMFXDialog();
     }
     
     public void loadArrayListsFromFile() {
