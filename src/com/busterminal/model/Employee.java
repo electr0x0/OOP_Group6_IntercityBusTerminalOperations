@@ -7,8 +7,10 @@ import com.busterminal.model.employeeModels.Resignation;
 import com.busterminal.model.employeeModels.Salary;
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import static java.time.LocalDate.now;
 import java.time.LocalDateTime;
@@ -33,7 +35,7 @@ public class Employee extends User {
         this.empType = empType;
         this.id = generateID(firstname);
         this.salStatus = new Salary(this.id,this.Salary,false,false,LocalDate.now());
-        this.overTime = new Overtime(this.id,false,0,0,false);
+        this.overTime = new Overtime(this.id);
         this.holiday = new Leave(this.id,false,false,"");
         this.resignation = new Resignation(this.id,false,"");
     }
@@ -160,27 +162,33 @@ public class Employee extends User {
         return String.format("%d%s%s", asciiValue, date, time);
     }
 
-    public class ObjectReader {
-        public ArrayList<Object> readObjectsFromFile(String filename) {
-            ArrayList<Object> objects = new ArrayList<>();
+    
+        public static ArrayList<Employee> readEmployeesFromFile(String filename) {
+            ArrayList<Employee> employees = new ArrayList<>();
 
             try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
-                while (true) {
-                    try {
-                        Object obj = inputStream.readObject();
-                        objects.add(obj);
-                    } catch (EOFException e) {
-                        // End of file reached
-                        break;
-                    }
-                }
+                // Read all existing employees from the file
+                employees = (ArrayList<Employee>) inputStream.readObject();
             } catch (IOException | ClassNotFoundException e) {
+                // Handle exceptions if the file doesn't exist or other issues
                 e.printStackTrace();
             }
 
-            return objects;
+            return employees;
         }
-    }
+        
+        public static void writeEmployeesToFile(String filename, ArrayList<Employee> employees) {
+            String filePath = filename;
+
+            try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+                // Write the entire list back to the file
+                outputStream.writeObject(employees);
+                System.out.println("Employees written to file: " + filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    
 
     public Salary findSalaryById(ArrayList<Salary> salaries, String id) {
         for (Salary salary : salaries) {
