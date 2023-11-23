@@ -21,6 +21,7 @@ public abstract class User implements Serializable {
     private String phoneNumber;
     private String gender;
 
+
     public User(int iD, String firstName, String lastName, String address, String email, LocalDate dateOfBirth, String password, String phoneNumber, String gender) {
         this.iD = iD;
         this.firstName = firstName;
