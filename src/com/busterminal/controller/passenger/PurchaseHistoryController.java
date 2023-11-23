@@ -48,6 +48,8 @@ public class PurchaseHistoryController implements Initializable {
     @FXML
     private void switchToShowTicketDetailsScene(ActionEvent event) throws IOException {
         new SceneSwicth(purchaseHistoryAnchorpane,"/com/busterminal/views/passenger/ShowTicketDetails.fxml");
+        
+        
     }
     
 }

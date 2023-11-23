@@ -5,19 +5,22 @@
 package com.busterminal.controller.passenger;
 
 import com.busterminal.controller.AppendableObjectOutputStream;
-import com.busterminal.model.BusSchedule;
-import com.busterminal.model.Feedback;
+import com.busterminal.model.Bus;
+import com.busterminal.model.DummyClassForTableViewSchedule;
 import com.busterminal.model.Passenger;
 import com.busterminal.model.SceneSwicth;
 import com.busterminal.model.Ticket;
-import java.io.DataOutputStream;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,8 +47,8 @@ public class TicketDetailsController implements Initializable {
     @FXML
     private TextField nameTextField1;
     
-    private ArrayList<Passenger> passengerList;
-    private ArrayList<Ticket> ticketList;
+    private ArrayList<Passenger> passengerList= new ArrayList();
+    private ArrayList<Ticket> ticketList = new ArrayList();
     @FXML
     private Label departureLabel;
     @FXML
@@ -98,15 +101,80 @@ public class TicketDetailsController implements Initializable {
     private ArrayList<String> seathelperList = new ArrayList();
     @FXML
     private TextField ticketIdTextField;
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private Label fareLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //seatNumberCombo.getItems().addAll("A1","A2","B1","B2","C1","C2","D1","D2","E1","E2","F1","F2","G1","G2","H1","H2");
         //quantityCombo.getItems().addAll(1,2,3,4,5,6);
         passengerList= new ArrayList();
+        
+        Random rand = new Random();
+        
+        ticketIdTextField.setText(Integer.toString(rand.nextInt(1000)));
+        
     }    
 
     @FXML
     private void confirmInfromationOnClick(ActionEvent event) throws IOException {
+       
+    
+    String name = nameTextField1.getText();
+    
+    String email = emailTextField.getText();
+    
+    int phone = Integer.parseInt(phoneTextField.getText());
+            
+    //String seatNumber =seatNumberCombo.getValue();
+    
+    
+    
+    
+    Passenger p = new Passenger(name,email,phone);
+    //BusSchedule b = new BusSchedule();
+    DummyClassForTableViewSchedule d1 = new DummyClassForTableViewSchedule(busDetailsLabel.getText(),departureLabel.getText(), destinationLabel.getText(), Integer.parseInt(fareLabel.getText()),timeLabel.getText(), LocalDate.parse(dateOfTravelLabel.getText())) ;
+    //Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size());
+    //System.out.println(t1);
+    passengerList.add(p);
+    //ticketList.add(t1);
+    
+    
+        File f = null;
+        FileOutputStream fos = null;      
+        ObjectOutputStream oos = null;
+        
+        try {
+            f = new File("TicketList.bin");
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
+            }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            
+            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size());
+            oos.writeObject(t1);
+            ticketList.add(t1);
+            //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
+            //RelationshipDatabaseClass.getInstance().saveToFile();
+          
+            
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if(oos != null) oos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }                
+    
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(" Click on OK to return to Dashboard");
         alert.setTitle("Confirmation");
@@ -129,64 +197,14 @@ public class TicketDetailsController implements Initializable {
     }             
     });
     
-    
-    String name = nameTextField1.getText();
-    
-    String email = emailTextField.getText();
-    
-    int phone = Integer.parseInt(phoneTextField.getText());
-            
-    //String seatNumber =seatNumberCombo.getValue();
-    
-    
-    
-    
-    Passenger p = new Passenger(name,email,phone);
-    BusSchedule b = new BusSchedule();
-    
-    Ticket t1 = new Ticket(ticketIdTextField.getText(),p,b,23.0,seathelperList);
-    
-    passengerList.add(p);
-    ticketList.add(t1);
-    
-        File f = null;
-        FileOutputStream fos = null;      
-        ObjectOutputStream oos = null;
-        
-        try {
-            f = new File("TicketList.bin");
-            if(f.exists()){
-                fos = new FileOutputStream(f,true);
-                oos = new AppendableObjectOutputStream(fos);                
-            }
-            else{
-                fos = new FileOutputStream(f);
-                oos = new ObjectOutputStream(fos);               
-            }
-            
-            
-            oos.writeObject(t1);
-            
-            
-
-        } catch (IOException ex) {
-            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if(oos != null) oos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }                
-    
-        
-    
             
   }
 
     @FXML
     private void switchToMatchingScheduleScene(ActionEvent event) throws IOException {
         new SceneSwicth(anchorPane5,"/com/busterminal/views/passenger/MatchingSchedules.fxml");
+        
+        
         
     }
 
@@ -299,5 +317,30 @@ public class TicketDetailsController implements Initializable {
     @FXML
     private void B9SeatButtonOnClick(ActionEvent event) { 
         b9.setDisable(true);b10.setStyle("-fx-background-color: green;");seathelperList.add(b9.getText());
-    } 
+
+
+ 
+    }
+    
+    
+    public void setValues(String source, String destination, String time , String date ,Bus bus, String fare){
+        departureLabel.setText(source);
+        destinationLabel.setText(destination);
+        dateOfTravelLabel.setText(date);
+        timeLabel.setText(time);
+        busDetailsLabel.setText(Integer.toString(bus.getBusId()));
+        fareLabel.setText(fare);
+        
+    }
+
+    @FXML
+    private void readOnClik(ActionEvent event) {
+        System.out.println(ticketList);
+        
+    }
+    
+    
 }
+
+
+

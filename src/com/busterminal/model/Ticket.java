@@ -23,6 +23,7 @@ public class Ticket implements Serializable {
     private String bookingStatus; // "Confirmed" or "Cancelled" Status will be here (By default it will remain as Confirmed)
     private int ticketQty;
     private ArrayList<String> seatNumber1;
+    private DummyClassForTableViewSchedule dummy;
 
     public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, int seatNumber, int ticketQty) {
         this.ticketId = ticketId;
@@ -34,12 +35,12 @@ public class Ticket implements Serializable {
         this.ticketQty = ticketQty;
     }
 
-    public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, double price, ArrayList<String> seatNumber1) {
+    public Ticket(String ticketId, Passenger passenger, DummyClassForTableViewSchedule dummy,  ArrayList<String> seatNumber1,int ticketQty) {
         this.ticketId = ticketId;
         this.passenger = passenger;
-        this.schedule = schedule;
-        this.price = price;
+        this.dummy = dummy;    
         this.seatNumber1 = seatNumber1;
+        this.ticketQty= ticketQty;
     }
     
     public void setTicketPrice(String busType, String source, String destination){
@@ -50,6 +51,11 @@ public class Ticket implements Serializable {
 
     public void cancelTicket() { // If Passenger wants to cancel 
         this.bookingStatus = "Cancelled";
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" + "ticketId=" + ticketId + ", passenger=" + passenger + ", ticketQty=" + ticketQty + ", seatNumber1=" + seatNumber1 + ", dummy=" + dummy + '}';
     }
 
 }

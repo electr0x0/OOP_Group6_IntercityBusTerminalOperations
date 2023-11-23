@@ -16,13 +16,14 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewSchedule" layoutX="28.0" layoutY="147.0" prefHeight="307.0" prefWidth="655.0">
+      <TableView fx:id="tableViewSchedule" layoutX="28.0" layoutY="146.0" prefHeight="308.0" prefWidth="671.0">
         <columns>
           <TableColumn fx:id="busCol" prefWidth="117.0" text="Bus" />
-          <TableColumn fx:id="sourceCol" prefWidth="96.0" text="Source" />
-            <TableColumn fx:id="destinationCol" prefWidth="146.0" text="Destination" />
-            <TableColumn fx:id="arrTimeCol" prefWidth="146.0" text="Time" />
-            <TableColumn fx:id="fareCol" prefWidth="149.0" text="Fare" />
+          <TableColumn fx:id="sourceCol" prefWidth="107.0" text="Source" />
+            <TableColumn fx:id="destinationCol" prefWidth="151.0" text="Destination" />
+            <TableColumn fx:id="timeCol" prefWidth="98.0" text="Time" />
+            <TableColumn fx:id="fareCol" prefWidth="95.0" text="Fare" />
+            <TableColumn fx:id="dateCol" prefWidth="102.0" text="Date" />
         </columns>
       </TableView>
       <ImageView fitHeight="61.0" fitWidth="80.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">

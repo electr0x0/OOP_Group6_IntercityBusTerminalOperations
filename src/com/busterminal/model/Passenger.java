@@ -4,13 +4,13 @@
  */
 package com.busterminal.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *
  * @author electr0
  */
-public class Passenger {
+public class Passenger implements Serializable{
     
     private String name,email;
     //private ArrayList<String> seatNumber;

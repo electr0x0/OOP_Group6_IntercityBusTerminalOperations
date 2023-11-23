@@ -18,11 +18,11 @@
       <TableView fx:id="tableViewAvailableBuses" layoutX="55.0" layoutY="145.0" prefHeight="355.0" prefWidth="798.0">
         <columns>
           <TableColumn fx:id="busCol" prefWidth="136.0" text="Bus" />
-          <TableColumn fx:id="depTimeCol" prefWidth="147.0" text=" Time" />
-            <TableColumn fx:id="sourceCol" prefWidth="151.0" text="Source" />
-            <TableColumn fx:id="destinationCol" minWidth="0.0" prefWidth="139.0" text="Destination" />
-            <TableColumn fx:id="fareCol" minWidth="0.0" prefWidth="119.0" text="Fare" />
-            <TableColumn fx:id="dateCol" prefWidth="105.0" text="Date" />
+          <TableColumn fx:id="timeCol" prefWidth="130.0" text=" Time" />
+            <TableColumn fx:id="sourceCol" prefWidth="165.0" text="Source" />
+            <TableColumn fx:id="destinationCol" minWidth="0.0" prefWidth="138.0" text="Destination" />
+            <TableColumn fx:id="fareCol" prefWidth="115.0" text="Fare" />
+            <TableColumn fx:id="dateCol" prefWidth="113.0" text="Date" />
         </columns>
       </TableView>
       <Button layoutX="379.0" layoutY="527.0" mnemonicParsing="false" onAction="#switchToTicketbuyScene" prefHeight="40.0" prefWidth="131.0" style="-fx-background-color: green;" styleClass="buyTicket" stylesheets="@design.css" text="Buy Tickets" textFill="WHITE" />

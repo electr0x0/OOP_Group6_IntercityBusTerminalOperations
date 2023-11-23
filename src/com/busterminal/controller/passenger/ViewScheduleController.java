@@ -6,12 +6,13 @@ package com.busterminal.controller.passenger;
 
 //import com.busterminal.views.passenger.*;
 import com.busterminal.model.Bus;
-import com.busterminal.model.BusSchedule;
 import com.busterminal.model.BusTrip;
+import com.busterminal.model.BusTripSchedule;
+import com.busterminal.model.DummyClassForTableViewSchedule;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -36,45 +37,68 @@ import javafx.stage.Stage;
 public class ViewScheduleController implements Initializable {
 
     @FXML
-    private TableView<BusTrip> tableViewSchedule;
+    private TableView<DummyClassForTableViewSchedule> tableViewSchedule;
     @FXML
-    private TableColumn<BusTrip, Bus> busCol;
+    private TableColumn<DummyClassForTableViewSchedule, Bus> busCol;
     @FXML
-    private TableColumn<BusTrip, String> sourceCol;
+    private TableColumn<DummyClassForTableViewSchedule, String> sourceCol;
     @FXML
-    private TableColumn<BusTrip, String> destinationCol;
+    private TableColumn<DummyClassForTableViewSchedule, String> destinationCol;
+    
     
     @FXML
-    private TableColumn<BusTrip, LocalDateTime> arrTimeCol;
-    @FXML
-    private TableColumn<BusTrip, Integer> fareCol;
+    private TableColumn<DummyClassForTableViewSchedule, Integer> fareCol;
 
     
-    ObservableList<BusTrip> scheduleList = FXCollections.observableArrayList();
+    ObservableList<DummyClassForTableViewSchedule> scheduleList = FXCollections.observableArrayList();
     ArrayList<BusTrip> helperList = new ArrayList();
-    /**
-     * Initializes the controller class.
-     */
+    
+    
+    @FXML
+    private TableColumn<DummyClassForTableViewSchedule, String > timeCol;
+    @FXML
+    private TableColumn<DummyClassForTableViewSchedule, LocalDate> dateCol;
+    
+   private ArrayList<BusTripSchedule> b2 = new ArrayList();
+   private ArrayList<BusTrip> b1 = new ArrayList();
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          busCol.setCellValueFactory(new PropertyValueFactory<>("bus")); 
          sourceCol.setCellValueFactory(new PropertyValueFactory<>("source")); 
          destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination")); 
-         arrTimeCol.setCellValueFactory(new PropertyValueFactory<>("timeSlot")); 
-        
+         timeCol.setCellValueFactory(new PropertyValueFactory<>("timeSlot")); 
+         dateCol.setCellValueFactory(new PropertyValueFactory<>("scheduleDate")); 
          fareCol.setCellValueFactory(new PropertyValueFactory<>("adultFare")); 
+         
+         
+         
+         
+        RelationshipDatabaseClass.loadFromFile();
+        b2= RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules();
+        b1= RelationshipDatabaseClass.getInstance().getAllTripList();
+        
+        
+        for(BusTrip x : b1){
+            for(BusTripSchedule y : b2){
+                if (x.getScheduleId() == y.getScheduleId()){
+                    DummyClassForTableViewSchedule d = new DummyClassForTableViewSchedule(x.getBus(),x.getSource(), x.getDestination(),x.getAdultFare(),x.getTimeSlot(),y.getScheduleDate());
+                    
+                    scheduleList.add(d);
+                    tableViewSchedule.setItems(scheduleList);
+                }
+            }
+            
+        }
+         
+         
     
+    }
          
-         
-         RelationshipDatabaseClass.loadFromFile();
-         helperList= RelationshipDatabaseClass.getInstance().getAllTripList();
-         for(BusTrip y : helperList ){
-             scheduleList.add(y);
-         }
-         tableViewSchedule.setItems(scheduleList);
-                 
-                 
-                 }    
+        
 
     @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {

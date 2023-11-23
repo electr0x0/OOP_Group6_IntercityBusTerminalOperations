@@ -133,7 +133,7 @@ public class ReserveController implements Initializable {
         
         Scene someScene = new Scene (root);
         ReservedBusListController p = someLoader.getController();
-        p.setReserveBusList(reserveBusList);
+        //p.setReserveBusList(reserveBusList);
         //p.setBus(busTypeCombo.getValue());
         //p.setCity(citySelectCombo.getValue());
         //p.setDate(dateDatePicker.getValue());
@@ -141,7 +141,7 @@ public class ReserveController implements Initializable {
         
        String city = citySelectCombo.getValue();
        String bus = busTypeCombo.getValue();
-        System.out.println(bus);
+       System.out.println(bus);
        if (bus !=null){
            
       
