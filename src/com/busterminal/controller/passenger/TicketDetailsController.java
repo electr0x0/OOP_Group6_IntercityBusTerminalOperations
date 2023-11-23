@@ -14,6 +14,7 @@ import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -140,7 +141,7 @@ public class TicketDetailsController implements Initializable {
     passengerList.add(p);
     //ticketList.add(t1);
     
-    
+        
         File f = null;
         FileOutputStream fos = null;      
         ObjectOutputStream oos = null;
@@ -156,7 +157,7 @@ public class TicketDetailsController implements Initializable {
                 oos = new ObjectOutputStream(fos);               
             }
             
-            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size());
+            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size(),"Confirmed");
             oos.writeObject(t1);
             ticketList.add(t1);
             //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
@@ -174,7 +175,42 @@ public class TicketDetailsController implements Initializable {
                 Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }                
-    
+        
+        /*
+        FileWriter fw=null;
+            try {
+                //write code to dump studArr in Stud.txt
+                //use FileWriter
+                File f = new File("TicketInfo.txt");
+                
+                //FileWriter fw = new FileWriter(f);
+                if(f.exists())
+                    fw = new FileWriter(f,true);
+                else 
+                    fw = new FileWriter(f);
+                    //fw = new FileWriter("studText.txt");
+                String str="";
+                Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size());
+                //oos.writeObject(t1);
+                ticketList.add(t1);
+                for(Ticket t: ticketList){
+                    str += "ID: "+ t.getTicketId()+ "\n" + "Passenger Name: " + t.getPassenger().getName()+"\n" + "Contact Number:  " + t.getPassenger().getContactNum()+"\n"
+                            + "Fare: " + t.getDummy().getAdultFare() + " \n" + "Seats: " + t.getSeatNumber1() + "\n" + "Quantity: " + t.getTicketQty() + "\n" + "Source: " + t.getDummy().getSource() + "\n";
+                    
+                     //fw.write(str);
+                    //str += s; 
+                    //if toString is overridden to return
+                    //return id+","+name+","+cgpa+"\n"
+                }
+                fw.write(str);  //fw.write(s.toString());
+                fw.close();
+            } catch (IOException ex) {
+                //fw.close();
+                //SHOW ex.toString() IN AN ALERT
+            }
+        */
+        
+        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(" Click on OK to return to Dashboard");
         alert.setTitle("Confirmation");
@@ -337,6 +373,37 @@ public class TicketDetailsController implements Initializable {
     private void readOnClik(ActionEvent event) {
         System.out.println(ticketList);
         
+    }
+
+    @FXML
+    private void writeOnTextFile(ActionEvent event) {
+        
+         FileWriter fw=null;
+            try {
+                //write code to dump studArr in Stud.txt
+                //use FileWriter
+                File f = new File("TicketInfo.txt");
+                
+                //FileWriter fw = new FileWriter(f);
+                if(f.exists())
+                    fw = new FileWriter(f,true);
+                else 
+                    fw = new FileWriter(f);
+                    //fw = new FileWriter("studText.txt");
+                String str="";
+                for(Ticket t: ticketList){
+                    str += "ID: "+ t.getTicketId()+ "\n" + "Passenger Name: " + t.getPassenger().getName()+"\n" + "Contact Number:  " + t.getPassenger().getContactNum()+"\n"
+                            + "Fare: " + t.getPrice() + " \n" + "Seats: " + t.getSeatNumber1() + "\n" + "Quantity: " + t.getTicketQty() + "\n" + "Source: " + t.getDummy().getSource() + "\n";
+                    //str += s; 
+                    //if toString is overridden to return
+                    //return id+","+name+","+cgpa+"\n"
+                }
+                fw.write(str);  //fw.write(s.toString());
+                fw.close();
+            } catch (IOException ex) {
+                //fw.close();
+                //SHOW ex.toString() IN AN ALERT
+            }
     }
     
     

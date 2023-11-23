@@ -114,6 +114,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="738.0" layoutY="531.0" mnemonicParsing="false" onAction="#readOnClik" text="Read" />
    </children>
 </AnchorPane>

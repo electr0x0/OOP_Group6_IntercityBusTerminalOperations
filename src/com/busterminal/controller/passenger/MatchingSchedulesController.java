@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -46,7 +47,7 @@ public class MatchingSchedulesController implements Initializable {
     @FXML
     private TableView<DummyClassForTableViewSchedule > tableViewAvailableBuses;
     @FXML
-    private TableColumn<DummyClassForTableViewSchedule, String> busCol;   
+    private TableColumn<DummyClassForTableViewSchedule, Bus> busCol;   
     
     @FXML
     private TableColumn<DummyClassForTableViewSchedule, String> sourceCol;
@@ -109,8 +110,7 @@ public class MatchingSchedulesController implements Initializable {
     @FXML
     private void switchToSchedule(ActionEvent event) throws IOException {
         new SceneSwicth(anchorpane4,"/com/busterminal/views/passenger/Schedule.fxml");
-        
-        
+               
     }
 
         
@@ -125,8 +125,8 @@ public class MatchingSchedulesController implements Initializable {
     if (selectedBus != null) {
         
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Confirm Reservation");
-        confirmationAlert.setHeaderText("Do you want to confirm the reservation?");
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Do you want to confirm ?");
         confirmationAlert.setContentText("Bus Type: " + selectedBus.getBus().getBusType()+
                 "\nFare: " + selectedBus.getAdultFare());
 
@@ -134,7 +134,29 @@ public class MatchingSchedulesController implements Initializable {
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             
-            handleSelectedRow(selectedBus);
+            //handleSelectedRow(selectedBus);
+             Bus bus = selectedBus.getBus();
+        //String bustype = selectedBus.getBus().getBusType();
+            String fare = Integer.toString(selectedBus.getAdultFare());
+            String source = selectedBus.getSource();
+            String destination = selectedBus.getDestination();
+            String time = selectedBus.getTimeSlot();
+            String date = selectedBus.getScheduleDate().toString();
+            
+            Parent root = null;
+            FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/TicketDetails.fxml"));
+            root = (Parent) someLoader.load();
+        
+            Scene someScene = new Scene (root);
+             TicketDetailsController p = someLoader.getController();
+            p.setValues(source,destination,time,date,bus,fare);
+        
+        
+            Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+            someStage.setScene(someScene);
+            someStage.show();
+       
         }
     } else {
         
@@ -171,15 +193,13 @@ private void handleSelectedRow(DummyClassForTableViewSchedule selectedBus) {
         } catch (IOException ex) {
             Logger.getLogger(ReservedBusListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       TicketDetailsController p = loader.getController();
-
-        
-        p.setValues(source,destination,time,date,bus,fare);
-
-        
+        TicketDetailsController p = loader.getController();
+        p.setValues(source,destination,time,date,bus,fare); 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        
+        
     } 
 
 

@@ -35,12 +35,13 @@ public class Ticket implements Serializable {
         this.ticketQty = ticketQty;
     }
 
-    public Ticket(String ticketId, Passenger passenger, DummyClassForTableViewSchedule dummy,  ArrayList<String> seatNumber1,int ticketQty) {
+    public Ticket(String ticketId, Passenger passenger, DummyClassForTableViewSchedule dummy,  ArrayList<String> seatNumber1,int ticketQty,String bookingStatus) {
         this.ticketId = ticketId;
         this.passenger = passenger;
         this.dummy = dummy;    
         this.seatNumber1 = seatNumber1;
         this.ticketQty= ticketQty;
+        this.bookingStatus = bookingStatus;
     }
     
     public void setTicketPrice(String busType, String source, String destination){
@@ -56,6 +57,86 @@ public class Ticket implements Serializable {
     @Override
     public String toString() {
         return "Ticket{" + "ticketId=" + ticketId + ", passenger=" + passenger + ", ticketQty=" + ticketQty + ", seatNumber1=" + seatNumber1 + ", dummy=" + dummy + '}';
+    }
+
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public BusSchedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(BusSchedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public LocalDateTime getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(LocalDateTime bookingTime) {
+        this.bookingTime = bookingTime;
+    }
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
+    public int getTicketQty() {
+        return ticketQty;
+    }
+
+    public void setTicketQty(int ticketQty) {
+        this.ticketQty = ticketQty;
+    }
+
+    public ArrayList<String> getSeatNumber1() {
+        return seatNumber1;
+    }
+
+    public void setSeatNumber1(ArrayList<String> seatNumber1) {
+        this.seatNumber1 = seatNumber1;
+    }
+
+    public DummyClassForTableViewSchedule getDummy() {
+        return dummy;
+    }
+
+    public void setDummy(DummyClassForTableViewSchedule dummy) {
+        this.dummy = dummy;
     }
 
 }

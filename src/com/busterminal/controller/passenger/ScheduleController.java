@@ -26,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
@@ -67,7 +68,12 @@ public class ScheduleController implements Initializable {
     @FXML
     private void switchToMatchingSchedule(ActionEvent event) throws IOException {
       
-    
+        
+        if ( fromCombo.getSelectionModel().isEmpty() == false && toCombo.getSelectionModel().isEmpty() == false && datePciker.getValue() != null ){
+            
+        if (fromCombo.getSelectionModel().getSelectedItem() != toCombo.getSelectionModel().getSelectedItem() ){
+            
+        
         String from = fromCombo.getSelectionModel().getSelectedItem().toString();
         String to = toCombo.getSelectionModel().getSelectedItem();
         LocalDate date = datePciker.getValue();
@@ -99,7 +105,7 @@ public class ScheduleController implements Initializable {
                     }
                     
                 }
-        
+            }
         
         
         Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -107,11 +113,27 @@ public class ScheduleController implements Initializable {
         someStage.setScene(someScene);
         someStage.show();
    
-        
+            }
+           
     
-    
         
-    }  } }
+    }  
+        else{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(" ");
+        alert.setTitle("Error ");
+        alert.setHeaderText("Source and Destination can not be same");
+        alert.showAndWait();
+        }
+        } 
+        else{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(" ");
+        alert.setTitle("Error");
+        alert.setHeaderText("Please select Source, Destination & Date");
+        alert.showAndWait();
+        }
+    }
     
    
             

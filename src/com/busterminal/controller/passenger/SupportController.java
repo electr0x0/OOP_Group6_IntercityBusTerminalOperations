@@ -167,7 +167,7 @@ public class SupportController implements Initializable {
                     //Object obj = ois.readObject();
                     //obj.submitReport();
                     //f2.submitReport();
-                    System.out.println(f2.toString());
+                    System.out.println(f2);
                     //outputTextArea.appendText(emp.toString());
                 }
             }//end of nested try

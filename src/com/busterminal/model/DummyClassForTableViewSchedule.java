@@ -10,6 +10,7 @@ import java.time.LocalDate;
  */
 public class DummyClassForTableViewSchedule implements Serializable {
     private Bus bus;
+    private String manufacture;
     private String busId;
     //private   int     scheduleId;
     private   String  source;
@@ -35,6 +36,14 @@ public class DummyClassForTableViewSchedule implements Serializable {
         this.adultFare = adultFare;
         this.timeSlot = timeSlot;
         this.scheduleDate = scheduleDate;
+    }
+
+    public String getBusId() {
+        return busId;
+    }
+
+    public void setBusId(String busId) {
+        this.busId = busId;
     }
 
     public Bus getBus() {
@@ -98,6 +107,11 @@ public class DummyClassForTableViewSchedule implements Serializable {
     //public String toString() {
         //return "DummyClassForTableViewSchedule{" + "scheduleId=" + scheduleId + ", source=" + source + ", destination=" + destination + ", adultFare=" + adultFare + ", timeSlot=" + timeSlot + ", scheduleDate=" + scheduleDate + '}';
    // }
+
+    @Override
+    public String toString() {
+        return "DummyClassForTableViewSchedule{" + "bus=" + bus + ", busId=" + busId + ", source=" + source + ", destination=" + destination + ", adultFare=" + adultFare + ", timeSlot=" + timeSlot + ", scheduleDate=" + scheduleDate + '}';
+    }
     
     
     

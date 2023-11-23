@@ -6,6 +6,7 @@ package com.busterminal.controller.passenger;
 
 import com.busterminal.model.SceneSwicth;
 import com.busterminal.model.Ticket;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -35,6 +36,9 @@ public class ShowTicketDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        
         File f = null;
         FileInputStream fis = null;      
         ObjectInputStream ois = null;
@@ -43,19 +47,41 @@ public class ShowTicketDetailsController implements Initializable {
             f = new File("TicketList.bin");
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            Ticket f2;
+            Ticket t;
+            //String str="";
             try{
                 //outputTextArea.setText("");
                 while(true){
+                   
                     //System.out.println("Printing objects.");
-                    f2= (Ticket)ois.readObject();
-                    ticketDetailsTextArea.appendText(f2.toString());
-                    //Object obj = ois.readObject();
-                    //obj.submitReport();
-                    //f2.submitReport();
-                    //System.out.println(f2.toString());
-                    //outputTextArea.appendText(emp.toString());
+                    t= (Ticket)ois.readObject();
+                    
+                   
+                    System.out.println( "name: " +t.getPassenger().getName());
+                    
+                    ticketDetailsTextArea.appendText("Passenger Info: "+"\n");
+                    
+                    ticketDetailsTextArea.appendText("Passenger Name :  " + t.getPassenger().getName()+ "\n");
+                    ticketDetailsTextArea.appendText("Contact Number :   " + t.getPassenger().getContactNum()+"\n"+"\n");
+                    
+                    ticketDetailsTextArea.appendText("Journey Info: "+"\n");
+                    ticketDetailsTextArea.appendText("BusID :  "+ t.getDummy().getBusId()+"\n");
+                    ticketDetailsTextArea.appendText("Ticket ID :  "+ t.getTicketId()+ "\n" );
+                    ticketDetailsTextArea.appendText( "Seats :  " + t.getSeatNumber1() + "\n");
+                    ticketDetailsTextArea.appendText( "Quantity :  " + t.getTicketQty() + "\n"+"\n");
+                  
+                    ticketDetailsTextArea.appendText("Source :   "+ t.getDummy().getSource()+ "\n");
+                    ticketDetailsTextArea.appendText( "Destination : " + t.getDummy().getDestination() + "\n"+"\n");
+                    
+                    
+                    ticketDetailsTextArea.appendText( "Time :   " + t.getDummy().getTimeSlot()+ "\n");
+                    ticketDetailsTextArea.appendText( "Date :   "+ t.getDummy().getScheduleDate()+"\n"+"\n");
+                    
+                    
+                   
                 }
+                
+                
             }//end of nested try
             catch(Exception e){
                 // handling code
@@ -71,6 +97,11 @@ public class ShowTicketDetailsController implements Initializable {
             } catch (IOException ex) { }
         }           
     
+        
+        
+        
+        
+
     }
     
         
@@ -81,6 +112,9 @@ public class ShowTicketDetailsController implements Initializable {
     @FXML
     private void swicthToPurchaseHistoryScene(ActionEvent event) throws IOException {
         new SceneSwicth(anchorpaneShowTicketDetails,"/com/busterminal/views/passenger/PurchaseHistory.fxml");
+        
+               
+    
         
         
         

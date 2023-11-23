@@ -70,7 +70,6 @@ public class DashboardController implements Initializable {
         new SceneSwicth(anchorpane2,"views/passenger/Reserve.fxml");
     }
 
-    @FXML
     private void switchToOffersScene(ActionEvent event) throws IOException {
         new SceneSwicth(anchorpane2,"views/passenger/Offers.fxml");
         
@@ -105,5 +104,24 @@ public class DashboardController implements Initializable {
         
         new SceneSwicth(anchorpane2,"views/passenger/Schedule.fxml");
     }
+
+    @FXML
+    private void switchToManualScene(ActionEvent event) throws IOException {
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/UserManual.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+    }
+
+        
+    
     
 }

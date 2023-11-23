@@ -86,7 +86,7 @@ public class ViewScheduleController implements Initializable {
             for(BusTripSchedule y : b2){
                 if (x.getScheduleId() == y.getScheduleId()){
                     DummyClassForTableViewSchedule d = new DummyClassForTableViewSchedule(x.getBus(),x.getSource(), x.getDestination(),x.getAdultFare(),x.getTimeSlot(),y.getScheduleDate());
-                    
+                    //DummyClassForTableViewSchedule d = new DummyClassForTableViewSchedule(x.getBus().getManufacturer(),x.getBus().getBusId(),x.getSource(), x.getDestination(),x.getAdultFare(),x.getTimeSlot(),y.getScheduleDate());
                     scheduleList.add(d);
                     tableViewSchedule.setItems(scheduleList);
                 }
