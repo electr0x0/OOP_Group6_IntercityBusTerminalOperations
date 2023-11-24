@@ -6,19 +6,17 @@ package com.busterminal.controller.passenger;
 
 //import com.busterminal.views.passenger.*;
 import com.busterminal.controller.AppendableObjectOutputStream;
-import com.busterminal.model.Feedback;
 import com.busterminal.model.Passenger;
 import com.busterminal.model.Reservation;
 import com.busterminal.model.ReserveBus;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -55,6 +53,8 @@ public class ReserveBusPassengerInfoController implements Initializable {
     private TextField busTypeTextField;
     @FXML
     private TextField fareTextField;
+    @FXML
+    private TextField dateTextField;
     /**
      * Initializes the controller class.
      */
@@ -84,7 +84,7 @@ public class ReserveBusPassengerInfoController implements Initializable {
     
     int phone = Integer.parseInt(phoneTextField.getText());
             
-    ReserveBus re = new ReserveBus(reserveId,busTypeTextField.getText(),Integer.parseInt(fareTextField.getText()));
+    ReserveBus re = new ReserveBus(reserveId,busTypeTextField.getText(),Integer.parseInt(fareTextField.getText()),LocalDate.parse(dateTextField.getText()));
     Reservation r1 = new Reservation(name,email,phone,re);
     
     
@@ -128,9 +128,11 @@ public class ReserveBusPassengerInfoController implements Initializable {
   }
     
     
-    public void setValues(String bus, int fare){
+    public void setValues(String bus, int fare, String date){
         busTypeTextField.setText(bus);
         fareTextField.setText(String.valueOf(fare));
+        dateTextField.setText(date);
+        
     }
 
     @FXML

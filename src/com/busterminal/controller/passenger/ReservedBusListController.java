@@ -52,6 +52,7 @@ public class ReservedBusListController implements Initializable {
 
     private ObservableList<ReserveBus> reserveBusList=FXCollections.observableArrayList();
     private ObservableList<ReserveBus> helperList= FXCollections.observableArrayList();
+    
     @FXML
     private TableColumn<ReserveBus, Integer> fareCol;
 
@@ -217,6 +218,7 @@ public class ReservedBusListController implements Initializable {
      private void handleSelectedRow(ReserveBus selectedBus) {
         
         String bustype = selectedBus.getBusType();
+        String date = selectedBus.getDate().toString();
         int fare = selectedBus.getFare();
 
         
@@ -230,7 +232,7 @@ public class ReservedBusListController implements Initializable {
         ReserveBusPassengerInfoController controller = loader.getController();
 
         
-        controller.setValues(bustype, fare);
+        controller.setValues(bustype, fare,date);
 
         
         Stage stage = new Stage();

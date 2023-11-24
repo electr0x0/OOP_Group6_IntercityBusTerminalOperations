@@ -40,14 +40,20 @@
          </font>
       </Label>
       <TextField fx:id="busTypeTextField" editable="false" layoutX="426.0" layoutY="33.0" prefHeight="25.0" prefWidth="85.0" />
-      <TextField fx:id="fareTextField" editable="false" layoutX="426.0" layoutY="84.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="fareTextField" editable="false" layoutX="426.0" layoutY="85.0" prefHeight="25.0" prefWidth="85.0" />
       <Button layoutX="434.0" layoutY="428.0" mnemonicParsing="false" onAction="#readFile" text="Read" visible="false" />
       <Label layoutX="395.0" layoutY="37.0" prefHeight="17.0" prefWidth="31.0" text="Bus">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Label layoutX="395.0" layoutY="88.0" prefHeight="17.0" prefWidth="31.0" text="Fare">
+      <Label layoutX="395.0" layoutY="89.0" prefHeight="17.0" prefWidth="31.0" text="Fare">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dateTextField" editable="false" layoutX="426.0" layoutY="130.0" prefHeight="25.0" prefWidth="85.0" />
+      <Label layoutX="395.0" layoutY="134.0" prefHeight="17.0" prefWidth="31.0" text="Date">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>

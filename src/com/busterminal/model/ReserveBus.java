@@ -20,7 +20,7 @@ public class ReserveBus implements Serializable {
     private LocalDate date;
     private int fare;
 
-    public ReserveBus(String busType, String acType, String city, int duration, LocalDate date, int fare) {
+    public ReserveBus(String busType, String acType, String city, int duration, LocalDate date, int fare ) {
         this.busType = busType;
         this.acType = acType;
         this.city = city;
@@ -39,11 +39,12 @@ public class ReserveBus implements Serializable {
         this.fare = fare;
     }
 
-    public ReserveBus(int reserveId, String busType,  int fare) {
+    public ReserveBus(int reserveId, String busType,  int fare, LocalDate date) {
         this.reserveId = reserveId;
         this.busType = busType;
       
         this.fare = fare;
+        this.date = date;
     }
     
     

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="668.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.busterminal.controller.driver.RouteController">
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.driver.RouteController">
    <children>
-      <Label layoutX="33.0" layoutY="35.0" prefHeight="32.0" prefWidth="425.0" text="Route Overview">
+      <Label layoutX="35.0" layoutY="21.0" prefHeight="32.0" prefWidth="425.0" text="Driver Schedule">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
+      <TableView fx:id="tableViewCheckSchedule" layoutX="28.0" layoutY="121.0" prefHeight="260.0" prefWidth="684.0">
+        <columns>
+          <TableColumn fx:id="assignedBusCol" prefWidth="133.0" text="Assigned Bus" />
+          <TableColumn fx:id="assignedDriverCol" prefWidth="193.0" text="Assigned Driver" />
+            <TableColumn fx:id="dateCol" prefWidth="112.0" text="Date" />
+            <TableColumn fx:id="sourceDestinationCol" prefWidth="245.0" text="Source - Destination" />
+        </columns>
+      </TableView>
+      <Button layoutX="644.0" layoutY="452.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="70.0" text="Back" />
    </children>
 </AnchorPane>

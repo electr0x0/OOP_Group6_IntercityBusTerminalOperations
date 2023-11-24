@@ -7,6 +7,7 @@ package com.busterminal.controller.passenger;
 import com.busterminal.controller.AppendableObjectOutputStream;
 import com.busterminal.model.BusTripSchedule;
 import com.busterminal.model.Feedback;
+import com.busterminal.model.Reservation;
 import com.busterminal.model.SceneSwicth;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.File;
@@ -155,15 +156,15 @@ public class SupportController implements Initializable {
         ObjectInputStream ois = null;
         
         try {
-            f = new File("Feedback.bin");
+            f = new File("ReservationList.bin");
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            Feedback f2;
+            Reservation f2;
             try{
                 //outputTextArea.setText("");
                 while(true){
                     //System.out.println("Printing objects.");
-                    f2= (Feedback)ois.readObject();
+                    f2= (Reservation)ois.readObject();
                     //Object obj = ois.readObject();
                     //obj.submitReport();
                     //f2.submitReport();

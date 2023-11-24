@@ -30,6 +30,8 @@ public class ChatBodyController implements Initializable {
 
     @FXML
     private void sendMessageOnClick(ActionEvent event) {
+        
+        
     }
 
    

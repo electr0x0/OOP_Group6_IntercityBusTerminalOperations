@@ -128,7 +128,7 @@ public class ResignController implements Initializable {
         chooseFileBtn.setDisable(true);
         
        
-            sendResignationBtn.setDisable(false);
+        sendResignationBtn.setDisable(false);
         
     }
 
