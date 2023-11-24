@@ -1,80 +1,62 @@
 package com.busterminal.model;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.time.LocalDate;
 
 public class BusReservation {
 
-    private final StringProperty reservationId;
-    private final StringProperty passengerName;
-    private final StringProperty busId;
-    private final StringProperty departureDate;
-    private final StringProperty fare;
+    private int reservationId;
+    private String passengerName;
+    private String busId;
+    private LocalDate departureDate;
+    private int fare;
 
-    public BusReservation(String reservationId, String passengerName, String busId, String departureDate, String fare) {
-        this.reservationId = new SimpleStringProperty(reservationId);
-        this.passengerName = new SimpleStringProperty(passengerName);
-        this.busId = new SimpleStringProperty(busId);
-        this.departureDate = new SimpleStringProperty(departureDate);
-        this.fare = new SimpleStringProperty(fare);
+    public BusReservation(int reservationId, String passengerName, String busId, LocalDate departureDate, int fare) {
+        this.reservationId = reservationId;
+        this.passengerName = passengerName;
+        this.busId = busId;
+        this.departureDate = departureDate;
+        this.fare = fare;
     }
 
-    public String getReservationId() {
-        return reservationId.get();
-    }
-
-    public StringProperty reservationIdProperty() {
+    public int getReservationId() {
         return reservationId;
     }
 
-    public void setReservationId(String reservationId) {
-        this.reservationId.set(reservationId);
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
     public String getPassengerName() {
-        return passengerName.get();
-    }
-
-    public StringProperty passengerNameProperty() {
         return passengerName;
     }
 
     public void setPassengerName(String passengerName) {
-        this.passengerName.set(passengerName);
+        this.passengerName = passengerName;
     }
 
     public String getBusId() {
-        return busId.get();
-    }
-
-    public StringProperty busIdProperty() {
         return busId;
     }
 
     public void setBusId(String busId) {
-        this.busId.set(busId);
+        this.busId = busId;
     }
 
-    public String getDepartureDate() {
-        return departureDate.get();
-    }
-
-    public StringProperty departureDateProperty() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
-        this.departureDate.set(departureDate);
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
 
-    public String getFare() {
-        return fare.get();
-    }
-
-    public StringProperty fareProperty() {
+    public int getFare() {
         return fare;
     }
 
-    public void setFare(String fare) {
-        this.fare.set(fare);
+    public void setFare(int fare) {
+        this.fare = fare;
     }
+
+   
+    
 }

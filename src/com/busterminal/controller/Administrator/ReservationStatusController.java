@@ -1,6 +1,9 @@
 package com.busterminal.controller.Administrator;
 
 import com.busterminal.model.BusReservation;
+import com.busterminal.model.Database;
+import com.busterminal.model.Reservation;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,9 +11,10 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ReservationStatusController {
+
     @FXML
     private TextField filter;
 
@@ -34,29 +38,45 @@ public class ReservationStatusController {
 
     @FXML
     private TableColumn<BusReservation, String> fareColumn;
+    
+    private ObservableList<BusReservation> data = FXCollections.observableArrayList();
 
     public void initialize() {
+        System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
         // Initialize the TableView columns
-        reservationIdColumn.setCellValueFactory(cellData -> cellData.getValue().reservationIdProperty());
-        passengerNameColumn.setCellValueFactory(cellData -> cellData.getValue().passengerNameProperty());
-        busIdColumn.setCellValueFactory(cellData -> cellData.getValue().busIdProperty());
-        departureDateColumn.setCellValueFactory(cellData -> cellData.getValue().departureDateProperty());
-        fareColumn.setCellValueFactory(cellData -> cellData.getValue().fareProperty());
+        reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+        passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("passengerName"));
+        busIdColumn.setCellValueFactory(new PropertyValueFactory<>("busId"));
+        departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
+        fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
 
-        
-        ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
-                new BusReservation("1", "John Doe", "Bus101", "2022-12-01", "50"),
+      
+       /*ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
+                new BusReservation(0, passengerName, busId, LocalDate.MAX, 0),
                 new BusReservation("2", "Jane Smith", "Bus202", "2022-12-02", "75"),
-                new BusReservation("3", "Bob Johnson", "Bus303", "2022-12-03", "60")
-                // Add more entries as needed
-        );
+                new BusReservation("3", "Bob Johnson", "Bus303", "2022-12-03", "60")*/
+      
+       
+       ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
+       if (re!=null){
+           for (Reservation r: re){
+               System.out.println(r.getReserveBus().getFare());
+               BusReservation br = new BusReservation(r.getReserveBus().getReserveId() ,r.getPassengerName(),
+                       r.getReserveBus().getBusType(),r.getReserveBus().getDate(), r.getReserveBus().getFare());
+               
+               data.add(br);
+               
+           }
+           
+       }
+       
 
-        busReservationTable.setItems(reservationsData);
-        
+        busReservationTable.getItems().addAll(data);
+
         // pie chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Sturday",15),
-                new PieChart.Data("Sunday",25),
+                new PieChart.Data("Sturday", 15),
+                new PieChart.Data("Sunday", 25),
                 new PieChart.Data("Monday", 30),
                 new PieChart.Data("Tuesday", 20),
                 new PieChart.Data("Wednesday", 25),
@@ -67,6 +87,7 @@ public class ReservationStatusController {
 
         // Add listener to the filter field for filtering the table by date
         filter.textProperty().addListener((observable, oldValue, newValue) -> filterTableByDate());
+        //explain in feedback
     }
 
     private void filterTableByDate() {
@@ -75,7 +96,7 @@ public class ReservationStatusController {
         ObservableList<BusReservation> filteredData = FXCollections.observableArrayList();
 
         for (BusReservation entry : busReservationTable.getItems()) {
-            boolean dateMatches = entry.getDepartureDate().contains(dateFilter);
+            boolean dateMatches = entry.getDepartureDate().equals(dateFilter);
 
             if (dateMatches) {
                 filteredData.add(entry);
