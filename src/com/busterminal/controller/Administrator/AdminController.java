@@ -39,12 +39,12 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        sceneSwithch("Home.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/Home.fxml");
     }
 
     @FXML
     private void dashbordOnMouseClick(ActionEvent event) {
-        sceneSwithch("Home.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/Home.fxml");
     }
 
     @FXML
