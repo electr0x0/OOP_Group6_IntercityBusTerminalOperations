@@ -1,5 +1,6 @@
 
 package com.busterminal.controller.Administrator;
+import com.busterminal.model.Administrator;
 import com.busterminal.model.DummyEmployee;
 import com.busterminal.model.PopUp;
 import com.busterminal.model.User;
@@ -23,11 +24,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
+
 public class AddNewEmployeController implements Initializable {
 
   @FXML
@@ -209,10 +206,10 @@ public class AddNewEmployeController implements Initializable {
             int id = User.generateEmployeeID();
             String password = User.generateEmployeePassword();
             LocalDate doj = LocalDate.now();
-            User e = new User(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender,salary);
-            Administrator.employeeCreateNewAccount(e);
-            dummyObservableList.add(e);
-            userDataTable.getItems().add(e);
+           // User e = new User(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender,salary);
+            //Administrator.employeeCreateNewAccount(e);
+           // dummyObservableList.add(e);
+            //userDataTable.getItems().add(e);
             
 
             PopUp.showMessage("Information", "Account has been Successfully Created..!"

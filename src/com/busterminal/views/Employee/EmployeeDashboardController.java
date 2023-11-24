@@ -1,7 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package com.busterminal.views.Employee;
 
 import com.busterminal.model.Employee;
@@ -30,11 +28,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-/**
- * FXML Controller class
- *
- * @author User
- */
+
 public class EmployeeDashboardController implements Initializable  {
 
     @FXML
@@ -81,10 +75,7 @@ public class EmployeeDashboardController implements Initializable  {
     private Button loadButton;
     @FXML
     private Label overtimeText2;
-    
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -265,3 +256,4 @@ public class EmployeeDashboardController implements Initializable  {
     }
     
 }
+*/

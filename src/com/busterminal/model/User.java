@@ -1,10 +1,12 @@
 package com.busterminal.model;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.security.SecureRandom;
+import java.time.Period;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -20,7 +22,6 @@ public abstract class User implements Serializable {
     protected String password;
     private String phoneNumber;
     private String gender;
-
 
     public User(int iD, String firstName, String lastName, String address, String email, LocalDate dateOfBirth, String password, String phoneNumber, String gender) {
         this.iD = iD;
@@ -417,4 +418,19 @@ public abstract class User implements Serializable {
         return password.length() == 8;
     }
 
+    public static boolean AgeVerification(LocalDate birthDate) {
+        int requiredAge = 20;
+        // Calculate the age
+        LocalDate currentDate = LocalDate.now();
+
+        // here I use Priod final class it return LocalDate type 
+        Period age = Period.between(birthDate, currentDate);
+
+        // Verify if the person is at least 20 years old (gate Years return int type)
+        if (age.getYears() >= requiredAge) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

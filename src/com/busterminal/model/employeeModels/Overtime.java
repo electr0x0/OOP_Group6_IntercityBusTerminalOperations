@@ -1,7 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.busterminal.model.employeeModels;
 
 import static com.busterminal.views.Employee.EmployeeDashboardController.readOvertimeFromFile;
@@ -13,10 +11,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author User
- */
+
+
 public class Overtime implements Serializable {
     String id;
     
@@ -142,3 +138,4 @@ public class Overtime implements Serializable {
     
     
 }
+*/
