@@ -106,6 +106,8 @@ public class TicketDetailsController implements Initializable {
     private Label timeLabel;
     @FXML
     private Label fareLabel;
+    @FXML
+    private Label bookingDateLabel;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //seatNumberCombo.getItems().addAll("A1","A2","B1","B2","C1","C2","D1","D2","E1","E2","F1","F2","G1","G2","H1","H2");
@@ -115,6 +117,8 @@ public class TicketDetailsController implements Initializable {
         Random rand = new Random();
         
         ticketIdTextField.setText(Integer.toString(rand.nextInt(1000)));
+        LocalDate currentDate = LocalDate.now();
+        bookingDateLabel.setText(currentDate.toString());
         
     }    
 
@@ -127,6 +131,9 @@ public class TicketDetailsController implements Initializable {
     String email = emailTextField.getText();
     
     int phone = Integer.parseInt(phoneTextField.getText());
+    
+    //LocalDate currentDate = LocalDate.now();
+    //bookingDateLabel.setText(currentDate.toString());
             
     //String seatNumber =seatNumberCombo.getValue();
     
@@ -157,9 +164,9 @@ public class TicketDetailsController implements Initializable {
                 oos = new ObjectOutputStream(fos);               
             }
             
-            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size(),"Confirmed");
+            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size(),"Confirmed", bookingDateLabel.getText());
             oos.writeObject(t1);
-            
+            System.out.println(t1.getPurchaseDate());
             ticketList.add(t1);
             //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
             //RelationshipDatabaseClass.getInstance().saveToFile();
@@ -407,13 +414,11 @@ public class TicketDetailsController implements Initializable {
         
     }
 
-    @FXML
     private void readOnClik(ActionEvent event) {
         System.out.println(ticketList);
         
     }
 
-    @FXML
     private void writeOnTextFile(ActionEvent event) {
         
          FileWriter fw=null;

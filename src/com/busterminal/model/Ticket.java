@@ -10,6 +10,7 @@ package com.busterminal.model;
  */
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class Ticket implements Serializable {
     private int ticketQty;
     private ArrayList<String> seatNumber1;
     private DummyClassForTableViewSchedule dummy;
+    private String purchaseDate;
 
     public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, int seatNumber, int ticketQty) {
         this.ticketId = ticketId;
@@ -35,13 +37,23 @@ public class Ticket implements Serializable {
         this.ticketQty = ticketQty;
     }
 
-    public Ticket(String ticketId, Passenger passenger, DummyClassForTableViewSchedule dummy,  ArrayList<String> seatNumber1,int ticketQty,String bookingStatus) {
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public Ticket(String ticketId, Passenger passenger, DummyClassForTableViewSchedule dummy,  ArrayList<String> seatNumber1,int ticketQty,String bookingStatus, String purchaseDate ) {
         this.ticketId = ticketId;
         this.passenger = passenger;
         this.dummy = dummy;    
         this.seatNumber1 = seatNumber1;
         this.ticketQty= ticketQty;
         this.bookingStatus = bookingStatus;
+        this.purchaseDate = purchaseDate;
+        
     }
     
     public void setTicketPrice(String busType, String source, String destination){

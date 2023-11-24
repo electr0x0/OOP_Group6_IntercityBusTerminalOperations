@@ -76,6 +76,7 @@ public class ShowTicketDetailsController implements Initializable {
                     
                     ticketDetailsTextArea.appendText( "Time :   " + t.getDummy().getTimeSlot()+ "\n");
                     ticketDetailsTextArea.appendText( "Date :   "+ t.getDummy().getScheduleDate()+"\n"+"\n");
+                    ticketDetailsTextArea.appendText( "Booking Date:  "+ t.getPurchaseDate());
                     
                     
                    
