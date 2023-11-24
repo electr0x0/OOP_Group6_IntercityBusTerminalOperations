@@ -59,20 +59,20 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNameTF" layoutX="231.0" layoutY="24.0" prefHeight="36.0" prefWidth="220.0" styleClass="firstNametf" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="230.0">
+      <TextField fx:id="firstNameTF" layoutX="231.0" layoutY="24.0" prefHeight="36.0" prefWidth="220.0" styleClass="firstNametf" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="lastNameTF" layoutX="233.0" layoutY="104.0" prefHeight="36.0" prefWidth="220.0" styleClass="lastNameTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="104.0">
+      <TextField fx:id="lastNameTF" layoutX="233.0" layoutY="104.0" prefHeight="36.0" prefWidth="220.0" styleClass="lastNameTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="104.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>
-      <TextField fx:id="emailTF" layoutX="683.0" layoutY="83.0" prefHeight="36.0" prefWidth="220.0" styleClass="emailTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="683.0" AnchorPane.topAnchor="104.0">
+      <TextField fx:id="emailTF" layoutX="683.0" layoutY="83.0" prefHeight="36.0" prefWidth="220.0" styleClass="emailTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="683.0" AnchorPane.topAnchor="104.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>
-      <DatePicker fx:id="birthdayDP" layoutX="685.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" promptText="Choose Date of Birth" AnchorPane.leftAnchor="685.0" />
+      <DatePicker fx:id="birthdayDP" layoutX="685.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" promptText="Choose Date of Birth" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="685.0" />
       <Button layoutX="954.0" layoutY="32.0" mnemonicParsing="false" onAction="#AddButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Add">
          <font>
             <Font name="System Bold" size="48.0" />
@@ -91,7 +91,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="addressTF" layoutX="234.0" layoutY="257.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="230.0">
+      <TextField fx:id="addressTF" layoutX="234.0" layoutY="257.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>
@@ -113,8 +113,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </RadioButton>
-      <ComboBox fx:id="designationCB" layoutX="681.0" layoutY="27.0" prefHeight="31.0" prefWidth="218.0" />
-      <TextField fx:id="phoneNumberTF" layoutX="234.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" styleClass="phoneNumberTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="230.0">
+      <ComboBox fx:id="designationCB" layoutX="681.0" layoutY="27.0" prefHeight="31.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
+      <TextField fx:id="phoneNumberTF" layoutX="234.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" styleClass="phoneNumberTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>
@@ -123,7 +123,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="salaryTF" layoutX="223.0" layoutY="324.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="235.0">
+      <TextField fx:id="salaryTF" layoutX="223.0" layoutY="324.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="235.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>

@@ -24,7 +24,7 @@
                      <children>
                         <ImageView fitHeight="103.0" fitWidth="97.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Maruf.jpg" />
+                              <Image url="@../../storage/db/image/Maruf.jpg" />
                            </image>
                         </ImageView>
                         <Label layoutX="90.0" layoutY="5.0" prefHeight="103.0" prefWidth="187.0" text="    Mr.Maruf Khan      Administrator" textAlignment="CENTER" wrapText="true">
@@ -44,34 +44,34 @@
                   </Pane>
                   <VBox layoutX="32.0" layoutY="110.0" prefHeight="517.0" prefWidth="237.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="18.0">
                      <children>
-                        <Button alignment="CENTER" lineSpacing="3.0" mnemonicParsing="false" onAction="#dashbordOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="dashboardMenuButton" stylesheets="@../Style/AdminDashBord.css" text="Dashboard" textAlignment="CENTER" textFill="#f5f7f6" />
-                        <MenuButton fx:id="notificationMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="notificationMenuButton" stylesheets="@../Style/AdminDashBord.css" text="Notification" textAlignment="CENTER" textFill="#fcfcfc">
+                        <Button alignment="CENTER" lineSpacing="3.0" mnemonicParsing="false" onAction="#dashbordOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="dashboardMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Dashboard" textAlignment="CENTER" textFill="#f5f7f6" />
+                        <MenuButton fx:id="notificationMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="notificationMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Notification" textAlignment="CENTER" textFill="#fcfcfc">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#ShowResignOnMouseClick" text="Resign" />
                               <MenuItem mnemonicParsing="false" onAction="#showFeedBackOnMouseClick" text="Passenger Feadback" />
                            </items>
                         </MenuButton>
-                        <Button alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#userButtonOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="userMenuButoon" stylesheets="@../Style/AdminDashBord.css" text="User &amp; Control" textAlignment="CENTER" textFill="#f5f7f6" />
-                        <MenuButton fx:id="departureMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="departureMenuButton" stylesheets="@../Style/AdminDashBord.css" text="Departure" textAlignment="CENTER" textFill="#fcfcfc">
+                        <Button alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#userButtonOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="userMenuButoon" stylesheets="@../../css/AdminDashBord.css" text="User &amp; Control" textAlignment="CENTER" textFill="#f5f7f6" />
+                        <MenuButton fx:id="departureMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Departure" textAlignment="CENTER" textFill="#fcfcfc">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#scheduleShowOnMouseClick" text="Schedule" />
                               <MenuItem mnemonicParsing="false" onAction="#busStatusOnMouseClick" text="Bus Status" />
                           </items>
                         </MenuButton>
-                        <Button alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#reservationOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="reservationMenuButton" stylesheets="@../Style/AdminDashBord.css" text="Reservation Details" textAlignment="CENTER" textFill="#f5f7f6" />
-                        <MenuButton alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="reportMenuButton" stylesheets="@../Style/AdminDashBord.css" text="Report" textAlignment="CENTER" textFill="#fcfcfc">
+                        <Button alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#reservationOnMouseClick" prefHeight="64.0" prefWidth="237.0" styleClass="reservationMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Reservation Details" textAlignment="CENTER" textFill="#f5f7f6" />
+                        <MenuButton alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="reportMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Report" textAlignment="CENTER" textFill="#fcfcfc">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#maintenanceCostOnMouseClick" text="Maintenance Cost" />
                               <MenuItem mnemonicParsing="false" onAction="#customerJouurneyReportOnMouseClick" text="Customer Journey Report" />
                            </items>
                         </MenuButton>
-                        <MenuButton fx:id="itsupportMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="itsupportMenuButton" stylesheets="@../Style/AdminDashBord.css" text="It Sopport" textAlignment="CENTER" textFill="#fcfcfc">
+                        <MenuButton fx:id="itsupportMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="itsupportMenuButton" stylesheets="@../../css/AdminDashBord.css" text="It Sopport" textAlignment="CENTER" textFill="#fcfcfc">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#TransactionOnMouseClick" text="Transaction" />
                               <MenuItem mnemonicParsing="false" onAction="#salaryInfoOnMouseClick" text="Sallary" />
                            </items>
                         </MenuButton>
-                        <Button fx:id="logoutButton" alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#logOutOnMoseClick" prefHeight="64.0" prefWidth="237.0" styleClass="logOutButton" stylesheets="@../Style/AdminDashBord.css" text="LogOut" textAlignment="CENTER" textFill="#f5f7f6" />
+                        <Button fx:id="logoutButton" alignment="CENTER" lineSpacing="2.0" mnemonicParsing="false" onAction="#logOutOnMoseClick" prefHeight="64.0" prefWidth="237.0" styleClass="logOutButton" stylesheets="@../../css/AdminDashBord.css" text="LogOut" textAlignment="CENTER" textFill="#f5f7f6" />
                      </children>
                   </VBox>
                </children>
