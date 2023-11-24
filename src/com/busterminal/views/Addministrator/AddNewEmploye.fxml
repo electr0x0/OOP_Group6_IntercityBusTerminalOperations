@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="AddEmployeAnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPkg.Login.AddNewEmployeController">
+<AnchorPane id="AnchorPane" fx:id="AddEmployeAnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.Administrator.AddNewEmployeController">
    <children>
       <TableView fx:id="userDataTable" fixedCellSize="0.0" layoutX="200.0" layoutY="291.0" prefHeight="393.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>

@@ -1,4 +1,3 @@
-
 package com.busterminal.controller.Administrator;
 import com.busterminal.model.Administrator;
 import com.busterminal.model.DummyEmployee;
@@ -25,9 +24,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
+
 public class AddNewEmployeController implements Initializable {
 
-  @FXML
+    @FXML
     private TableView<DummyEmployee> userDataTable;
     @FXML
     private TableColumn<DummyEmployee, String> firstNameCol;
@@ -68,7 +68,7 @@ public class AddNewEmployeController implements Initializable {
     @FXML
     private AnchorPane AddEmployeAnchorPane;
     @FXML
-    private TableColumn<DummyEmployee,Integer> IdCol;
+    private TableColumn<DummyEmployee, Integer> IdCol;
     @FXML
     private TextField salaryTF;
     @FXML
@@ -95,9 +95,9 @@ public class AddNewEmployeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
-                         "Terminal Manager", "Human Resource");
-        
+        designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
+                "Terminal Manager", "Human Resource");
+
         employeeObjectlist = FXCollections.observableArrayList();
         IdCol.setCellValueFactory(new PropertyValueFactory<>("iD"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -109,28 +109,12 @@ public class AddNewEmployeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         userDataTable.getItems().addAll(Administrator.getEmployeeList());
         userDataTable.setVisible(true);
-    
-    }
-    
-    private boolean AgeVerification(LocalDate birthDate){
-         int requiredAge = 20;
-        // Calculate the age
-        LocalDate currentDate = LocalDate.now();
-        
-        // here I use Priod final class it return LocalDate type 
-        Period age = Period.between(birthDate, currentDate);
 
-        // Verify if the person is at least 20 years old (gate Years return int type)
-        if (age.getYears() >= requiredAge) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @FXML
     private void AddButtonOnMouseClick(ActionEvent event) {
-        ObservableList<DummyEmployee> dummyObservableList=FXCollections.observableArrayList();
+        ObservableList<DummyEmployee> dummyObservableList = FXCollections.observableArrayList();
         String firstname = firstNameTF.getText();
         String lastname = lastNameTF.getText();
         String address = addressTF.getText();
@@ -140,9 +124,7 @@ public class AddNewEmployeController implements Initializable {
         String gender = (maleRB.isSelected() ? "Male" : "Famale");
         Integer salary = Integer.valueOf(salaryTF.getText());
         String designation = designationCB.getValue();
-        
-        
-        
+
         // Check validation and email and pass verification
         if (firstNameTF.getText().trim().equals("")) {
             fristNameLabel.setText("Enter Employee First Name !");
@@ -164,8 +146,8 @@ public class AddNewEmployeController implements Initializable {
         if (phoneNumberTF.getText().trim().equals("")) {
             phonenumberLabel.setText("Enter Employee Phone Number !");
             return;
-        }else{
-            if(phoneNumberTF.getText().length()!=11){
+        } else {
+            if (phoneNumberTF.getText().length() != 11) {
                 phoneNumberTF.setText("Enter valid Phone Number !");
             }
         }
@@ -174,49 +156,47 @@ public class AddNewEmployeController implements Initializable {
             addressLabel.setText("Enter Employee Address !");
             return;
         }
-        
+
         if (maleRB.isSelected() == false && FemaleRB.isSelected() == false) {
             genderLabel.setText("Choose Employee Gender !");
             return;
         }
 
-        if(salaryTF.getText().equals("")){
+        if (salaryTF.getText().equals("")) {
             salaryLabel.setText("Enter Employee Salary !");
             return;
         }
-        
-        if(designationCB.getValue()==""){
+
+        if (designationCB.getValue() == "") {
             designationLabel.setText("Select Employee desingnation");
             return;
-       }
-       
-       if(birthdayDP.getValue()==null){
-           birthdateLabel.setText("Enter Employee Birth Date !");
-           return;
-       }else{
-           if(AgeVerification(birthdayDP.getValue())== false){
-               birthdateLabel.setText("Employee Age Must be gatter then 19 !");
-               return;
-           }
-       }
-       
+        }
+
+        if (birthdayDP.getValue() == null) {
+            birthdateLabel.setText("Enter Employee Birth Date !");
+            return;
+        } else {
+            if (User.AgeVerification(birthdayDP.getValue()) == false) {
+                birthdateLabel.setText("Employee Age Must be gatter then 19 !");
+                return;
+            }
+        }
+
         if (User.checkEmployeeEmailExistence(email) == true) {
             PopUp.showMessage("Information", "Account Already Exists !");
         } else {
             int id = User.generateEmployeeID();
             String password = User.generateEmployeePassword();
             LocalDate doj = LocalDate.now();
-           // User e = new User(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender,salary);
-            //Administrator.employeeCreateNewAccount(e);
-           // dummyObservableList.add(e);
-            //userDataTable.getItems().add(e);
-            
+            DummyEmployee e = new DummyEmployee(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender, salary);
+            Administrator.employeeCreateNewAccount(e);
+            dummyObservableList.add(e);
+            userDataTable.getItems().add(e);
 
             PopUp.showMessage("Information", "Account has been Successfully Created..!"
                     + "Employee ID: " + id + "\n"
                     + "Employee Password: " + password);
         }
-        
+
     }
-    
 }

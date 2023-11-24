@@ -72,7 +72,7 @@ public class LoginController implements Initializable {
             switch (accountTypeComboBox.getValue()) {
                 case "Administrator":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
-                        loader = new FXMLLoader(getClass().getResource("AdminDashbord.fxml"));
+                        loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Addministrator/AdminDashbord.fxml"));
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }

@@ -49,7 +49,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void userButtonOnMouseClick(ActionEvent event) {
-        sceneSwithch("AddNewEmploye.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/AddNewEmploye.fxml");
 
     }
 
