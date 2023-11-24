@@ -139,12 +139,15 @@ public class ReserveController implements Initializable {
         //p.setDate(dateDatePicker.getValue());
         //p.setDay(daySelectCombo.getValue());
         
-       String city = citySelectCombo.getValue();
-       String bus = busTypeCombo.getValue();
-       System.out.println(bus);
-       if (bus !=null){
+       //String city = citySelectCombo.getSelectionModel().getSelectedItem();
+      // String bus = busTypeCombo.getSelectionModel().getSelectedItem();
+      // System.out.println(bus);
+       
+       
+       if (busTypeCombo.getSelectionModel().isEmpty() == false && citySelectCombo.getSelectionModel().isEmpty() == false){
            
-      
+       String city = citySelectCombo.getSelectionModel().getSelectedItem();
+       String bus = busTypeCombo.getSelectionModel().getSelectedItem();
         //System.out.println(reserveBusList);
        for(ReserveBus x: reserveBusList){
            //System.out.println(x.getBusType());

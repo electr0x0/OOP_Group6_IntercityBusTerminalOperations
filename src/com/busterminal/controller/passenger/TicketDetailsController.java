@@ -159,7 +159,44 @@ public class TicketDetailsController implements Initializable {
             
             Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size(),"Confirmed");
             oos.writeObject(t1);
+            
             ticketList.add(t1);
+            //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
+            //RelationshipDatabaseClass.getInstance().saveToFile();
+          
+            
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if(oos != null) oos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }                
+        
+        
+        File f1 = null;
+        FileOutputStream fos1 = null;      
+        ObjectOutputStream oos1 = null;
+        
+        try {
+            f1 = new File("PassengerList.bin");
+            if(f1.exists()){
+                fos1 = new FileOutputStream(f1,true);
+                oos1 = new AppendableObjectOutputStream(fos1);                
+            }
+            else{
+                fos1 = new FileOutputStream(f1);
+                oos1= new ObjectOutputStream(fos1);               
+            }
+            
+            Passenger p1 = new Passenger(name,email,phone);
+            oos1.writeObject(p1);
+            
+            
             //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
             //RelationshipDatabaseClass.getInstance().saveToFile();
           
@@ -210,6 +247,7 @@ public class TicketDetailsController implements Initializable {
             }
         */
         
+           
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText(" Click on OK to return to Dashboard");
