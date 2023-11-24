@@ -39,10 +39,13 @@ public class ReservationStatusController {
     @FXML
     private TableColumn<BusReservation, String> fareColumn;
     
-    private ObservableList<BusReservation> data = FXCollections.observableArrayList();
+    private ObservableList<BusReservation> data;
 
     public void initialize() {
-        System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
+        
+        //System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
+        
+        data= FXCollections.observableArrayList();
         // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("passengerName"));
@@ -60,17 +63,16 @@ public class ReservationStatusController {
        ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
        if (re!=null){
            for (Reservation r: re){
-               System.out.println(r.getReserveBus().getFare());
+               System.out.print("fare" + r.getReserveBus().getFare());
                BusReservation br = new BusReservation(r.getReserveBus().getReserveId() ,r.getPassengerName(),
                        r.getReserveBus().getBusType(),r.getReserveBus().getDate(), r.getReserveBus().getFare());
-               
                data.add(br);
                
            }
            
        }
        
-
+        System.out.println(data);
         busReservationTable.getItems().addAll(data);
 
         // pie chart
@@ -94,6 +96,7 @@ public class ReservationStatusController {
         String dateFilter = filter.getText();
 
         ObservableList<BusReservation> filteredData = FXCollections.observableArrayList();
+        
 
         for (BusReservation entry : busReservationTable.getItems()) {
             boolean dateMatches = entry.getDepartureDate().equals(dateFilter);
