@@ -1,7 +1,7 @@
+
 package com.busterminal.model;
 
 import java.io.Serializable;
-
 
 
 public class Feedback implements Serializable{
@@ -9,13 +9,6 @@ public class Feedback implements Serializable{
     private int feedbackID;
     private String subject;
     private String body;
-
-    public Feedback(int feedbackID,String name, String subject) {
-        this.name = name;
-        this.feedbackID = feedbackID;
-        this.subject = subject;
-        this.body= body;
-    }
     
     public Feedback() {
     }
@@ -62,13 +55,12 @@ public class Feedback implements Serializable{
 
     @Override
     public String toString() {
-        return "Name:" + name + "\nFeedbackID=" + feedbackID + "\nsubject=" + subject + "\nbody=" + body;
+        return "Feedback{" + "name=" + name + ", feedbackID=" + feedbackID + ", subject=" + subject + ", body=" + body + '}';
     }
     
     
     
     
-
+ 
    
 }
-

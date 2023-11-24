@@ -35,22 +35,8 @@ public class FeedbackController {
         passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         commentColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
 
-        // Sample data initialization (replace with your actual data)
-        Feedback feedback1 = new Feedback(1, "John Doe", "Great service!");
-        Feedback feedback2 = new Feedback(2, "Jane Smith", "Clean and comfortable buses.");
-        feedbackTableView.getItems().addAll(feedback1, feedback2);
-        
-        
-        // write form file
-        //Database.writeToBinFile("Feedback.bin", data);
-        
         // read from file
         feedbackTableView.getItems().addAll(Database.getInstanceBinFile("Feedback.bin"));
-        System.out.println(Database.getInstanceBinFile("Feedback.bin"));
-        
-        
-
-        
         
         
         
