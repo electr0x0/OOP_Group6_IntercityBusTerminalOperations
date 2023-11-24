@@ -18,7 +18,7 @@ public class MainTerminalApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml"));
         
         Scene scene = new Scene(root);
         
