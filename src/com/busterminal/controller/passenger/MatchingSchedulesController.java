@@ -182,10 +182,7 @@ private void handleSelectedRow(DummyClassForTableViewSchedule selectedBus) {
         String destination = selectedBus.getDestination();
         String time = selectedBus.getTimeSlot();
         String date = selectedBus.getScheduleDate().toString();
-       
-        
 
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/TicketDetails.fxml"));
         Parent root = null;
         try {

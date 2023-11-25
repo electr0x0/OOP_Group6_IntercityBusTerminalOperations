@@ -18,7 +18,7 @@ public class MainTerminalApplication extends Application {
 
         
         //Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
-       Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
 
         //Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
 

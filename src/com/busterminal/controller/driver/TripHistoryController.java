@@ -41,7 +41,7 @@ public class TripHistoryController implements Initializable {
     @FXML
     private TableColumn<DummyTripHistory, String> assignedVehicleCol;
     
-    private ObservableList<DummyTripHistory> d1= FXCollections.observableArrayList();
+    private ObservableList<DummyTripHistory> tripHistory= FXCollections.observableArrayList();
     ArrayList<BusTrip> bustripList = new ArrayList();
     ArrayList<BusTripSchedule> bustripScheduleList = new ArrayList();
     
@@ -64,8 +64,8 @@ public class TripHistoryController implements Initializable {
             
                 DummyTripHistory dummy = new DummyTripHistory(x.getScheduleId(),x.getScheduleDate(),x.getSourceDestination(),"Pending", x.getAssignedDriver(),x.getAssignedVehicle());
                 
-                d1.add(dummy);
-                tableViewTripHistory.setItems(d1);
+                tripHistory.add(dummy);
+                tableViewTripHistory.setItems(tripHistory);
                 
             }
         
@@ -149,6 +149,11 @@ public class TripHistoryController implements Initializable {
     @FXML
     private void confirmTripCompletedOnClick(ActionEvent event) {
         
+        DummyTripHistory dm = tableViewTripHistory.getSelectionModel().getSelectedItem();
+        
+        dm.setTripStatus("Completed");
+        tableViewTripHistory.refresh();
+        System.out.println(tripHistory);
         
         
     }
