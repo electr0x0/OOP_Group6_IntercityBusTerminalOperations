@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 public class Overtime implements Serializable {
     String id;
-    
     Boolean isOvertime;
     int overtimeHours;
     int overtimeRate;
@@ -138,6 +137,21 @@ public class Overtime implements Serializable {
         return existingOvertimes;
     }
 
+    public static ArrayList<Salary> deleteSalaryById(String filename, String idToDelete) {
+        ArrayList<Salary> existingSalaries = new ArrayList<>();
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
+            existingSalaries = (ArrayList<Salary>) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return existingSalaries; // Return the original list if an exception occurs while reading
+        }
+
+        // Remove the Salary object with the given ID
+        existingSalaries.removeIf(salary -> salary.getId().equals(idToDelete));
+
+        return existingSalaries;
+    }
 
     
     

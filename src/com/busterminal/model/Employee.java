@@ -40,7 +40,7 @@ public class Employee extends User {
         this.Salary = Salary;
         this.empType = empType;
         this.id = generateID(firstname);
-        this.salStatus = new Salary(this.id,this.Salary,false,false,LocalDate.now());
+        this.salStatus = new Salary(this.id,this.Salary);
         this.overTime = new Overtime(this.id);
         this.holiday = new Leave(this.id,false,false,"");
         this.resignation = new Resignation(this.id,false,"");

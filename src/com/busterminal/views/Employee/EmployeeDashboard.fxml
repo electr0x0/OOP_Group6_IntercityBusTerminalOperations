@@ -36,7 +36,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="17.0" layoutY="245.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Salary">
+            <Button layoutX="17.0" layoutY="245.0" mnemonicParsing="false" onAction="#toSalary" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Salary">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
@@ -204,7 +204,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="227.0" layoutY="164.0" mnemonicParsing="false" onAction="#cancelOvertime" prefHeight="41.0" prefWidth="185.0" style="-fx-background-color: white;" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Cancel Overtime" textFill="#da9010">
+                  <Button fx:id="overtimeBtn" layoutX="227.0" layoutY="164.0" mnemonicParsing="false" onAction="#cancelOvertime" prefHeight="41.0" prefWidth="185.0" style="-fx-background-color: white;" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Cancel Overtime" textFill="#da9010">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
