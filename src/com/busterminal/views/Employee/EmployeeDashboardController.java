@@ -49,8 +49,6 @@ public class EmployeeDashboardController implements Initializable  {
     private Label overtimeText;
     @FXML
     private Label onLeaveText;
-    @FXML
-    private TextArea requestLog;
     
     String empID;
     Employee user;
@@ -81,6 +79,11 @@ public class EmployeeDashboardController implements Initializable  {
     private Button loadButton;
     @FXML
     private Label overtimeText2;
+    @FXML
+    private Button overtimeBtn;
+    @FXML
+    private TextArea requestLog;
+    
     
     /**
      * Initializes the controller class.
@@ -170,17 +173,22 @@ public class EmployeeDashboardController implements Initializable  {
         user = getEmployeeById("Employee.bin",empID);
         id.setText(id.getText()+" "+ empID);
         name.setText("Name: "+user.getFirstname()+" "+ user.getLastname());
-        designation.setText(designation.getText()+" " +user.getEmpType());
-        payedRecieved.setText(payedRecieved.getText()+" "+ user.getSalStatus().getSalary()+"tk");
+        designation.setText("Designation: "+" " +user.getEmpType());
+        payedRecieved.setText("Payment Recieved: "+" "+ user.getSalStatus().getSalary()+"tk");
         overtimeText.setText("Overtime Status: " + user.getOverTime().getIsOvertime());
         overtimeText2.setText("Overtime Status: "+" "+ user.getOverTime().getIsOvertime());
-        onLeaveText.setText(onLeaveText.getText()+" "+ user.getHoliday().getOnLeave());
+        onLeaveText.setText("On Leave: "+" "+ user.getHoliday().getOnLeave());
+        if(!user.getOverTime().getIsOvertime()){
+            overtimeBtn.setDisable(true);
+        } else{
+            overtimeBtn.setDisable(false);
+        }
         loadButton.setDisable(true);
     }
 
     @FXML
     private void applyForOvt(ActionEvent event) {
-         if(user.getOverTime().getAskedForOvertime()){
+         if(user.getOverTime().getAskedForOvertime() != null && user.getOverTime().getAskedForOvertime()){
             Alert a = new Alert(AlertType.INFORMATION);
             a.setContentText("You already have submited a request!");
             a.show();
@@ -198,8 +206,8 @@ public class EmployeeDashboardController implements Initializable  {
     
     public Boolean validateFormSubmit(){
         return (user.getOverTime().getAskedForOvertime() == true 
-                && !Validator.containsOnlyNumbers(ovtHours.getText()) 
-                && !Validator.containsOnlyNumbers(ovtRate.getText()));
+                && Validator.containsOnlyNumbers(ovtHours.getText()) 
+                && Validator.containsOnlyNumbers(ovtRate.getText()));
     }
      
     public static ArrayList<Overtime> readOvertimeFromFile(String filename) {
@@ -248,20 +256,45 @@ public class EmployeeDashboardController implements Initializable  {
 
     @FXML
     private void cancelOvertime(ActionEvent event) {
-       
-       Alert a = new Alert(AlertType.WARNING,"Are you sure you want to cancel your overtime?",ButtonType.YES, ButtonType.NO);
-       Optional<ButtonType> result = a.showAndWait();
-        if (result.get() == ButtonType.YES){
-            Overtime ot = new Overtime(empID,false,0,0,false,null);
-            empList = user.readEmployeesFromFile("Employee.bin");
-            updateEmployeeOvertime(empList,empID,ot);
-            a = new Alert(AlertType.CONFIRMATION);
-            a.setContentText("Overtime canceled successfully!");
-            a.show();
-            loadButton.setDisable(false);
+       if(user.getOverTime().getIsOvertime()){
+            Alert a = new Alert(AlertType.WARNING,"Are you sure you want to cancel your overtime?",ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = a.showAndWait();
+            if (result.get() == ButtonType.YES){
+                Overtime ot = new Overtime(empID,false,0,0,false,"");
+                empList = user.readEmployeesFromFile("Employee.bin");
+                updateEmployeeOvertime(empList,empID,ot);
+                a = new Alert(AlertType.CONFIRMATION);
+                a.setContentText("Overtime canceled successfully!");
+                a.show();
+                loadButton.setDisable(false);
+                return;
         } 
+            
+       }
+       
        
        
     }
+
+    @FXML
+    private void toSalary(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeSalaryDashboard.fxml"));
+            root = loader.load();
+            EmployeeSalaryDashboardController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
     
+
+   
 }
