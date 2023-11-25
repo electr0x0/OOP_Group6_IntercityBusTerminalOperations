@@ -1,11 +1,13 @@
 
 package com.busterminal.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author UseR
  */
-public class Chat1 {
+public class Chat1 implements Serializable { 
     
     String receiver;
     String body;
