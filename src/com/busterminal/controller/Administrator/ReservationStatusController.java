@@ -46,7 +46,7 @@ public class ReservationStatusController implements Initializable {
 
      @Override
     public void initialize(URL location, ResourceBundle resources) {
-         
+         System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
         data= FXCollections.observableArrayList();
         // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
@@ -55,7 +55,7 @@ public class ReservationStatusController implements Initializable {
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
 
-      
+      /*
        ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
                 new BusReservation(2, "Jane Smith", "Bus202", LocalDate.now(), 75),
                 new BusReservation(3, "Bob Johnson", "Bus303", LocalDate.now(), 60));
@@ -63,7 +63,7 @@ public class ReservationStatusController implements Initializable {
        Database.writeToBinFile("ReservationList.bin", reservationsData);
       
       
-      System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
+      System.out.println(Database.getInstanceBinFile("ReservationList.bin"));*/
        
        /*ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
        if (re!=null){
@@ -77,7 +77,6 @@ public class ReservationStatusController implements Initializable {
            
        }
        */
-        System.out.println(data);
         busReservationTable.getItems().addAll(data);
 
         // pie chart
@@ -99,7 +98,7 @@ public class ReservationStatusController implements Initializable {
 
 
     private void filterTableByDate() {
-        String dateFilter = filter.getText();
+       /* String dateFilter = filter.getText();
 
         ObservableList<BusReservation> filteredData = FXCollections.observableArrayList();
         
@@ -112,7 +111,7 @@ public class ReservationStatusController implements Initializable {
             }
         }
 
-        busReservationTable.setItems(filteredData);
+        busReservationTable.setItems(filteredData);*/
     }
   
 }

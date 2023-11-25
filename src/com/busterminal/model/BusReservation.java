@@ -9,6 +9,7 @@ public class BusReservation implements Serializable {
     private String busId;
     private LocalDate departureDate;
     private int fare;
+    
 
     public BusReservation(int reservationId, String passengerName, String busId, LocalDate departureDate, int fare) {
         this.reservationId = reservationId;
