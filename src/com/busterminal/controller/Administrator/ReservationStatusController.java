@@ -3,17 +3,19 @@ package com.busterminal.controller.Administrator;
 import com.busterminal.model.BusReservation;
 import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
-import java.time.LocalDate;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ReservationStatusController {
+public class ReservationStatusController implements Initializable {
 
     @FXML
     private TextField filter;
@@ -41,10 +43,9 @@ public class ReservationStatusController {
     
     private ObservableList<BusReservation> data;
 
-    public void initialize() {
-        
-        //System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
-        
+     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+         System.out.println(Database.getInstanceBinFile("Feedback.bin"));
         data= FXCollections.observableArrayList();
         // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
@@ -92,6 +93,7 @@ public class ReservationStatusController {
         //explain in feedback
     }
 
+
     private void filterTableByDate() {
         String dateFilter = filter.getText();
 
@@ -108,4 +110,5 @@ public class ReservationStatusController {
 
         busReservationTable.setItems(filteredData);
     }
+  
 }
