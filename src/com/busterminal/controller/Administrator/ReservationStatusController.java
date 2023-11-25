@@ -4,6 +4,7 @@ import com.busterminal.model.BusReservation;
 import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +46,7 @@ public class ReservationStatusController implements Initializable {
 
      @Override
     public void initialize(URL location, ResourceBundle resources) {
-         System.out.println(Database.getInstanceBinFile("Feedback.bin"));
+         
         data= FXCollections.observableArrayList();
         // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
@@ -55,13 +56,16 @@ public class ReservationStatusController implements Initializable {
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
 
       
-       /*ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
-                new BusReservation(0, passengerName, busId, LocalDate.MAX, 0),
-                new BusReservation("2", "Jane Smith", "Bus202", "2022-12-02", "75"),
-                new BusReservation("3", "Bob Johnson", "Bus303", "2022-12-03", "60")*/
+       ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
+                new BusReservation(2, "Jane Smith", "Bus202", LocalDate.now(), 75),
+                new BusReservation(3, "Bob Johnson", "Bus303", LocalDate.now(), 60));
       
+       Database.writeToBinFile("ReservationList.bin", reservationsData);
+      
+      
+      System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
        
-       ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
+       /*ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
        if (re!=null){
            for (Reservation r: re){
                System.out.print("fare" + r.getReserveBus().getFare());
@@ -72,7 +76,7 @@ public class ReservationStatusController implements Initializable {
            }
            
        }
-       
+       */
         System.out.println(data);
         busReservationTable.getItems().addAll(data);
 

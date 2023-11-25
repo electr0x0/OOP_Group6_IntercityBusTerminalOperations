@@ -1,7 +1,8 @@
 package com.busterminal.model;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BusReservation {
+public class BusReservation implements Serializable {
 
     private int reservationId;
     private String passengerName;
