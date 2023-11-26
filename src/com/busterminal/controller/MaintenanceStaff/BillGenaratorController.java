@@ -6,7 +6,9 @@ package com.busterminal.controller.MaintenanceStaff;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -14,6 +16,9 @@ import javafx.fxml.Initializable;
  * @author DELL
  */
 public class BillGenaratorController implements Initializable {
+
+    @FXML
+    private AnchorPane anchorPaneShow;
 
     /**
      * Initializes the controller class.

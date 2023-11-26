@@ -3,10 +3,11 @@ package com.busterminal.model;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class MaintenanceTask extends dummyMaintenanceStaff {
+public class MaintenanceTask extends dummyMaintenanceStaff implements Serializable {
 
     private String description;
 

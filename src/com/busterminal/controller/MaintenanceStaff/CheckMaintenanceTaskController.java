@@ -7,8 +7,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,9 +40,16 @@ public class CheckMaintenanceTaskController implements Initializable{
     private Label timeLabel;
     @FXML
     private Label totalNoOfTecnehianLabel;
+    @FXML
+    private Label availableParts;
+    @FXML
+    private DatePicker searchByDate;
+    @FXML
+    private Label totalTaskLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<MaintenanceTask> mt = FXCollections.observableArrayList();
         System.out.print(Database.getInstanceBinFile("MaintenanceList.bin"));
         driverIdCol.setCellValueFactory(new PropertyValueFactory<>("driverId"));
         busIdCol.setCellValueFactory(new PropertyValueFactory<>("busId"));
@@ -50,11 +61,14 @@ public class CheckMaintenanceTaskController implements Initializable{
         
         maintenanceTable.getItems().add(task1);
         maintenanceTable.getItems().add(task2);
-        
+        mt.addAll(task1,task2);
+        Database.writeToBinFile("UpComingTask.bin", mt);
         
         // for show time
         updateDateTime();
         totalNoOfTecnehianLabel.setText(Integer.toString(MaintenanceTask.totalstaff()));
+        availableParts.setText((Integer.toString(Database.getInstanceBinFile("PartsList.bin").size())));
+        totalTaskLabel.setText(Integer.toString(Database.getInstanceBinFile("UpComingTask.bin").size()));
         
     }
   
@@ -91,5 +105,9 @@ public class CheckMaintenanceTaskController implements Initializable{
 
         // Set text on labels
         timeLabel.setText("Time:    " + timeFormat.format(now) + "\nDate:     " + dateFormat.format(now)+"\nDay:       " + dayFormat.format(now));
+    }
+
+    @FXML
+    private void searchButtonOnMouseClick(ActionEvent event) {
     }
 }
