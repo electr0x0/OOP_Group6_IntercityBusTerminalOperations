@@ -69,7 +69,7 @@ public class MyEmployeeController implements Initializable {
     private ChoiceBox<String> sortChoice;
     String getChoices[] = {"ID","First Name","Last Name","Email","Salary","Designation"};
     
-    String myId="821122235636";
+    String myId="831125012412";
     @FXML
     private AnchorPane EmployeeListPane;
     
@@ -356,10 +356,10 @@ public class MyEmployeeController implements Initializable {
                 e.printStackTrace();
             }
               EmployeeDashboardController.updateEmployeeOvertime(empList, myId, ovt);
-              ovtRequestPane.setVisible(false);
+                ovtRequestPane.setVisible(false);
                 switchToOvertime.setVisible(true);
                 expandLabelOvt.setText("");
-                 items.clear();
+                items.clear(); 
               return;
           }
         }
@@ -387,6 +387,16 @@ public class MyEmployeeController implements Initializable {
               return;
           } 
         }
+        
+    }
+
+    @FXML
+    private void toSalary(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/SalaryRequest.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         
     }
 

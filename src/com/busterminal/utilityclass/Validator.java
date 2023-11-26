@@ -155,6 +155,14 @@ public class Validator {
     }
 }
 
+public static boolean isValidDate(LocalDate date) {
+        // Get today's date
+        LocalDate today = LocalDate.now();
+
+        // Check if the provided date is not before today (it can be today or in the future)
+        return !date.isBefore(today);
+    }
+
      
      
 }
