@@ -91,12 +91,12 @@ public class AdminController implements Initializable {
 
     @FXML
     private void ShowResignOnMouseClick(ActionEvent event) {
-        sceneSwithch("ShowResignLetter.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ShowResignLetter.fxml");
     }
 
     @FXML
     private void showFeedBackOnMouseClick(ActionEvent event) {
-        sceneSwithch("Feadback.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/Feadback.fxml");
 
     }
 
