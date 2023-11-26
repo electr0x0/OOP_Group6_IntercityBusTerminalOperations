@@ -294,6 +294,24 @@ public class EmployeeDashboardController implements Initializable  {
         }
     }
 
+    public AnchorPane getHomePane() {
+        return homePane;
+    }
+
+    public void setHomePane(AnchorPane homePane) {
+        this.homePane = homePane;
+    }
+
+    public AnchorPane getOvertimePane() {
+        return overtimePane;
+    }
+
+    public void setOvertimePane(AnchorPane overtimePane) {
+        this.overtimePane = overtimePane;
+    }
+    
+    
+
     
 
    

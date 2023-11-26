@@ -6,6 +6,7 @@ package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Salary;
+import com.busterminal.views.Employee.EmployeeDashboardController;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -54,6 +55,8 @@ public class SalaryRequestController implements Initializable {
     Salary sal;
     String selectedItem;
     String SelectedId;
+    String empID;
+    
     ObservableList<String> itemsIncrement = FXCollections.observableArrayList();
     ObservableList<String> itemsPayment = FXCollections.observableArrayList();
     
@@ -150,6 +153,20 @@ public class SalaryRequestController implements Initializable {
 
     @FXML
     private void goToAccount(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeDashboard.fxml"));
+            root = loader.load();
+            EmployeeDashboardController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
     }
 
     @FXML
@@ -172,6 +189,16 @@ public class SalaryRequestController implements Initializable {
                return;
             }
         }
+        
+        
+    }
+
+    public String getEmpID() {
+        return empID;
+    }
+
+    public void setEmpID(String empID) {
+        this.empID = empID;
     }
 
     

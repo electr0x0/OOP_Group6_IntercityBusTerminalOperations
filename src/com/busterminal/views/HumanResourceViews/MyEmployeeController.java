@@ -6,6 +6,7 @@ package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Overtime;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.views.Employee.EmployeeDashboardController;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -75,7 +76,7 @@ public class MyEmployeeController implements Initializable {
     private ChoiceBox<String> sortChoice;
     String getChoices[] = {"ID","First Name","Last Name","Email","Salary","Designation"};
     
-    String myId="831125012412";
+    String myId="771126081851";
     @FXML
     private AnchorPane EmployeeListPane;
     
@@ -102,6 +103,10 @@ public class MyEmployeeController implements Initializable {
         sortChoice.setValue("ID");
         
         empList = readEmployeesFromFile("Employee.bin");
+        if(empList != null){
+            RelationshipDatabaseClass.getInstance().setAllEmployees(empList);
+        }
+        
         employeTableId.setCellValueFactory(new PropertyValueFactory<Employee,String>("id"));
         tableFirstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstname()));
         tableLastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue(). getLastname()));
@@ -400,11 +405,20 @@ public class MyEmployeeController implements Initializable {
 
     @FXML
     private void toSalary(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/SalaryRequest.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/SalaryRequest.fxml"));
+            root = loader.load();
+            SalaryRequestController controller = loader.getController();
+
+            controller.setEmpID(myId);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
         
     }
 
