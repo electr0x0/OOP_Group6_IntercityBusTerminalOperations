@@ -49,7 +49,7 @@ public class Database {
         return list;
     }
     public static <T> void writeToBinFile(String path, ObservableList<T> collection) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path,true))) {
+        try (ObjectOutputStream oos = new AppendableObjectOutputStream(new FileOutputStream(path,true))) {
             for (T obj : collection) {
                 oos.writeObject(obj);
             }
