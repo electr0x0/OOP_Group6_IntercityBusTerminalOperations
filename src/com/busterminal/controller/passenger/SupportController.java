@@ -156,15 +156,15 @@ public class SupportController implements Initializable {
         ObjectInputStream ois = null;
         
         try {
-            f = new File("ReservationList.bin");
+            f = new File("Feedback.bin");
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            Reservation f2;
+            Feedback f2;
             try{
                 //outputTextArea.setText("");
                 while(true){
                     //System.out.println("Printing objects.");
-                    f2= (Reservation)ois.readObject();
+                    f2= (Feedback)ois.readObject();
                     //Object obj = ois.readObject();
                     //obj.submitReport();
                     //f2.submitReport();
