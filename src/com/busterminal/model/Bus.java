@@ -38,7 +38,7 @@ public class Bus implements Serializable {
 
     @Override
     public String toString() {
-        return "Bus{" + "busId=" + busId + ", numberOfSeats=" + numberOfSeats + ", busType=" + busType + ", busRegNum=" + busRegNum + ", manufacturer=" + manufacturer + ", yearOfManufacture=" + yearOfManufacture + ", schedules=" + schedules + ", assingedDrivers=" + assingedDrivers + ", mtStatus=" + mtStatus + ", availableTimeSlots=" + availableTimeSlots + ", occupiedTimeSlots=" + occupiedTimeSlots + '}';
+        return  "Bus Id: " + busId + ", numberOfSeats=" + numberOfSeats + ", busType=" + busType + ", busRegNum=" + busRegNum + ", manufacturer=" + manufacturer + ", yearOfManufacture=" + yearOfManufacture + ", schedules=" + schedules + ", assingedDrivers=" + assingedDrivers + ", mtStatus=" + mtStatus + ", availableTimeSlots=" + availableTimeSlots + ", occupiedTimeSlots=" + occupiedTimeSlots + '}';
     }
 
     
