@@ -1,6 +1,7 @@
 package com.busterminal.controller.Administrator;
 import com.busterminal.model.Administrator;
 import com.busterminal.model.DummyEmployee;
+import com.busterminal.model.MaintenanceStaff;
 import com.busterminal.model.PopUp;
 import com.busterminal.model.User;
 import java.net.URL;
@@ -98,7 +99,6 @@ public class AddNewEmployeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
                 "Terminal Manager", "Human Resource");
-
         employeeObjectlist = FXCollections.observableArrayList();
         IdCol.setCellValueFactory(new PropertyValueFactory<>("iD"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -113,7 +113,7 @@ public class AddNewEmployeController implements Initializable {
         
         
         // set multiple selection
-        //userDataTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        userDataTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
     }
 
@@ -197,7 +197,11 @@ public class AddNewEmployeController implements Initializable {
             Administrator.employeeCreateNewAccount(e);
             dummyObservableList.add(e);
             userDataTable.getItems().add(e);
-
+            if (designationCB.getValue().equals("Maintenance Staff")){
+                MaintenanceStaff ms = new MaintenanceStaff(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender, salary, "Engine Tecnechine");
+            }else{
+                System.out.println("select type");
+            }         
             PopUp.showMessage("Information", "Account has been Successfully Created..!"
                     + "Employee ID: " + id + "\n"
                     + "Employee Password: " + password);
@@ -215,6 +219,7 @@ public class AddNewEmployeController implements Initializable {
             allPeople.remove(p);
         }
        Administrator.deleteEmployee(selectedItem);
+       MaintenanceStaff.deleteEmployee((MaintenanceStaff) selectedItem);
         
         
         

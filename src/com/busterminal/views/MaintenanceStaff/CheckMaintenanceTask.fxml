@@ -103,7 +103,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="21.0" prefWidth="258.0" text="Number of Tecnecin" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="totalNoOfTecnehianLabel" prefHeight="21.0" prefWidth="258.0" text="Number of Tecnecin" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="24.0" />
                            </font>

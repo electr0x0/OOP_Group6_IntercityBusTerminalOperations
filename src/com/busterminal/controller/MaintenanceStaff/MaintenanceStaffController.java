@@ -1,5 +1,4 @@
 package com.busterminal.controller.MaintenanceStaff;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,41 +17,38 @@ import javafx.stage.Stage;
 public class MaintenanceStaffController implements Initializable {
 
     @FXML
+    private AnchorPane anchorPaneShow;
+
+    @FXML
+    private Button logoutButton1;
+    @FXML
     private HBox root;
     @FXML
     private AnchorPane slide_AnchorPane;
     @FXML
     private Pane inner_Pane;
     @FXML
-    private AnchorPane anchorPaneShow;
-    
-    @FXML
     private Button resignButton;
-    @FXML
-    private Button logoutButton1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/CheckMaintenanceTask.fxml");
+        sceneSwithch("/com/busterminal/views/MaintenanceStaff/CheckMaintenanceTask.fxml");
     }
 
-    @FXML
-    private void viewScheduleButtonOnMouseClick(ActionEvent event) {
-        //sceneSwithch("PustingAfterMaintenance.fxml");
-    }
 
     @FXML
     private void historyAccessOnMouseClick(ActionEvent event) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/pustingAfterMaintenance.fxml");
+        sceneSwithch("/com/busterminal/views/MaintenanceStaff/pustingAfterMaintenance.fxml");
     }
 
     @FXML
     private void safetyGuidelinesOnMouseClick(ActionEvent event) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/GuideLine.fxml");
+        sceneSwithch("/com/busterminal/views/MaintenanceStaff/GuideLine.fxml");
     }
-     @FXML
+
+    @FXML
     private void addPartsOnMouseClick(ActionEvent event) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/AddParts.fxml");
+        sceneSwithch("/com/busterminal/views/MaintenanceStaff/AddParts.fxml");
     }
 
     @FXML
@@ -83,9 +79,10 @@ public class MaintenanceStaffController implements Initializable {
 
     @FXML
     private void billGenatarorONMouseClick(ActionEvent event) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/BillGenarator.fxml");
+        sceneSwithch("/com/busterminal/views/MaintenanceStaff/BillGenarator.fxml");
     }
-     @FXML
+
+    @FXML
     private void resignOnMouseClick(ActionEvent event) {
         sceneSwithch("/com/busterminal/views/MaintenanceStaff/Resignation.fxml");
     }
@@ -102,7 +99,8 @@ public class MaintenanceStaffController implements Initializable {
         }
     }
 
-   
+    @FXML
+    private void viewScheduleButtonOnMouseClick(ActionEvent event) {
+    }
 
-   
 }

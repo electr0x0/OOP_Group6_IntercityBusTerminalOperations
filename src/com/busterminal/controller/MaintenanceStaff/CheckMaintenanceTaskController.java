@@ -34,6 +34,8 @@ public class CheckMaintenanceTaskController implements Initializable{
     private TableColumn<MaintenanceTask, String> miantenanceTypeCol;
     @FXML
     private Label timeLabel;
+    @FXML
+    private Label totalNoOfTecnehianLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,6 +54,7 @@ public class CheckMaintenanceTaskController implements Initializable{
         
         // for show time
         updateDateTime();
+        totalNoOfTecnehianLabel.setText(Integer.toString(MaintenanceTask.totalstaff()));
         
     }
   

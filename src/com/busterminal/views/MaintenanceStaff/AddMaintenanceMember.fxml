@@ -15,54 +15,64 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.AddMaintenanceMemberController">
+<AnchorPane id="AnchorPane" fx:id="AddEmployeAnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.AddMaintenanceMemberController">
    <children>
-      <TableView fx:id="maintenanceEmployeeTable" fixedCellSize="0.0" layoutX="-14.0" layoutY="392.0" prefHeight="393.0" prefWidth="1200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0">
-         <columns>
+      <TableView fx:id="userDataTable" fixedCellSize="0.0" layoutX="200.0" layoutY="291.0" prefHeight="347.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
             <TableColumn fx:id="IdCol" prefWidth="125.0" text="Id" />
-            <TableColumn fx:id="firstNameCol" prefWidth="135.0" text="First Name" />
-            <TableColumn fx:id="typeCol" prefWidth="146.0" text="Type" />
-            <TableColumn fx:id="genderCol" prefWidth="123.0" text="Gender" />
-            <TableColumn fx:id="phoneCol" minWidth="0.0" prefWidth="182.0" text="Phone Number" />
-            <TableColumn fx:id="addressCol" minWidth="0.0" prefWidth="199.0" text="Address" />
-            <TableColumn fx:id="emailCol" minWidth="0.0" prefWidth="289.0" text="Email" />
-         </columns>
+          <TableColumn fx:id="firstNameCol" prefWidth="135.0" text="First Name" />
+            <TableColumn fx:id="expertCol" prefWidth="146.0" text="Technician" />
+            <TableColumn fx:id="genderCol" prefWidth="152.0" text="Gender" />
+            <TableColumn fx:id="phoneCol" minWidth="0.0" prefWidth="190.0" text="Phone Number" />
+            <TableColumn fx:id="addressCol" minWidth="0.0" prefWidth="223.0" text="Address" />
+            <TableColumn fx:id="emailCol" minWidth="0.0" prefWidth="228.0" text="Email" />
+        </columns>
       </TableView>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="45.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" AnchorPane.leftAnchor="45.0">
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="52.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="31.705078125">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <RadioButton fx:id="maleRB" layoutX="321.0" layoutY="11.0" mnemonicParsing="false" text="Male" textFill="#59a7f0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="gender" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="FemaleRB" layoutX="305.0" layoutY="42.0" mnemonicParsing="false" text="Female" textFill="#59a7f0" toggleGroup="$gender">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </RadioButton>
-      <ComboBox fx:id="TypeCB" layoutX="256.0" layoutY="267.0" prefHeight="31.0" prefWidth="218.0" />
-      <TextField fx:id="phoneNumberTF" layoutX="499.0" layoutY="52.0" prefHeight="36.0" prefWidth="220.0" styleClass="phoneNumberTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="499.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </TextField>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="336.705078125">
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="52.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="111.705078125">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="salaryTF" layoutX="576.0" layoutY="293.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="576.0">
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="50.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contruct Number:" AnchorPane.leftAnchor="50.0">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="527.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" AnchorPane.leftAnchor="527.0" AnchorPane.topAnchor="111.705078125">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="524.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" AnchorPane.leftAnchor="527.0">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="524.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Technician:" AnchorPane.leftAnchor="525.0" AnchorPane.topAnchor="31.0">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="firstNameTF" layoutX="231.0" layoutY="24.0" prefHeight="36.0" prefWidth="220.0" styleClass="firstNametf" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
          </font>
       </TextField>
-      <Button layoutX="950.0" layoutY="36.0" mnemonicParsing="false" onAction="#AddButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Add">
+      <TextField fx:id="lastNameTF" layoutX="233.0" layoutY="104.0" prefHeight="36.0" prefWidth="220.0" styleClass="lastNameTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="104.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></TextField>
+      <TextField fx:id="emailTF" layoutX="683.0" layoutY="83.0" prefHeight="36.0" prefWidth="220.0" styleClass="emailTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="683.0" AnchorPane.topAnchor="104.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></TextField>
+      <DatePicker fx:id="birthdayDP" layoutX="685.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" promptText="Choose Date of Birth" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="685.0" />
+      <Button layoutX="954.0" layoutY="32.0" mnemonicParsing="false" onAction="#AddButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Add">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
@@ -75,49 +85,59 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <TextField fx:id="addressTF" layoutX="625.0" layoutY="187.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="625.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </TextField>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="26.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="107.0205078125" AnchorPane.leftAnchor="26.0">
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="50.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" AnchorPane.leftAnchor="50.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <DatePicker fx:id="birthdayDP" prefHeight="36.0" prefWidth="220.0" promptText="Choose Date of Birth" AnchorPane.leftAnchor="685.0" />
-      <TextField fx:id="firstNameTF" layoutX="279.0" layoutY="205.0" prefHeight="36.0" prefWidth="220.0" styleClass="firstNametf" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="279.0">
+      <TextField fx:id="addressTF" layoutX="234.0" layoutY="257.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
          <font>
-            <Font name="Arial Bold" size="15.0" />
+            <Font name="System Bold" size="15.0" />
+         </font></TextField>
+      <RadioButton fx:id="maleRB" layoutX="688.0" layoutY="261.0" mnemonicParsing="false" text="Male" textFill="#59a7f0">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
-      </TextField>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="33.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contruct Number:" AnchorPane.leftAnchor="33.0">
+         <toggleGroup>
+            <ToggleGroup fx:id="gender" />
+         </toggleGroup>
+      </RadioButton>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="524.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" AnchorPane.leftAnchor="527.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="lastNameTF" prefHeight="36.0" prefWidth="220.0" styleClass="lastNameTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="104.0">
+      <RadioButton fx:id="FemaleRB" layoutX="826.0" layoutY="261.0" mnemonicParsing="false" text="Female" textFill="#59a7f0" toggleGroup="$gender">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
-      </TextField>
-      <TextField fx:id="emailTF" prefHeight="36.0" prefWidth="220.0" styleClass="emailTF" stylesheets="@../Style/signUp.css" AnchorPane.leftAnchor="683.0" AnchorPane.topAnchor="104.0">
+      </RadioButton>
+      <ComboBox fx:id="designationCB" layoutX="681.0" layoutY="27.0" prefHeight="31.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
+      <TextField fx:id="phoneNumberTF" layoutX="234.0" layoutY="180.0" prefHeight="36.0" prefWidth="220.0" styleClass="phoneNumberTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="230.0">
          <font>
             <Font name="System Bold" size="15.0" />
-         </font>
-      </TextField>
-      <Label fx:id="fristNameLabel" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="70.0" />
-      <Label fx:id="lastNameLabel" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="150.0" />
-      <Label fx:id="phonenumberLabel" layoutX="272.0" layoutY="161.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="272.0" AnchorPane.topAnchor="161.0" />
-      <Label fx:id="addressLabel" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="300.0" />
-      <Label fx:id="TypeLabel" layoutX="625.0" layoutY="257.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="625.0" />
-      <Label fx:id="emailLabel" layoutX="657.0" layoutY="151.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="657.0" />
-      <Label fx:id="birthdateLabel" layoutX="418.0" layoutY="161.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="418.0" />
-      <Label fx:id="genderLabel" layoutX="500.0" layoutY="346.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="500.0" />
-      <Label fx:id="salaryLabel" layoutX="163.0" layoutY="357.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="163.0" />
-      <Button layoutX="950.0" layoutY="207.0" mnemonicParsing="false" onAction="#AddButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Remove">
+         </font></TextField>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="50.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="336.705078125">
          <font>
-            <Font name="System Bold" size="40.0" />
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="salaryTF" layoutX="233.0" layoutY="324.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="233.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></TextField>
+      <Label fx:id="fristNameLabel" layoutX="234.0" layoutY="73.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="70.0" />
+      <Label fx:id="lastNameLabel" layoutX="235.0" layoutY="148.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="150.0" />
+      <Label fx:id="phonenumberLabel" layoutX="243.0" layoutY="224.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="223.0" />
+      <Label fx:id="addressLabel" layoutX="245.0" layoutY="233.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="300.0" />
+      <Label fx:id="designationLabel" layoutX="686.0" layoutY="70.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="684.0" />
+      <Label fx:id="emailLabel" layoutX="684.0" layoutY="150.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="684.0" />
+      <Label fx:id="birthdateLabel" layoutX="675.0" layoutY="227.0" prefHeight="21.0" prefWidth="269.0" textFill="#ee0707" AnchorPane.leftAnchor="675.0" />
+      <Label fx:id="genderLabel" layoutX="692.0" layoutY="293.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="692.0" />
+      <Label fx:id="salaryLabel" layoutX="230.0" layoutY="371.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" />
+      <Button layoutX="954.0" layoutY="200.0" mnemonicParsing="false" onAction="#removeButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Remove">
+         <font>
+            <Font name="System Bold" size="36.0" />
          </font>
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -128,5 +148,11 @@
             </RadialGradient>
          </textFill>
       </Button>
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="46.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Tecnechine:">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="searchCB" layoutX="238.0" layoutY="404.0" prefHeight="35.0" prefWidth="211.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
    </children>
 </AnchorPane>
