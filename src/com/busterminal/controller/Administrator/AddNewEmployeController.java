@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -109,6 +110,10 @@ public class AddNewEmployeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         userDataTable.getItems().addAll(Administrator.getEmployeeList());
         userDataTable.setVisible(true);
+        
+        
+        // set multiple selection
+        //userDataTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
     }
 
@@ -198,5 +203,20 @@ public class AddNewEmployeController implements Initializable {
                     + "Employee Password: " + password);
         }
 
+    }
+
+    @FXML
+    private void removeButtonOnMouseClick(ActionEvent event) {
+        DummyEmployee selectedItem = userDataTable.getSelectionModel().getSelectedItem();
+        ObservableList<DummyEmployee> selectedRows, allPeople;
+        allPeople = userDataTable.getItems();
+        selectedRows = userDataTable.getSelectionModel().getSelectedItems();
+        for (DummyEmployee p : selectedRows) {
+            allPeople.remove(p);
+        }
+       Administrator.deleteEmployee(selectedItem);
+        
+        
+        
     }
 }

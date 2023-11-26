@@ -123,7 +123,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="salaryTF" layoutX="223.0" layoutY="324.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="235.0">
+      <TextField fx:id="salaryTF" layoutX="233.0" layoutY="324.0" prefHeight="36.0" prefWidth="218.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" AnchorPane.leftAnchor="233.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></TextField>
@@ -136,5 +136,18 @@
       <Label fx:id="birthdateLabel" layoutX="688.0" layoutY="227.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="688.0" />
       <Label fx:id="genderLabel" layoutX="692.0" layoutY="293.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="692.0" />
       <Label fx:id="salaryLabel" layoutX="230.0" layoutY="371.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" />
+      <Button layoutX="954.0" layoutY="210.0" mnemonicParsing="false" onAction="#removeButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Remove">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#1dad83" />
+                  <Stop color="#00bbff" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>
