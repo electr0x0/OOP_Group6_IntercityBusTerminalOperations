@@ -202,6 +202,7 @@ public abstract class User implements Serializable {
                 c = (DummyEmployee) ois.readObject();
                 if (c.getID() == employeeID) {
                     result = true;
+                    break;
                 }
             }
         } catch (RuntimeException e) {
@@ -228,6 +229,7 @@ public abstract class User implements Serializable {
                 c = (DummyEmployee) ois.readObject();
                 if (c.getEmail().equals(email)) {
                     result = true;
+                    break;
                 }
             }
         } catch (RuntimeException e) {
@@ -254,6 +256,7 @@ public abstract class User implements Serializable {
                 c = (Client) ois.readObject();
                 if (c.getID() == clientID) {
                     result = true;
+                    break;
                 }
             }
         } catch (RuntimeException e) {
@@ -280,6 +283,7 @@ public abstract class User implements Serializable {
                 c = (Client) ois.readObject();
                 if (c.getEmail().equals(email)) {
                     result = true;
+                    break;
                 }
             }
         } catch (RuntimeException e) {
@@ -306,7 +310,7 @@ public abstract class User implements Serializable {
 
             while (true) {
                 c = (Client) ois.readObject();
-                if (c.getEmail() == clientEmail) {
+                if (c.getEmail().equals(clientEmail)) {
                     ci = c;
                 }
             }
@@ -332,7 +336,7 @@ public abstract class User implements Serializable {
 
             while (true) {
                 c = (DummyEmployee) ois.readObject();
-                if (c.getEmail() == employeeEmail) {
+                if (c.getEmail().equals(employeeEmail)) {
                     oc = c;
                 }
             }
@@ -363,6 +367,7 @@ public abstract class User implements Serializable {
                     if (c.getEmail().equals(employeEmail)) {
                         if (c.getPassword().equals(Password)) {
                             result = true;
+                            break;
                         }
                     }
                 }
@@ -392,6 +397,7 @@ public abstract class User implements Serializable {
                 if (c.getEmail().equals(email)) {
                     if (c.getPassword().equals(password)) {
                         result = true;
+                        break;
                     }
                 }
             }
@@ -429,6 +435,7 @@ public abstract class User implements Serializable {
         // Verify if the person is at least 20 years old (gate Years return int type)
         if (age.getYears() >= requiredAge) {
             return true;
+            
         } else {
             return false;
         }
