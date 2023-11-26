@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="OOP_Group6_InterCityTerminal.jnlp">
+  <information>
+    <title>OOP_Group6_InterCityTerminal</title>
+    <vendor>electr0</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="OOP_Group6_InterCityTerminal.jar" size="5715277" download="eager" />
+    <jar href="lib\adapter-0.2.0.jar" size="12415" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib\jfoenix-9.0.10.jar" size="2432549" download="eager" />
+    <jar href="lib\materialfx-11.13.5.jar" size="3226858" download="eager" />
+    <jar href="lib\virtualizedfx-11.2.6.1.jar" size="64010" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.busterminal.MainTerminalApplication"  name="OOP_Group6_InterCityTerminal" />
+  <update check="always"/>
+</jnlp>
