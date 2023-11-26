@@ -39,8 +39,8 @@ public class ReserveBus implements Serializable {
         this.fare = fare;
     }
 
-    public ReserveBus(int reserveId, String busType,  int fare, LocalDate date) {
-        this.reserveId = reserveId;
+    public ReserveBus( String busType,  int fare, LocalDate date) {
+        
         this.busType = busType;
       
         this.fare = fare;

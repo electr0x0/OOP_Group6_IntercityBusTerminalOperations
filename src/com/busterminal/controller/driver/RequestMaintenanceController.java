@@ -2,20 +2,13 @@
 package com.busterminal.controller.driver;
 
 
-import com.busterminal.controller.AppendableObjectOutputStream;
-import com.busterminal.controller.passenger.SupportController;
-import com.busterminal.model.Feedback;
+import com.busterminal.model.Driver;
 import com.busterminal.model.Maintenance;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,6 +96,26 @@ public class RequestMaintenanceController implements Initializable {
         alert.showAndWait();}
         
         
+        
+        if (busIdTextField.getText().isEmpty() == false && driverIDTextField.getText().isEmpty() == false && detailsTextArea.getText().isEmpty() == false
+                && detailsTextArea.getText().isEmpty() == false && commentTextField.getText().isEmpty() == false) {
+
+            
+                Driver driver =new Driver();
+                driver.requestMaintenance(busIdTextField.getText(), maintenanceTypeCombo.getValue(), commentTextField.getText(),
+                        LocalDate.now(), detailsTextArea.getText());
+          
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("");
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Request Confirmed");
+            alert.showAndWait();
+        }
+    }
+
+
+        /*
         if ( busIdTextField.getText().isEmpty() == false  && driverIDTextField.getText().isEmpty() == false &&  detailsTextArea.getText().isEmpty() == false && 
                 detailsTextArea.getText().isEmpty() == false &&  commentTextField.getText().isEmpty() == false ){
         
@@ -151,11 +164,11 @@ public class RequestMaintenanceController implements Initializable {
         }                
         
     }
-        
+      */  
         
             
     
-    }
+    
     
 
     @FXML

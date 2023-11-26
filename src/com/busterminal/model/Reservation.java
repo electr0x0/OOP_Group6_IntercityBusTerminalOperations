@@ -15,15 +15,28 @@ public class Reservation  implements Serializable {
     String passengerName;
     String email;
     int phone;
-    
+    String reserveId;
     ReserveBus reserveBus;
 
-    public Reservation(String passengerName, String email, int phone, ReserveBus reserveBus) {
+    public Reservation(String passengerName, String email, int phone,String reserveId, ReserveBus reserveBus) {
         this.passengerName = passengerName;
         this.email = email;
         this.phone = phone;
+        this.reserveId = reserveId;
         this.reserveBus = reserveBus;
     }
+
+    public String getReserveId() {
+        return reserveId;
+    }
+
+    public void setReserveId(String reserveId) {
+        this.reserveId = reserveId;
+    }
+
+   
+
+  
 
     @Override
     public String toString() {

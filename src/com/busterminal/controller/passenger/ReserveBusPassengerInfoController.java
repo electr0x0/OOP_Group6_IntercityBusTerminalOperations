@@ -62,7 +62,7 @@ public class ReserveBusPassengerInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Random rand = new Random();
         //rand.nextInt(1000);
-        reserveIdTextField.setText(Integer.toString(rand.nextInt(1000)));
+         reserveIdTextField.setText(Integer.toString(rand.nextInt(1000)));
     }    
 
     @FXML
@@ -77,53 +77,23 @@ public class ReserveBusPassengerInfoController implements Initializable {
         alert.showAndWait();
        
     
-    int reserveId = Integer.parseInt(reserveIdTextField.getText());
-    String name = nameTextField1.getText();
+    //int reserveId = Integer.parseInt(reserveIdTextField.getText());
+    //String name = nameTextField1.getText();
     
-    String email = emailTextField.getText();
+    //String email = emailTextField.getText();
     
-    int phone = Integer.parseInt(phoneTextField.getText());
+    //int phone = Integer.parseInt(phoneTextField.getText());
             
-    ReserveBus re = new ReserveBus(reserveId,busTypeTextField.getText(),Integer.parseInt(fareTextField.getText()),LocalDate.parse(dateTextField.getText()));
-    Reservation r1 = new Reservation(name,email,phone,re);
+    //ReserveBus re = new ReserveBus(reserveId,busTypeTextField.getText(),Integer.parseInt(fareTextField.getText()),LocalDate.parse(dateTextField.getText()));
+    //Reservation r1 = new Reservation(name,email,phone,re);
+    Passenger p = new Passenger();
+    p.doReserve(reserveIdTextField.getText(),nameTextField1.getText(), emailTextField.getText(), Integer.parseInt(phoneTextField.getText()), 
+                             busTypeTextField.getText(), Integer.parseInt(fareTextField.getText()), LocalDate.parse(dateTextField.getText()));
+    
+   
     
     
-    //Passenger p = new Passenger(name,email,phone);
-    
-    //passengerList.add(p);
-    
-    rervationList.add(r1);
-    
-      File f = null;
-        FileOutputStream fos = null;      
-        ObjectOutputStream oos = null;
-        
-        try {
-            f = new File("ReservationList.bin");
-            if(f.exists()){
-                fos = new FileOutputStream(f,true);
-                oos = new AppendableObjectOutputStream(fos);                
-            }
-            else{
-                fos = new FileOutputStream(f);
-                oos = new ObjectOutputStream(fos);               
-            }
-           
-            for(Reservation y: rervationList){
-                oos.writeObject(y);
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if(oos != null) oos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }                
-        
-    
+  
             
   }
     

@@ -146,44 +146,10 @@ public class TicketDetailsController implements Initializable {
     //Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size());
     //System.out.println(t1);
     passengerList.add(p);
+    p.purchaseTicket(ticketIdTextField.getText(), d1, seathelperList, "Confirmed", bookingDateLabel.getText());
     //ticketList.add(t1);
     
-        
-        File f = null;
-        FileOutputStream fos = null;      
-        ObjectOutputStream oos = null;
-        
-        try {
-            f = new File("TicketList.bin");
-            if(f.exists()){
-                fos = new FileOutputStream(f,true);
-                oos = new AppendableObjectOutputStream(fos);                
-            }
-            else{
-                fos = new FileOutputStream(f);
-                oos = new ObjectOutputStream(fos);               
-            }
-            
-            Ticket t1 = new Ticket( ticketIdTextField.getText(), p, d1 , seathelperList, seathelperList.size(),"Confirmed", bookingDateLabel.getText());
-            oos.writeObject(t1);
-            System.out.println(t1.getPurchaseDate());
-            ticketList.add(t1);
-            //RelationshipDatabaseClass.getInstance().setAllTicketList(ticketList);
-            //RelationshipDatabaseClass.getInstance().saveToFile();
-          
-            
-            
-
-        } catch (IOException ex) {
-            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if(oos != null) oos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }                
-        
+      
         
         File f1 = null;
         FileOutputStream fos1 = null;      
@@ -214,7 +180,7 @@ public class TicketDetailsController implements Initializable {
             Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                if(oos != null) oos.close();
+                if(oos1 != null) oos1.close();
             } catch (IOException ex) {
                 Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
             }

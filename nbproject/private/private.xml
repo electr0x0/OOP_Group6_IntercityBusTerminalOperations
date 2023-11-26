@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/storage/db/RelationshipDatabaseClass.java</file>
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/controller/driver/ChatBodyController.java</file>
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/model/BusTrip.java</file>
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/controller/driver/BusInfoController.java</file>
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/model/Bus.java</file>
             <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/MainTerminalApplication.java</file>
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/controller/driver/DashboardController.java</file>
-=======
-            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/MainTerminalApplication.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/UseR/Desktop/git/OOP_Group6_IntercityBusTerminalOperations/src/com/busterminal/controller/driver/ResignController.java</file>
         </group>
     </open-files>
 </project-private>
