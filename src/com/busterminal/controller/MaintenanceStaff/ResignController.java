@@ -147,14 +147,15 @@ public class ResignController implements Initializable {
             oos.writeObject(r2);
 
         } catch (IOException ex) {
-            Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
+           
         } finally {
             try {
                 if (oos != null) {
                     oos.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(SupportController.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
         clear();

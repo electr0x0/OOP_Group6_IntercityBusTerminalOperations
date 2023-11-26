@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.MaintenanceStaffController">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.MaintenanceStaffController">
    <children>
       <VBox prefHeight="709.0" prefWidth="287.0" style="-fx-background-color: #353A56;">
          <children>
-            <AnchorPane fx:id="slide_AnchorPane" prefHeight="800.0" prefWidth="253.0" styleClass="slide_AnchorPane">
+            <AnchorPane fx:id="slide_AnchorPane" prefHeight="782.0" prefWidth="273.0" styleClass="slide_AnchorPane">
                <children>
                   <Pane fx:id="inner_Pane" layoutX="17.0" layoutY="8.0" prefHeight="124.0" prefWidth="256.0" styleClass="inner_Pane">
                      <children>
@@ -40,6 +40,6 @@
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane fx:id="anchorPaneShow" prefHeight="800.0" prefWidth="1200.0" />
+      <AnchorPane fx:id="anchorPaneShow" prefHeight="800.0" prefWidth="1450.0" />
    </children>
 </HBox>

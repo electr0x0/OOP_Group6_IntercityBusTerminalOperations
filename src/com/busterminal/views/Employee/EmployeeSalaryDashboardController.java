@@ -1,7 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package com.busterminal.views.Employee;
 
 import com.busterminal.model.Employee;
@@ -23,11 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author User
- */
+
 public class EmployeeSalaryDashboardController implements Initializable {
 
     @FXML
@@ -54,9 +48,7 @@ public class EmployeeSalaryDashboardController implements Initializable {
     
     ArrayList<Employee> empList = new ArrayList<>();
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -217,3 +209,4 @@ public class EmployeeSalaryDashboardController implements Initializable {
     }
     
 }
+*/

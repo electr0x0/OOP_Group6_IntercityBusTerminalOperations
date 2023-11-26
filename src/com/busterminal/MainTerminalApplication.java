@@ -19,6 +19,7 @@ public class MainTerminalApplication extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/Addministrator/Home.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/MaintenanceStaff/AddParts.fxml"));
        Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml"));
+       //Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/MaintenanceStaff/BillGenarator.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);

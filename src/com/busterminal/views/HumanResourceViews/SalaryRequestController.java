@@ -1,7 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
@@ -26,12 +24,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author User
- */
-public class SalaryRequestController implements Initializable {
+class SalaryRequestController implements Initializable {
 
     @FXML
     private AnchorPane RequestPane;
@@ -61,9 +54,7 @@ public class SalaryRequestController implements Initializable {
     private AnchorPane incrementRequestPane;
     @FXML
     private Label incrementDetails;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         salList = Employee.readEmployeesFromFile("Employee.bin");
@@ -176,3 +167,4 @@ public class SalaryRequestController implements Initializable {
 
     
 }
+*/
