@@ -62,7 +62,7 @@
          <content>
             <VBox prefHeight="425.0" prefWidth="305.0" spacing="35.0">
                <children>
-                  <MFXButton defaultButton="true" onAction="#onClickDashboardBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Dashboard" textFill="WHITE">
+                  <MFXButton fx:id="dashboardBtn" defaultButton="true" onAction="#onClickDashboardBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Dashboard" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,16 +71,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Trip And Fare Management" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../drawables/transport.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickBusManagementBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Management" textFill="WHITE">
+                  <MFXButton fx:id="busManagementBtn" defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickBusManagementBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Management" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,7 +80,16 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickBusTripSchedule" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Trip Scheduling" textFill="WHITE">
+                  <MFXButton fx:id="tripFareButton" defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Trip And Fare Management" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/transport.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="busTripScheBtn" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickBusTripSchedule" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Trip Scheduling" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -98,16 +98,25 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="148.0" onAction="#onClickFinancialBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Financial Reports" textFill="WHITE">
+                  <MFXButton fx:id="manageStaffBtn" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickManageStafFBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Manage Staff" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/manage_staff-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="finanCialReportBtn" defaultButton="true" layoutX="10.0" layoutY="148.0" onAction="#onClickFinancialBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Financial Reports" textFill="WHITE">
+                     <graphic>
+                        <ImageView fx:id="financialReportBtn" fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../drawables/detailed_financeReport-512x512.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="217.0" onAction="#onClickCommunicationHubBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Communication Hub" textFill="WHITE">
+                  <MFXButton fx:id="comHubBtn" defaultButton="true" layoutX="10.0" layoutY="217.0" onAction="#onClickCommunicationHubBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Communication Hub" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>

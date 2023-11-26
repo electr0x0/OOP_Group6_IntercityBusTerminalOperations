@@ -25,6 +25,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -110,7 +111,7 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
     @FXML
     private MFXProgressSpinner progressSpinner;
     
-    private int scheduleCounter = 0;
+    private int tripIDCounter = 0;
     
     private BusTrip currentSchedule;
     
@@ -287,11 +288,11 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             return;
         }
 
-        generateScheduleID();
+        String tripID = generateTripID();
         
         
         
-        currentSchedule = new BusTrip(scheduleCounter, selectedBus, source, destination,timeslot,adultFare,childFare,weekendFare,totalDistance,assignedDriver );
+        currentSchedule = new BusTrip(tripID, selectedBus, source, destination,timeslot,adultFare,childFare,weekendFare,totalDistance,assignedDriver );
         
         allTripList.add(currentSchedule);
         showSuccessDialog("Sucess", "Sucessfully Added The Schedule to system");
@@ -300,13 +301,17 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
         saveArrayListsToFile();
     }
     
-    private void generateScheduleID(){
-       
-       int format = 000;
-       scheduleCounter = format;
-       
-       format++;
-    }
+    private String generateTripID() {
+        LocalDate currentDate = LocalDate.now();
+        int day = currentDate.getDayOfMonth();
+        int month = currentDate.getMonthValue();
+
+        String dayString = String.format("%02d", day); // Ensures two digits
+        String monthString = String.format("%02d", month); // Ensures two digits
+        String counterString = String.format("%02d", tripIDCounter++); // Increments after use
+
+        return "TID-" + dayString + monthString + counterString;
+}
     
     private void busListSetter(){
         allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
