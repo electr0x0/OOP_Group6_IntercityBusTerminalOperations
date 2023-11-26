@@ -18,7 +18,7 @@
             <Font size="20.0" />
          </font>
       </TextArea>
-      <Button layoutX="55.0" layoutY="474.0" mnemonicParsing="false" onAction="#createPDFonClick" prefHeight="25.0" prefWidth="166.0" text="Save as PDF">
+      <Button layoutX="55.0" layoutY="474.0" mnemonicParsing="false" onAction="#createPDFonClick" prefHeight="25.0" prefWidth="166.0" text="Save File">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
