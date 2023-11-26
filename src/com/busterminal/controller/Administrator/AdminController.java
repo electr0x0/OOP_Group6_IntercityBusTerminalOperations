@@ -102,7 +102,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void reservationOnMouseClick(ActionEvent event) {
-        sceneSwithch("ReservationStatus.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ReservationStatus.fxml");
     }
 
     @FXML

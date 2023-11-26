@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.busterminal.model;
 
 import java.io.Serializable;
@@ -57,10 +53,6 @@ public class Reservation  implements Serializable {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
-  
-
-   
 
     public ReserveBus getReserveBus() {
         return reserveBus;

@@ -1,4 +1,3 @@
-
 package com.busterminal.model;
 
 import java.io.Serializable;
@@ -10,14 +9,16 @@ import java.time.LocalDate;
  */
 public class ReserveBus implements Serializable {
 
-    @Override
-    public String toString() {
-        return "ReserveBus{" + "reserveId=" + reserveId + ", busType=" + busType + ", acType=" + acType + ", city=" + city + ", duration=" + duration + ", date=" + date + ", fare=" + fare + '}';
-    }
     private int reserveId;
     private String busType, acType, city;
     private int duration;
 
+    @Override
+    public String toString() {
+        return "ReserveBus{" + "reserveId=" + reserveId + ", busType=" + busType + ", acType=" + acType + ", city=" + city + ", duration=" + duration + ", date=" + date + ", fare=" + fare + '}';
+    }
+     public ReserveBus() {
+    }
     public int getReserveId() {
         return reserveId;
     }
@@ -43,14 +44,13 @@ public class ReserveBus implements Serializable {
         this.fare = fare;
     }
 
-    public ReserveBus(int reserveId, String busType,  int fare) {
+    public ReserveBus(int reserveId, String busType, int fare) {
         this.reserveId = reserveId;
         this.busType = busType;
-      
+
         this.fare = fare;
     }
-    
-    
+
     public int getFare() {
         return fare;
     }
@@ -58,12 +58,11 @@ public class ReserveBus implements Serializable {
     public void setFare(int fare) {
         this.fare = fare;
     }
-    
-    
-    public void createReserveBus(){
-        
+
+    public void createReserveBus() {
+
     }
-    
+
     public String getBusType() {
         return busType;
     }
@@ -104,6 +103,5 @@ public class ReserveBus implements Serializable {
         this.date = date;
     }
 
-    public ReserveBus() {
-    }
+   
 }
