@@ -25,7 +25,7 @@ public class MaintenanceStaffController implements Initializable {
     private Pane inner_Pane;
     @FXML
     private AnchorPane anchorPaneShow;
-    private Button logoutButton;
+    
     @FXML
     private Button resignButton;
     @FXML
@@ -43,7 +43,7 @@ public class MaintenanceStaffController implements Initializable {
 
     @FXML
     private void historyAccessOnMouseClick(ActionEvent event) {
-         sceneSwithch("/com/busterminal/views/MaintenanceStaff/PustingAfterMaintenance.fxml");
+         sceneSwithch("/com/busterminal/views/MaintenanceStaff/pustingAfterMaintenance.fxml");
     }
 
     @FXML
@@ -57,10 +57,10 @@ public class MaintenanceStaffController implements Initializable {
 
     @FXML
     private void LogOutOnMouseClick(ActionEvent event) {
-        logoutButton.getScene().getWindow().hide();
+        logoutButton1.getScene().getWindow().hide();
         Stage login = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../Login/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/login.fxml"));
             Scene scene = new Scene(root);
             login.setScene(scene);
             login.show();

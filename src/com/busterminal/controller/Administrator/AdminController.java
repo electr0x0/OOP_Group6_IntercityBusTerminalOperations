@@ -110,7 +110,7 @@ public class AdminController implements Initializable {
         logoutButton.getScene().getWindow().hide();
         Stage login = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/login.fxml"));
             Scene scene = new Scene(root);
             login.setScene(scene);
             login.show();
