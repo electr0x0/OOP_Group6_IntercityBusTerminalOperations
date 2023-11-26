@@ -35,6 +35,9 @@ public class BusSchedule {
         this.weekendFare = weekendFare;
         this.distance = distance;
     }
+
+    public BusSchedule() {
+    }
     
     
     
