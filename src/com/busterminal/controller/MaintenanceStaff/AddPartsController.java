@@ -2,6 +2,7 @@ package com.busterminal.controller.MaintenanceStaff;
 
 import com.busterminal.model.Database;
 import com.busterminal.model.Parts;
+import com.busterminal.model.PopUp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -104,8 +105,6 @@ public class AddPartsController implements Initializable {
             //Parts.addItems(newParts);
             clearInputFields();
             update(newParts);
-
-            //stockTable.setItems(partsDataList);
         }
 
     }
@@ -120,10 +119,14 @@ public class AddPartsController implements Initializable {
         String selectedCategory = filterCB.getValue();
         if (selectedCategory != null) {
             ObservableList<Parts> filteredData = FXCollections.observableArrayList();
+            
 
             for (Parts parts : partsDataList) {
                 if (parts.getCategory().equals(selectedCategory)) {
                     filteredData.add(parts);
+                }
+                else{
+                    PopUp.showMessage("Information", "Parts not in List");
                 }
             }
 
