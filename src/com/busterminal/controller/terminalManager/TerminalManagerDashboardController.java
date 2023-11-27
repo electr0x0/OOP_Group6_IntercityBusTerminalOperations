@@ -5,15 +5,18 @@
 package com.busterminal.controller.terminalManager;
 
 import com.busterminal.utilityclass.MFXDialog;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -34,6 +37,22 @@ public class TerminalManagerDashboardController implements Initializable {
     private MFXScrollPane scrollPane;
     @FXML
     private AnchorPane dashboardContentPane;
+    @FXML
+    private MFXButton dashboardBtn;
+    @FXML
+    private MFXButton busManagementBtn;
+    @FXML
+    private MFXButton tripFareButton;
+    @FXML
+    private MFXButton busTripScheBtn;
+    @FXML
+    private MFXButton manageStaffBtn;
+    @FXML
+    private MFXButton finanCialReportBtn;
+    @FXML
+    private ImageView financialReportBtn;
+    @FXML
+    private MFXButton comHubBtn;
 
     /**
      * Initializes the controller class.
@@ -41,11 +60,28 @@ public class TerminalManagerDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public void updateCurrentButtonStyle(MFXButton selectedButton) {
+    // List of all buttons
+    MFXButton[] buttons = { dashboardBtn, busManagementBtn, tripFareButton, busTripScheBtn, manageStaffBtn, finanCialReportBtn, comHubBtn };
+
+    // Set all buttons to btnNotSelected
+    for (MFXButton button : buttons) {
+        button.getStyleClass().removeAll("btnSelected", "btnNotSelected"); // Remove both to avoid duplication
+        button.getStyleClass().add("btnNotSelected");
+    }
+
+    // Set the selected button to btnSelected
+    selectedButton.getStyleClass().remove("btnNotSelected");
+    selectedButton.getStyleClass().add("btnCurrentSelected");
+}
+
 
     @FXML
     private void onClickDashboardBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerMainDashboardContent.fxml");
+        updateCurrentButtonStyle(dashboardBtn);
     }
 
     private void onClickManageStaffBtn(ActionEvent event) {
@@ -59,17 +95,20 @@ public class TerminalManagerDashboardController implements Initializable {
     @FXML
     private void onClickTicketPricingBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerTicketPricing.fxml");
+        updateCurrentButtonStyle(tripFareButton);
  
     }
 
     @FXML
     private void onClickFinancialBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerFinancialReports.fxml");
+        updateCurrentButtonStyle(finanCialReportBtn);
     }
 
     @FXML
     private void onClickCommunicationHubBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/generic/CommunicationHub.fxml");
+        updateCurrentButtonStyle(comHubBtn);
     }
 
     @FXML
@@ -80,6 +119,7 @@ public class TerminalManagerDashboardController implements Initializable {
     @FXML
     private void onClickBusManagementBtn(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerBusManagement.fxml");
+        updateCurrentButtonStyle(busManagementBtn);
     }
     
     private void SceneSwitch(String fxmllocation){
@@ -99,6 +139,13 @@ public class TerminalManagerDashboardController implements Initializable {
     @FXML
     private void onClickBusTripSchedule(ActionEvent event) {
         SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerScheduleSetter.fxml");
+        updateCurrentButtonStyle(busTripScheBtn);
+    }
+
+    @FXML
+    private void onClickManageStafFBtn(ActionEvent event) {
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerStaffMangement.fxml");
+        updateCurrentButtonStyle(manageStaffBtn);
     }
     
     

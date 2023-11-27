@@ -18,21 +18,34 @@ import java.time.LocalDate;
 public class BusTripSchedule implements Serializable{
     private int scheduleId;
     private LocalDate scheduleDate;
-    private int tripId;
+    private String tripId;
     private String time;
     private String sourceDestination;
     private String assignedDriver;
-    private String assignedVehicle;
+    private int assignedVehicle;
+    private BusTrip trip;
+    private boolean tripScheduleStatus = true;
 
-    public BusTripSchedule(int scheduleId, LocalDate scheduleDate, int tripId, String time, String sourceDestination, String assignedDriver, String assignedVehicle) {
+    public BusTripSchedule(int scheduleId, BusTrip trip, LocalDate scheduleDate) {
         this.scheduleId = scheduleId;
         this.scheduleDate = scheduleDate;
-        this.tripId = tripId;
-        this.time = time;
-        this.sourceDestination = sourceDestination;
-        this.assignedDriver = assignedDriver;
-        this.assignedVehicle = assignedVehicle;
+        this.trip = trip;
+        this.tripId = trip.getTripID();
+        this.time = trip.getTimeSlot();
+        this.sourceDestination = trip.getSource() + "-" + trip.getDestination();
+        this.assignedDriver = trip.getDriver();
+        this.assignedVehicle = trip.getBus().getBusId();
     }
+
+    public BusTrip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(BusTrip trip) {
+        this.trip = trip;
+    }
+    
+    
 
     public int getScheduleId() {
         return scheduleId;
@@ -50,11 +63,11 @@ public class BusTripSchedule implements Serializable{
         this.scheduleDate = scheduleDate;
     }
 
-    public int getTripId() {
+    public String getTripId() {
         return tripId;
     }
 
-    public void setTripId(int tripId) {
+    public void setTripId(String tripId) {
         this.tripId = tripId;
     }
 
@@ -82,18 +95,26 @@ public class BusTripSchedule implements Serializable{
         this.assignedDriver = assignedDriver;
     }
 
-    public String getAssignedVehicle() {
+    public int getAssignedVehicle() {
         return assignedVehicle;
     }
 
-    public void setAssignedVehicle(String assignedVehicle) {
+    public void setAssignedVehicle(int assignedVehicle) {
         this.assignedVehicle = assignedVehicle;
     }
 
-   // @Override
-   // public String toString() {
-       // return "BusTripSchedule{" + "scheduleId=" + scheduleId + ", scheduleDate=" + scheduleDate + ", tripId=" + tripId + ", time=" + time + ", sourceDestination=" + sourceDestination + ", assignedDriver=" + assignedDriver + ", assignedVehicle=" + assignedVehicle + '}';
-   // }
+    public boolean isTripScheduleStatus() {
+        return tripScheduleStatus;
+    }
+
+    public void setTripScheduleStatus(boolean tripScheduleStatus) {
+        this.tripScheduleStatus = tripScheduleStatus;
+    }
+    
+    
+    
+    
+    
     
     
 

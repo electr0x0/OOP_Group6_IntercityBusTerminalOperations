@@ -9,10 +9,9 @@ package com.busterminal.model;
  * @author electr0
  */
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class BusSchedule implements Serializable {
+public class BusSchedule {
     private String scheduleId;
     private Bus bus; // Bus object reference for strong link
     private String source;
@@ -22,7 +21,6 @@ public class BusSchedule implements Serializable {
     private String fleetType;
     private int adultFare, childrenFare, weekendFare;
     private float distance;
-    private String driver;
 
     public BusSchedule(String scheduleId, Bus bus, String source, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime, String fleetType, int adultFare, int childrenFare, int weekendFare, float distance) {
         this.scheduleId = scheduleId;
@@ -36,9 +34,6 @@ public class BusSchedule implements Serializable {
         this.childrenFare = childrenFare;
         this.weekendFare = weekendFare;
         this.distance = distance;
-    }
-
-    public BusSchedule() {
     }
     
     
