@@ -1,6 +1,10 @@
 package com.busterminal.controller.MaintenanceStaff;
+
 import com.busterminal.model.Database;
 import com.busterminal.model.Parts;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -52,6 +56,10 @@ public class AddPartsController implements Initializable {
     private ComboBox<String> catagoryCB;
 
     private ObservableList<Parts> partsDataList;
+    @FXML
+    private TableColumn<Parts, Integer> quantityCol;
+    @FXML
+    private TextField quantiryTF;
 
     /**
      * Initializes the controller class.
@@ -65,12 +73,13 @@ public class AddPartsController implements Initializable {
         partsModelCol.setCellValueFactory(new PropertyValueFactory<>("model"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         catagoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
         //loadDummyData();
-        stockTable.getItems().addAll(Database.getInstanceBinFile("PartsList.bin"));
-        
+        stockTable.getItems().addAll(Parts.getItems());
         partsDataList = FXCollections.observableArrayList();
         partsDataList.addAll(stockTable.getItems());
-  
+
     }
 
     private void clearInputFields() {
@@ -78,6 +87,7 @@ public class AddPartsController implements Initializable {
         partsModelTF.clear();
         partsPriceTF.clear();
         catagoryCB.setValue(null);
+        quantiryTF.clear();
     }
 
     @FXML
@@ -88,11 +98,14 @@ public class AddPartsController implements Initializable {
         String catagory = catagoryCB.getValue();
 
         if (Parts.validateInput(partsName, partsModel, partsPrice, catagory)) {
-            Parts newParts = new Parts(partsName, partsModel, Integer.parseInt(partsPrice), catagory); 
+
+            Parts newParts = new Parts(partsName, partsModel, Integer.parseInt(partsPrice), catagory, Integer.parseInt(quantiryTF.getText()));
             partsDataList.add(newParts);
-             Database.writeToBinFile("PartsList.bin", partsDataList);
+            //Parts.addItems(newParts);
             clearInputFields();
-            stockTable.setItems(partsDataList);
+            update(newParts);
+
+            //stockTable.setItems(partsDataList);
         }
 
     }
@@ -118,6 +131,44 @@ public class AddPartsController implements Initializable {
         } else {
             stockTable.setItems(partsDataList);
         }
+    }
+
+    private void update(Parts q) {
+        ObservableList<Parts> allTableData;
+        allTableData = stockTable.getItems();
+
+        boolean itemExists = false;
+
+        for (Parts p : allTableData) {
+            if (p.getName().equals(q.getName()) && p.getCategory().equals(q.getCategory()) && p.getModel().equals(q.getModel())) {
+                itemExists = true;
+
+                if (p.getPrice() != q.getPrice()) {
+                    p.setPrice(q.getPrice());
+                    stockTable.refresh();
+                }
+
+                p.setQuantity(p.getQuantity() + q.getQuantity());
+                break;
+                // No need to continue searching
+            }
+        }
+
+        if (!itemExists) {
+            allTableData.add(q);
+        }
+        stockTable.setItems(allTableData);
+        // get file path
+        File file = new File("PartsList.bin");
+
+        //Now delete the file
+        file.delete();
+        
+        // and again read the file from allTableData
+        for(Parts p : allTableData){
+            Parts.addItems(p);
+        }
+
     }
 
 }

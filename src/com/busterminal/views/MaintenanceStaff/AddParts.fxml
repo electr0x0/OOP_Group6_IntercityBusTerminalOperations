@@ -18,10 +18,11 @@
    <children>
       <TableView fx:id="stockTable" fixedCellSize="0.0" layoutY="359.0" prefHeight="461.0" prefWidth="1220.0">
          <columns>
-            <TableColumn fx:id="partsNameCol" prefWidth="310.0" text="Pats Name" />
-            <TableColumn fx:id="partsModelCol" prefWidth="360.0" text="Patrs Model" />
-            <TableColumn fx:id="priceCol" prefWidth="234.0" text="Price" />
-            <TableColumn fx:id="catagoryCol" prefWidth="315.0" text="Patrs Catagory" />
+            <TableColumn fx:id="partsNameCol" prefWidth="265.0" text="Pats Name" />
+            <TableColumn fx:id="partsModelCol" prefWidth="288.0" text="Patrs Model" />
+            <TableColumn fx:id="priceCol" prefWidth="262.0" text="Price" />
+            <TableColumn fx:id="catagoryCol" prefWidth="271.0" text="Patrs Catagory" />
+            <TableColumn fx:id="quantityCol" prefWidth="133.0" text="Quantiry" />
          </columns>
       </TableView>
       <Button layoutX="797.0" layoutY="154.0" mnemonicParsing="false" onAction="#AddButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Add">
@@ -98,6 +99,16 @@
                </font>
             </Text>
             <ComboBox fx:id="catagoryCB" prefHeight="31.0" prefWidth="240.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="676.0" layoutY="83.0" prefHeight="31.0" prefWidth="355.0">
+         <children>
+            <Text fill="#59a7f0" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity:" wrappingWidth="114.005859375">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="quantiryTF" prefHeight="31.0" prefWidth="248.0" />
          </children>
       </HBox>
    </children>

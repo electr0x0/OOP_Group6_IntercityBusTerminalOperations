@@ -99,8 +99,5 @@ public class MaintenanceStaffController implements Initializable {
         }
     }
 
-    @FXML
-    private void viewScheduleButtonOnMouseClick(ActionEvent event) {
-    }
 
 }
