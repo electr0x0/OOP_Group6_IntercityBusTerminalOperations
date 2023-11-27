@@ -46,7 +46,12 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Resign">
+            <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" onAction="#toHoliday" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Take Holiday">
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="17.0" layoutY="367.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Resign">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>

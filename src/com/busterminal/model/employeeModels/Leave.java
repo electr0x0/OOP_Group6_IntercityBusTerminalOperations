@@ -5,6 +5,7 @@
 package com.busterminal.model.employeeModels;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  *
@@ -15,6 +16,9 @@ public class Leave implements Serializable {
     Boolean onLeave;
     Boolean askedForLeave;
     String leaveReason;
+    
+    LocalDate leaveStartDate;
+    LocalDate leaveEndDate;
 
     public Leave(String id, Boolean onLeave, Boolean askedForLeave, String leaveReason) {
         this.id = id;
@@ -23,6 +27,36 @@ public class Leave implements Serializable {
         this.leaveReason = leaveReason;
     }
 
+    public Leave(String id, Boolean onLeave, Boolean askedForLeave, String leaveReason, LocalDate leaveStartDate, LocalDate leaveEndDate) {
+        this.id = id;
+        this.onLeave = onLeave;
+        this.askedForLeave = askedForLeave;
+        this.leaveReason = leaveReason;
+        this.leaveStartDate = leaveStartDate;
+        this.leaveEndDate = leaveEndDate;
+    }
+    
+    
+
+    public LocalDate getLeaveStartDate() {
+        return leaveStartDate;
+    }
+
+    public void setLeaveStartDate(LocalDate leaveStartDate) {
+        this.leaveStartDate = leaveStartDate;
+    }
+
+    public LocalDate getLeaveEndDate() {
+        return leaveEndDate;
+    }
+
+    public void setLeaveEndDate(LocalDate leaveEndDate) {
+        this.leaveEndDate = leaveEndDate;
+    }
+
+   
+    
+    
     public String getId() {
         return id;
     }

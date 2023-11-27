@@ -8,6 +8,7 @@ import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Overtime;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.views.Employee.EmployeeDashboardController;
+import static com.busterminal.views.Employee.EmployeeDashboardController.updateEmployeeOvertime;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -76,7 +79,7 @@ public class MyEmployeeController implements Initializable {
     private ChoiceBox<String> sortChoice;
     String getChoices[] = {"ID","First Name","Last Name","Email","Salary","Designation"};
     
-    String myId="771126081851";
+    String myId="781127000659";
     @FXML
     private AnchorPane EmployeeListPane;
     
@@ -381,27 +384,32 @@ public class MyEmployeeController implements Initializable {
 
     @FXML
     private void denaiRequestOvt(ActionEvent event) {
-        for(Employee emp: empList){
-          if(emp.getId().trim().equals(selectedItem.trim())){
-              ovt = new Overtime(emp.getId(),false,0,0,
-              false,"");
-              ArrayList<Overtime> ot = Overtime.deleteOvertimeById("Overtime.bin", emp.getId());
-             try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Overtime.bin"))) {
-                // Write the updated list back to the file
-                outputStream.writeObject(ot);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-              EmployeeDashboardController.updateEmployeeOvertime(empList, myId, ovt);
-              ovtRequestPane.setVisible(false);
-              switchToOvertime.setVisible(true);
-              expandLabelOvt.setText("");
-              items.clear();
-              return;
-          } 
-        }
+        Alert a = new Alert(AlertType.WARNING,"Are you sure you want to cancel your overtime?",ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = a.showAndWait();
+            if (result.get() == ButtonType.YES){
+                for(Employee emp: empList){
+                    if(emp.getId().trim().equals(selectedItem.trim())){
+                        ovt = new Overtime(emp.getId(),false,0,0,
+                        false,"");
+                        ArrayList<Overtime> ot = Overtime.deleteOvertimeById("Overtime.bin", emp.getId());
+                       try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Overtime.bin"))) {
+                          // Write the updated list back to the file
+                          outputStream.writeObject(ot);
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                        EmployeeDashboardController.updateEmployeeOvertime(empList, myId, ovt);
+                        ovtRequestPane.setVisible(false);
+                        switchToOvertime.setVisible(true);
+                        expandLabelOvt.setText("");
+                        items.clear();
+                        return;
+                     } 
         
-    }
+                } 
+            }
+        
+        }
 
     @FXML
     private void toSalary(ActionEvent event) throws IOException {
@@ -420,6 +428,24 @@ public class MyEmployeeController implements Initializable {
             e.printStackTrace(); // or handle the exception as needed
         }
         
+    }
+
+    @FXML
+    private void toLeave(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/HolidayRequest.fxml"));
+            root = loader.load();
+            HolidayRequestController controller = loader.getController();
+
+            controller.setEmpID(myId);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
     }
 
     

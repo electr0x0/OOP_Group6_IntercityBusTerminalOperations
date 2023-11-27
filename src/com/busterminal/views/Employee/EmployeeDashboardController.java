@@ -309,6 +309,24 @@ public class EmployeeDashboardController implements Initializable  {
     public void setOvertimePane(AnchorPane overtimePane) {
         this.overtimePane = overtimePane;
     }
+
+    @FXML
+    private void toHoliday(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeHoliday.fxml"));
+            root = loader.load();
+            EmployeeHolidayController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
     
     
 
