@@ -15,7 +15,11 @@ public class MainTerminalApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+<<<<<<< HEAD
+        Parent root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
+=======
 
+>>>>>>> main
         
         //Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
       //Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
