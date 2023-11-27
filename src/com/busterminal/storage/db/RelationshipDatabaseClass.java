@@ -7,7 +7,11 @@ package com.busterminal.storage.db;
 import com.busterminal.model.Bus;
 import com.busterminal.model.BusTrip;
 import com.busterminal.model.BusTripSchedule;
+<<<<<<< HEAD
 import com.busterminal.model.Employee;
+=======
+import com.busterminal.model.Ticket;
+>>>>>>> main
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,10 +36,22 @@ public class RelationshipDatabaseClass implements Serializable {
     private int busIdCounter;
     private ArrayList<BusTrip> allTripList;
     private ArrayList<BusTripSchedule> allAvailableTripSchedules;
+<<<<<<< HEAD
     private int currentScheduleID;
     private int currentInvoiceCounter;
     
     private ArrayList<Employee> allEmployees;
+=======
+    //private ArrayList<Ticket> allTicketList;
+
+    //public ArrayList<Ticket> getAllTicketList() {
+        //return allTicketList;
+    //}
+
+    //public void setAllTicketList(ArrayList<Ticket> allTicketList) {
+        //this.allTicketList = allTicketList;
+    //}
+>>>>>>> main
 
     public int getCurrentInvoiceCounter() {
         return currentInvoiceCounter;
@@ -141,6 +157,7 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allAvailableTripSchedules = allAvailableTripSchedules;
         saveToFile();
     }
+<<<<<<< HEAD
 
     public int getCurrentScheduleID() {
         return currentScheduleID;
@@ -159,8 +176,12 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allEmployees = allEmployees;
         saveToFile();
     }
+=======
+    
+>>>>>>> main
     
     
     
 }
 
+                                        
