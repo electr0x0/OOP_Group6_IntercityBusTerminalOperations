@@ -26,7 +26,7 @@
                      <Font name="System Bold Italic" size="18.0" />
                   </font>
                </Label>
-               <DatePicker fx:id="searchByDate" promptText="Search By Date" />
+               <DatePicker fx:id="filterCB" promptText="Search By Date" />
                <Button mnemonicParsing="false" onAction="#searchButtonOnMouseClick" prefHeight="31.0" prefWidth="76.0" text="Search" />
       
                   <TableView fx:id="maintenanceTable" prefHeight="379.0" prefWidth="1200.0">

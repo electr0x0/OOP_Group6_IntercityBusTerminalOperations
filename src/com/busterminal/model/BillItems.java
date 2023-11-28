@@ -11,28 +11,26 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
-
 public class BillItems {
+
     private int BusId;
     private String partsName;
     private String PartsModel;
     private float partsPrice;
-    private String Category;
     private float quantity;
     private float total;
-    
-    public BillItems(int BusId, String partsName, String PartsModel, float partsPrice, String Category, float quantity,float total) {
+
+    public BillItems(int BusId, String partsName, String PartsModel, float partsPrice, float quantity, float total) {
         this.BusId = BusId;
         this.partsName = partsName;
         this.PartsModel = PartsModel;
         this.partsPrice = partsPrice;
-        this.Category = Category;
         this.quantity = quantity;
         this.total = total;
     }
-    public BillItems(){
-        
+
+    public BillItems() {
+
     }
 
     public int getBusId() {
@@ -67,14 +65,6 @@ public class BillItems {
         this.partsPrice = partsPrice;
     }
 
-    public String getCategory() {
-        return Category;
-    }
-
-    public void setCategory(String Category) {
-        this.Category = Category;
-    }
-
     public float getQuantity() {
         return quantity;
     }
@@ -93,14 +83,14 @@ public class BillItems {
 
     @Override
     public String toString() {
-        return "BillItems{" + "BusId=" + BusId + ", partsName=" + partsName + ", PartsModel=" + PartsModel + ", partsPrice=" + partsPrice + ", Category=" + Category + ", quantity=" + quantity + ", total=" + total + '}';
+        return "BillItems{" + "BusId=" + BusId + ", partsName=" + partsName + ", PartsModel=" + PartsModel + ", partsPrice=" + partsPrice + ", quantity=" + quantity + ", total=" + total + '}';
     }
-    
-   public static boolean validateInput(String partsName, String partsModel, String partsPrice, String category) {
+
+    public static boolean validateInput(String partsName, String partsModel, String partsPrice, String category) {
         return !partsName.isEmpty() && !partsModel.isEmpty() && !partsPrice.isEmpty() && category != null;
     }
-   
-   public static void addItems(Parts e) {
+
+    public static void addItems(Parts e) {
         File f = null;
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -128,9 +118,8 @@ public class BillItems {
             }
         }
     }
-     
-     
-     public static ObservableList<Parts> getItems() {
+
+    public static ObservableList<Parts> getItems() {
         ObjectInputStream ois = null;
         ObservableList<Parts> list = FXCollections.observableArrayList();
         try {
@@ -154,7 +143,4 @@ public class BillItems {
         return list;
     }
 
-    
-    
-    
 }

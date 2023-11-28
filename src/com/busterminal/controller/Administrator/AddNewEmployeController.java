@@ -220,7 +220,8 @@ public class AddNewEmployeController implements Initializable {
         }
        Administrator.deleteEmployee(selectedItem);
        MaintenanceStaff.deleteEmployee((MaintenanceStaff) selectedItem);
-        
+      
+       
         
         
     }
