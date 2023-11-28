@@ -8,14 +8,12 @@ import com.busterminal.model.employeeModels.Leave;
 import com.busterminal.model.employeeModels.Overtime;
 import com.busterminal.model.employeeModels.Resignation;
 import com.busterminal.model.employeeModels.Salary;
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import static java.time.LocalDate.now;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -33,6 +31,10 @@ public class Employee extends User {
     Overtime overTime;
     Resignation resignation;
     Leave holiday;
+    
+    Boolean onLeave;
+    Boolean isPaid;
+    LocalDate lastPaid;
     
 
     public Employee(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
@@ -55,6 +57,9 @@ public class Employee extends User {
         this.overTime = overTime;
         this.resignation = resignation;
         this.holiday = holiday;
+        this.onLeave = holiday.getOnLeave();
+        this.isPaid = salStatus.getIsPaid();
+        this.lastPaid = salStatus.getLastPaid();
     }
 
     public Salary getSalStatus() {
@@ -131,6 +136,32 @@ public class Employee extends User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Boolean getOnLeave() {
+        return onLeave;
+    }
+
+    public void setOnLeave(Boolean onLeave) {
+        this.onLeave = onLeave;
+    }
+
+    public Boolean getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(Boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
+    public LocalDate getLastPaid() {
+        return lastPaid;
+    }
+
+    public void setLastPaid(LocalDate lastPaid) {
+        this.lastPaid = lastPaid;
+    }
+    
+    
     
     
     private boolean calculatePayment(LocalDate lastPayed) {
