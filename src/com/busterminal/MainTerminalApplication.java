@@ -17,16 +17,16 @@ public class MainTerminalApplication extends Application {
     public void start(Stage stage) throws Exception {
 
         
-        Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
-      //Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("views/passenger/Dashboard_Passenger.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("views/driver/Dashboard_Driver.fxml"));
 
         //Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
 
-<<<<<<< Updated upstream
+
         //Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
-=======
+
       //  Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
->>>>>>> Stashed changes
+
 
       
 
