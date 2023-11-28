@@ -97,14 +97,31 @@ public class AddPartsController implements Initializable {
         String partsModel = partsModelTF.getText();
         String partsPrice = partsPriceTF.getText();
         String catagory = catagoryCB.getValue();
+        if (partsName.equals("")) {
+            PopUp.showMessage("Alert", "Please Place the Parts Name");
+            return;
+        }
+        if (partsModel.equals("")) {
+            PopUp.showMessage("Alert", "Please Place the Parts Model");
+            return;
+        }
+        if (catagory.equals("")){
+            PopUp.showMessage("Alert", "Please select the Parts Catagory");
+        }
 
-        if (Parts.validateInput(partsName, partsModel, partsPrice, catagory)) {
+        try {
+            int a = Integer.parseInt(partsPrice);
+            int b = Integer.parseInt(quantiryTF.getText());
+            if (Parts.validateInput(partsName, partsModel, partsPrice, catagory)) {
 
-            Parts newParts = new Parts(partsName, partsModel, Integer.parseInt(partsPrice), catagory, Integer.parseInt(quantiryTF.getText()));
-            partsDataList.add(newParts);
-            //Parts.addItems(newParts);
-            clearInputFields();
-            update(newParts);
+                Parts newParts = new Parts(partsName, partsModel, Integer.parseInt(partsPrice), catagory, Integer.parseInt(quantiryTF.getText()));
+                partsDataList.add(newParts);
+                //Parts.addItems(newParts);
+                clearInputFields();
+                update(newParts);
+            }
+        }catch(Exception e){
+            PopUp.showMessage("Alert", "Price should be a number"+"\n Quantity should be a number");
         }
 
     }
@@ -119,13 +136,11 @@ public class AddPartsController implements Initializable {
         String selectedCategory = filterCB.getValue();
         if (selectedCategory != null) {
             ObservableList<Parts> filteredData = FXCollections.observableArrayList();
-            
 
             for (Parts parts : partsDataList) {
                 if (parts.getCategory().equals(selectedCategory)) {
                     filteredData.add(parts);
-                }
-                else{
+                } else {
                     PopUp.showMessage("Information", "Parts not in List");
                 }
             }
@@ -166,9 +181,9 @@ public class AddPartsController implements Initializable {
 
         //Now delete the file
         file.delete();
-        
+
         // and again read the file from allTableData
-        for(Parts p : allTableData){
+        for (Parts p : allTableData) {
             Parts.addItems(p);
         }
 

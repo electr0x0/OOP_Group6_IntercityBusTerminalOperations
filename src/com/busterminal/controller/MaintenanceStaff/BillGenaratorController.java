@@ -1,4 +1,5 @@
 package com.busterminal.controller.MaintenanceStaff;
+import com.busterminal.model.BillItems;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -30,13 +31,13 @@ public class BillGenaratorController implements Initializable {
     @FXML
     private TextArea totalBillTF;
     @FXML
-    private TableColumn<?, ?> partsNameCol;
+    private TableColumn<BillItems, String> partsNameCol;
     @FXML
-    private TableColumn<?, ?> quantityCol;
+    private TableColumn<BillItems, Integer> quantityCol;
     @FXML
-    private TableColumn<?, ?> unitCost;
+    private TableColumn<BillItems, Float> unitCost;
     @FXML
-    private TableColumn<?, ?> totalCol;
+    private TableColumn<BillItems, Float> totalCol;
 
     
     
