@@ -68,7 +68,6 @@ public class EmployeeSalaryDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
     }    
     
     public String getEmpID() {
@@ -81,19 +80,14 @@ public class EmployeeSalaryDashboardController implements Initializable {
 
     @FXML
     private void loadDetails(ActionEvent event) {
+        System.out.println(empID);
         user = getEmployeeById("Employee.bin",empID);
-        salaryLabel.setText(Integer.toString(user.getSalary())+"tk");
+        salaryLabel.setText(Integer.toString(user.getSalary()));
         if(user.getSalStatus().getIncresedSalary()< 1){
-            AskedForIncrementLabel.setText("No Increment Request");
-        } else {
-            AskedForIncrementLabel.setText("Asked for Increment: yes");
+            LastPaidLabel.setText("No previous entry");
+            AskedForIncrementLabel.setText("No previous entry");
+            return;
         }
-        if (user.getSalStatus().getLastPaid() != null) {
-            LastPaidLabel.setText(user.getSalStatus().getLastPaid().toString());
-        } else {
-            LastPaidLabel.setText("Have not been paid yet.");
-        }
-
     }
 
     @FXML
