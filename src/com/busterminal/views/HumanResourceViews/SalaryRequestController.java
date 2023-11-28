@@ -12,6 +12,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +27,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -59,11 +65,28 @@ public class SalaryRequestController implements Initializable {
     
     ObservableList<String> itemsIncrement = FXCollections.observableArrayList();
     ObservableList<String> itemsPayment = FXCollections.observableArrayList();
+    ObservableList<Employee> employeeList = FXCollections.observableArrayList(); 
     
     @FXML
     private AnchorPane incrementRequestPane;
     @FXML
     private Label incrementDetails;
+    @FXML
+    private TableView<Employee> salaryTable;
+    @FXML
+    private TableColumn<Employee, String> tableID;
+    @FXML
+    private TableColumn<Employee, String> tableFname;
+    @FXML
+    private TableColumn<Employee, String> tableLname;
+    @FXML
+    private TableColumn<Employee, String> tableDesignation;
+    @FXML
+    private TableColumn<Employee, Integer> tableSal;
+    @FXML
+    private TableColumn<Employee, LocalDate> tableLastPaid;
+    @FXML
+    private TableColumn<Employee, Boolean> tableIsPaid;
     /**
      * Initializes the controller class.
      */
@@ -79,7 +102,7 @@ public class SalaryRequestController implements Initializable {
                 incrementList.setItems(itemsIncrement);
             } 
             if(emp.getSalStatus().getAskedForSalary() != null && emp.getSalStatus().getAskedForSalary()){
-                String salarySTR = "Name: "+ emp.getFirstname() + " " + emp.getLastname() +
+                String salarySTR = "ID: "+emp.getId()+" Name: "+ emp.getFirstname() + " " + emp.getLastname() +
                         " Salary: " + emp.getSalary() +
                         " Last Paid: " + emp.getSalStatus().getLastPaid();
                     
@@ -88,6 +111,18 @@ public class SalaryRequestController implements Initializable {
                         
             }
         }
+        
+        tableID.setCellValueFactory(new PropertyValueFactory<Employee,String>("id"));
+        tableFname.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstname()));
+        tableLname.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue(). getLastname()));
+        tableSal.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("Salary"));
+        tableDesignation.setCellValueFactory(new PropertyValueFactory<Employee,String>("empType"));
+        tableLastPaid.setCellValueFactory(new PropertyValueFactory<Employee,LocalDate>("lastPaid"));
+        tableIsPaid.setCellValueFactory(new PropertyValueFactory<Employee,Boolean>("isPaid"));
+       
+
+    employeeList.addAll(salList);
+    salaryTable.setItems(employeeList);
     }    
 
     @FXML
@@ -121,7 +156,8 @@ public class SalaryRequestController implements Initializable {
                     true,
                     LocalDate.now(), 0, "");
             emp.setSalStatus(sal);
-
+            emp.setIsPaid(true);
+            emp.setLastPaid(LocalDate.now());
             // Save the updated employee list to the file
             Employee.writeEmployeesToFile("Employee.bin", salList);
 
@@ -201,5 +237,25 @@ public class SalaryRequestController implements Initializable {
         this.empID = empID;
     }
 
+    @FXML
+    private void paySalary(ActionEvent event) {
+        selectedItem = paymentList.getSelectionModel().getSelectedItem();  
+        int firstSpaceIndex = selectedItem.indexOf(" ");
+        SelectedId = selectedItem.substring(firstSpaceIndex+1,selectedItem.indexOf("N"));
+        for(Employee emp: salList){
+            if(emp.getId().trim().equals(SelectedId.trim())){
+               Salary sal = new Salary(emp.getId(), emp.getSalary(),
+                    false, 
+                    true,
+                    LocalDate.now(), 0, "");
+            emp.setSalStatus(sal);
+            emp.setIsPaid(true);
+            emp.setLastPaid(LocalDate.now());
+            Employee.writeEmployeesToFile("Employee.bin", salList);
+            paymentList.getItems().remove(selectedItem);
+               return;
+            }
+        }
+    }
     
 }

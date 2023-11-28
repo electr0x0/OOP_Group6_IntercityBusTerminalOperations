@@ -79,7 +79,7 @@ public class MyEmployeeController implements Initializable {
     private ChoiceBox<String> sortChoice;
     String getChoices[] = {"ID","First Name","Last Name","Email","Salary","Designation"};
     
-    String myId="781127000659";
+    String myId="721128224604";
     @FXML
     private AnchorPane EmployeeListPane;
     
