@@ -22,7 +22,11 @@ public class MainTerminalApplication extends Application {
 
         //Parent root = FXMLLoader.load(getClass().getResource("views/terminalManagerUser/TerminalManagerDashboard.fxml"));
 
+<<<<<<< Updated upstream
         //Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
+=======
+      //  Parent root = FXMLLoader.load(getClass().getResource("views/CreateEmployee.fxml"));
+>>>>>>> Stashed changes
 
       
 
