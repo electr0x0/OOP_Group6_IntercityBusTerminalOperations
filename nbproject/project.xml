@@ -21,5 +21,8 @@
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
+        <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
+            <definitions>E:\iras and pdf\FXML--  PDF generation-20231127T101525Z-001\FXML--  PDF generation\iText7-Core-7.1.15\nblibraries.properties</definitions>
+        </libraries>
     </configuration>
 </project>

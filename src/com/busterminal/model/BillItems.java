@@ -20,14 +20,16 @@ public class BillItems {
     private float partsPrice;
     private String Category;
     private float quantity;
+    private float total;
     
-    public BillItems(int BusId, String partsName, String PartsModel, float partsPrice, String Category, float quantity) {
+    public BillItems(int BusId, String partsName, String PartsModel, float partsPrice, String Category, float quantity,float total) {
         this.BusId = BusId;
         this.partsName = partsName;
         this.PartsModel = PartsModel;
         this.partsPrice = partsPrice;
         this.Category = Category;
         this.quantity = quantity;
+        this.total = total;
     }
     public BillItems(){
         
@@ -79,6 +81,19 @@ public class BillItems {
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "BillItems{" + "BusId=" + BusId + ", partsName=" + partsName + ", PartsModel=" + PartsModel + ", partsPrice=" + partsPrice + ", Category=" + Category + ", quantity=" + quantity + ", total=" + total + '}';
     }
     
    public static boolean validateInput(String partsName, String partsModel, String partsPrice, String category) {
