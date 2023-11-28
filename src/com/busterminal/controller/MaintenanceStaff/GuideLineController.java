@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
@@ -40,46 +39,46 @@ public class GuideLineController implements Initializable {
         data = FXCollections.observableArrayList();
 
     }
+
     @FXML
     private void newMenuItemsClick(ActionEvent event) {
         textArea.clear();
         currentFile = null;
 
     }
+
     @FXML
     private void openMenuItemsClick(ActionEvent event) {
-        FileChooser fileChooser =  new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        
+
         // set Initial directory to user's home directory
-        
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        
+
         // show open file dialog
-        
-        File selectedFile  = fileChooser.showOpenDialog(textArea.getScene().getWindow());
+        File selectedFile = fileChooser.showOpenDialog(textArea.getScene().getWindow());
         // selectedFile represent the file
-        
+
         // now read the selectedfile
-        if (selectedFile !=null){
-               try (FileReader fileReader = new FileReader(selectedFile)) {
+        if (selectedFile != null) {
+            try (FileReader fileReader = new FileReader(selectedFile)) {
 
-            char[] character = new char[(int) selectedFile.length()];
+                char[] character = new char[(int) selectedFile.length()];
 
-            // Read the entire character into the char array
-            fileReader.read(character);
+                // Read the entire character into the char array
+                fileReader.read(character);
 
-            // Set the text area with the character of the file
-            textArea.setText(new String(character));
-            currentFile = selectedFile;
-            }catch(IOException e){
+                // Set the text area with the character of the file
+                textArea.setText(new String(character));
+                currentFile = selectedFile;
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            
+
         }
-        
 
     }
+
     @FXML
     private void saveMenuItemsClick(ActionEvent event) {
         if (currentFile == null) {
@@ -90,31 +89,31 @@ public class GuideLineController implements Initializable {
 
     }
 
-    
-    private void saveAs(){
+    private void saveAs() {
         // choose File form desktop user
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save As");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         // setIni method used to provide a default file name (myFile.txt) but user can change the name
-        File selectedFile= fileChooser.showSaveDialog(textArea.getScene().getWindow());
+        File selectedFile = fileChooser.showSaveDialog(textArea.getScene().getWindow());
         // showSaveDialog is a part of ui
-        
-        if (selectedFile != null){
+
+        if (selectedFile != null) {
             saveToFile(selectedFile);
             currentFile = selectedFile;
         }
-        
+
     }
-    
-    private void saveToFile(File file){
-        try(FileWriter fileWriter = new FileWriter(file)){
+
+    private void saveToFile(File file) {
+        try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(textArea.getText());
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-            
+
         }
     }
+
     @FXML
     private void closeMenuItemsClick(ActionEvent event) {
         Stage stage = (Stage) textArea.getScene().getWindow();
@@ -122,26 +121,28 @@ public class GuideLineController implements Initializable {
         // Close the stage
         stage.close();
     }
+
     @FXML
     private void previousGuidelineMenuItemsClick(ActionEvent event) {
         File f = new File("GuideLine.bin");
         int length = (int) f.length();
-        ObservableList<GuideLine> guideLine = Database.getInstanceBinFile("GuideLine.bin");
+        ObservableList<GuideLine> guideLine = GuideLine.getItems();
         // Get the last element 
-        int lastIndex = guideLine.size()-1;
-        if (lastIndex>=0){
+        int lastIndex = guideLine.size() - 1;
+        System.out.println(lastIndex);
+        if (lastIndex >= 0) {
             GuideLine lastIntance = guideLine.get(lastIndex);
             textArea.setText(lastIntance.getText());
-        }
-        else{
+        } else {
             PopUp.showMessage("Information", "Write a GuideLine..!");
-            
-        } 
+
+        }
     }
+
     @FXML
     private void sendOnMouseClick(ActionEvent event) {
         GuideLine g = new GuideLine(LocalDate.now(), textArea.getText());
-        Database.writeToBinFile("GuideLine.bin", data);
+        GuideLine.addItems(g);
         textArea.clear();
         PopUp.showMessage("Information", "Massage send Successfully");
 

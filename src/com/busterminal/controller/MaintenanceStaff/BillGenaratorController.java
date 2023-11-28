@@ -1,4 +1,5 @@
 package com.busterminal.controller.MaintenanceStaff;
+
 import com.busterminal.model.BillItems;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,8 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-
 
 public class BillGenaratorController implements Initializable {
 
@@ -27,7 +28,7 @@ public class BillGenaratorController implements Initializable {
     @FXML
     private TextField Quantity;
     @FXML
-    private TableView<?> cartListTable;
+    private TableView<BillItems> cartListTable;
     @FXML
     private TextArea totalBillTF;
     @FXML
@@ -39,15 +40,14 @@ public class BillGenaratorController implements Initializable {
     @FXML
     private TableColumn<BillItems, Float> totalCol;
 
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-    }    
+        partsNameCol.setCellValueFactory(new PropertyValueFactory<>("partsName"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>(""));
+        unitCost.setCellValueFactory(new PropertyValueFactory<>(""));
+        totalCol.setCellValueFactory(new PropertyValueFactory<>(""));
+
+    }
 
     @FXML
     private void createBillOnMouseClick(ActionEvent event) {
@@ -60,5 +60,5 @@ public class BillGenaratorController implements Initializable {
     @FXML
     private void ConvertPdfOnMouseClick(ActionEvent event) {
     }
-    
+
 }
