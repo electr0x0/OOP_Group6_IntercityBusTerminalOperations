@@ -33,6 +33,8 @@ public class MaintenanceStaffController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sceneSwithch("/com/busterminal/views/MaintenanceStaff/CheckMaintenanceTask.fxml");
+        
+        
     }
 
 

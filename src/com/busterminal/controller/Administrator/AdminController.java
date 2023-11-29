@@ -40,6 +40,8 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sceneSwithch("/com/busterminal/views/Addministrator/Home.fxml");
+        
+        System.out.println("Hello java");
     }
 
     @FXML

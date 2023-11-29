@@ -4,6 +4,7 @@ import com.busterminal.model.Administrator;
 import com.busterminal.model.Client;
 import com.busterminal.model.DummyEmployee;
 import com.busterminal.model.MaintenanceStaff;
+import com.busterminal.model.PopUp;
 import com.busterminal.model.Resignation;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.stage.Popup;
 
 public class ResignationController {
 
@@ -55,6 +57,7 @@ public class ResignationController {
         for (Resignation r : selectedRows) {
             allPeople.remove(r);
         }
+        
        
         
     }
