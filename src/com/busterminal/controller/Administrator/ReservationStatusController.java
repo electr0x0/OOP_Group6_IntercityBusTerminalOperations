@@ -3,10 +3,12 @@ package com.busterminal.controller.Administrator;
 import com.busterminal.model.BusReservation;
 import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
+import com.busterminal.utilityclass.Validator;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,37 +52,63 @@ public class ReservationStatusController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
         data = FXCollections.observableArrayList();
-        // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("passengerName"));
         busIdColumn.setCellValueFactory(new PropertyValueFactory<>("busId"));
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
-        //readbinFile();
-        System.out.println(getClientList());
-
+        
         ObservableList<Reservation> re = getClientList();
+        
+        int saturday=0,sunday=0,monday=0,tuesday=0,wednesday=0,thursday=0;
+        
         if (re != null) {
             for (Reservation r : re) {
                 System.out.print("fare" + r.getReserveBus().getFare());
                 BusReservation br = new BusReservation(r.getReserveBus().getReserveId(), r.getPassengerName(),
                         r.getReserveBus().getBusType(), r.getReserveBus().getDate(), r.getReserveBus().getFare());
                 data.add(br);
+                
+                switch(Validator.getDayOfWeek(r.getReserveBus().getDate())){
+                    case("Monday"):
+                        monday+=r.getReserveBus().getFare();
+                        break;
+                    case("Saturday"):
+                        saturday+=r.getReserveBus().getFare();
+                        break;
+                    case("Sunday"):
+                        sunday+=r.getReserveBus().getFare();
+                        break;
+                    case("Tuesday"):
+                        tuesday+=r.getReserveBus().getFare();
+                        break;
+                    case("Wednesday"):
+                        wednesday+=r.getReserveBus().getFare();
+                        System.out.print("total:"+wednesday);
+                        break;
+                    case("Thursday"):
+                        thursday+=r.getReserveBus().getFare();
+                        break;  
+                }
 
             }
 
         }
+        System.out.print("total:"+wednesday);
 
         busReservationTable.getItems().addAll(data);
+        
+        
+        
 
         // pie chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Sturday", 15),
-                new PieChart.Data("Sunday", 25),
-                new PieChart.Data("Monday", 30),
-                new PieChart.Data("Tuesday", 20),
-                new PieChart.Data("Wednesday", 25),
-                new PieChart.Data("Thursday", 15)
+                new PieChart.Data("Sturday", saturday),
+                new PieChart.Data("Sunday", sunday),
+                new PieChart.Data("Monday", monday),
+                new PieChart.Data("Tuesday", tuesday),
+                new PieChart.Data("Wednesday", wednesday),
+                new PieChart.Data("Thursday", thursday)
         );
 
         weeklyPieChart.setData(pieChartData);
