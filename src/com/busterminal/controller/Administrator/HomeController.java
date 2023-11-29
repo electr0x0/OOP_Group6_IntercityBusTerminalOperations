@@ -1,25 +1,6 @@
 package com.busterminal.controller.Administrator;
-
-import com.busterminal.model.AppendableObjectOutputStream;
-import com.busterminal.model.Database;
-import com.busterminal.model.Feedback;
-import com.busterminal.model.Parts;
-import com.busterminal.model.Reservation;
-import com.busterminal.model.Ticket;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,17 +44,20 @@ public class HomeController implements Initializable {
     @FXML
     private BarChart<String, Number> weeklySaleBarChart;
 
-    private ObservableList<Ticket> ticket = FXCollections.observableArrayList();
+    //private ObservableList<Ticket> ticket;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         monthlySaleBarChar();
-        System.out.println(getItems());
+        //ticket= FXCollections.observableArrayList();
+        
+        //ticket=getItems();
 
     }
 
     @FXML
     private void sendMassageOnMouseClick(ActionEvent event) {
+        
 
     }
 
@@ -90,49 +74,17 @@ public class HomeController implements Initializable {
 
     }
 
-    private void dailyReport() {
-        ticket = Database.getInstanceBinFile("Feedback.bin");
-        System.out.println(ticket.size());
-    }
+  
 
-    public static void addItems(Parts e) {
-        File f = null;
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-
-        try {
-            f = new File("PartsList.bin");
-            if (f.exists()) {
-                fos = new FileOutputStream(f, true);
-                oos = new AppendableObjectOutputStream(fos);
-            } else {
-                fos = new FileOutputStream(f);
-                oos = new ObjectOutputStream(fos);
-            }
-            oos.writeObject(e);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Parts.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.close();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Parts.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    public static ObservableList<Parts> getItems() {
+    /*public static ObservableList<Ticket> getItems() {
         ObjectInputStream ois = null;
-        ObservableList<Parts> list = FXCollections.observableArrayList();
+        ObservableList<Ticket> list = FXCollections.observableArrayList();
         try {
-            Parts e;
+            Ticket e;
             ois = new ObjectInputStream(new FileInputStream("TicketList.bin"));
 
             while (true) {
-                e = (Parts) ois.readObject();
+                e = (Ticket) ois.readObject();
                 list.add(e);
             }
         } catch (RuntimeException e) {
@@ -146,6 +98,6 @@ public class HomeController implements Initializable {
             }
         }
         return list;
-    }
+    }*/
 
 }

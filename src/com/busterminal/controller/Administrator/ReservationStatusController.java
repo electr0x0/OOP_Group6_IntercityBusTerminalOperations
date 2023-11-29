@@ -58,7 +58,7 @@ public class ReservationStatusController implements Initializable {
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
         
-        ObservableList<Reservation> re = getClientList();
+        ObservableList<Reservation> re = getInstance();
         
         int saturday=0,sunday=0,monday=0,tuesday=0,wednesday=0,thursday=0;
         
@@ -134,7 +134,7 @@ public class ReservationStatusController implements Initializable {
         busReservationTable.setItems(filteredData);
     }
 
-    public static ObservableList<Reservation> getClientList() {
+    public static ObservableList<Reservation> getInstance() {
         ObjectInputStream ois = null;
         ObservableList<Reservation> list = FXCollections.observableArrayList();
         try {
