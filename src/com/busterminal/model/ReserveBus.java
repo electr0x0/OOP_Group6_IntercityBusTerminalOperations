@@ -103,4 +103,13 @@ public class ReserveBus implements Serializable {
 
     public ReserveBus() {
     }
+
+    public int getReserveId() {
+        return reserveId;
+    }
+
+    public void setReserveId(int reserveId) {
+        this.reserveId = reserveId;
+    }
+    
 }
