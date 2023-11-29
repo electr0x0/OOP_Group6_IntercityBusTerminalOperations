@@ -179,11 +179,10 @@ public class SignUpController implements Initializable {
             confirmPasswordTF.clear();
             return;
         }
-
         
         
         int clientID = User.generateClientID();
-        if (User.checkClientEmailExistence(emailTF.getText())== False) {
+        if (User.checkClientEmailExistence(emailTF.getText())== False && User.checkEmployeeEmailExistence(email) == False) {
              Client c = new Client(clientID, firstname, lastname, address, email, dob, password, contactNumber, gender);
             Administrator.clientCreateNewAccount(c);
             PopUp.showMessage("Information", "Account has been Succesfully Created\n"

@@ -78,8 +78,8 @@ public class LoginController implements Initializable {
                     }
                     break;
                 case "Maintenance Staff":
-                    if (email.equals("mdmarufkhan195@gmail.com") & password.equals("maruf195")) {
-                        loader = new FXMLLoader(getClass().getResource(""));
+                    if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
+                        loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml"));
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }

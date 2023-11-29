@@ -63,7 +63,6 @@
          </children>
       </GridPane>
       <HBox layoutX="683.0" layoutY="486.0" prefHeight="66.0" prefWidth="200.0" />
-      <Button layoutX="11.0" layoutY="12.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="43.0" prefWidth="111.0" text="Back" />
       <Button fx:id="sendResignationBtn" layoutX="412.0" layoutY="466.0" mnemonicParsing="false" onAction="#sendResignLetterOnClick" prefHeight="77.0" prefWidth="224.0" text="Send Resignation Letter">
          <font>
             <Font name="System Bold" size="13.0" />

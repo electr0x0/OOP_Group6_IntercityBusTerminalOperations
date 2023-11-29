@@ -62,7 +62,7 @@
                         <MenuButton alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="reportMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Report" textAlignment="CENTER" textFill="#fcfcfc">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#maintenanceCostOnMouseClick" text="Maintenance Cost" />
-                              <MenuItem mnemonicParsing="false" onAction="#customerJouurneyReportOnMouseClick" text="Customer Journey Report" />
+                              <MenuItem mnemonicParsing="false" onAction="#customerJouurneyReportOnMouseClick" text="Client Details" />
                            </items>
                         </MenuButton>
                         <MenuButton fx:id="itsupportMenuButton" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="237.0" styleClass="itsupportMenuButton" stylesheets="@../../css/AdminDashBord.css" text="It Sopport" textAlignment="CENTER" textFill="#fcfcfc">

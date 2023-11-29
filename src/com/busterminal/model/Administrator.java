@@ -50,7 +50,7 @@ public class Administrator {
         ObjectOutputStream oos = null;
 
         try {
-            f = new File("../Client.bin");
+            f = new File("Client.bin");
             if (f.exists()) {
                 fos = new FileOutputStream(f, true);
                 oos = new AppendableObjectOutputStream(fos);

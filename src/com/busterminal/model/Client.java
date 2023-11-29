@@ -11,6 +11,22 @@ public class Client extends User implements Serializable {
         super(iD, firstName, lastName, address, email, dateOfBirth, password, phoneNumber, gender);
     }
 
+    public int getiD() {
+        return iD;
+    }
+
+    public void setiD(int iD) {
+        this.iD = iD;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     
 
    

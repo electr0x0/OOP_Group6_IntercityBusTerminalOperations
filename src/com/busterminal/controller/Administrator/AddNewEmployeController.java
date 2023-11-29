@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -111,7 +112,9 @@ public class AddNewEmployeController implements Initializable {
         userDataTable.getItems().addAll(Administrator.getEmployeeList());
         userDataTable.setVisible(true);
         
-        
+        userDataTable.setEditable(true);
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
         // set multiple selection
         userDataTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -187,7 +190,7 @@ public class AddNewEmployeController implements Initializable {
             }
         }
 
-        if (User.checkEmployeeEmailExistence(email) == true) {
+        if (User.checkEmployeeEmailExistence(email) == true  && User.checkClientEmailExistence(email)== true) {
             PopUp.showMessage("Information", "Account Already Exists !");
         } else {
             int id = User.generateEmployeeID();
@@ -206,6 +209,7 @@ public class AddNewEmployeController implements Initializable {
                     + "Employee ID: " + id + "\n"
                     + "Employee Password: " + password);
         }
+        clear();
 
     }
 
@@ -222,6 +226,19 @@ public class AddNewEmployeController implements Initializable {
        MaintenanceStaff.deleteEmployee((MaintenanceStaff) selectedItem);
       
        
+        
+        
+    }
+    
+    private void clear(){
+        firstNameTF.clear();
+        lastNameTF.clear();
+        phoneNumberTF.clear();
+        emailTF.clear();
+        designationCB.setValue(null);
+        addressTF.clear();
+        birthdayDP.setValue(null);
+        salaryTF.clear();
         
         
     }
