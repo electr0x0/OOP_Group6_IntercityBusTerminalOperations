@@ -6,6 +6,7 @@ package com.busterminal.views.HumanResourceViews;
 
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Leave;
+import com.busterminal.model.employeeModels.Resignation;
 import com.busterminal.model.employeeModels.Salary;
 import static com.busterminal.views.HumanResourceViews.MyEmployeeController.readEmployeesFromFile;
 import java.io.IOException;
@@ -29,16 +30,16 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author User
+ * @author DELL
  */
-public class HolidayRequestController implements Initializable {
+public class ResignationRequestController implements Initializable {
 
     @FXML
-    private AnchorPane LeavePanel;
+    private AnchorPane resignPanel;
     @FXML
-    private ListView<String> LeaveView;
+    private ListView<String> resignView;
     @FXML
-    private AnchorPane ovtRequestPane;
+    private AnchorPane requestPane;
     @FXML
     private Label leaveReasonLabel;
     
@@ -47,11 +48,12 @@ public class HolidayRequestController implements Initializable {
     private Parent root;
     
     ArrayList<Employee> empList = new ArrayList<>();
-    Salary sal;
+    ObservableList<String> items = FXCollections.observableArrayList();
+    
+    Resignation resign;
     String selectedItem;
     String SelectedId;
     String empID;
-    ObservableList<String> items = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -60,11 +62,12 @@ public class HolidayRequestController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         empList = Employee.readEmployeesFromFile("Employee.bin");
         for(Employee emp: empList){
-            if(emp.getHoliday().getAskedForLeave()){
+            if(emp.getResignation().getAskedForResignation()){
                 String str = "ID: "+emp.getId() +" Name: "+ emp.getFirstname() + " " + emp.getLastname() +
-                        " From: "+ emp.getHoliday().getLeaveStartDate().toString()+" To: "+emp.getHoliday().getLeaveEndDate().toString();
+                        " Designation: "+emp.getEmpType();
                 items.addAll(str);
-                LeaveView.setItems(items);
+                resignView.setItems(items);
+                
             }
         }
     }    
@@ -107,64 +110,45 @@ public class HolidayRequestController implements Initializable {
 
     @FXML
     private void expandList(ActionEvent event) {
-      empList = readEmployeesFromFile("Employee.bin");
-      selectedItem = LeaveView.getSelectionModel().getSelectedItem();
-      int firstSpaceIndex = selectedItem.indexOf(" ");
-      SelectedId = selectedItem.substring(firstSpaceIndex+1,selectedItem.indexOf("N"));
-       for(Employee emp: empList){
-          if(emp.getId().trim().equals(SelectedId.trim())){
-             String name = emp.getFirstname() + " " + emp.getLastname();
-            String id = emp.getId();
-            String start = emp.getHoliday().getLeaveStartDate().toString();
-            String end = emp.getHoliday().getLeaveEndDate().toString();
-            String reason = emp.getHoliday().getLeaveReason();
+        empList = readEmployeesFromFile("Employee.bin");
+        selectedItem = resignView.getSelectionModel().getSelectedItem();
+        int firstSpaceIndex = selectedItem.indexOf(" ");
+        SelectedId = selectedItem.substring(firstSpaceIndex+1,selectedItem.indexOf("N"));
+         for(Employee emp: empList){
+            if(emp.getId().trim().equals(SelectedId.trim())){
+               String name = emp.getFirstname() + " " + emp.getLastname();
+              String id = emp.getId();
+              String resign = emp.getResignation().getResignationReason();
+              System.out.println(emp.getResignation().getResignationReason());
+              
 
-            String formattedText = String.format("Name: %s\nID: %s\nStart Date: %s\nEnd Date: %s\nReason: %s",
-                    name, id, start, end, reason);
-              leaveReasonLabel.setText(formattedText);
-              ovtRequestPane.setVisible(true);
-              return;
-          } 
-      }
+              String formattedText = String.format("Name: %s\nID: %s\nDesignation: %s\n %s\n",
+                      name,id,emp.getEmpType(),emp.getResignation().getResignationReason());
+                leaveReasonLabel.setText(formattedText);
+                requestPane.setVisible(true);
+                return;
+            } 
+        }
     }
 
     @FXML
     private void closeRequestPane(ActionEvent event) {
-        ovtRequestPane.setVisible(false);
+        requestPane.setVisible(false);
     }
 
     @FXML
     private void acceptRequest(ActionEvent event) {
-         for(Employee emp: empList){
-            if(emp.getId().trim().equals(SelectedId.trim())){
-               Leave chuti = new Leave(emp.getId(),true,false,"",emp.getHoliday().getLeaveStartDate()
-               ,emp.getHoliday().getLeaveEndDate());
-               emp.setHoliday(chuti);
-               leaveReasonLabel.setText("");
-               ovtRequestPane.setVisible(false);
-               Employee.writeEmployeesToFile("Employee.bin", empList);
-               LeaveView.getItems().remove(selectedItem);
-               return;
-            }
-        }
-        
-    }
-
-    @FXML
-    private void denaiRequest(ActionEvent event) {
         for(Employee emp: empList){
             if(emp.getId().trim().equals(SelectedId.trim())){
-               Leave chuti = new Leave(emp.getId(),false,false,"",null
-               ,null);
-               emp.setHoliday(chuti);
-               leaveReasonLabel.setText("");
-               ovtRequestPane.setVisible(false);
+               empList.remove(emp);
                Employee.writeEmployeesToFile("Employee.bin", empList);
-               LeaveView.getItems().remove(selectedItem);
+               resignView.getItems().remove(selectedItem);
+               requestPane.setVisible(false);
                return;
             }
         }
     }
+
 
     @FXML
     private void goToAccount(ActionEvent event) {

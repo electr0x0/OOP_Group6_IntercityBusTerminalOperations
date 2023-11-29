@@ -8,7 +8,6 @@ import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Overtime;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.views.Employee.EmployeeDashboardController;
-import static com.busterminal.views.Employee.EmployeeDashboardController.updateEmployeeOvertime;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -152,7 +151,7 @@ public class MyEmployeeController implements Initializable {
     @FXML
     private void refreshTable(ActionEvent event) {
         employeeTable.getItems().clear();
-        empList = readEmployeesFromFile("MyEmployee.bin");
+        empList = readEmployeesFromFile("Employee.bin");
         employeTableId.setCellValueFactory(new PropertyValueFactory<Employee,String>("id"));
         tableFirstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstname()));
         tableLastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue(). getLastname()));
@@ -436,6 +435,24 @@ public class MyEmployeeController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/HolidayRequest.fxml"));
             root = loader.load();
             HolidayRequestController controller = loader.getController();
+
+            controller.setEmpID(myId);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toResign(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/ResignationRequest.fxml"));
+            root = loader.load();
+            ResignationRequestController controller = loader.getController();
 
             controller.setEmpID(myId);
 

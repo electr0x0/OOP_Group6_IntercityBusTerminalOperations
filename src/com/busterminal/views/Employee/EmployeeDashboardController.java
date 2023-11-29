@@ -327,6 +327,24 @@ public class EmployeeDashboardController implements Initializable  {
             e.printStackTrace(); // or handle the exception as needed
         }
     }
+
+    @FXML
+    private void toResign(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeResignation.fxml"));
+            root = loader.load();
+            EmployeeResignationController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
     
     
 
