@@ -21,7 +21,7 @@
                 <TableColumn fx:id="passengerNameColumn" text="Passenger Name">
                     <prefWidth>236.0</prefWidth>
                 </TableColumn>
-                <TableColumn fx:id="busIdColumn" minWidth="0.0" text="Bus Name">
+                <TableColumn fx:id="busIdColumn" minWidth="0.0" text="Bus Type">
                     <prefWidth>233.0</prefWidth>
                 </TableColumn>
                 <TableColumn fx:id="departureDateColumn" text="Departure Date">

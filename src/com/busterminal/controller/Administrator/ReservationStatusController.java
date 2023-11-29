@@ -1,15 +1,12 @@
 package com.busterminal.controller.Administrator;
 
 import com.busterminal.model.BusReservation;
-import com.busterminal.model.Client;
 import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,16 +59,7 @@ public class ReservationStatusController implements Initializable {
         //readbinFile();
         System.out.println(getClientList());
 
-        /*
-       ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
-                new BusReservation(2, "Jane Smith", "Bus202", LocalDate.now(), 75),
-                new BusReservation(3, "Bob Johnson", "Bus303", LocalDate.now(), 60));
-      
-       Database.writeToBinFile("ReservationList.bin", reservationsData);
-      
-      
-      System.out.println(Database.getInstanceBinFile("ReservationList.bin"));*/
-        /*ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
+        ObservableList<Reservation> re = getClientList();
         if (re != null) {
             for (Reservation r : re) {
                 System.out.print("fare" + r.getReserveBus().getFare());
@@ -82,8 +70,8 @@ public class ReservationStatusController implements Initializable {
             }
 
         }
-          */
-                 busReservationTable.getItems().addAll(data);
+
+        busReservationTable.getItems().addAll(data);
 
         // pie chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -103,10 +91,9 @@ public class ReservationStatusController implements Initializable {
     }
 
     private void filterTableByDate() {
-        /* String dateFilter = filter.getText();
+        String dateFilter = filter.getText();
 
         ObservableList<BusReservation> filteredData = FXCollections.observableArrayList();
-        
 
         for (BusReservation entry : busReservationTable.getItems()) {
             boolean dateMatches = entry.getDepartureDate().equals(dateFilter);
@@ -116,47 +103,7 @@ public class ReservationStatusController implements Initializable {
             }
         }
 
-        busReservationTable.setItems(filteredData);*/
-    }
-
-    private void readbinFile() {
-        File f = null;
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-
-        try {
-            f = new File("ReservationList.bin");
-            fis = new FileInputStream(f);
-            ois = new ObjectInputStream(fis);
-            Reservation f2;
-            try {
-                //outputTextArea.setText("");
-                while (true) {
-                    //System.out.println("Printing objects.");
-                    f2 = (Reservation) ois.readObject();
-                    //Object obj = ois.readObject();
-                    //obj.submitReport();
-                    //f2.submitReport();
-                    System.out.println(f2);
-                    //outputTextArea.appendText(emp.toString());
-                }
-            }//end of nested try
-            catch (Exception e) {
-                // handling code
-            }//nested catch
-            //outputTextArea.appendText("All objects are loaded successfully...\n");
-        } catch (IOException ex) {
-            System.out.println(ex.toString());
-        } finally {
-            try {
-
-                if (ois != null) {
-                    ois.close();
-                }
-            } catch (IOException ex) {
-            }
-        }
-
+        busReservationTable.setItems(filteredData);
     }
 
     public static ObservableList<Reservation> getClientList() {
