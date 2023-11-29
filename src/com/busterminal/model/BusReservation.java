@@ -18,6 +18,8 @@ public class BusReservation implements Serializable {
         this.departureDate = departureDate;
         this.fare = fare;
     }
+    
+    
 
     public int getReservationId() {
         return reservationId;

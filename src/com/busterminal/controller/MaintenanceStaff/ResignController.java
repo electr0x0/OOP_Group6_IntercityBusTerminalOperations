@@ -1,14 +1,11 @@
 package com.busterminal.controller.MaintenanceStaff;
 
 import com.busterminal.model.AppendableObjectOutputStream;
-import com.busterminal.model.Feedback;
 import com.busterminal.model.Resignation;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -16,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -56,7 +50,7 @@ public class ResignController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        fileTypeList = new ArrayList<String>();
+        fileTypeList = new ArrayList<>();
         fileTypeList.add("*.txt");
         fileTypeList.add("*.doc");
         fileTypeList.add("*.docx");

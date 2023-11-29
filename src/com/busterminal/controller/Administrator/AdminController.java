@@ -55,28 +55,24 @@ public class AdminController implements Initializable {
 
     @FXML
     private void scheduleShowOnMouseClick(ActionEvent event) {
-        sceneSwithch("ShowSchedule.fxml");
-    }
-
-    private void routeInfoOnMouseClick(ActionEvent event) {
-        sceneSwithch("ff.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ShowSchedule.fxml");
     }
 
     @FXML
     private void TransactionOnMouseClick(ActionEvent event) {
-        sceneSwithch("ShowTransition.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ShowTransition.fxml");
     }
 
     // rest
     @FXML
     private void salaryInfoOnMouseClick(ActionEvent event) {
-        sceneSwithch("SalaryStatus.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/SalaryStatus.fxml");
     }
 
     // rest
     @FXML
     private void customerJouurneyReportOnMouseClick(ActionEvent event) {
-        sceneSwithch("ff.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ClientStatus.fxml");
     }
 
     // rest
@@ -86,7 +82,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void busStatusOnMouseClick(ActionEvent event) {
-        sceneSwithch("ShowBusStatus.fxml");
+        sceneSwithch("/com/busterminal/views/Addministrator/ShowBusStatus.fxml");
     }
 
     @FXML

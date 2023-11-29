@@ -34,6 +34,12 @@ public class Resignation implements Serializable{
         this.subject = subject;
         this.Letter = Letter;
     }
+    public Resignation(int empId,String empName,String subject){
+        this.empId = empId;
+        this.empName = empName;
+        this.subject= subject;
+        
+    }
 
     public String getEmpName() {
         return empName;

@@ -6,6 +6,7 @@ package com.busterminal.controller.MaintenanceStaff;
 
 import com.busterminal.model.Database;
 import com.busterminal.model.MaintenanceHistory;
+import com.busterminal.model.MaintenanceTask;
 import com.busterminal.model.PopUp;
 import java.net.URL;
 import java.time.LocalDate;
@@ -19,7 +20,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 
 /**
  * FXML Controller class
@@ -49,7 +49,7 @@ public class PustingAfterMaintenanceController implements Initializable {
         busIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         lastServicingCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
         issueResolvedCol.setCellValueFactory(new PropertyValueFactory<>("issueResolved"));
-        maintenanceHistoryTable.getItems().addAll(Database.getInstanceBinFile("MaintenanceHistory.bin"));
+        maintenanceHistoryTable.getItems().addAll(MaintenanceHistory.getItems());
         maintenanceHistoryTable.setVisible(true);
     }
 
@@ -58,23 +58,48 @@ public class PustingAfterMaintenanceController implements Initializable {
         if (!busIdTF.getText().equals("") && !issueResolvedTF.getText().equals("")) {
             try {
                 int busId = Integer.parseInt(busIdTF.getText());
-                String issueResolved = issueResolvedTF.getText(); 
-                MaintenanceHistory mlist = new MaintenanceHistory(busId, LocalDate.now(), issueResolved);
+                String issueResolved = issueResolvedTF.getText();
+                MaintenanceHistory mlist = new MaintenanceHistory(busId, LocalDate.now(), issueResolved, true);
+                MaintenanceHistory.addItems(mlist);
                 data.add(mlist);
-                Database.writeToBinFile("MaintenanceHistory.bin", data);
+
                 maintenanceHistoryTable.setItems(data);
             } catch (Exception e) {
                 PopUp.showMessage("Warning", "Bus Id shoud be Integer" + "\n Please try agin with valid Bus Id");
             }
         } else {
-            PopUp.showMessage("Alert", "Please Enter the busId"+"\n Enter the Resolved issue..!");
+            PopUp.showMessage("Alert", "Please Enter the busId" + "\n Enter the Resolved issue..!");
         }
+        clear();
 
     }
 
     @FXML
     private void viewMaintenanceHistoryOnMouseClick(ActionEvent event) {
+        
+        ObservableList<MaintenanceHistory> mTable = maintenanceHistoryTable.getItems();
+        String selectedCategory = busIdTF.getText();
+        if (selectedCategory != null) {
+            ObservableList<MaintenanceHistory> filteredData = FXCollections.observableArrayList();
+
+            for (MaintenanceHistory m : mTable) {
+                if (m.getId() == Integer.parseInt(selectedCategory)) {
+                    filteredData.add(m);
+                } else {
+                    PopUp.showMessage("Information", "No available task..!");
+                }
+            }
+
+            maintenanceHistoryTable.setItems(filteredData);
+        } else {
+            maintenanceHistoryTable.setItems(data);
+        }
+
     }
 
+    private void clear() {
+        busIdTF.clear();
+        issueResolvedTF.clear();
+    }
 
 }
