@@ -1,5 +1,7 @@
 package com.busterminal.controller.Administrator;
+
 import com.busterminal.model.BusReservation;
+import com.busterminal.model.Client;
 import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
 import java.io.File;
@@ -44,22 +46,23 @@ public class ReservationStatusController implements Initializable {
 
     @FXML
     private TableColumn<BusReservation, String> fareColumn;
-    
+
     private ObservableList<BusReservation> data;
 
-     @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-         System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
-        data= FXCollections.observableArrayList();
+        System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
+        data = FXCollections.observableArrayList();
         // Initialize the TableView columns
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("passengerName"));
         busIdColumn.setCellValueFactory(new PropertyValueFactory<>("busId"));
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
-        readbinFile();
+        //readbinFile();
+        System.out.println(getClientList());
 
-      /*
+        /*
        ObservableList<BusReservation> reservationsData = FXCollections.observableArrayList(
                 new BusReservation(2, "Jane Smith", "Bus202", LocalDate.now(), 75),
                 new BusReservation(3, "Bob Johnson", "Bus303", LocalDate.now(), 60));
@@ -68,20 +71,19 @@ public class ReservationStatusController implements Initializable {
       
       
       System.out.println(Database.getInstanceBinFile("ReservationList.bin"));*/
-       
-       /*ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
-       if (re!=null){
-           for (Reservation r: re){
-               System.out.print("fare" + r.getReserveBus().getFare());
-               BusReservation br = new BusReservation(r.getReserveBus().getReserveId() ,r.getPassengerName(),
-                       r.getReserveBus().getBusType(),r.getReserveBus().getDate(), r.getReserveBus().getFare());
-               data.add(br);
-               
-           }
-           
-       }
-       */
-        busReservationTable.getItems().addAll(data);
+        /*ObservableList<Reservation> re = Database.getInstanceBinFile("ReservationList.bin");
+        if (re != null) {
+            for (Reservation r : re) {
+                System.out.print("fare" + r.getReserveBus().getFare());
+                BusReservation br = new BusReservation(r.getReserveBus().getReserveId(), r.getPassengerName(),
+                        r.getReserveBus().getBusType(), r.getReserveBus().getDate(), r.getReserveBus().getFare());
+                data.add(br);
+
+            }
+
+        }
+          */
+                 busReservationTable.getItems().addAll(data);
 
         // pie chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -100,9 +102,8 @@ public class ReservationStatusController implements Initializable {
         //explain in feedback
     }
 
-
     private void filterTableByDate() {
-       /* String dateFilter = filter.getText();
+        /* String dateFilter = filter.getText();
 
         ObservableList<BusReservation> filteredData = FXCollections.observableArrayList();
         
@@ -117,8 +118,8 @@ public class ReservationStatusController implements Initializable {
 
         busReservationTable.setItems(filteredData);*/
     }
-    
-    private void readbinFile(){
+
+    private void readbinFile() {
         File f = null;
         FileInputStream fis = null;
         ObjectInputStream ois = null;
@@ -128,11 +129,11 @@ public class ReservationStatusController implements Initializable {
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
             Reservation f2;
-            try{
+            try {
                 //outputTextArea.setText("");
-                while(true){
+                while (true) {
                     //System.out.println("Printing objects.");
-                    f2= (Reservation)ois.readObject();
+                    f2 = (Reservation) ois.readObject();
                     //Object obj = ois.readObject();
                     //obj.submitReport();
                     //f2.submitReport();
@@ -140,20 +141,46 @@ public class ReservationStatusController implements Initializable {
                     //outputTextArea.appendText(emp.toString());
                 }
             }//end of nested try
-            catch(Exception e){
+            catch (Exception e) {
                 // handling code
             }//nested catch
             //outputTextArea.appendText("All objects are loaded successfully...\n");
         } catch (IOException ex) {
             System.out.println(ex.toString());
-        } 
-        finally {
+        } finally {
             try {
 
-                if(ois != null) ois.close();
-            } catch (IOException ex) { }
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex) {
+            }
         }
 
     }
+
+    public static ObservableList<Reservation> getClientList() {
+        ObjectInputStream ois = null;
+        ObservableList<Reservation> list = FXCollections.observableArrayList();
+        try {
+            Reservation c;
+            ois = new ObjectInputStream(new FileInputStream("ReservationList.bin"));
+
+            while (true) {
+                c = (Reservation) ois.readObject();
+                list.add(c);
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex1) {
+            }
+        }
+        return list;
     }
-  
+
+}
