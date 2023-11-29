@@ -99,5 +99,10 @@ public class MaintenanceStaffController implements Initializable {
         }
     }
 
+    @FXML
+    private void monitoringFuelConsumptionOnMouseClick(ActionEvent event) {
+         sceneSwithch("/com/busterminal/views/Addministrator/ShowBusStatus.fxml");
+    }
+
 
 }
