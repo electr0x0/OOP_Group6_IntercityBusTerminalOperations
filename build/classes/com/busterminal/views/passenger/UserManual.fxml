@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.UserManualController1">
+   <children>
+      <Label layoutX="47.0" layoutY="44.0" prefHeight="17.0" prefWidth="253.0" text="User Manual">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="manualTextArea" editable="false" layoutX="40.0" layoutY="100.0" prefHeight="359.0" prefWidth="611.0" text="Bus Terminal User Manual&#10;1. Introduction&#10;1.1 Purpose&#10;Purpose: Welcome to our Bus Terminal User Manual! This comprehensive guide is crafted to empower passengers with a complete understanding of our bus terminal's services and facilities.&#10;&#10;1.2 Audience&#10;Audience: Whether you are a seasoned traveler or a first-time visitor, this manual is designed to cater to all passengers utilizing our bus terminal facilities.&#10;&#10;1.3 Scope&#10;Scope: From booking tickets to arrival procedures, this manual covers every aspect of the passenger journey, providing detailed insights and instructions for a seamless experience.&#10;&#10;2. Getting Started&#10;2.1 Terminal Layout&#10;Terminal Layout: Explore our well-designed terminal layout to easily locate essential services. Find ticketing counters, departure and arrival gates, information desks, restrooms, and other amenities for a hassle-free journey.&#10;&#10;2.2 Ticketing Counters&#10;Ticketing Counters: Conveniently situated throughout the terminal, our ticketing counters offer various booking options. Whether you prefer online reservations or in-person transactions, our counters are here to serve you.&#10;&#10;2.3 Departure and Arrival Gates&#10;Departure and Arrival Gates: Stay informed about the location of departure and arrival gates. Clear signage and regular announcements will guide you through the boarding process with ease.&#10;&#10;2.4 Information Desks&#10;Information Desks: Our friendly staff at information desks are ready to assist you. Whether you need directions, have questions about your journey, or require additional information, feel free to approach our dedicated service points.&#10;&#10;3. Booking Tickets&#10;3.1 Online Booking&#10;Online Booking: Embrace the convenience of online booking through our website or mobile app. Follow our user-friendly interface to select your journey, choose preferred seats, and make secure payments for a swift and efficient booking process.&#10;&#10;3.2 Counter Booking&#10;Counter Booking: For those who prefer a more personalized touch, our ticketing counters offer in-person booking services. Knowledgeable staff will guide you through the process, assisting with seat selection and payment.&#10;&#10;3.3 Seat Selection&#10;Seat Selection: Tailor your journey to your preferences by choosing your preferred seat during the booking process. Consider factors such as comfort and view for an enhanced travel experience.&#10;&#10;3.4 Payment Options&#10;Payment Options: We accept various payment methods to cater to your convenience. Whether you prefer credit cards, debit cards, or cash, ensure you have the necessary details to complete your booking effortlessly.&#10;&#10;(Continue the manual with sections 4 to 8, providing detailed information on each topic.)&#10;&#10;8. Frequently Asked Questions (FAQs)&#10;FAQs: Find answers to common queries in our Frequently Asked Questions section. Whether it's about booking procedures, boarding processes, onboard amenities, or lost items, our FAQs provide valuable information to enhance your understanding.&#10;&#10;Feel free to continue expanding the manual, incorporating specific details, visuals, maps, and contact information to create a comprehensive and user-friendly guide for your bus terminal." wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="55.0" layoutY="474.0" mnemonicParsing="false" onAction="#createPDFonClick" prefHeight="25.0" prefWidth="166.0" text="Save File">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="606.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="25.0" prefWidth="71.0" text="Back" />
+   </children>
+</AnchorPane>
