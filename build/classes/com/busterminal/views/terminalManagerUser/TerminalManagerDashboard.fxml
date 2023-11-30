@@ -34,9 +34,9 @@
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
         </padding>
-      <ImageView fitHeight="145.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+      <ImageView fitHeight="177.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" smooth="false" VBox.vgrow="ALWAYS">
          <image>
-            <Image url="@../../../../drawables/dashboard_logo.gif" />
+            <Image url="@../../../../drawables/manager_anim.gif" />
          </image>
       </ImageView>
         <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="266.0" styleClass="header" text="Manager Dashboard">
