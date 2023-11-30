@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.ResignController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.ResignController">
    <children>
-      <Label layoutX="536.0" layoutY="8.0" prefHeight="43.0" prefWidth="116.0" text="Resign">
+      <Label layoutX="536.0" layoutY="8.0" prefHeight="43.0" prefWidth="116.0" text="Resign" textFill="#008cff">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
@@ -30,40 +30,40 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="35.0" prefWidth="214.0" text="Name:">
+            <Label prefHeight="35.0" prefWidth="214.0" text="Name:" textFill="#008cff">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="36.0" prefWidth="206.0" text="Employee ID:" GridPane.rowIndex="1">
+            <Label prefHeight="36.0" prefWidth="206.0" text="Employee ID:" textFill="#008cff" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="35.0" prefWidth="213.0" text="Comment:" GridPane.rowIndex="2">
+            <Label prefHeight="35.0" prefWidth="213.0" text="Comment:" textFill="#008cff" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="nameTextField" prefHeight="31.0" prefWidth="201.0" GridPane.columnIndex="1" />
-            <TextField fx:id="empIDTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="commentTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label lineSpacing="20.0" prefHeight="35.0" prefWidth="206.0" text="Resignation ID:" GridPane.rowIndex="3">
+            <TextField fx:id="nameTextField" prefHeight="31.0" prefWidth="201.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" />
+            <TextField fx:id="empIDTextField" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="commentTextField" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label lineSpacing="20.0" prefHeight="35.0" prefWidth="206.0" text="Resignation ID:" textFill="#008cff" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="resignationIDTextField" editable="false" prefHeight="31.0" prefWidth="88.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="chooseFileBtn" mnemonicParsing="false" onAction="#chooseFileOnClick" prefHeight="50.0" prefWidth="194.0" text="Choose File" GridPane.rowIndex="4">
+            <TextField fx:id="resignationIDTextField" editable="false" prefHeight="31.0" prefWidth="88.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="chooseFileBtn" mnemonicParsing="false" onAction="#chooseFileOnClick" prefHeight="50.0" prefWidth="194.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Choose File" textFill="#008cff" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="filenameLabel" prefHeight="40.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="filenameLabel" prefHeight="40.0" prefWidth="201.0" textFill="#008cff" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <HBox layoutX="683.0" layoutY="486.0" prefHeight="66.0" prefWidth="200.0" />
-      <Button fx:id="sendResignationBtn" layoutX="412.0" layoutY="466.0" mnemonicParsing="false" onAction="#sendResignLetterOnClick" prefHeight="77.0" prefWidth="224.0" text="Send Resignation Letter">
+      <Button fx:id="sendResignationBtn" layoutX="412.0" layoutY="466.0" mnemonicParsing="false" onAction="#sendResignLetterOnClick" prefHeight="77.0" prefWidth="224.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Send Resignation Letter" textFill="#008cff">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

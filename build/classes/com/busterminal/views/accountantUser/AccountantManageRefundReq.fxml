@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="763.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantManageRefundReqController">
+   <children>
+      <MFXLegacyTableView fx:id="refundReqViewTable" layoutX="25.0" layoutY="90.0" prefHeight="596.0" prefWidth="1006.0" stylesheets="@../../css/AccountantTableStyle.css" tableMenuButtonVisible="true">
+         <columns>
+            <TableColumn fx:id="colDate" prefWidth="141.0" text="Date" />
+            <TableColumn fx:id="colPassengerName" prefWidth="141.0" text="Passenger Name" />
+            <TableColumn fx:id="colTicketID" prefWidth="141.0" text="Ticket ID" />
+            <TableColumn fx:id="colAmount" prefWidth="179.0" text="Amount" />
+            <TableColumn fx:id="colStatus" prefWidth="168.0" text="Status" />
+            <TableColumn fx:id="colRefundReason" prefWidth="235.0" text="Refund Reason" />
+         </columns>
+      </MFXLegacyTableView>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="807.0" layoutY="705.0" onAction="#onClickRejectRefundRequest" prefHeight="41.0" prefWidth="97.0" rippleAnimateShadow="true" text="Reject" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="929.0" layoutY="705.0" onAction="#onClickApproveRefundRequest" prefHeight="41.0" prefWidth="97.0" rippleAnimateShadow="true" text="Approve" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="894.0" layoutY="26.0" onAction="#onClickSetRefundPolicy" prefHeight="41.0" prefWidth="132.0" rippleAnimateShadow="true" text="Set Refund Policy" />
+   </children>
+</AnchorPane>

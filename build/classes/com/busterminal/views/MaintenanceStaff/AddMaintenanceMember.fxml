@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -135,7 +136,7 @@
       <Label fx:id="birthdateLabel" layoutX="675.0" layoutY="227.0" prefHeight="21.0" prefWidth="269.0" textFill="#ee0707" AnchorPane.leftAnchor="675.0" />
       <Label fx:id="genderLabel" layoutX="692.0" layoutY="293.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="692.0" />
       <Label fx:id="salaryLabel" layoutX="230.0" layoutY="371.0" prefHeight="21.0" prefWidth="218.0" textFill="#ee0707" AnchorPane.leftAnchor="235.0" />
-      <Button layoutX="954.0" layoutY="200.0" mnemonicParsing="false" onAction="#removeButtonOnMouseClick" prefHeight="150.0" prefWidth="218.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Remove">
+      <Button layoutX="962.0" layoutY="200.0" mnemonicParsing="false" onAction="#removeButtonOnMouseClick" prefHeight="150.0" prefWidth="210.0" style="-fx-background-color: #353A56; -fx-border-color: #59a7f0; -fx-border-radius: 30px; -fx-border-style: solid;" text="Remove">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -148,11 +149,15 @@
             </RadialGradient>
          </textFill>
       </Button>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="46.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Tecnechine:">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font>
-      </Text>
-      <ComboBox fx:id="searchCB" layoutX="238.0" layoutY="404.0" prefHeight="35.0" prefWidth="211.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
+      <HBox layoutX="327.0" layoutY="387.0" prefHeight="36.0" prefWidth="532.0" spacing="50.0">
+         <children>
+            <Text fill="#59a7f0" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Search By Technician:">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="searchCB" prefHeight="35.0" prefWidth="225.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

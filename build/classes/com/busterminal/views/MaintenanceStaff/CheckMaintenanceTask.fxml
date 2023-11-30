@@ -18,16 +18,16 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.CheckMaintenanceTaskController">
     <children>
-      <BorderPane layoutX="-1.0" layoutY="137.0" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="-1.0" layoutY="137.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-              <VBox alignment="CENTER" prefHeight="561.0" prefWidth="1200.0" spacing="10" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" prefHeight="528.0" prefWidth="1200.0" spacing="10" BorderPane.alignment="CENTER">
                <Label text="Up Coming Task" textFill="#08bde1">
                   <font>
                      <Font name="System Bold Italic" size="18.0" />
                   </font>
                </Label>
                <DatePicker fx:id="filterCB" promptText="Search By Date" />
-               <Button mnemonicParsing="false" onAction="#searchButtonOnMouseClick" prefHeight="31.0" prefWidth="76.0" text="Search" />
+               <Button mnemonicParsing="false" onAction="#searchButtonOnMouseClick" prefHeight="31.0" prefWidth="76.0" styleClass="dashboardMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Search" textFill="#59a7f0" />
       
                   <TableView fx:id="maintenanceTable" prefHeight="379.0" prefWidth="1200.0">
                       <columns>
@@ -63,15 +63,15 @@
                   </TableView>
                <HBox prefHeight="96.0" prefWidth="1200.0">
                   <children>
-                     <Button mnemonicParsing="false" onAction="#sendMaintenanceOnMouseClick" prefHeight="56.0" prefWidth="176.0" text="Send Maintenance" />
-                     <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#viewProblemDescriptionOnMouseClick" prefHeight="56.0" prefWidth="176.0" text="View Problem" />
+                     <Button mnemonicParsing="false" onAction="#sendMaintenanceOnMouseClick" prefHeight="56.0" prefWidth="176.0" styleClass="dashboardMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Send Maintenance" textFill="#59a7f0" />
+                     <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#viewProblemDescriptionOnMouseClick" prefHeight="56.0" prefWidth="176.0" styleClass="dashboardMenuButton" stylesheets="@../../css/AdminDashBord.css" text="View Problem" textFill="#59a7f0" />
                   </children>
                </HBox>
       
               </VBox>
          </bottom>
          <top>
-            <AnchorPane prefHeight="200.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="200.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" BorderPane.alignment="CENTER">
                <children>
                   <GridPane layoutX="227.0" layoutY="24.0" prefHeight="159.0" prefWidth="559.0">
                     <columnConstraints>
@@ -84,39 +84,39 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Task" wrappingWidth="281.6708984375">
+                        <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Task" wrappingWidth="281.6708984375">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
-                        <Text layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Parts" wrappingWidth="219.6708984375" GridPane.rowIndex="2">
+                        <Text fill="#59a7f0" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Parts" wrappingWidth="219.6708984375" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
-                        <Text layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tecnecian" wrappingWidth="255.6708984375" GridPane.rowIndex="1">
+                        <Text fill="#59a7f0" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tecnecian" wrappingWidth="255.6708984375" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
-                        <Label fx:id="totalTaskLabel" prefHeight="21.0" prefWidth="257.0" GridPane.columnIndex="1">
+                        <Label fx:id="totalTaskLabel" prefHeight="21.0" prefWidth="257.0" textFill="#59a7f0" GridPane.columnIndex="1">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalNoOfTecnehianLabel" prefHeight="21.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="totalNoOfTecnehianLabel" prefHeight="21.0" prefWidth="258.0" textFill="#59a7f0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="availableParts" prefHeight="35.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="availableParts" prefHeight="35.0" prefWidth="278.0" textFill="#59a7f0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </GridPane>
-                  <Label fx:id="timeLabel" layoutX="929.0" layoutY="3.0" prefHeight="109.0" prefWidth="268.0" text="Time" wrapText="true" />
+                  <Label fx:id="timeLabel" layoutX="929.0" layoutY="3.0" prefHeight="109.0" prefWidth="268.0" textFill="WHITE" wrapText="true" />
                </children>
             </AnchorPane>
          </top>

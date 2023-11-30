@@ -57,6 +57,9 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         data = getItems();
         System.out.println(data);
+       for(Ticket t: data){
+           System.out.println(t.getPurchaseDate());
+       }
         monthlySaleBarChar();
         //ticket= FXCollections.observableArrayList();
         

@@ -23,7 +23,7 @@
           <TableColumn fx:id="firstNameCol" prefWidth="135.0" text="First Name" />
             <TableColumn fx:id="designationCol" prefWidth="146.0" text="Designation" />
             <TableColumn fx:id="genderCol" prefWidth="123.0" text="Gender" />
-            <TableColumn fx:id="phoneCol" minWidth="0.0" prefWidth="150.0" text="Phone Number" />
+            <TableColumn fx:id="phoneCol" minWidth="0.0" prefWidth="150.0" text="Contact Number" />
             <TableColumn fx:id="addressCol" minWidth="0.0" prefWidth="176.0" text="Address" />
             <TableColumn fx:id="emailCol" minWidth="0.0" prefWidth="221.0" text="Email" />
             <TableColumn fx:id="passwordCol" minWidth="0.0" prefWidth="121.0" text="Password" />
@@ -39,7 +39,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="50.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contruct Number:" AnchorPane.leftAnchor="50.0">
+      <Text fill="#59a7f0" fontSmoothingType="LCD" layoutX="50.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number:" AnchorPane.leftAnchor="50.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

@@ -14,23 +14,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.Employee.EmployeeSalaryDashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.Employee.EmployeeSalaryDashboardController">
    <left>
       <VBox prefHeight="598.0" prefWidth="190.0" styleClass="sidePanel" stylesheets="@../HumanResourceViews/humanResourceStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="106.0" prefWidth="158.0" text="Human Resource Dashboard" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label alignment="CENTER" prefHeight="106.0" prefWidth="158.0" text="MY ACCOUNT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="loadButton" mnemonicParsing="false" onAction="#loadDetails" prefHeight="47.0" prefWidth="141.0" style="-fx-background-color: lime;" text="Load Details" textFill="#ff1c00">
-               <VBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
             <Button layoutX="17.0" layoutY="123.0" mnemonicParsing="false" onAction="#toHome" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Home">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -46,7 +38,12 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Resign">
+            <Button layoutX="17.0" layoutY="309.0" mnemonicParsing="false" onAction="#toHoliday" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Take Holiday">
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" onAction="#toResign" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Resign">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>

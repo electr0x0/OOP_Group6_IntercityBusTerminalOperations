@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.AddPartsController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.AddPartsController">
    <children>
       <TableView fx:id="stockTable" fixedCellSize="0.0" layoutY="359.0" prefHeight="461.0" prefWidth="1220.0">
          <columns>
@@ -33,13 +33,13 @@
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                <stops>
                   <Stop color="#1dad83" />
-                  <Stop color="#00bbff" offset="1.0" />
+                  <Stop color="#59a7f0" offset="1.0" />
                </stops>
             </RadialGradient>
          </textFill>
       </Button>
       <Label fx:id="catagoryLabel" layoutX="254.0" layoutY="304.0" prefHeight="31.0" prefWidth="218.0" textFill="#ee0707" />
-      <Button layoutX="517.0" layoutY="268.0" mnemonicParsing="false" onAction="#clearFilterOnMouseClick" prefHeight="31.0" prefWidth="105.0" text="Clear Filter" />
+      <Button layoutX="517.0" layoutY="268.0" mnemonicParsing="false" onAction="#clearFilterOnMouseClick" prefHeight="31.0" prefWidth="105.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Clear Filter" textFill="#59a7f0" />
       <VBox layoutX="68.0" layoutY="29.0" prefHeight="215.0" prefWidth="106.0" spacing="55.0">
          <children>
             <Text fill="#59a7f0" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Patrs Name:">
@@ -61,19 +61,19 @@
       </VBox>
       <VBox layoutX="254.0" layoutY="26.0" prefHeight="222.0" prefWidth="218.0">
          <children>
-            <TextField fx:id="partsNameTF" prefHeight="36.0" prefWidth="220.0">
+            <TextField fx:id="partsNameTF" prefHeight="36.0" prefWidth="220.0" styleClass="addressTF" stylesheets="@../../css/signUp.css">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </TextField>
             <Label fx:id="partsNameLabel" prefHeight="37.0" prefWidth="218.0" textFill="#ee0707" />
-            <TextField fx:id="partsModelTF" prefHeight="36.0" prefWidth="220.0">
+            <TextField fx:id="partsModelTF" prefHeight="36.0" prefWidth="220.0" styleClass="addressTF" stylesheets="@../../css/signUp.css">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
             <Label fx:id="partsModelLabel" prefHeight="38.0" prefWidth="218.0" textFill="#ee0707" />
-            <TextField fx:id="partsPriceTF" prefHeight="36.0" prefWidth="220.0">
+            <TextField fx:id="partsPriceTF" prefHeight="36.0" prefWidth="220.0" styleClass="addressTF" stylesheets="@../../css/signUp.css">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -88,17 +88,17 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <ComboBox fx:id="filterCB" onAction="#filterCBOnMouseClick" prefHeight="41.0" prefWidth="215.0" />
+            <ComboBox fx:id="filterCB" onAction="#filterCBOnMouseClick" prefHeight="41.0" prefWidth="215.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
          </children>
       </HBox>
-      <HBox layoutX="675.0" layoutY="29.0" prefHeight="31.0" prefWidth="355.0">
+      <HBox layoutX="675.0" layoutY="19.0" prefHeight="31.0" prefWidth="355.0">
          <children>
             <Text fill="#59a7f0" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Catagory:" wrappingWidth="114.005859375">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <ComboBox fx:id="catagoryCB" prefHeight="31.0" prefWidth="240.0" />
+            <ComboBox fx:id="catagoryCB" prefHeight="31.0" prefWidth="240.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
          </children>
       </HBox>
       <HBox layoutX="676.0" layoutY="83.0" prefHeight="31.0" prefWidth="355.0">
@@ -108,7 +108,7 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="quantiryTF" prefHeight="31.0" prefWidth="248.0" />
+            <TextField fx:id="quantiryTF" prefHeight="31.0" prefWidth="248.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" />
          </children>
       </HBox>
    </children>

@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.Administrator.FeedbackController">
 
-    <VBox alignment="CENTER" prefHeight="794.0" prefWidth="1200.0" spacing="10">
-        <TableView fx:id="feedbackTableView" prefHeight="438.0" prefWidth="1059.0">
+    <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" spacing="10" style="-fx-background-color: #353A56;">
+        <TableView fx:id="feedbackTableView" prefHeight="431.0" prefWidth="1200.0">
             <columns>
                 <TableColumn fx:id="feedbackIdColumn" prefWidth="415.0" text="Feedback ID" />
                 <TableColumn fx:id="passengerNameColumn" minWidth="0.0" prefWidth="359.0" text="Passenger Name" />
@@ -17,6 +17,6 @@
             </columns>
         </TableView>
         
-        <TextArea fx:id="selectedFeedbackTextArea" editable="false" prefHeight="383.0" prefWidth="1200.0" />
+        <TextArea fx:id="selectedFeedbackTextArea" editable="false" prefHeight="331.0" prefWidth="1200.0" />
     </VBox>
 </AnchorPane>

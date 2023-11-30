@@ -14,40 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.HumanResourceViews.CreateEmployeeController">
-   <left>
-      <VBox prefHeight="511.0" prefWidth="155.0" styleClass="sidePanel" stylesheets="@humanResourceStyle.css" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="106.0" prefWidth="158.0" text="Human Resource Dashboard" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="My Employees">
-               <VBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="17.0" layoutY="123.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="Leave Requests">
-               <VBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="Surveys">
-               <VBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="17.0" layoutY="245.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="Inbox">
-               <VBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.HumanResourceViews.CreateEmployeeController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainLayout" stylesheets="@humanResourceStyle.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="499.0" prefWidth="729.0" styleClass="mainLayout" stylesheets="@humanResourceStyle.css" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="page1" layoutX="130.0" layoutY="67.0" prefHeight="377.0" prefWidth="419.0">
                <children>
