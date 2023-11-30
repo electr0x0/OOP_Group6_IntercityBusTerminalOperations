@@ -1,4 +1,5 @@
 package com.busterminal.model;
+import static com.busterminal.model.MaintenanceTask.getTaskList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -136,6 +137,10 @@ public class Parts implements Serializable {
             }
         }
         return list;
+    }
+     
+     public static int totalstaff() {
+        return getItems().size();
     }
     
     

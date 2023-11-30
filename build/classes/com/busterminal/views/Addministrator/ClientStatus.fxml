@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.Administrator.ClientInformation">
+    <VBox prefHeight="787.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane prefHeight="299.0" prefWidth="1200.0">
+         <children>
+            <HBox layoutX="302.0" layoutY="33.0" prefHeight="44.0" prefWidth="733.0" spacing="50.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Client Name:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="clientNameSearchbar" prefHeight="31.0" prefWidth="229.0" />
+                  <Button mnemonicParsing="false" onAction="#searchByClientNameOnMouseClick" prefHeight="31.0" prefWidth="120.0" text="Search" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+        <TableView fx:id="passengerTable" prefHeight="914.0" prefWidth="1200.0">
+            <columns>
+                <!-- Passenger ID Column -->
+                <TableColumn fx:id="clientIdCol" prefWidth="165.0" text="ID">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="passengerId" />
+                    </cellValueFactory>
+                </TableColumn>
+            <TableColumn fx:id="clientNameCol" prefWidth="165.0" text="Name">
+               <cellValueFactory>
+                  <PropertyValueFactory property="passengerId" />
+               </cellValueFactory>
+            </TableColumn>
+
+                <!-- Bus ID Column -->
+                <TableColumn fx:id="clientAddressCol" prefWidth="171.0" text=" Address">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="busId" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Departure Time Column -->
+                <TableColumn fx:id="clientEmailCol" prefWidth="183.0" text="Email">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="departureTime" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Date Column -->
+                <TableColumn fx:id="clientGenderCol" minWidth="0.0" prefWidth="259.0" text="Gender">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="date" />
+                    </cellValueFactory>
+                </TableColumn>
+            <TableColumn fx:id="clientPasswordCol" prefWidth="255.0" text="Password">
+               <cellValueFactory>
+                  <PropertyValueFactory property="departureTime" />
+               </cellValueFactory>
+            </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+
+</AnchorPane>

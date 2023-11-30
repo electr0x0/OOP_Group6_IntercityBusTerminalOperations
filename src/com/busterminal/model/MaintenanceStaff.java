@@ -1,5 +1,6 @@
 package com.busterminal.model;
 
+import static com.busterminal.model.MaintenanceTask.getTaskList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -99,6 +100,7 @@ public class MaintenanceStaff extends DummyEmployee implements Serializable {
         }
     }
      
+     
      public static void deleteEmployee(MaintenanceStaff p) {
         // create a arraylist for storing all intance from bin file
         ArrayList<MaintenanceStaff> employeelist = new ArrayList<>();
@@ -157,5 +159,10 @@ public class MaintenanceStaff extends DummyEmployee implements Serializable {
         }
 
     }
+     
+      public static int totalstaff() {
+        return getTaskList().size();
+    }
+     
 
 }

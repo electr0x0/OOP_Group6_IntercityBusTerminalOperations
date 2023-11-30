@@ -102,4 +102,10 @@ public class PustingAfterMaintenanceController implements Initializable {
         issueResolvedTF.clear();
     }
 
+    public void setBusIdTF(String busIdTF) {
+        this.busIdTF.setText(busIdTF);
+    }
+    
+    
+
 }

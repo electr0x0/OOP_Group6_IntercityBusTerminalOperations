@@ -55,7 +55,5 @@ public class MaintenanceTask extends dummyMaintenanceStaff implements Serializab
         return list;
     }
 
-    public static int totalstaff() {
-        return getTaskList().size();
-    }
+   
 }
