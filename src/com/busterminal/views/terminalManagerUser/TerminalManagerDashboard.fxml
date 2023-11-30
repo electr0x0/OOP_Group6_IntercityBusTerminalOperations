@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2022 Parisi Alessandro
+  ~ This file is part of MaterialFX (https://github.com/palexdev/MaterialFX).
+  ~
+  ~ MaterialFX is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Lesser General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ MaterialFX is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with MaterialFX.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1362.0" styleClass="rootPane" stylesheets="@../../css/Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerDashboardController">
+    <VBox alignment="CENTER" layoutX="3.0" layoutY="3.0" prefHeight="716.0" prefWidth="295.0" styleClass="sidebar" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" top="60.0" />
+        </padding>
+      <ImageView fitHeight="145.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+         <image>
+            <Image url="@../../../../drawables/dashboard_logo.gif" />
+         </image>
+      </ImageView>
+        <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="266.0" styleClass="header" text="Manager Dashboard">
+            <graphic>
+                <StackPane fx:id="logoContainer" />
+            </graphic>
+         <font>
+            <Font size="6.0" />
+         </font>
+        </Label>
+        <Label prefHeight="18.0" prefWidth="74.0" styleClass="menu-label" text="Modules">
+            <VBox.margin>
+                <Insets left="5.0" top="40.0" />
+            </VBox.margin>
+        </Label>
+        <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="469.0" prefWidth="280.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets bottom="10.0" left="5.0" top="15.0" />
+            </VBox.margin>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+         <content>
+            <VBox prefHeight="425.0" prefWidth="305.0" spacing="35.0">
+               <children>
+                  <MFXButton fx:id="dashboardBtn" defaultButton="true" onAction="#onClickDashboardBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Dashboard" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/dashboard-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="busManagementBtn" defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickBusManagementBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Management" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/dash_pane_logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="tripFareButton" defaultButton="true" layoutX="10.0" layoutY="79.0" onAction="#onClickTicketPricingBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Trip And Fare Management" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/transport.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="busTripScheBtn" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickBusTripSchedule" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Bus Trip Scheduling" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/transport_scheduler-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="manageStaffBtn" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#onClickManageStafFBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Manage Staff" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/manage_staff-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="finanCialReportBtn" defaultButton="true" layoutX="10.0" layoutY="148.0" onAction="#onClickFinancialBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Financial Reports" textFill="WHITE">
+                     <graphic>
+                        <ImageView fx:id="financialReportBtn" fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/detailed_financeReport-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="comHubBtn" defaultButton="true" layoutX="10.0" layoutY="217.0" onAction="#onClickCommunicationHubBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Communication Hub" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/com_hub-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton defaultButton="true" layoutX="10.0" layoutY="355.0" onAction="#onClickSignOutBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="Sign Out" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+               </children>
+            </VBox>
+         </content>
+        </MFXScrollPane>
+    </VBox>
+   <AnchorPane fx:id="dashboardContentPane" layoutX="298.0" layoutY="3.0" prefHeight="750.0" prefWidth="1050.0" />
+</AnchorPane>

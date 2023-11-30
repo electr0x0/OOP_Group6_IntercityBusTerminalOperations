@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantEmployeeReimbursementManagementController">
+   <children>
+      <MFXLegacyTableView fx:id="reimbTableView" layoutX="17.0" layoutY="128.0" onMouseClicked="#onClickTableUpdateSelectedItem" prefHeight="556.0" prefWidth="1016.0" stylesheets="@../../css/AccountantTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colEmployeeName" prefWidth="152.0" text="Employee Name" />
+            <TableColumn fx:id="colEmployeeDesignation" prefWidth="142.0" text="Designation" />
+            <TableColumn fx:id="colDateOfSubmission" prefWidth="134.0" text="Date of Submission" />
+            <TableColumn fx:id="colCauseForReimb" prefWidth="214.0" text="Expense Type" />
+            <TableColumn fx:id="colExpenseAmount" prefWidth="150.0" text="Amount (BDT)" />
+            <TableColumn fx:id="colReimbState" prefWidth="109.0" text="State" />
+            <TableColumn fx:id="colRecevingMethod" prefWidth="121.0" text="Receiving Method" />
+         </columns>
+      </MFXLegacyTableView>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="909.0" layoutY="34.0" onAction="#onClickExpenseReportReim" prefHeight="36.0" prefWidth="113.0" text="Expense Report" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="786.0" layoutY="34.0" onAction="#onClickReimDashboard" prefHeight="36.0" prefWidth="113.0" text="Dashboard" />
+      <TextField fx:id="txtFieldSearch" layoutX="73.0" layoutY="71.0" onKeyPressed="#searchActionTableView" prefHeight="46.0" prefWidth="232.0" styleClass="search-bar" stylesheets="@../../css/DashboardAccountant.css" />
+      <ImageView fitHeight="29.0" fitWidth="27.0" layoutX="37.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/search.png" />
+         </image>
+      </ImageView>
+      <MFXRadioButton fx:id="radioSearchName" layoutX="331.0" layoutY="85.0" text="Name" />
+      <MFXRadioButton fx:id="radioSearchDesignation" layoutX="404.0" layoutY="85.0" text="Designation" />
+      <MFXRadioButton fx:id="radioSearchDate" layoutX="507.0" layoutY="85.0" text="Date" />
+      <Label layoutX="413.0" layoutY="62.0" text="Search By*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="markPaidButton" buttonType="RAISED" depthLevel="LEVEL4" disable="true" layoutX="920.0" layoutY="694.0" onAction="#onClickDeleteSelectedItem" prefHeight="36.0" prefWidth="113.0" text="Mark Paid" />
+   </children>
+</AnchorPane>

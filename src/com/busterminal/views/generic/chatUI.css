@@ -1,0 +1,89 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 20, 2023, 3:22:02 PM
+    Author     : electr0
+*/
+
+@import '../../fonts/Fonts.css';
+@import '../../css/MFXColors.css';
+
+.rootPane {
+	-fx-font-family: 'Visby Round CF Heavy';
+	-fx-font-size: 12;
+	-fx-text-fill: white;
+}
+
+.messageBody {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-wrap-text: true;
+    -fx-font-family: 'Visby Round CF Heavy';
+    -fx-font-size: 12;
+    -fx-text-fill: black;
+}
+
+.mfx-button {
+    -fx-background-color: #1976D2;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+}
+
+
+.button-send {
+    -fx-background-color: #6200EE;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.button-send:hover {
+    -fx-background-color: #3700B3;
+}
+
+.button-send:pressed {
+    -fx-background-color: #03DAC5;
+}
+
+
+.combo-box-recipient {
+    -fx-background-color: white;
+    -fx-border-color: #6200EE;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-background-radius: 5px;
+}
+
+.combo-box-recipient .list-cell {
+    -fx-text-fill: #6200EE;
+    -fx-font-weight: normal;
+}
+
+.combo-box-recipient:hover {
+    -fx-border-color: #3700B3;
+}
+
+.text-area-chat, .text-field-message {
+    -fx-background-color: white;
+    -fx-border-color: #2196f3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 1px;
+}
+
+.text-area-chat:focused, .text-field-message:focused {
+    -fx-border-color: #03DAC5;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}

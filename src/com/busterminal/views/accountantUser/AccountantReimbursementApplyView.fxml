@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantReimbursementApplyViewController">
+   <children>
+      <MFXTextField fx:id="txtFieldEmployeeID" floatMode="BORDER" floatingText="Please Enter Your Employee ID" layoutX="124.0" layoutY="219.0" prefHeight="25.0" prefWidth="212.0" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="358.0" layoutY="226.0" onAction="#onClickLoadEmployeeDetails" prefHeight="25.0" prefWidth="116.0" text="Load Details" />
+      <TextField fx:id="txtFieldEmpFirstName" editable="false" layoutX="231.0" layoutY="299.0" prefHeight="18.0" prefWidth="202.0" promptText="Employee First Name" />
+      <TextField fx:id="txtFieldEmpLastName" editable="false" layoutX="231.0" layoutY="347.0" prefHeight="18.0" prefWidth="202.0" promptText="Employee Last Name" />
+      <TextField fx:id="txtFieldEmpAddress" editable="false" layoutX="231.0" layoutY="402.0" prefHeight="18.0" prefWidth="202.0" promptText="Address" />
+      <TextField fx:id="txtFieldEmpSalary" editable="false" layoutX="231.0" layoutY="451.0" prefHeight="18.0" prefWidth="202.0" promptText="Salary" />
+      <TextField fx:id="txtFieldEmpDesignation" editable="false" layoutX="231.0" layoutY="494.0" prefHeight="18.0" prefWidth="202.0" promptText="Designation" />
+      <Label layoutX="164.0" layoutY="303.0" text="First Name" />
+      <Label layoutX="164.0" layoutY="351.0" text="Last Name" />
+      <Label layoutX="171.0" layoutY="406.0" text="Address" />
+      <Label layoutX="172.0" layoutY="455.0" text="Salary" />
+      <Label layoutX="161.0" layoutY="498.0" text="Desgination" />
+      <Line endX="-100.0" endY="242.0" layoutX="642.0" layoutY="301.0" startX="-100.0" startY="-91.29290771484375" />
+      <MFXComboBox fx:id="combBoxSelectExpense" floatingText="Select Expense Type" layoutX="695.0" layoutY="268.0" prefHeight="40.0" prefWidth="234.0" />
+      <MFXTextField fx:id="txtFieldExpenseAmount" floatMode="BORDER" floatingText="Amount (BDT)" layoutX="695.0" layoutY="327.0" prefHeight="38.0" prefWidth="234.0" />
+      <Label layoutX="607.0" layoutY="280.0" prefHeight="17.0" prefWidth="88.0" text="Expense Type*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="590.0" layoutY="338.0" prefHeight="17.0" prefWidth="101.0" text="Expense Amount*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXComboBox fx:id="combBoxPrefPaymentMethod" floatingText="Preferred Receving Method" layoutX="695.0" layoutY="388.0" prefHeight="40.0" prefWidth="234.0" />
+      <Label layoutX="586.0" layoutY="400.0" prefHeight="17.0" prefWidth="108.0" text="Payment Method*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="679.0" layoutY="457.0" onAction="#onClickSubmitEmployeeReimb" prefHeight="52.0" prefWidth="172.0" text="Submit" />
+      <Line endX="-121.5" endY="245.20709228515625" layoutX="213.0" layoutY="-39.0" startX="751.0" startY="248.0" />
+      <Line endX="-106.0" endY="248.0" layoutX="197.0" layoutY="295.0" startX="767.0" startY="248.5" />
+      <Line endX="-100.0" endY="242.0" layoutX="191.0" layoutY="299.0" startX="-100.0" startY="-91.29290771484375" />
+      <Line endX="-100.0" endY="242.0" layoutX="1064.0" layoutY="301.0" startX="-100.0" startY="-91.29290771484375" />
+      <Line endX="348.5" layoutX="193.0" layoutY="280.0" startX="-100.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="homeAchorPane" prefHeight="800.0" prefWidth="1215.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.Administrator.HomeController">
+   <children>
+      <BarChart fx:id="weeklySaleBarChart" layoutX="7.0" layoutY="266.0" prefHeight="444.0" prefWidth="608.0" style="-fx-border-color: #07f1e5; -fx-border-width: 3px;" title="Monthly Sale">
+        <xAxis>
+          <CategoryAxis label="Week" prefHeight="47.0" prefWidth="525.0" side="BOTTOM" tickLabelFill="#07f1e5" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" label="Tk (Thousand)" side="LEFT">
+               <tickLabelFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#16b538" />
+                        <Stop color="#07f1e5" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </tickLabelFill></NumberAxis>
+        </yAxis>
+      </BarChart>
+      <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" wrappingWidth="155.2900390625">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#fff9f9" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
+      <Label fx:id="dailySaleReportLabel" layoutX="148.0" layoutY="93.0" prefHeight="125.0" prefWidth="242.0" style="-fx-border-color: #07f1e5; -fx-border-width: 3px;" text="TODAY SALES [Date: 13-11-2023] BDT 100000" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#16b538" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <TextArea fx:id="bulletinMassageTA" layoutX="642.0" layoutY="264.0" prefHeight="451.0" prefWidth="586.0" style="-fx-border-color: #07f1e5; -fx-border-width: 3px;" styleClass="bulletinMessageTA" stylesheets="@../../../style/AdminDashBord.css" wrapText="true">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></TextArea>
+      <Text fill="#0f7fe1" layoutX="598.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="toTF" layoutX="645.0" layoutY="86.0" prefHeight="31.0" prefWidth="515.0" style="-fx-border-color: White#07f1e5; -fx-border-width: 2px;" />
+      <Text fill="#0f7fe1" layoutX="598.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cc:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ccTF" layoutX="645.0" layoutY="140.0" prefHeight="31.0" prefWidth="515.0" style="-fx-border-color: #07f1e5; -fx-border-width: 2px;" />
+      <Text fill="#0f7fe1" layoutX="570.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="subjectTF" layoutX="645.0" layoutY="195.0" prefHeight="31.0" prefWidth="515.0" style="-fx-border-color: #07f1e5; -fx-border-width: 2px;" />
+      <Button fx:id="sendButton" layoutX="645.0" layoutY="739.0" mnemonicParsing="false" onAction="#sendMassageOnMouseClick" prefHeight="31.0" prefWidth="127.0" style="-fx-background-radius: 50px; -fx-background-color: #07f1e5;" text="Send" textFill="#1d9466">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Text fill="#07f1e5" fontSmoothingType="LCD" layoutX="786.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Bulletin Massage">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

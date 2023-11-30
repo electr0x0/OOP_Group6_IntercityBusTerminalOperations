@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerAllAvailableBusViewController">
+   <children>
+      <MFXLegacyTableView fx:id="tableViewBus" layoutX="19.0" layoutY="91.0" prefHeight="569.0" prefWidth="1013.0" stylesheets="@../../css/ManagerTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colBusID" prefWidth="116.0" text="Bus ID" />
+            <TableColumn fx:id="colBusCapacity" prefWidth="116.0" text="Capacity" />
+            <TableColumn fx:id="colBusType" prefWidth="116.0" text="Type" />
+            <TableColumn fx:id="colBusReg" prefWidth="136.0" text="Registration Number" />
+            <TableColumn fx:id="colBusManufac" prefWidth="175.0" text="Manufacturer" />
+            <TableColumn fx:id="colAssignedDrivers" prefWidth="167.0" text="Drivers" />
+            <TableColumn fx:id="colMtStatus" prefWidth="185.0" text="Maintenance Status" />
+         </columns>
+      </MFXLegacyTableView>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="929.0" layoutY="673.0" onAction="#onClickDeleteBus" prefHeight="46.0" prefWidth="103.0" text="Delete" />
+      <ImageView blendMode="DIFFERENCE" fitHeight="59.0" fitWidth="81.0" layoutX="973.0" layoutY="14.0" onMouseClicked="#onClickBackButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerCurrentBusRoutesAndStandsController">
+   <children>
+      <Label layoutX="428.0" layoutY="14.0" prefHeight="17.0" prefWidth="187.0" text="Current Locations and Time Slots">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXTableView fx:id="locationTimeTableView" layoutX="8.0" layoutY="45.0" prefHeight="583.0" prefWidth="1034.0" stylesheets="@../../css/ManagerTableStyle.css" />
+      <Label fx:id="totalTravelLocationLabel" layoutX="35.0" layoutY="649.0" text="Total Travel Locations : x" />
+      <Label fx:id="totalTimeSlotsLabel" layoutX="35.0" layoutY="676.0" prefHeight="17.0" prefWidth="130.0" text="Total Time Slots : x" />
+      <Label fx:id="totalBusStandLocationLabel" layoutX="35.0" layoutY="700.0" text="Total Bus Stand Locations : x" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="910.0" layoutY="681.0" onAction="#onClickBack" prefHeight="38.0" prefWidth="97.0" rippleAnimateShadow="true" text="Back" />
+   </children>
+</AnchorPane>

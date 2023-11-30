@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@TerminalManagerTicketPricing.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerTripAndFareMangement">
+   <children>
+      <MFXFilterComboBox fx:id="comboPickupPoint" floatMode="BORDER" floatingText="Travel Starting Point" layoutX="17.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboDestinationPoint" floatMode="BORDER" floatingText="Travel Destination Point" layoutX="268.0" layoutY="79.0" prefHeight="40.0" prefWidth="257.0" />
+      <Label layoutX="79.0" layoutY="48.0" prefHeight="23.0" prefWidth="87.0" text="Select Source*" />
+      <Label layoutX="319.0" layoutY="48.0" prefHeight="23.0" prefWidth="101.0" text="Select Destination*" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="841.0" layoutY="344.0" prefHeight="23.0" prefWidth="87.0" text="Fleet Type" />
+      <MFXToggleButton fx:id="toggleFleetAC" layoutX="797.0" layoutY="375.0" onMouseClicked="#setBusListAC" prefHeight="41.0" prefWidth="87.0" text="AC" />
+      <MFXToggleButton fx:id="toggleFleetNonAC" layoutX="884.0" layoutY="375.0" onMouseClicked="#setBusListNonAC" text="Non AC" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="25.0" prefHeight="23.0" prefWidth="87.0" text="Trip Section">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <MFXTextField fx:id="tFieldAdultFare" floatMode="BORDER" floatingText="Base Price" layoutX="268.0" layoutY="379.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXTextField fx:id="tFieldChildFare" floatMode="BORDER" floatingText="Base Price" layoutX="22.0" layoutY="379.0" prefHeight="40.0" prefWidth="227.0" />
+      <Label layoutX="346.0" layoutY="355.0" prefHeight="23.0" prefWidth="87.0" text="Adult Fare*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="92.0" layoutY="355.0" prefHeight="23.0" prefWidth="87.0" text="Children Fare*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="589.0" layoutY="347.0" prefHeight="23.0" prefWidth="101.0" text="Weekend Fare*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <MFXTextField fx:id="tFieldWeekendFare" floatMode="BORDER" floatingText="Base Price" layoutX="526.0" layoutY="375.0" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboBusList" floatMode="BORDER" floatingText="Vehicle List" layoutX="22.0" layoutY="468.0" onAction="#updateBusTableInformation" prefHeight="40.0" prefWidth="227.0" />
+      <MFXFilterComboBox fx:id="comboScheduleTimeList" floatMode="BORDER" floatingText="Schedule Time" layoutX="534.0" layoutY="79.0" prefHeight="40.0" prefWidth="227.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="571.0" layoutY="48.0" prefHeight="23.0" prefWidth="106.0" text="Select Time*" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="135.0" prefHeight="23.0" prefWidth="87.0" text="Boarding Point">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="158.0" prefHeight="23.0" prefWidth="106.0" text="Select Bus Stand*" />
+      <MFXFilterComboBox fx:id="comboPickupBusStand" floatMode="BORDER" floatingText="Boarding Bus Stand" layoutX="22.0" layoutY="188.0" onMouseClicked="#updateBusPickupStands" prefHeight="40.0" prefWidth="227.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="239.0" prefHeight="23.0" prefWidth="106.0" text="Dropping Point">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXFilterComboBox fx:id="comboDropBusStand" floatMode="BORDER" floatingText="Dropping Bus Stand" layoutX="22.0" layoutY="285.0" onMouseClicked="#updateBusDroppingStands" prefHeight="40.0" prefWidth="227.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="262.0" prefHeight="23.0" prefWidth="106.0" text="Select Bus Stand*" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="335.0" prefHeight="23.0" prefWidth="106.0" text="Fare Section">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="438.0" prefHeight="23.0" prefWidth="142.0" text="Assign Vehicle to Trip*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="889.0" layoutY="683.0" onAction="#onClickAddSchedule" prefHeight="40.0" prefWidth="142.0" text="Add Schedule" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="472.0" layoutY="508.0" prefHeight="23.0" prefWidth="142.0" text="Bus Information">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="gearIcon" fitHeight="47.0" fitWidth="50.0" layoutX="966.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/gear_animated.gif" />
+         </image>
+      </ImageView>
+      <MFXLegacyTableView fx:id="busInfoShowerTable" layoutX="85.0" layoutY="536.0" prefHeight="92.0" prefWidth="880.0" stylesheets="@../../css/ManagerTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colBusID" prefWidth="93.0" text="Bus ID" />
+            <TableColumn fx:id="colBusType" prefWidth="62.0" text="Bus Type" />
+            <TableColumn fx:id="colSeatCapacity" prefWidth="84.0" text="Seat Capactiy" />
+            <TableColumn fx:id="colAvailableDrivers" prefWidth="450.0" text="Available Drivers" />
+            <TableColumn fx:id="colMtStatus" prefWidth="190.0" text="Maintainence Status" />
+         </columns>
+      </MFXLegacyTableView>
+      <MFXFilterComboBox fx:id="comboListDriver" floatMode="BORDER" floatingText="Driver List" layoutX="256.0" layoutY="468.0" onAction="#updateCurrentScheduleDriver" prefHeight="40.0" prefWidth="227.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="438.0" prefHeight="23.0" prefWidth="142.0" text="Assign Driver to Trip*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXProgressSpinner fx:id="progressSpinner" layoutX="477.0" layoutY="640.0" />
+      <MFXSlider fx:id="spinnerTravelDistance" decimalPrecision="1" layoutX="298.0" layoutY="259.0" max="500.0" min="1.0" minorTicksCount="1" popupPadding="1.0" prefHeight="0.0" prefWidth="198.0" sliderMode="SNAP_TO_TICKS" tickUnit="1.0" unitIncrement="1.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="313.0" layoutY="228.0" prefHeight="23.0" prefWidth="153.0" text="Total Travel Distance* (KM)" />
+   </children>
+</AnchorPane>
