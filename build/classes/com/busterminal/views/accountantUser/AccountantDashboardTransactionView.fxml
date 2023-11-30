@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantDashboardTransactionViewController">
+   <children>
+      <MFXLegacyTableView fx:id="tableViewTxns" layoutX="151.0" layoutY="109.0" prefHeight="598.0" prefWidth="716.0" stylesheets="@../../css/AccountantTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colDate" prefWidth="123.0" text="Date" />
+            <TableColumn fx:id="colParticulars" prefWidth="257.0" text="Particular(s)" />
+            <TableColumn fx:id="colTxnType" prefWidth="142.0" text="Transaction Type" />
+            <TableColumn fx:id="colStatus" prefWidth="71.0" text="Status" />
+            <TableColumn fx:id="colAmount" prefWidth="121.0" text="Amount" />
+         </columns>
+      </MFXLegacyTableView>
+   </children>
+</AnchorPane>

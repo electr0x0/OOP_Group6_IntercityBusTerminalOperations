@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -16,14 +17,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #081839;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.LoginController">
    <children>
-      <AnchorPane layoutX="106.0" layoutY="91.0" mouseTransparent="false" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #1B2B4B;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="70.0">
+      <AnchorPane layoutX="62.0" layoutY="58.0" mouseTransparent="false" prefHeight="284.0" prefWidth="576.0" style="-fx-background-color: #1B2B4B;" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="58.0">
          <children>
-            <ImageView fitHeight="260.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../storage/db/image/login.png.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="userNameTextField" layoutX="283.0" layoutY="68.0" prefHeight="40.0" prefWidth="258.0" promptText="Username" style="-fx-background-color: #677797;">
+            <TextField fx:id="userNameTextField" layoutX="283.0" layoutY="70.0" prefHeight="40.0" prefWidth="258.0" promptText="Username" style="-fx-background-color: #677797;">
                <font>
                   <Font name="Arial" size="15.0" />
                </font></TextField>
@@ -47,12 +43,23 @@
                   </RadialGradient>
                </textFill>
             </Button>
+            <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="160.0" prefWidth="258.0">
+               <children>
+                  <ImageView blendMode="MULTIPLY" fitHeight="167.0" fitWidth="273.0" layoutX="-10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../drawables/sign_in_animation.gif" />
+                     </image>
+                  </ImageView>
+                  <FontAwesomeIconView fill="#0ff5e2" glyphName="USER" layoutX="239.0" layoutY="93.0" size="30" wrappingWidth="12.0" />
+                  <FontAwesomeIconView fill="#0ff5e2" glyphName="LOCK" layoutX="239.0" layoutY="153.0" size="30" />
+               </children>
+            </AnchorPane>
          </children>
          <effect>
             <DropShadow color="#2f2828" />
          </effect>
       </AnchorPane>
-      <Button fx:id="forgotPasswordButton" layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#forgetPassWordonMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Forgot Password">
+      <Button fx:id="forgotPasswordButton" layoutX="487.0" layoutY="351.0" mnemonicParsing="false" onAction="#forgetPassWordonMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Forgotten Password">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -65,7 +72,7 @@
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="signupbutton" layoutX="224.0" layoutY="349.0" mnemonicParsing="false" onAction="#signUpButtononMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Sign Up">
+      <Button fx:id="signupbutton" layoutX="251.0" layoutY="351.0" mnemonicParsing="false" onAction="#signUpButtononMouseClick" prefHeight="37.0" prefWidth="199.0" style="-fx-background-color: #081839;" text="Sign Up">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>

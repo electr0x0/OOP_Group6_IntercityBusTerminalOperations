@@ -6,10 +6,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerStaffMangementController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerStaffMangementController">
    <children>
-      <MFXLegacyTableView fx:id="empMangeTableView" layoutX="14.0" layoutY="87.0" prefHeight="547.0" prefWidth="1022.0">
+      <MFXLegacyTableView fx:id="empMangeTableView" layoutX="14.0" layoutY="87.0" prefHeight="547.0" prefWidth="1022.0" stylesheets="@../../css/ManagerTableStyle.css">
          <columns>
             <TableColumn fx:id="colEmpName" prefWidth="167.0" text="Employee Name" />
             <TableColumn fx:id="colEmpID" prefWidth="103.0" text="ID" />

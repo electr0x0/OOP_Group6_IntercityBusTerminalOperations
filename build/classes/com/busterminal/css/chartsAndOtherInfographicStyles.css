@@ -1,0 +1,76 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 28, 2023, 2:09:35 AM
+    Author     : electr0
+*/
+
+
+/* General Chart Styling */
+.chart {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5); /* Shadow for depth */
+}
+
+/* Line Chart Styling */
+.default-color0.chart-series-line { -fx-stroke: #673AB7; -fx-stroke-width: 2px; }
+.default-color1.chart-series-line { -fx-stroke: #3F51B5; -fx-stroke-width: 2px; }
+.default-color2.chart-series-line { -fx-stroke: #2196F3; -fx-stroke-width: 2px; }
+.default-color3.chart-series-line { -fx-stroke: #03A9F4; -fx-stroke-width: 2px; }
+
+/* Axis Styling */
+.axis-label { -fx-font-size: 14px; -fx-text-fill: #333333; }
+.axis { -fx-tick-label-fill: #333333; -fx-tick-label-font-size: 12px; }
+
+/* Pie Chart Styling */
+.default-color0.chart-pie{-fx-pie-color: green;}
+.default-color1.chart-pie{-fx-pie-color: blue;}
+.default-color2.chart-pie{-fx-pie-color: transparent;}
+.default-color3.chart-pie{-fx-pie-color: transparent;}
+.default-color4.chart-pie{-fx-pie-color: transparent;}
+
+.chart-pie-label{
+    -fx-fill : #FFD6DC;
+    -fx-stroke: #FFD6DC;
+    -fx-font-size: 15;
+}
+
+.chart-pie-label-line{
+    -fx-fill : #FFD6DC;
+    -fx-stroke: #FFD6DC;
+}
+
+/* Bar Chart Styling */
+.bar-chart .chart-bar {
+    -fx-bar-fill: #90A4AE; /* Neutral bar color */
+}
+
+.bar-chart:series0 .chart-bar { -fx-bar-fill: #FF9800; }
+.bar-chart:series1 .chart-bar { -fx-bar-fill: #FFC107; }
+.bar-chart:series2 .chart-bar { -fx-bar-fill: #FFEB3B; }
+.bar-chart:series3 .chart-bar { -fx-bar-fill: #CDDC39; }
+
+
+.vbox-container {
+    -fx-background-color: linear-gradient(to right bottom, #4caf50 ,#4caf50,#999999); /* White background */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-padding: 20px; /* Padding inside the VBox */
+    -fx-spacing: 10px; /* Spacing between elements inside the VBox */
+    -fx-alignment: center; /* Align children to center */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0, 0, 5); /* Subtle shadow for depth */
+}
+
+.vbox-header {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.my-donut-tile {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}

@@ -18,16 +18,16 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchorPaneShow" prefHeight="790.0" prefWidth="1172.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.MaintenanceStaff.BillGenaratorController">
     <children>
-        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;">
             <top>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Generator" wrappingWidth="194.00732421875" BorderPane.alignment="CENTER">
+                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Generator" wrappingWidth="194.00732421875" BorderPane.alignment="CENTER">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Text>
             </top>
             <center>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #353A56;" BorderPane.alignment="CENTER">
                     <children>
                         <GridPane layoutX="105.0" prefHeight="234.0" prefWidth="444.0">
                             <columnConstraints>
@@ -43,16 +43,40 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bus Id" wrappingWidth="212.6708984375" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parts Name" wrappingWidth="221.6708984375" GridPane.rowIndex="1" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" wrappingWidth="219.6708984375" GridPane.rowIndex="4" />
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus Id" wrappingWidth="212.6708984375" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts Name" wrappingWidth="221.6708984375" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" wrappingWidth="219.6708984375" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
                                 <ComboBox fx:id="partsNameCB" editable="true" prefHeight="26.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label fx:id="partsCost" prefHeight="69.0" prefWidth="222.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="219.6708984375" GridPane.rowIndex="5" />
-                                <Label fx:id="totalLabel" prefHeight="48.0" prefWidth="222.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" wrappingWidth="219.6708984375" GridPane.rowIndex="3" />
+                                <Label fx:id="partsCost" prefHeight="69.0" prefWidth="222.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="219.6708984375" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
+                                <Label fx:id="totalLabel" prefHeight="48.0" prefWidth="222.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" wrappingWidth="219.6708984375" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
                                 <TextField fx:id="busId" GridPane.columnIndex="1" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parts Model" GridPane.rowIndex="2" />
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts Model" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
                                 <ComboBox fx:id="partsModelCB" editable="true" onAction="#selectPartsMouseClick" prefHeight="29.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <ComboBox fx:id="Quantity" editable="true" onAction="#qunatityOnMouseClick" prefHeight="31.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
@@ -66,20 +90,20 @@
                             </columns>
                         </TableView>
                         <TextArea layoutX="630.0" layoutY="74.0" prefHeight="695.0" prefWidth="571.0" />
-                        <Text layoutX="869.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Slip" wrappingWidth="109.6708984375">
+                        <Text fill="#59a7f0" layoutX="869.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Slip" wrappingWidth="109.6708984375">
                             <font>
-                                <Font size="18.0" />
+                                <Font name="System Bold" size="18.0" />
                             </font>
                         </Text>
                         <HBox layoutX="131.0" layoutY="246.0" prefHeight="40.0" prefWidth="308.0" spacing="50.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#addPartsOnMouseClick" prefHeight="39.0" prefWidth="132.0" text="Add Parts" />
-                                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" text="Delete Parts" />
+                                <Button mnemonicParsing="false" onAction="#addPartsOnMouseClick" prefHeight="39.0" prefWidth="132.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Add Parts" textFill="#59a7f0" />
+                                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Delete Parts" textFill="#59a7f0" />
                             </children>
                         </HBox>
                         <HBox layoutX="332.0" layoutY="609.0" prefHeight="24.0" prefWidth="282.0" spacing="30.0">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Bill" wrappingWidth="111.6708984375">
+                                <Text fill="#59a7f0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Bill" wrappingWidth="111.6708984375">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -89,8 +113,8 @@
                         </HBox>
                         <HBox layoutX="116.0" layoutY="687.0" prefHeight="54.0" prefWidth="367.0" spacing="50.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#createBillOnMouseClick" prefHeight="54.0" prefWidth="155.0" text="Create Bill" />
-                                <Button mnemonicParsing="false" onAction="#ConvertPdfOnMouseClick" prefHeight="63.0" prefWidth="160.0" text="Convert PDF" />
+                                <Button mnemonicParsing="false" onAction="#createBillOnMouseClick" prefHeight="54.0" prefWidth="155.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Create Bill" textFill="#59a7f0" />
+                                <Button mnemonicParsing="false" onAction="#ConvertPdfOnMouseClick" prefHeight="63.0" prefWidth="160.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Convert PDF" textFill="#59a7f0" />
                             </children>
                         </HBox>
                     </children>

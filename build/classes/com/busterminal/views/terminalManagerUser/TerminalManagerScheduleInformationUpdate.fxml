@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerScheduleInformationUpdateController">
    <children>
       <Label layoutX="271.0" layoutY="227.0" prefHeight="26.0" prefWidth="98.0" text="Sheduled Date : " />
-      <MFXDatePicker fx:id="modifiedDatePicker" floatMode="ABOVE" floatingText="Modify Trip Date" layoutX="380.0" layoutY="221.0" prefHeight="38.0" prefWidth="203.0" />
+      <MFXDatePicker fx:id="modifiedDatePicker" layoutX="380.0" layoutY="221.0" prefHeight="38.0" prefWidth="203.0" />
       <Label layoutX="272.0" layoutY="292.0" prefHeight="17.0" prefWidth="92.0" text="Trip Status       :" />
       <Label layoutX="239.0" layoutY="182.0" prefHeight="26.0" prefWidth="158.0" text="Modify Trip Paramters*">
          <font>
@@ -25,9 +25,9 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="txtFieldAdFare" floatMode="ABOVE" floatingText="Modify Adult Fare" layoutX="260.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
-      <MFXTextField fx:id="txtFieldChFare" floatMode="ABOVE" floatingText="Modify Child Fare" layoutX="459.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
-      <MFXTextField fx:id="txtFieldWkndFare" floatMode="ABOVE" floatingText="Modify Weekend Fare" layoutX="647.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXTextField fx:id="txtFieldAdFare" floatMode="DISABLED" layoutX="260.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXTextField fx:id="txtFieldChFare" floatMode="DISABLED" layoutX="459.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXTextField fx:id="txtFieldWkndFare" floatMode="DISABLED" layoutX="647.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
       <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="847.0" layoutY="667.0" onAction="#onClickConfirmModification" prefHeight="47.0" prefWidth="158.0" text="Confirm Modification" />
       <ImageView blendMode="EXCLUSION" fitHeight="102.0" fitWidth="89.0" layoutX="961.0" layoutY="14.0" onMouseClicked="#onClickGoBackIcon" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -35,5 +35,9 @@
          </image>
       </ImageView>
       <MFXToggleButton fx:id="tripStatus" layoutX="380.0" layoutY="280.0" onMouseClicked="#updateToggleStatus" />
+      <Label layoutX="459.0" layoutY="418.0" prefHeight="17.0" prefWidth="104.0" text="Modify Child Fare" />
+      <Label layoutX="260.0" layoutY="418.0" prefHeight="17.0" prefWidth="104.0" text="Modify Adult Fare" />
+      <Label layoutX="647.0" layoutY="418.0" prefHeight="17.0" prefWidth="123.0" text="Modify Weekend Fare" />
+      <Label layoutX="430.0" layoutY="200.0" prefHeight="17.0" prefWidth="104.0" text="Modify Trip Date" />
    </children>
 </AnchorPane>
