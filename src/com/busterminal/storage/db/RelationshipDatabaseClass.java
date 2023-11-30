@@ -25,7 +25,6 @@ import java.util.ArrayList;
  *
  * @author electr0
  */
-
 public class RelationshipDatabaseClass implements Serializable {
 
     private static RelationshipDatabaseClass instance;
@@ -45,24 +44,21 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<Transaction> allAvailableTransactions;
     private ArrayList<PurchaseEntry> currentInventory;
     private ArrayList<RefundRequest> allRefundRequest;
-    
+
+    private String refundPolicy;
+
     private ArrayList<Employee> allEmployees;
     
     private String currentLoggedIn;
-    
-    private String refundPolicy;
-
-    public int getCurrentInvoiceCounter() {
-        return currentInvoiceCounter;
-    }
 
     public void setCurrentInvoiceCounter(int currentInvoiceCounter) {
         this.currentInvoiceCounter = currentInvoiceCounter;
         saveToFile();
     }
-    
+
     // Private constructor to prevent instantiation
-    private RelationshipDatabaseClass() {}
+    private RelationshipDatabaseClass() {
+    }
 
     // Static method to get the singleton instance
     public static RelationshipDatabaseClass getInstance() {
@@ -92,7 +88,7 @@ public class RelationshipDatabaseClass implements Serializable {
     }
 
     public ArrayList<String> getAllBusStands() {
-        
+
         return allBusStands;
     }
 
@@ -122,7 +118,7 @@ public class RelationshipDatabaseClass implements Serializable {
         this.busIdCounter = busIdCounter;
         saveToFile();
     }
-    
+
     public void saveToFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("GlobalClassDatabase.bin"))) {
             out.writeObject(instance);
@@ -130,7 +126,7 @@ public class RelationshipDatabaseClass implements Serializable {
             e.printStackTrace();
         }
     }
-    
+
     public static void loadFromFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("GlobalClassDatabase.bin"))) {
             instance = (RelationshipDatabaseClass) in.readObject();
@@ -174,18 +170,17 @@ public class RelationshipDatabaseClass implements Serializable {
         this.reimbursementIDCounter = reimbursementIDCounter;
         saveToFile();
     }
-    
-    public void addItemToReimbursementList(ReimbursementInfo reimObj){
-        if(this.reimbursementList == null){
+
+    public void addItemToReimbursementList(ReimbursementInfo reimObj) {
+        if (this.reimbursementList == null) {
             this.reimbursementList = new ArrayList<>();
             this.reimbursementList.add(reimObj);
+        } else {
+            this.reimbursementList.add(reimObj);
         }
-        else{
-          this.reimbursementList.add(reimObj);  
-        }
-        
+
         saveToFile();
-        
+
     }
 
     public ArrayList<ReimbursementInfo> getReimbursementList() {
@@ -194,7 +189,7 @@ public class RelationshipDatabaseClass implements Serializable {
 
     public void setReimbursementList(ArrayList<ReimbursementInfo> reimbursementList) {
         this.reimbursementList = reimbursementList;
-        
+
         saveToFile();
     }
 
@@ -215,20 +210,19 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allAvailableTransactions = allAvailableTransactions;
         saveToFile();
     }
-    
-    public void addItemToAllAvailableTransactions(Transaction txnObj){
-        if(this.allAvailableTransactions == null){
+
+    public void addItemToAllAvailableTransactions(Transaction txnObj) {
+        if (this.allAvailableTransactions == null) {
             this.allAvailableTransactions = new ArrayList<>();
             this.allAvailableTransactions.add(txnObj);
+        } else {
+            this.allAvailableTransactions.add(txnObj);
         }
-        else{
-          this.allAvailableTransactions.add(txnObj);  
-        }
-        
+
         saveToFile();
-        
+
     }
-    
+
     public ArrayList<PurchaseEntry> getCurrentInventory() {
         return currentInventory;
     }
@@ -246,18 +240,17 @@ public class RelationshipDatabaseClass implements Serializable {
         this.refundPolicy = refundPolicy;
         saveToFile();
     }
-    
-    public void addItemToAllRefundRequest(RefundRequest refundObj){
-        if(this.allRefundRequest == null){
+
+    public void addItemToAllRefundRequest(RefundRequest refundObj) {
+        if (this.allRefundRequest == null) {
             this.allRefundRequest = new ArrayList<>();
             this.allRefundRequest.add(refundObj);
+        } else {
+            this.allRefundRequest.add(refundObj);
         }
-        else{
-          this.allRefundRequest.add(refundObj);  
-        }
-        
+
         saveToFile();
-        
+
     }
 
     public ArrayList<RefundRequest> getAllRefundRequest() {
@@ -269,6 +262,10 @@ public class RelationshipDatabaseClass implements Serializable {
         saveToFile();
     }
 
+    public int getCurrentInvoiceCounter() {
+        return currentInvoiceCounter;
+    }
+
     public ArrayList<Employee> getAllEmployees() {
         return allEmployees;
     }
@@ -277,25 +274,5 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allEmployees = allEmployees;
         saveToFile();
     }
-
-    public String getCurrentLoggedIn() {
-        return currentLoggedIn;
-    }
-
-    public void setCurrentLoggedIn(String currentLoggedIn) {
-        this.currentLoggedIn = currentLoggedIn;
-        saveToFile();
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
-

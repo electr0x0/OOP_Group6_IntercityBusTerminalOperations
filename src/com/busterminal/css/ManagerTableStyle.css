@@ -1,0 +1,49 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 29, 2023, 6:55:58 AM
+    Author     : electr0
+*/
+
+.table-view {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2196f3; /* Primary color for the header */
+}
+
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: white; /* Text color for header */
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:filled:even {
+    -fx-background-color: #FAFAFA; /* Lighter row color */
+}
+
+.table-view .table-row-cell:filled:odd {
+    -fx-background-color: white; /* Darker row color */
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #B0BEC5; /* Selection color */
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center; /* Center alignment for cells */
+    -fx-text-fill: #212121; /* Primary text color */
+    -fx-border-color: transparent;
+}
+
+.table-view:focused .focused-cell {
+    -fx-border-color: -fx-focus-color;
+}
