@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerDestinationAndTimeDefinerController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@../accountantUser/refundViewStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerDestinationAndTimeDefinerController">
    <children>
       <MFXTextField fx:id="txtFieldLocation" floatMode="BORDER" floatingText="Define a location to be added" layoutX="38.0" layoutY="100.0" prefHeight="49.0" prefWidth="252.0" />
       <MFXButton buttonType="RAISED" layoutX="838.0" layoutY="645.0" onAction="#onClickBackBtn" prefHeight="42.0" prefWidth="91.0" text="Back" />

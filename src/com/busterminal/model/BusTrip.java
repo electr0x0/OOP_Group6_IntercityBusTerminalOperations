@@ -25,6 +25,8 @@ public class BusTrip implements Serializable {
     private double distance;
     private String driver;
     private boolean tripStatus = true;
+    
+    private int tripBusID;
 
     public BusTrip(String tripID, Bus bus, String source, String destination, String timeSlot, int adultFare, int childrenFare, int weekendFare, double distance, String driver) {
         this.tripID = tripID;
@@ -38,6 +40,7 @@ public class BusTrip implements Serializable {
         this.weekendFare = weekendFare;
         this.distance = distance;
         this.driver = driver;
+        this.tripBusID = bus.getBusId();
         bus.addOccupiedTimeSlot(timeSlot);
         updateAvailableTimeSlot();
         updateBusInstanceInObjectDB();
@@ -167,6 +170,14 @@ public class BusTrip implements Serializable {
     @Override
     public String toString() {
         return "ID- "+tripID+" "+source+"-"+destination+"-"+fleetType+" Cap-"+bus.getNumberOfSeats();
+    }
+
+    public int getTripBusID() {
+        return tripBusID;
+    }
+
+    public void setTripBusID(int tripBusID) {
+        this.tripBusID = tripBusID;
     }
 
 

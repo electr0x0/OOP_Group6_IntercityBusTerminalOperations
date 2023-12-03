@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -20,7 +21,7 @@
     <children>
       <BorderPane layoutX="-1.0" layoutY="137.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #353A56;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-              <VBox alignment="CENTER" prefHeight="528.0" prefWidth="1200.0" spacing="10" BorderPane.alignment="CENTER">
+              <VBox fx:id="anchorPaneShow" alignment="CENTER" prefHeight="528.0" prefWidth="1200.0" spacing="10" BorderPane.alignment="CENTER">
                <Label text="Up Coming Task" textFill="#08bde1">
                   <font>
                      <Font name="System Bold Italic" size="18.0" />
@@ -99,7 +100,7 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
-                        <Label fx:id="totalTaskLabel" prefHeight="21.0" prefWidth="257.0" textFill="#59a7f0" GridPane.columnIndex="1">
+                        <Label fx:id="totalTask" prefHeight="21.0" prefWidth="257.0" textFill="#59a7f0" GridPane.columnIndex="1">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -117,6 +118,12 @@
                      </children>
                   </GridPane>
                   <Label fx:id="timeLabel" layoutX="929.0" layoutY="3.0" prefHeight="109.0" prefWidth="268.0" textFill="WHITE" wrapText="true" />
+                  <FontAwesomeIconView fx:id="seeNotificationButton" fill="#00bfff" glyphName="ENVELOPE" layoutX="52.0" layoutY="35.0" onMouseClicked="#seeNotificationOnMouseClick" size="30" />
+                  <Label fx:id="countLabel" layoutX="65.0" layoutY="29.0" prefHeight="7.0" prefWidth="17.0" textFill="#ff000d">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </top>

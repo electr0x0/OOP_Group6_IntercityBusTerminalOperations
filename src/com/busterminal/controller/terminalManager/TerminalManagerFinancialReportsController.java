@@ -7,6 +7,7 @@ package com.busterminal.controller.terminalManager;
 import com.busterminal.model.accountant.PurchaseEntry;
 import com.busterminal.model.accountant.Transaction;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
+import com.busterminal.utilityclass.TransitionUtility;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.ChartType;
 import eu.hansolo.tilesfx.Tile.SkinType;
@@ -60,6 +61,9 @@ public class TerminalManagerFinancialReportsController implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(transactionPane);
+        TransitionUtility.materialScale(tilePaneSecond);
+        TransitionUtility.materialScale(tilePaneFourth);
         if (RelationshipDatabaseClass.getInstance().getAllAvailableTransactions() != null) {
             allAvailableTxns = RelationshipDatabaseClass.getInstance().getAllAvailableTransactions();
             setupTxnsParams(false, null);

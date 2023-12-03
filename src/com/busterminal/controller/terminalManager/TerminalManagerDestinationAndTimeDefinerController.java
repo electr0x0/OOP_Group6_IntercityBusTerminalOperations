@@ -5,6 +5,7 @@
 package com.busterminal.controller.terminalManager;
 
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
@@ -43,7 +44,7 @@ public class TerminalManagerDestinationAndTimeDefinerController implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        TransitionUtility.materialScale(rootPane);
     }
     
     public void setLocationAndTimeArrayList(ArrayList<String> allLocations, ArrayList<String> allTimes,ArrayList<String> allBusStands ) {

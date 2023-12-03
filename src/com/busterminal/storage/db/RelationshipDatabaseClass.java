@@ -8,6 +8,7 @@ import com.busterminal.model.Bus;
 import com.busterminal.model.BusTrip;
 import com.busterminal.model.BusTripSchedule;
 import com.busterminal.model.Employee;
+import com.busterminal.model.Ticket;
 import com.busterminal.model.accountant.PurchaseEntry;
 import com.busterminal.model.accountant.RefundRequest;
 import com.busterminal.model.accountant.ReimbursementInfo;
@@ -44,12 +45,14 @@ public class RelationshipDatabaseClass implements Serializable {
     private ArrayList<Transaction> allAvailableTransactions;
     private ArrayList<PurchaseEntry> currentInventory;
     private ArrayList<RefundRequest> allRefundRequest;
-
+    private ArrayList<Ticket> allTickets;
     private String refundPolicy;
 
     private ArrayList<Employee> allEmployees;
     
     private String currentLoggedIn;
+    
+    private String currentUserEmail;
 
     public void setCurrentInvoiceCounter(int currentInvoiceCounter) {
         this.currentInvoiceCounter = currentInvoiceCounter;
@@ -274,5 +277,47 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allEmployees = allEmployees;
         saveToFile();
     }
+
+    public ArrayList<Ticket> getAllTickets() {
+        return allTickets;
+    }
+
+    public void setAllTickets(ArrayList<Ticket> allTickets) {
+        this.allTickets = allTickets;
+        saveToFile();
+    }
+
+    public String getCurrentLoggedIn() {
+        return currentLoggedIn;
+    }
+
+    public void setCurrentLoggedIn(String currentLoggedIn) {
+        this.currentLoggedIn = currentLoggedIn;
+        saveToFile();
+    }
+    
+    public void addItemToTicketList(Ticket t){
+        if (this.allTickets == null) {
+            this.allTickets = new ArrayList<>();
+            this.allTickets.add(t);
+        } else {
+            this.allTickets.add(t);
+        }
+
+        saveToFile();
+        
+        System.out.println(t.toString());
+        System.out.println(allTickets);
+    }
+
+    public String getCurrentUserEmail() {
+        return currentUserEmail;
+    }
+
+    public void setCurrentUserEmail(String currentUserEmail) {
+        this.currentUserEmail = currentUserEmail;
+        saveToFile();
+    }
+    
     
 }

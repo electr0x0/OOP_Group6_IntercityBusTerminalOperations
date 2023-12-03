@@ -8,6 +8,7 @@ import com.busterminal.model.accountant.PurchaseEntry;
 import com.busterminal.model.accountant.Transaction;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import com.busterminal.utilityclass.Validator;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -86,6 +87,7 @@ public class AccountantPurhcaseViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(rootPane);
         setupTable();
         if (RelationshipDatabaseClass.getInstance().getCurrentInventory() != null){
             currentInventory = RelationshipDatabaseClass.getInstance().getCurrentInventory();

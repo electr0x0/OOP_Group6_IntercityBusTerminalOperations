@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.busterminal.controller.MaintenanceStaff;
 
 import java.net.URL;
@@ -10,17 +6,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
 public class MaintenanceTaskViewController implements Initializable {
 
     @FXML
@@ -36,17 +30,14 @@ public class MaintenanceTaskViewController implements Initializable {
     @FXML
     private AnchorPane anchorPaneShow;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
 
-   public void setDescription(String description){
-       vewTextArea.appendText(description);
-   }
+    }
+
+    public void setDescription(String description) {
+        vewTextArea.appendText(description);
+    }
 
     public void setDriverIdLabel(String driverIdLabel) {
         this.driverIdLabel.setText(driverIdLabel);
@@ -56,7 +47,7 @@ public class MaintenanceTaskViewController implements Initializable {
         this.busIdLabel.setText(busIdLabel);
     }
 
-    public void setMaintenanceTypeLabel(String  maintenanceTypeLabel) {
+    public void setMaintenanceTypeLabel(String maintenanceTypeLabel) {
         this.maintenanceTypeLabel.setText(maintenanceTypeLabel);
     }
 
@@ -66,20 +57,21 @@ public class MaintenanceTaskViewController implements Initializable {
 
     @FXML
     private void goToLoginOnMouseClick(MouseEvent event) {
-         Stage stage = (Stage) anchorPaneShow.getScene().getWindow();
 
-        // Close the stage
-        stage.close();
         try {
-            // Load the new content FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/CheckMaintenanceTask.fxml"));
-            AnchorPane newContent = loader.load();
-            // Get the controller
-            anchorPaneShow.getChildren().setAll(newContent); //RootPane is AnchorPaneShow name
+            Parent root = null;
+            FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml"));
+            root = (Parent) someLoader.load();
+
+            Scene someScene = new Scene(root);
+
+            Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            someStage.setScene(someScene);
+            someStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
 }

@@ -39,7 +39,7 @@ public class ViewScheduleController implements Initializable {
     @FXML
     private TableView<DummyClassForTableViewSchedule> tableViewSchedule;
     @FXML
-    private TableColumn<DummyClassForTableViewSchedule, Bus> busCol;
+    private TableColumn<DummyClassForTableViewSchedule, String> busCol;
     @FXML
     private TableColumn<DummyClassForTableViewSchedule, String> sourceCol;
     @FXML
@@ -67,7 +67,7 @@ public class ViewScheduleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         busCol.setCellValueFactory(new PropertyValueFactory<>("bus")); 
+         busCol.setCellValueFactory(new PropertyValueFactory<>("busId")); 
          sourceCol.setCellValueFactory(new PropertyValueFactory<>("source")); 
          destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination")); 
          timeCol.setCellValueFactory(new PropertyValueFactory<>("timeSlot")); 
@@ -92,12 +92,8 @@ public class ViewScheduleController implements Initializable {
                 
             }
             
-        }
-         
-         
-    
-         
-        
+        } 
+
 
     @FXML
     private void switchToDashboard(ActionEvent event) throws IOException {

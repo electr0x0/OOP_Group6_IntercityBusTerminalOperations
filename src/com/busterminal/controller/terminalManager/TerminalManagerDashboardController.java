@@ -5,7 +5,11 @@
 package com.busterminal.controller.terminalManager;
 
 import com.busterminal.controller.CommunicationHubController;
+import com.busterminal.controller.accountant.AccountantTicketRefundApplyViewController;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
+import com.busterminal.views.Employee.EmployeeDashboardController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import java.io.IOException;
@@ -17,11 +21,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -54,13 +62,17 @@ public class TerminalManagerDashboardController implements Initializable {
     private ImageView financialReportBtn;
     @FXML
     private MFXButton comHubBtn;
+    @FXML
+    private MFXButton btnMyAccount;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        TransitionUtility.materialScale(rootPane);
+        SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerMainDashboardContent.fxml");
+        updateCurrentButtonStyle(dashboardBtn);
     }
 
     public void updateCurrentButtonStyle(MFXButton selectedButton) {
@@ -112,8 +124,17 @@ public class TerminalManagerDashboardController implements Initializable {
     }
 
     @FXML
-    private void onClickSignOutBtn(ActionEvent event) {
-        SceneSwitch("/com/busterminal/views/terminalManagerUser/");
+    private void onClickSignOutBtn(ActionEvent event) throws IOException {
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/login.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
     }
 
     @FXML
@@ -174,6 +195,30 @@ public class TerminalManagerDashboardController implements Initializable {
     private void showSuccessDialog(String title, String content) {
         MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success", rootPane);
         alertDialog.openMFXDialog();
+    }
+
+    @FXML
+    private void onClickMyAccount(ActionEvent event) {
+        try {
+
+            Parent root = null;
+            FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeDashboard.fxml"));
+            
+            root = (Parent) someLoader.load();
+            EmployeeDashboardController controller = someLoader.getController();
+            
+            controller.setEmpID(RelationshipDatabaseClass.getInstance().getCurrentLoggedIn());
+            
+            Scene someScene = new Scene(root);
+
+            Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            someStage.setScene(someScene);
+            someStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorDialog("FXML not Found", "Unable to swtich scene, make sure FXML is present in the specified path");
+        }
     }
 
 }

@@ -1,13 +1,15 @@
 package com.busterminal.controller.MaintenanceStaff;
 
 import com.busterminal.model.AppendableObjectOutputStream;
+import com.busterminal.model.BulletinMassage;
 import com.busterminal.model.Database;
-import com.busterminal.model.DummyEmployee;
 import com.busterminal.model.Maintenance;
 import com.busterminal.model.MaintenanceStaff;
 import com.busterminal.model.MaintenanceTask;
 import com.busterminal.model.Parts;
 import com.busterminal.model.PopUp;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -36,6 +38,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CheckMaintenanceTaskController implements Initializable {
@@ -68,11 +72,26 @@ public class CheckMaintenanceTaskController implements Initializable {
     private ObservableList<MaintenanceTask> mtt;
     @FXML
     private Label totalTask;
+    @FXML
+    private Label countLabel;
+    @FXML
+    private FontAwesomeIconView seeNotificationButton;
+    @FXML
+    private VBox anchorPaneShow;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       
-        System.out.println(getItems().size());
+        // Alif helps to get currentEmail after logedIn
+        int count = BulletinMassage.countUpcomingMassage(RelationshipDatabaseClass.getInstance().getCurrentUserEmail());
+        
+        if (count==0){
+            countLabel.setText("");
+        }else{
+            countLabel.setText(Integer.toString(count));
+            
+        }
+        
+
         mt = FXCollections.observableArrayList();
         mtt = FXCollections.observableArrayList();
 
@@ -86,11 +105,11 @@ public class CheckMaintenanceTaskController implements Initializable {
         for (Maintenance m : mt) {
             MaintenanceTask task = new MaintenanceTask(m.getDetails(), m.getDriverId(), m.getBusId(), m.getMaintenanceType(), LocalDate.now(), m.getReqDate());
             mtt.add(task);
-            
+
         }
-        
+
         maintenanceTable.setItems(mtt);
-       
+
         // for show time
         updateDateTime();
 
@@ -98,8 +117,6 @@ public class CheckMaintenanceTaskController implements Initializable {
 
         availableParts.setText((Integer.toString(Database.getInstanceBinFile("PartsList.bin").size())));
         totalTask.setText(Integer.toString(getItems().size()));
-
-    
 
     }
 
@@ -112,21 +129,18 @@ public class CheckMaintenanceTaskController implements Initializable {
 
             maintenanceTable.getItems().remove(selectedTask);
         }
-        
+
         Parent root = null;
         FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/pustingAfterMaintenance.fxml"));
         root = (Parent) someLoader.load();
         PustingAfterMaintenanceController pamc = someLoader.getController();
         pamc.setBusIdTF(selectedTask.getBusId());
-        Scene someScene = new Scene (root);
-        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene someScene = new Scene(root);
+        Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         someStage.setScene(someScene);
         someStage.show();
         deleteItems(selectedTask);
-        
-        
-        
-        
+
     }
 
     @FXML
@@ -134,13 +148,11 @@ public class CheckMaintenanceTaskController implements Initializable {
         // Handle logic to show the description for the selected maintenance request
         MaintenanceTask selectedTask = maintenanceTable.getSelectionModel().getSelectedItem();
         String description = selectedTask.getDescription();
-        
 
         if (selectedTask != null) {
             System.out.println("Problem Description: " + description);
         }
-        
-        
+
         Parent root = null;
         FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/maintenanceTaskView.fxml"));
         root = (Parent) someLoader.load();
@@ -150,11 +162,11 @@ public class CheckMaintenanceTaskController implements Initializable {
         mtv.setMaintenanceTypeLabel(selectedTask.getMaintenanceType());
         mtv.setDriverIdLabel(selectedTask.getBusId());
         mtv.setRequestLabel(selectedTask.getRequestDate());
-        Scene someScene = new Scene (root);
-        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene someScene = new Scene(root);
+        Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         someStage.setScene(someScene);
         someStage.show();
-        
+
     }
 
     private void updateDateTime() {
@@ -241,7 +253,7 @@ public class CheckMaintenanceTaskController implements Initializable {
         }
         return list;
     }
-    
+
     public static void deleteItems(MaintenanceTask p) {
         // create a arraylist for storing all intance from bin file
         ArrayList<Maintenance> tasklist = new ArrayList<>();
@@ -294,11 +306,24 @@ public class CheckMaintenanceTaskController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(Package.class.getName()).log(Level.SEVERE, null, ex);
             }
-            // System.out.println(employeelist);
+
         }
 
     }
-    
-    
+
+    @FXML
+    private void seeNotificationOnMouseClick(MouseEvent event) {
+         try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/com/busterminal/views/Noticiation.fxml"));
+            Scene newScene = new Scene(parent);
+            Stage newStage = new Stage();
+            newStage.setScene(newScene);
+            newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(CheckMaintenanceTaskController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }
 
 }

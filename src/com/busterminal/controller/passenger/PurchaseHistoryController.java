@@ -53,7 +53,7 @@ public class PurchaseHistoryController implements Initializable {
         
         AccountantTicketRefundApplyViewController p = someLoader.getController();
         
-       // p.setPassengerDataFromSceneSwitch(tickets, passengerNameTextField.getText());
+        p.setPassengerDataFromSceneSwitch( passengerNameTextField.getText());
         
         Scene someScene = new Scene (root);
         

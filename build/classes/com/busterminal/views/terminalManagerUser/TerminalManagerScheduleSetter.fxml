@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,9 +11,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerScheduleSetterController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" stylesheets="@../accountantUser/refundViewStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerScheduleSetterController">
    <children>
       <MFXFilterComboBox fx:id="comboBoxAllTrips" floatMode="BORDER" floatingText="Select A Trip" layoutX="306.0" layoutY="66.0" onAction="#onTripSelection" prefHeight="40.0" prefWidth="335.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="40.0" prefHeight="17.0" prefWidth="245.0" text="Select Trip*" />
@@ -34,7 +36,7 @@
             <TableColumn fx:id="scheduleStatusCol" prefWidth="92.0" text="Status" />
          </columns>
       </MFXLegacyTableView>
-      <TextField fx:id="txtFieldSearchBar" layoutX="62.0" layoutY="672.0" onInputMethodTextChanged="#filterTableViewFromSearch" onKeyPressed="#filterTableViewFromSearch" onKeyReleased="#filterTableViewFromSearch" onKeyTyped="#filterTableViewFromSearch" prefHeight="25.0" prefWidth="178.0" promptText="Enter Search Criteria" styleClass="txtFieldSearchBar" stylesheets="@../../css/previousDashboardCSS.css">
+      <TextField fx:id="txtFieldSearchBar" layoutX="62.0" layoutY="672.0" onKeyPressed="#filterTableViewFromSearch" onKeyReleased="#filterTableViewFromSearch" prefHeight="25.0" prefWidth="178.0" promptText="Enter Search Criteria" styleClass="txtFieldSearchBar" stylesheets="@../../css/previousDashboardCSS.css">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
@@ -44,6 +46,25 @@
             <Image url="@../../../../drawables/search.png" />
          </image>
       </ImageView>
-      <MFXButton fx:id="buttonClickable" buttonType="RAISED" depthLevel="LEVEL3" layoutX="870.0" layoutY="662.0" onAction="#OnClickdeleteModifyScheduleSelection" prefHeight="40.0" prefWidth="158.0" text="Delete/Modify Selection" />
+      <MFXButton fx:id="buttonClickable" buttonType="RAISED" depthLevel="LEVEL3" layoutX="850.0" layoutY="662.0" onAction="#OnClickdeleteModifyScheduleSelection" prefHeight="40.0" prefWidth="178.0" text="Delete/Modify Selection" />
+      <HBox fx:id="filterHBOX" alignment="CENTER" layoutX="255.0" layoutY="689.0" prefHeight="21.0" prefWidth="490.0" spacing="12.0" visible="false">
+         <children>
+            <MFXRadioButton fx:id="radioFilterDate" text="Date" />
+            <MFXRadioButton fx:id="radioFilterTime" text="Time" />
+            <MFXRadioButton fx:id="radioFilterSourceDesti" text="Source-Destination" />
+            <MFXRadioButton fx:id="radioFilterDriver" text="Driver" />
+            <MFXRadioButton fx:id="radioFilterStatus" prefHeight="5.0" prefWidth="61.0" text="Status" />
+         </children>
+      </HBox>
+      <Label layoutX="477.0" layoutY="664.0" prefHeight="17.0" prefWidth="47.0" text="Filter By">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="caretImageView" blendMode="DIFFERENCE" fitHeight="32.0" fitWidth="29.0" layoutX="525.0" layoutY="658.0" onMouseClicked="#caretUpDownFilterView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/down_arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

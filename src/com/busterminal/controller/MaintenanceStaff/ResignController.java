@@ -2,6 +2,7 @@ package com.busterminal.controller.MaintenanceStaff;
 
 import com.busterminal.model.AppendableObjectOutputStream;
 import com.busterminal.model.Resignation;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,17 +16,12 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 public class ResignController implements Initializable {
 
@@ -50,6 +46,8 @@ public class ResignController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        empIDTextField.setText(RelationshipDatabaseClass.getInstance().getCurrentLoggedIn());
+        
         fileTypeList = new ArrayList<>();
         fileTypeList.add("*.txt");
         fileTypeList.add("*.doc");
@@ -101,12 +99,13 @@ public class ResignController implements Initializable {
         alert.setTitle("Confirmation");
         alert.setHeaderText("Resignation Application Sent");
         alert.showAndWait();
-
+        
+        //Alif
+        String currentId=RelationshipDatabaseClass.getInstance().getCurrentLoggedIn();
+        
         Resignation r1 = new Resignation();
-        //System.out.println(filePath);
-        //r1.readLetter(filePath);
         Serializable letterContent = r1.readLetter(filePath);
-        Resignation r2 = new Resignation(nameTextField.getText(), Integer.parseInt(empIDTextField.getText()),
+        Resignation r2 = new Resignation(nameTextField.getText(), Integer.parseInt(currentId),
                 Integer.parseInt(resignationIDTextField.getText()),
                 commentTextField.getText(), (String) letterContent);
 
@@ -127,8 +126,8 @@ public class ResignController implements Initializable {
             oos.writeObject(r2);
 
         } catch (IOException ex) {
-           ex.printStackTrace();
-           
+            ex.printStackTrace();
+
         } finally {
             try {
                 if (oos != null) {

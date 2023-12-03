@@ -57,7 +57,7 @@
             </TableView>
         </children>
     </VBox>
-   <LineChart prefHeight="318.0" prefWidth="1200.0" title="Daily Tansition">
+   <LineChart fx:id="lineChart" prefHeight="318.0" prefWidth="1200.0" title="Daily Tansition">
      <xAxis>
        <CategoryAxis label="Day" prefHeight="25.0" prefWidth="1114.0" side="BOTTOM" />
      </xAxis>

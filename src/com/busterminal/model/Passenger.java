@@ -6,6 +6,7 @@ package com.busterminal.model;
 
 import com.busterminal.controller.AppendableObjectOutputStream;
 import com.busterminal.controller.passenger.SupportController;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,7 +44,8 @@ public class Passenger implements Serializable{
     public void purchaseTicket(String ticketId, DummyClassForTableViewSchedule schedule, ArrayList<String> seatNumbers, String status, String purchaseDate1) {
         
         Ticket ticket = new Ticket(ticketId, this, schedule, seatNumbers, seatNumbers.size(), status, purchaseDate1);
-            
+        RelationshipDatabaseClass.getInstance().addItemToTicketList(ticket);
+        
         File f = null;
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;

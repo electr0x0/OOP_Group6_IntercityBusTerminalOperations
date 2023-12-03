@@ -84,11 +84,20 @@ public class ResignationRequestController implements Initializable {
 
     @FXML
     private void overtimePanel(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/OvertimeRequest.fxml"));
+            root = loader.load();
+            OvertimeRequestController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
     }
 
     @FXML

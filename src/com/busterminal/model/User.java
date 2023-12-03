@@ -53,6 +53,9 @@ public abstract class User implements Serializable {
         this.firstName = name;
 
     }
+    public User(){
+        
+    }
 
     ;
     
@@ -429,7 +432,7 @@ public abstract class User implements Serializable {
     // Email verify
     public static boolean verifyEmailSuffix(String email) {
         String suffix = "@gmail.com";
-        return email.endsWith(suffix);
+        return email.endsWith(suffix );
 
     }
 
@@ -452,5 +455,32 @@ public abstract class User implements Serializable {
         } else {
             return false;
         }
+    }
+    
+    public static DummyEmployee getInstance(String email) {
+        ObjectInputStream ois = null;
+        DummyEmployee instance= new DummyEmployee();
+        try {
+            DummyEmployee c;
+            ois = new ObjectInputStream(new FileInputStream("Employee.bin"));
+
+            while (true) {
+                c = (DummyEmployee) ois.readObject();
+                if (c.getEmail().equals(email)) {
+                    instance=c;
+                    break;
+                }
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex1) {
+            }
+        }
+        return instance;
     }
 }

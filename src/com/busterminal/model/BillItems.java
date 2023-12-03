@@ -1,5 +1,4 @@
 package com.busterminal.model;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,16 +10,17 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 public class BillItems {
 
     private int BusId;
     private String partsName;
     private String PartsModel;
-    private double partsPrice;
-    private double quantity;
-    private double total;
+    private int partsPrice;
+    private float quantity;
+    private float total;
 
-    public BillItems(int BusId, String partsName, String PartsModel, double partsPrice, double quantity, double total) {
+    public BillItems(int BusId, String partsName, String PartsModel, int partsPrice, float quantity, float total) {
         this.BusId = BusId;
         this.partsName = partsName;
         this.PartsModel = PartsModel;
@@ -57,23 +57,23 @@ public class BillItems {
         this.PartsModel = PartsModel;
     }
 
-    public double getPartsPrice() {
+    public float getPartsPrice() {
         return partsPrice;
     }
 
-    public void setPartsPrice(double partsPrice) {
+    public void setPartsPrice(int partsPrice) {
         this.partsPrice = partsPrice;
     }
 
-    public double getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
 
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 

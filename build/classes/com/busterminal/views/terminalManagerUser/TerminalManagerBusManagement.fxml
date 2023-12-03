@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerBusManagementController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@../accountantUser/refundViewStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerBusManagementController">
    <children>
       <MFXTextField fx:id="txtFieldBusID" floatMode="BORDER" floatingText="Bus ID" layoutX="109.0" layoutY="129.0" prefHeight="24.0" prefWidth="187.0" />
       <MFXButton buttonType="RAISED" layoutX="315.0" layoutY="136.0" onAction="#onClickGenBusID" text="Generate  ID" />
@@ -29,11 +29,10 @@
       <MFXComboBox fx:id="comboBusManufacturer" floatMode="BORDER" floatingText="Bus Manufacturer" layoutX="455.0" layoutY="206.0" prefHeight="40.0" prefWidth="187.0" />
       <Label layoutX="481.0" layoutY="182.0" text="Select Bus Manufacturer*" />
       <Label layoutX="673.0" layoutY="182.0" text="Enter Year of Manufacture*" />
-      <MFXCheckListView fx:id="driverCheckListView" depthLevel="LEVEL4" layoutX="92.0" layoutY="336.0" />
-      <Label layoutX="154.0" layoutY="308.0" text="Assign Driver*" />
+      <MFXCheckListView fx:id="driverCheckListView" depthLevel="LEVEL4" layoutX="366.0" layoutY="336.0" prefHeight="350.0" prefWidth="319.0" style="-fx-background-radius: 3;" />
+      <Label layoutX="485.0" layoutY="310.0" text="Assign Driver*" />
       <MFXTextField fx:id="txtFieldBusYear" floatMode="BORDER" floatingText="Bus Manufacturing Year" layoutX="660.0" layoutY="207.0" prefHeight="24.0" prefWidth="187.0" />
       <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="842.0" layoutY="637.0" onAction="#onClickAddBusButton" prefHeight="49.0" prefWidth="99.0" text="Add Bus" />
-      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="333.0" layoutY="486.0" onAction="#onClickAssignDrivers" text="Assign Driver" />
       <MFXTextField fx:id="txtFiledBusRegNum" floatMode="BORDER" floatingText="Bus Reg Number" layoutX="306.0" layoutY="207.0" prefHeight="38.0" prefWidth="134.0" />
       <Label layoutX="314.0" layoutY="182.0" text="Enter Registration Num.*" />
       <ImageView fx:id="imageViewMoreSettings" fitHeight="49.0" fitWidth="70.0" layoutX="959.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">

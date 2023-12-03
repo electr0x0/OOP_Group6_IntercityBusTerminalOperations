@@ -5,11 +5,11 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 public class BusStatus {
-    private final StringProperty busId;
-    private final StringProperty busName;
-    private final StringProperty driverName;
-    private final StringProperty fuelConsumption;
-    private final LocalDate lastMaintenanceDate;
+    private  StringProperty busId;
+    private  StringProperty busName;
+    private  StringProperty driverName;
+    private  StringProperty fuelConsumption;
+    private  LocalDate lastMaintenanceDate;
 
     public BusStatus(String busId, String busName, String driverName, String fuelConsumption, LocalDate lastMaintenanceDate) {
         this.busId = new SimpleStringProperty(busId);

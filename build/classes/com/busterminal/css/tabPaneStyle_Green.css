@@ -1,0 +1,59 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 2, 2023, 12:34:41 AM
+    Author     : electr0
+*/
+.tab-pane {
+    -fx-tab-min-height: 30px;
+    -fx-tab-max-height: 30px;
+}
+
+.tab {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane:focused .tab:selected {
+    -fx-background-color: #4CAF50; /* Green accent */
+    -fx-text-fill: white;
+}
+
+.tab:selected {
+    -fx-background-color: #C8E6C9; /* Lighter green */
+    -fx-text-fill: black;
+}
+
+.tab:hover {
+    -fx-background-color: #E8F5E9; /* Very light green */
+}
+
+.tab .tab-label {
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.16), 5, 0, 0, 3);
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-content-area {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.16), 5, 0, 0, 3);
+}

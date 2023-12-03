@@ -1,9 +1,12 @@
 package com.busterminal.controller.Administrator;
+
 import com.busterminal.model.Administrator;
 import com.busterminal.model.DummyEmployee;
+import com.busterminal.model.Employee;
 import com.busterminal.model.MaintenanceStaff;
 import com.busterminal.model.PopUp;
 import com.busterminal.model.User;
+import com.busterminal.views.HumanResourceViews.CreateEmployeeController;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -24,8 +27,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-
-
 
 public class AddNewEmployeController implements Initializable {
 
@@ -92,13 +93,10 @@ public class AddNewEmployeController implements Initializable {
     @FXML
     private Label salaryLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
-                "Terminal Manager", "Human Resource","Accountant");
+        designationCB.getItems().addAll("Administrator", "Maintenance Staff", "Driver",
+                "Terminal Manager", "Human Resource", "Accountant");
         employeeObjectlist = FXCollections.observableArrayList();
         IdCol.setCellValueFactory(new PropertyValueFactory<>("iD"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -110,7 +108,7 @@ public class AddNewEmployeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         userDataTable.getItems().addAll(Administrator.getEmployeeList());
         userDataTable.setVisible(true);
-        
+
         userDataTable.setEditable(true);
         emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
         passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -189,21 +187,26 @@ public class AddNewEmployeController implements Initializable {
             }
         }
 
-        if (User.checkEmployeeEmailExistence(email) == true  && User.checkClientEmailExistence(email)== true) {
+        if (User.checkEmployeeEmailExistence(email) == true && User.checkClientEmailExistence(email) == true) {
             PopUp.showMessage("Information", "Account Already Exists !");
         } else {
             int id = User.generateEmployeeID();
             String password = User.generateEmployeePassword();
             LocalDate doj = LocalDate.now();
             DummyEmployee e = new DummyEmployee(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender, salary);
+
+            // add Employee
+            Employee el = new Employee(salary, designation, firstname, lastname, gender, email, contactNumber, dob, address);
+            CreateEmployeeController cemc = new CreateEmployeeController();
+            cemc.writeEmployeeToFile("MyEmployee.bin", el);
             Administrator.employeeCreateNewAccount(e);
             dummyObservableList.add(e);
             userDataTable.getItems().add(e);
-            if (designationCB.getValue().equals("Maintenance Staff")){
+            if (designationCB.getValue().equals("Maintenance Staff")) {
                 MaintenanceStaff ms = new MaintenanceStaff(designation, doj, id, firstname, lastname, address, email, dob, password, contactNumber, gender, salary, "Engine Tecnechine");
-            }else{
+            } else {
                 System.out.println("select type");
-            }         
+            }
             PopUp.showMessage("Information", "Account has been Successfully Created..!"
                     + "Employee ID: " + id + "\n"
                     + "Employee Password: " + password);
@@ -221,15 +224,13 @@ public class AddNewEmployeController implements Initializable {
         for (DummyEmployee p : selectedRows) {
             allPeople.remove(p);
         }
-       Administrator.deleteEmployee(selectedItem);
-       MaintenanceStaff.deleteEmployee((MaintenanceStaff) selectedItem);
-      
-       
-        
-        
+        Administrator.deleteEmployee(selectedItem);
+        PopUp.showConfirmationMessage();
+        MaintenanceStaff.deleteEmployee((MaintenanceStaff) selectedItem);
+
     }
-    
-    private void clear(){
+
+    private void clear() {
         firstNameTF.clear();
         lastNameTF.clear();
         phoneNumberTF.clear();
@@ -246,6 +247,6 @@ public class AddNewEmployeController implements Initializable {
         addressLabel.setText("");
         birthdateLabel.setText("");
         salaryLabel.setText("");
- 
+
     }
 }

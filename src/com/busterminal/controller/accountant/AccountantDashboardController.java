@@ -5,17 +5,25 @@
 package com.busterminal.controller.accountant;
 
 import com.busterminal.controller.CommunicationHubController;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
+import com.busterminal.views.Employee.EmployeeDashboardController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -46,6 +54,8 @@ public class AccountantDashboardController implements Initializable {
     private MFXButton btnTransaction;
     @FXML
     private MFXButton btnDashboard;
+    @FXML
+    private MFXButton btnMyAccount;
 
     /**
      * Initializes the controller class.
@@ -53,13 +63,23 @@ public class AccountantDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         startingContentSetter();
+        TransitionUtility.materialScale(rootPane);
     }
 
     @FXML
-    private void onClickSignOutBtn(ActionEvent event) {
-        SceneSwitch("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml");
+    private void onClickSignOutBtn(ActionEvent event) throws IOException {
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/login.fxml"));
+        root = (Parent) someLoader.load();
+
+        Scene someScene = new Scene(root);
+
+        Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        someStage.setScene(someScene);
+        someStage.show();
     }
-    
+
     public void updateCurrentButtonStyle(MFXButton selectedButton) {
         // List of all buttons
         MFXButton[] buttons = {btnInvoice, btnReim, btnComHub, btnPurchase, btnRefund, btnTransaction, btnDashboard};
@@ -74,8 +94,6 @@ public class AccountantDashboardController implements Initializable {
         selectedButton.getStyleClass().remove("btnNotSelectedAcc");
         selectedButton.getStyleClass().add("btnCurrentSelectedAcc");
     }
-    
-    
 
     @FXML
     private void onClickGenerateInvoiceButton(ActionEvent event) {
@@ -88,8 +106,7 @@ public class AccountantDashboardController implements Initializable {
         SceneSwitch("/com/busterminal/views/accountantUser/AccountantEmployeeReimbursementManagement.fxml");
         updateCurrentButtonStyle(btnReim);
     }
-    
-    
+
     private void SceneSwitch(String fxmllocation) {
         try {
             // Load the new content FXML file
@@ -108,8 +125,12 @@ public class AccountantDashboardController implements Initializable {
         SceneSwitchComHubWithDataPass("/com/busterminal/views/generic/CommunicationHub.fxml", "Ms. Accountant", "Accountant");
         updateCurrentButtonStyle(btnComHub);
     }
-    
-    private void SceneSwitchComHubWithDataPass(String fxmllocation, String empName, String empType){
+
+    private void SceneSwitchToHREmployeeScene() {
+
+    }
+
+    private void SceneSwitchComHubWithDataPass(String fxmllocation, String empName, String empType) {
         try {
             // Load the new content FXML file
 
@@ -119,7 +140,7 @@ public class AccountantDashboardController implements Initializable {
             CommunicationHubController controller = loader.getController();
 
             controller.setCurrentUserWhileSceneSwitch(empName, empType);
-            
+
             // Clear existing content and set the new content
             dashboardContentPane.getChildren().setAll(newContent);
         } catch (Exception e) {
@@ -127,7 +148,7 @@ public class AccountantDashboardController implements Initializable {
             showErrorDialog("FXML not Found", "Unable to swtich scene, make sure FXML is present in the specified path");
         }
     }
-    
+
     private void showErrorDialog(String title, String content) {
         MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert", rootPane);
         alertDialog.openMFXDialog();
@@ -160,11 +181,35 @@ public class AccountantDashboardController implements Initializable {
     private void onClickDashboardBtn(ActionEvent event) {
         startingContentSetter();
     }
-    
-    
-    private void startingContentSetter(){
+
+    private void startingContentSetter() {
         SceneSwitch("/com/busterminal/views/accountantUser/AccountantDashboardMainContent.fxml");
         updateCurrentButtonStyle(btnDashboard);
     }
-    
+
+    @FXML
+    private void onClickMyAccount(ActionEvent event) {
+        try {
+
+            Parent root = null;
+            FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeDashboard.fxml"));
+            
+            root = (Parent) someLoader.load();
+            EmployeeDashboardController controller = someLoader.getController();
+            
+            controller.setEmpID(RelationshipDatabaseClass.getInstance().getCurrentLoggedIn());
+            controller.LoadData();
+            
+            Scene someScene = new Scene(root);
+
+            Stage someStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            someStage.setScene(someScene);
+            someStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorDialog("FXML not Found", "Unable to swtich scene, make sure FXML is present in the specified path");
+        }
+    }
+
 }

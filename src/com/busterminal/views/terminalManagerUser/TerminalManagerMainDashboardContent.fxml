@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" stylesheets="@../../css/previousDashboardCSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerMainDashboardContentController">
    <children>
-      <Pane fx:id="notifTileFirst" layoutX="50.0" layoutY="89.0" prefHeight="93.0" prefWidth="218.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css">
+      <Pane fx:id="notifTileFirst" layoutX="42.0" layoutY="89.0" prefHeight="93.0" prefWidth="218.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css">
          <children>
             <Label layoutX="128.0" layoutY="14.0" prefHeight="27.0" prefWidth="90.0" text="Total Bus">
                <font>
@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView blendMode="OVERLAY" fitHeight="61.0" fitWidth="72.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="OVERLAY" fitHeight="84.0" fitWidth="81.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../drawables/route_animation.gif" />
                </image>
@@ -52,21 +52,21 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelPassengerCount" alignment="CENTER" layoutX="124.0" layoutY="41.0" prefHeight="27.0" prefWidth="60.0" text="0">
+            <Label fx:id="labelPassengerCount" alignment="CENTER" layoutX="109.0" layoutY="41.0" prefHeight="27.0" prefWidth="60.0" text="0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView blendMode="MULTIPLY" fitHeight="80.0" fitWidth="72.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="MULTIPLY" fitHeight="80.0" fitWidth="72.0" layoutX="8.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../drawables/passenger_anim.gif" />
                </image>
             </ImageView>
          </children></Pane>
-      <Pane fx:id="clockTileContainer" layoutX="778.0" layoutY="89.0" prefHeight="93.0" prefWidth="239.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
-      <Pane fx:id="tileContainerFirst" layoutX="127.0" layoutY="245.0" prefHeight="288.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
-      <Pane fx:id="tileContainerSecond" layoutX="547.0" layoutY="245.0" prefHeight="288.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
-      <Pane fx:id="tileContainerThird" layoutX="127.0" layoutY="560.0" prefHeight="179.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
-      <Pane fx:id="tileContainerFourth" layoutX="547.0" layoutY="560.0" prefHeight="179.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
+      <Pane fx:id="clockTileContainer" layoutX="766.0" layoutY="89.0" prefHeight="93.0" prefWidth="239.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
+      <Pane fx:id="tileContainerFirst" layoutX="117.0" layoutY="242.0" prefHeight="288.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
+      <Pane fx:id="tileContainerSecond" layoutX="542.0" layoutY="242.0" prefHeight="288.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
+      <Pane fx:id="tileContainerThird" layoutX="117.0" layoutY="557.0" prefHeight="179.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
+      <Pane fx:id="tileContainerFourth" layoutX="542.0" layoutY="557.0" prefHeight="179.0" prefWidth="392.0" styleClass="vbox-container" stylesheets="@../../css/ManagerDashboard.css" />
    </children>
 </AnchorPane>

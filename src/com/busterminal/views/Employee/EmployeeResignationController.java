@@ -4,6 +4,7 @@
  */
 package com.busterminal.views.Employee;
 
+import com.busterminal.controller.accountant.AccountantReimbursementApplyViewController;
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Resignation;
 import static com.busterminal.views.Employee.EmployeeSalaryDashboardController.getEmployeeById;
@@ -117,13 +118,36 @@ public class EmployeeResignationController implements Initializable {
         }
     }
 
-    @FXML
+   @FXML
     private void goHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            if(user.getEmpType().equals("Administrator")){
+               SceneSwitch(event,"/com/busterminal/views/Addministrator/AdminDashbord.fxml");
+            } else if(user.getEmpType().equals("Maintenance Staff")){
+                SceneSwitch(event,"/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml");
+            } else if(user.getEmpType().equals("Driver")){
+                SceneSwitch(event,"/com/busterminal/views/accountUser/AccountDashbord.fxml");
+            } else if(user.getEmpType().equals("Terminal Manager")){
+                SceneSwitch(event,"/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml");
+            } else if(user.getEmpType().equals("Human Resource")){
+                
+                SceneSwitch(event,"/com/busterminal/views/HumanResourceViews/MyEmployee.fxml");
+                
+            } else if(user.getEmpType().equals("Accountant")){
+                SceneSwitch(event,"/com/busterminal/views/accountantUser/AccountantDashboard.fxml");
+            }                      
+        
+    }
+    
+      public void SceneSwitch(ActionEvent e, String fxmlLocal) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlLocal));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle the exception (e.g., logging or displaying an error message)
+        }   
     }
 
 
@@ -198,6 +222,43 @@ public class EmployeeResignationController implements Initializable {
             controller.setEmpID(empID);
              controller.LoadData();
             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toMemo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeMemo.fxml"));
+            root = loader.load();
+            EmployeeMemoController controller = loader.getController();
+
+            controller.setEmpID(empID);
+            controller.LoadData();
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toReimburs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml"));
+            root = loader.load();
+            AccountantReimbursementApplyViewController controller = loader.getController();
+
+            controller.setEmployeeIDFromSceneSwitch(empID);
+
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

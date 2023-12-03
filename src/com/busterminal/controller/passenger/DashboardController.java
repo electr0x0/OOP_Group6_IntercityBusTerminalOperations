@@ -129,6 +129,22 @@ public class DashboardController implements Initializable {
         someStage.show();
     }
 
+    @FXML
+    private void testRead(ActionEvent event) throws IOException {
+        Parent root = null;
+        FXMLLoader someLoader = new FXMLLoader(getClass().getResource("/com/busterminal/views/passenger/ViewInquiry.fxml"));
+        root = (Parent) someLoader.load();
+        
+        Scene someScene = new Scene (root);
+        
+        
+        
+        Stage someStage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        someStage.setScene(someScene);
+        someStage.show();
+    }
+
         
     
     

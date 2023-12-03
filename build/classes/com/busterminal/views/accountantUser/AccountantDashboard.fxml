@@ -34,7 +34,10 @@
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
         </padding>
-      <ImageView fitHeight="145.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+      <ImageView fitHeight="332.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+         <image>
+            <Image url="@../../../../drawables/accountant_DashboardAnim.gif" />
+         </image></ImageView>
         <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="266.0" styleClass="header" text="Accountant Dashboard">
             <graphic>
                 <StackPane fx:id="logoContainer" />
@@ -121,6 +124,15 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
+                  <MFXButton fx:id="btnMyAccount" buttonType="RAISED" defaultButton="true" depthLevel="LEVEL5" layoutX="10.0" layoutY="484.0" onAction="#onClickMyAccount" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelectedAcc" stylesheets="@../../css/ManagerDashboard.css" text="My Account" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/myAccount_logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
                   <MFXButton buttonType="RAISED" defaultButton="true" depthLevel="LEVEL5" layoutX="10.0" layoutY="355.0" onAction="#onClickSignOutBtn" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelectedAcc" stylesheets="@../../css/ManagerDashboard.css" text="Sign Out" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
@@ -135,6 +147,6 @@
          </content>
         </MFXScrollPane>
     </VBox>
-   <AnchorPane fx:id="dashboardContentPane" layoutX="306.0" layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="1062.0" />
+   <AnchorPane fx:id="dashboardContentPane" layoutX="305.0" layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="1057.0" />
 
 </AnchorPane>

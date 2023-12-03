@@ -8,6 +8,7 @@ import com.busterminal.model.Bus;
 import com.busterminal.model.BusTrip;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXContextMenuItem;
@@ -50,7 +51,6 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author electr0
  */
-
 public class TerminalManagerTripAndFareMangement implements Initializable, Serializable {
 
     @FXML
@@ -75,18 +75,17 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
     private MFXFilterComboBox<String> comboPickupBusStand;
     @FXML
     private MFXFilterComboBox<String> comboDropBusStand;
-    
-    
+
     private ToggleGroup busType = new ToggleGroup();
 
     @FXML
     private ImageView gearIcon;
     @FXML
     private AnchorPane rootPane;
-    
-    private  ArrayList<String> allLocations = new ArrayList<>();
-    private  ArrayList<String> allTimes = new ArrayList<>();
-    private  ArrayList<String> allBusStands = new ArrayList<>();
+
+    private ArrayList<String> allLocations = new ArrayList<>();
+    private ArrayList<String> allTimes = new ArrayList<>();
+    private ArrayList<String> allBusStands = new ArrayList<>();
     private ArrayList<Bus> allAvailableBuses;
     @FXML
     private TableColumn<Bus, Integer> colBusID;
@@ -100,29 +99,26 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
     private TableColumn<Bus, Boolean> colMtStatus;
     @FXML
     private MFXFilterComboBox<String> comboListDriver;
-    
+
     private ObservableList<Bus> currentBusInfoList = FXCollections.observableArrayList();
     @FXML
     private MFXLegacyTableView<Bus> busInfoShowerTable;
-    @FXML
     private MFXProgressSpinner progressSpinner;
-    
+
     private int tripIDCounter = 0;
-    
+
     private BusTrip currentSchedule;
-    
+
     private ArrayList<BusTrip> allTripList = new ArrayList<>();
     @FXML
     private MFXSlider spinnerTravelDistance;
-    
-
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        progressSpinner.setVisible(false);
+        TransitionUtility.materialScale(rootPane);
         setContextItems();
         loadArrayListsFromFile();
         setAllCombo();
@@ -133,94 +129,77 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
         RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
         //
         toggleFleetAC.selectedProperty().addListener((observable, oldValue, newValue) -> {
-        if (!newValue) {
-            comboBusList.getItems().clear();
-            comboListDriver.getItems().clear();
-            progressSpinner.setVisible(false);
-        }});
-        
+            if (!newValue) {
+                comboBusList.getItems().clear();
+                comboListDriver.getItems().clear();
+            }
+        });
+
         RelationshipDatabaseClass.getInstance().setAllBusStands(allBusStands);
         RelationshipDatabaseClass.getInstance().setAllTimes(allTimes);
         RelationshipDatabaseClass.getInstance().setAllLocations(allLocations);
-        
-        if (RelationshipDatabaseClass.getInstance().getAllTripList() != null){
+
+        if (RelationshipDatabaseClass.getInstance().getAllTripList() != null) {
             allTripList = RelationshipDatabaseClass.getInstance().getAllTripList();
         }
 
-        
     }
-    
-    
-    private void setupBusInfoTable(){
+
+    private void setupBusInfoTable() {
         colBusID.setCellValueFactory(new PropertyValueFactory<>("busId"));
         colBusType.setCellValueFactory(new PropertyValueFactory<>("busType"));
         colSeatCapacity.setCellValueFactory(new PropertyValueFactory<>("numberOfSeats"));
-        
-       
+
         colAvailableDrivers.setCellValueFactory(new PropertyValueFactory<>("AssingedDrivers"));
-        
+
         colBusID.setCellValueFactory(new PropertyValueFactory<>("busId"));
         colMtStatus.setCellValueFactory(new PropertyValueFactory<>("mtStatus"));
     }
-    
+
     @FXML
     private void updateBusTableInformation(ActionEvent event) {
-        progressSpinner.setVisible(true);
         currentBusInfoList.clear();
         int busID = Integer.parseInt(comboBusList.getValue());
-
-        new Thread(() -> {
-            // Fake delay
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                
-            }
-
-            // Now back on the JavaFX Application Thread
-            Platform.runLater(() -> {
-                for (Bus busObj : allAvailableBuses) {
-                    if (busObj.getBusId() == busID) {
-                        currentBusInfoList.add(busObj);
-                        for (String driver:busObj.getAssingedDrivers()){
-                            comboListDriver.getItems().add(driver);
-                        }
-                    }
+        comboListDriver.getItems().clear();
+        
+        for (Bus busObj : allAvailableBuses) {
+            if (busObj.getBusId() == busID) {
+                currentBusInfoList.add(busObj);
+                for (String driver : busObj.getAssingedDrivers()) {
+                    comboListDriver.getItems().add(driver);
                 }
-                busInfoShowerTable.setItems(currentBusInfoList);
-                progressSpinner.setVisible(false);
-            });
-        }).start();
+            }
+        }
+        busInfoShowerTable.setItems(currentBusInfoList);
     }
-
 
     @FXML
     private void updateCurrentScheduleDriver(ActionEvent event) {
-        
+
     }
-    
-    private void ClearAllFields(){
+
+    private void ClearAllFields() {
         comboPickupPoint.clearSelection();
         comboDestinationPoint.clearSelection();
         busType.getSelectedToggle().setSelected(false);
         tFieldAdultFare.clear();
         tFieldChildFare.clear();
         tFieldWeekendFare.clear();
-        comboBusList.clearSelection();
+        comboBusList.getItems().clear();
         comboScheduleTimeList.clearSelection();
         comboPickupBusStand.clearSelection();
         comboDropBusStand.clearSelection();
         spinnerTravelDistance.setValue(0.0);
+        comboListDriver.getItems().clear();
     }
 
     @FXML
     private void onClickAddSchedule(ActionEvent event) {
-        
-        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses()!= null){
+
+        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses() != null) {
             allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
         }
-        
+
         Bus selectedBus = null;
         int busID;
         try {
@@ -235,39 +214,38 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             showErrorDialog("Bus ID Not Selected", "Please select a bus ID.");
             return;
         }
-        
+
         String timeslot = comboScheduleTimeList.getValue();
-        if (timeslot == null){
+        if (timeslot == null) {
             showErrorDialog("Select Time Slot", "Please select a time Slot");
             return;
         }
-        
+
         if (!selectedBus.isTimeSlotAvailable(timeslot)) {
             showErrorDialog("Schedule Conflict", "This bus is already scheduled or not available for this time slot.");
             return;
         }
-        
+
         double totalDistance;
-        if(spinnerTravelDistance.getValue() != 0){
+        if (spinnerTravelDistance.getValue() != 0) {
             totalDistance = spinnerTravelDistance.getValue();
-        }
-        else{
+        } else {
             showErrorDialog("Distance Value Error", "Please define the travel distance");
-            return; 
+            return;
         }
-        
+
         String source = comboPickupPoint.getValue();
-        if(source == null){
+        if (source == null) {
             showErrorDialog("Value not selected", "Please select a departure City");
-            return; 
+            return;
         }
-        
+
         String destination = comboDestinationPoint.getValue();
-        if(destination == null){
+        if (destination == null) {
             showErrorDialog("Value not selected", "Please select a destination City");
-            return; 
+            return;
         }
-        
+
         int adultFare;
         try {
             adultFare = Integer.parseInt(tFieldAdultFare.getText());
@@ -275,7 +253,7 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             showErrorDialog("Invalid Adult Fare Value/Not entered", "Please enter a integer value for Adult Fare");
             return;
         }
-        
+
         int childFare;
         try {
             childFare = Integer.parseInt(tFieldChildFare.getText());
@@ -283,7 +261,7 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             showErrorDialog("Invalid Child Fare Value/Not entered", "Please enter a integer value for Child Fare");
             return;
         }
-        
+
         int weekendFare;
         try {
             weekendFare = Integer.parseInt(tFieldWeekendFare.getText());
@@ -291,26 +269,24 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             showErrorDialog("Invalid Child Fare Value/Not entered", "Please enter a integer value for Child Fare");
             return;
         }
-        
+
         String assignedDriver = comboListDriver.getValue();
-        if(assignedDriver == null){
+        if (assignedDriver == null) {
             showErrorDialog("Value not selected", "Please select a Driver from the List");
             return;
         }
 
         String tripID = generateTripID();
-        
-        
-        
-        currentSchedule = new BusTrip(tripID, selectedBus, source, destination,timeslot,adultFare,childFare,weekendFare,totalDistance,assignedDriver );
-        
+
+        currentSchedule = new BusTrip(tripID, selectedBus, source, destination, timeslot, adultFare, childFare, weekendFare, totalDistance, assignedDriver);
+
         allTripList.add(currentSchedule);
         showSuccessDialog("Sucess", "Sucessfully Added The Schedule to system");
         ClearAllFields();
         RelationshipDatabaseClass.getInstance().setAllTripList(allTripList);
         saveArrayListsToFile();
     }
-    
+
     private String generateTripID() {
         LocalDate currentDate = LocalDate.now();
         int day = currentDate.getDayOfMonth();
@@ -321,53 +297,58 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
         String counterString = String.format("%02d", tripIDCounter++); // Increments after use
 
         return "TID-" + dayString + monthString + counterString;
-}
-    
-    private void busListSetter(){
+    }
+
+    private void busListSetter() {
         allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
     }
-    
+
     @FXML
     private void setBusListAC(MouseEvent event) {
-       comboBusList.getItems().clear();
-       for (Bus busObj: allAvailableBuses){
-           if(busObj.getBusType().equals("AC")){
-               String busID = "" + busObj.getBusId();
-               comboBusList.getItems().add(busID);
-           }
-       }
+        comboBusList.getItems().clear();
+        for (Bus busObj : allAvailableBuses) {
+            if (busObj.getBusType().equals("AC")) {
+                String busID = "" + busObj.getBusId();
+                comboBusList.getItems().add(busID);
+            }
+        }
     }
 
     @FXML
     private void setBusListNonAC(MouseEvent event) {
         comboBusList.getItems().clear();
-        for (Bus busObj: allAvailableBuses){
-           if(busObj.getBusType().equals("Non AC")){
-               String busID = "" + busObj.getBusId();
-               comboBusList.getItems().add(busID);
-           }
-       }
+        for (Bus busObj : allAvailableBuses) {
+            if (busObj.getBusType().equals("Non AC")) {
+                String busID = "" + busObj.getBusId();
+                comboBusList.getItems().add(busID);
+            }
+        }
     }
-    
-    private void setContextItems(){
+
+    private void setContextItems() {
         ContextMenu contextMenu = new ContextMenu();
-        
+
         MenuItem option1 = new MenuItem("Set Destination Locations and Define the Schedule List");
         option1.setOnAction(e -> setSceneToDestinationAndTimeDefiner());
         
-        MenuItem option2 = new MenuItem("View All available Destination Locations and Time Slots");
-        option2.setOnAction(e -> setSceneToAllCurrentAvaialableLocationTimeTableView());
+        MenuItem option2 = new MenuItem("View Current Trip List");
+        option2.setOnAction(e -> setSceneToAllTripView());
+
+        MenuItem option3 = new MenuItem("View All available Destination Locations and Time Slots");
+        option3.setOnAction(e -> setSceneToAllCurrentAvaialableLocationTimeTableView());
         
-        contextMenu.getItems().addAll(option1, option2);
         
+
+        contextMenu.getItems().addAll(option1, option2, option3);
+
         gearIcon.setOnMouseClicked(e -> {
             if (e.getButton().toString().equals("PRIMARY")) {
                 contextMenu.show(gearIcon, e.getScreenX(), e.getScreenY());
             }
         });
     }
-    
-    private void setSceneToDestinationAndTimeDefiner(){
+
+    private void setSceneToDestinationAndTimeDefiner() {
         try {
             // Load the new content FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerDestinationAndTimeDefiner.fxml"));
@@ -376,18 +357,37 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             // Get the controller
             TerminalManagerDestinationAndTimeDefinerController controller = loader.getController();
 
-            
-            controller.setLocationAndTimeArrayList(allLocations,allTimes,allBusStands);
+            controller.setLocationAndTimeArrayList(allLocations, allTimes, allBusStands);
 
             rootPane.getChildren().setAll(newContent);
-            
+
         } catch (Exception e) {
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
+            MFXDialog alertDialog = new MFXDialog("FXML not Found", "Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close", rootPane);
             alertDialog.openMFXDialog();
         }
     }
     
-    private void setSceneToAllCurrentAvaialableLocationTimeTableView(){
+    private void setSceneToAllTripView() {
+        try {
+            // Load the new content FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerViewCurrentTripTable.fxml"));
+            AnchorPane newContent = loader.load();
+
+            // Get the controller
+            TerminalManagerViewCurrentTripTableController controller = loader.getController();
+
+            controller.setTableData(allTripList);
+
+            rootPane.getChildren().setAll(newContent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MFXDialog alertDialog = new MFXDialog("FXML not Found", "Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close", rootPane);
+            alertDialog.openMFXDialog();
+        }
+    }
+
+    private void setSceneToAllCurrentAvaialableLocationTimeTableView() {
         try {
             // Load the new content FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerCurrentBusRoutesAndStands.fxml"));
@@ -396,31 +396,30 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             // Get the controller
             TerminalManagerCurrentBusRoutesAndStandsController controller = loader.getController();
 
-            
-            controller.setDataArrays(allLocations,allTimes,allBusStands);
+            controller.setDataArrays(allLocations, allTimes, allBusStands);
 
             rootPane.getChildren().setAll(newContent);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            MFXDialog alertDialog = new MFXDialog("FXML not Found","Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close",rootPane);
+            MFXDialog alertDialog = new MFXDialog("FXML not Found", "Unable to update Anchor Pane, make sure FXML is present in the specified path", "Close", rootPane);
             alertDialog.openMFXDialog();
         }
     }
-    
-    public void setComboItems(ArrayList<String> allLocations, ArrayList<String> allTimes, ArrayList<String> allBusStands ) {
-       this.allLocations = allLocations;
-       this.allTimes = allTimes;
-       this.allBusStands = allBusStands;
+
+    public void setComboItems(ArrayList<String> allLocations, ArrayList<String> allTimes, ArrayList<String> allBusStands) {
+        this.allLocations = allLocations;
+        this.allTimes = allTimes;
+        this.allBusStands = allBusStands;
     }
-    
-    public void setAllCombo(){
-       comboPickupPoint.getItems().setAll(allLocations);
-       comboDestinationPoint.getItems().setAll(allLocations);
-       comboScheduleTimeList.getItems().setAll(allTimes);
-       
+
+    public void setAllCombo() {
+        comboPickupPoint.getItems().setAll(allLocations);
+        comboDestinationPoint.getItems().setAll(allLocations);
+        comboScheduleTimeList.getItems().setAll(allTimes);
+
     }
-    
+
     public void saveArrayListsToFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ScheduleData.bin"))) {
             out.writeObject(allLocations);
@@ -431,17 +430,17 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
             e.printStackTrace();
         }
     }
-    
+
     private void showErrorDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert", rootPane);
         alertDialog.openMFXDialog();
     }
 
     private void showSuccessDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success", rootPane);
         alertDialog.openMFXDialog();
     }
-    
+
     public void loadArrayListsFromFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("ScheduleData.bin"))) {
             allLocations = (ArrayList<String>) in.readObject();
@@ -453,28 +452,22 @@ public class TerminalManagerTripAndFareMangement implements Initializable, Seria
         }
     }
 
-
     @FXML
     private void updateBusPickupStands(MouseEvent event) {
         comboPickupBusStand.getItems().setAll(allBusStands);
-        if(comboPickupPoint.getSelectedItem() != null){
+        if (comboPickupPoint.getSelectedItem() != null) {
             comboPickupBusStand.setSearchText(comboPickupPoint.getSelectedItem());
         }
-        
+
     }
 
     @FXML
     private void updateBusDroppingStands(MouseEvent event) {
         comboDropBusStand.getItems().setAll(allBusStands);
-        if (comboPickupPoint.getSelectedItem() != null){
+        if (comboPickupPoint.getSelectedItem() != null) {
             comboDropBusStand.setSearchText(comboDestinationPoint.getSelectedItem());
         }
-        
+
     }
 
-    
-
-    
-    
-    
 }

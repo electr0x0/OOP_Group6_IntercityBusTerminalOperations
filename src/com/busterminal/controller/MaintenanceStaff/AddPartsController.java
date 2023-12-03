@@ -1,4 +1,5 @@
 package com.busterminal.controller.MaintenanceStaff;
+
 import com.busterminal.model.Parts;
 import com.busterminal.model.PopUp;
 import java.io.File;
@@ -16,11 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
 public class AddPartsController implements Initializable {
 
     @FXML
@@ -58,9 +54,6 @@ public class AddPartsController implements Initializable {
     @FXML
     private TextField quantiryTF;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         filterCB.getItems().addAll("Category1", "Category2", "Category3");
@@ -72,7 +65,6 @@ public class AddPartsController implements Initializable {
         catagoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        //loadDummyData();
         stockTable.getItems().addAll(Parts.getItems());
         partsDataList = FXCollections.observableArrayList();
         partsDataList.addAll(stockTable.getItems());
@@ -101,7 +93,7 @@ public class AddPartsController implements Initializable {
             PopUp.showMessage("Alert", "Please Place the Parts Model");
             return;
         }
-        if (catagory.equals("")){
+        if (catagory.equals("")) {
             PopUp.showMessage("Alert", "Please select the Parts Catagory");
         }
 
@@ -112,12 +104,11 @@ public class AddPartsController implements Initializable {
 
                 Parts newParts = new Parts(partsName, partsModel, Integer.parseInt(partsPrice), catagory, Integer.parseInt(quantiryTF.getText()));
                 partsDataList.add(newParts);
-                //Parts.addItems(newParts);
                 clearInputFields();
                 update(newParts);
             }
-        }catch(Exception e){
-            PopUp.showMessage("Alert", "Price should be a number"+"\n Quantity should be a number");
+        } catch (Exception e) {
+            PopUp.showMessage("Alert", "Price should be a number" + "\n Quantity should be a number");
         }
 
     }

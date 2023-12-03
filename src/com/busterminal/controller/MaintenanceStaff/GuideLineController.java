@@ -1,6 +1,5 @@
 package com.busterminal.controller.MaintenanceStaff;
 
-import com.busterminal.model.Database;
 import com.busterminal.model.GuideLine;
 import com.busterminal.model.PopUp;
 import java.io.File;
@@ -20,11 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
 public class GuideLineController implements Initializable {
 
     @FXML

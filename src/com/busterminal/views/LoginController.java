@@ -1,5 +1,6 @@
 package com.busterminal.views;
 
+import com.busterminal.model.Employee;
 import com.busterminal.model.PopUp;
 import com.busterminal.model.User;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
@@ -19,12 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.management.relation.Relation;
 
-/**
- *
- * @author Maruf
- */
 
 public class LoginController implements Initializable {
 
@@ -49,7 +45,7 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Set Account Type
-        accountTypeComboBox.getItems().addAll("Administrator", "Maintenance Staff", "Ticket Vendor", "Driver",
+        accountTypeComboBox.getItems().addAll("Administrator", "Maintenance Staff",  "Driver",
                 "Terminal Manager", "Passenger", "Human Resource", "Accountant");
 
         // set Default value for designation Combobox
@@ -80,7 +76,8 @@ public class LoginController implements Initializable {
                 case "Administrator":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Addministrator/AdminDashbord.fxml"));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        Employee.setCurrentUser(email); // set Current mail for HR
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -88,7 +85,8 @@ public class LoginController implements Initializable {
                 case "Maintenance Staff":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml"));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        Employee.setCurrentUser(email); // set Current mail for HR
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -96,7 +94,8 @@ public class LoginController implements Initializable {
                 case "Accountant":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantDashboard.fxml"));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        Employee.setCurrentUser(email);
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -104,7 +103,8 @@ public class LoginController implements Initializable {
                 case "Driver":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/driver/Dashboard_Driver.fxml"));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        Employee.setCurrentUser(email);
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -112,7 +112,8 @@ public class LoginController implements Initializable {
                 case "Terminal Manager":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml"));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        Employee.setCurrentUser(email); 
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -120,15 +121,15 @@ public class LoginController implements Initializable {
                 case "":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
                         loader = new FXMLLoader(getClass().getResource(""));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
                     break;
                 case "Human Resource":
                     if (User.employeepasswordMatch(accountTypeComboBox.getValue(), email, password) == True) {
-                        loader = new FXMLLoader(getClass().getResource(""));
-                        //RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(password); // Pass the ID
+                        loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
+                        Employee.setCurrentUser(email); // set Current mail for HR
+                        RelationshipDatabaseClass.getInstance().setCurrentUserEmail(email);
                     } else {
                         PopUp.showMessage("Wrong credentials", "Invalid username or password");
                     }
@@ -151,6 +152,7 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(False);
             stage.show();
 
         } else {
@@ -186,7 +188,7 @@ public class LoginController implements Initializable {
             Scene scene = new Scene(root);
             forgotPassword.setScene(scene);
             forgotPassword.show();
-            forgotPassword.setResizable(False);
+            forgotPassword.setResizable(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

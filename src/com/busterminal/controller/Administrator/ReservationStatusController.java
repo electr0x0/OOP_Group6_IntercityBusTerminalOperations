@@ -1,14 +1,12 @@
 package com.busterminal.controller.Administrator;
 
 import com.busterminal.model.BusReservation;
-import com.busterminal.model.Database;
 import com.busterminal.model.Reservation;
 import com.busterminal.utilityclass.Validator;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,55 +48,52 @@ public class ReservationStatusController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Database.getInstanceBinFile("ReservationList.bin"));
         data = FXCollections.observableArrayList();
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         passengerNameColumn.setCellValueFactory(new PropertyValueFactory<>("passengerName"));
         busIdColumn.setCellValueFactory(new PropertyValueFactory<>("busId"));
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         fareColumn.setCellValueFactory(new PropertyValueFactory<>("fare"));
-        
+
         ObservableList<Reservation> re = getInstance();
-        
-        int saturday=0,sunday=0,monday=0,tuesday=0,wednesday=0,thursday=0;
-        
+
+        int saturday = 0, sunday = 0, monday = 0, tuesday = 0, wednesday = 0, thursday = 0;
+
         if (re != null) {
             for (Reservation r : re) {
-                System.out.print("fare" + r.getReserveBus().getFare());
+
                 BusReservation br = new BusReservation(r.getReserveBus().getReserveId(), r.getPassengerName(),
                         r.getReserveBus().getBusType(), r.getReserveBus().getDate(), r.getReserveBus().getFare());
                 data.add(br);
-                
-                switch(Validator.getDayOfWeek(r.getReserveBus().getDate())){
-                    case("Monday"):
-                        monday+=r.getReserveBus().getFare();
+
+                switch (Validator.getDayOfWeek(r.getReserveBus().getDate())) {
+                    case ("Monday"):
+                        monday += r.getReserveBus().getFare();
                         break;
-                    case("Saturday"):
-                        saturday+=r.getReserveBus().getFare();
+                    case ("Saturday"):
+                        saturday += r.getReserveBus().getFare();
                         break;
-                    case("Sunday"):
-                        sunday+=r.getReserveBus().getFare();
+                    case ("Sunday"):
+                        sunday += r.getReserveBus().getFare();
                         break;
-                    case("Tuesday"):
-                        tuesday+=r.getReserveBus().getFare();
+                    case ("Tuesday"):
+                        tuesday += r.getReserveBus().getFare();
                         break;
-                    case("Wednesday"):
-                        wednesday+=r.getReserveBus().getFare();
-                        System.out.print("total:"+wednesday);
+                    case ("Wednesday"):
+                        wednesday += r.getReserveBus().getFare();
+                        System.out.print("total:" + wednesday);
                         break;
-                    case("Thursday"):
-                        thursday+=r.getReserveBus().getFare();
-                        break;  
+                    case ("Thursday"):
+                        thursday += r.getReserveBus().getFare();
+                        break;
                 }
 
             }
+            
+            busReservationTable.setItems(data);
 
         }
-        System.out.print("total:"+wednesday);
 
-        busReservationTable.getItems().addAll(data);
-        
-        
         
 
         // pie chart
@@ -115,7 +110,7 @@ public class ReservationStatusController implements Initializable {
 
         // Add listener to the filter field for filtering the table by date
         filter.textProperty().addListener((observable, oldValue, newValue) -> filterTableByDate());
-        //explain in feedback
+        //explain in feedback or bus status
     }
 
     private void filterTableByDate() {

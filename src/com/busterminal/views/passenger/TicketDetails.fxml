@@ -66,8 +66,8 @@
          </font>
       </Label>
       <TextField fx:id="nameTextField1" layoutX="170.0" layoutY="111.0" prefHeight="25.0" prefWidth="119.0" />
-      <TextField fx:id="ticketIdTextField" editable="false" layoutX="137.0" layoutY="327.0" prefHeight="25.0" prefWidth="81.0" />
-      <Label layoutX="49.0" layoutY="330.0" prefHeight="17.0" prefWidth="81.0" text="Ticket ID: ">
+      <TextField fx:id="ticketIdTextField" editable="false" layoutX="137.0" layoutY="302.0" prefHeight="25.0" prefWidth="81.0" />
+      <Label layoutX="44.0" layoutY="305.0" prefHeight="17.0" prefWidth="81.0" text="Ticket ID: ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -114,11 +114,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="372.0" prefHeight="19.0" prefWidth="92.0" text="Booking Date">
+      <Label layoutX="39.0" layoutY="343.0" prefHeight="19.0" prefWidth="92.0" text="Booking Date">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="bookingDateLabel" layoutX="136.0" layoutY="372.0" prefHeight="19.0" prefWidth="101.0" style="-fx-border-color: green;" textAlignment="CENTER" />
+      <Label fx:id="bookingDateLabel" layoutX="137.0" layoutY="343.0" prefHeight="19.0" prefWidth="101.0" style="-fx-border-color: green;" textAlignment="CENTER" />
    </children>
 </AnchorPane>

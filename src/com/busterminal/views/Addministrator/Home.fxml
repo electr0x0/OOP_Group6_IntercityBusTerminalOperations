@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="homeAchorPane" prefHeight="800.0" prefWidth="1215.0" style="-fx-background-color: #353A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.Administrator.HomeController">
    <children>
-      <BarChart fx:id="weeklySaleBarChart" layoutX="7.0" layoutY="266.0" prefHeight="444.0" prefWidth="608.0" style="-fx-border-color: #07f1e5; -fx-border-width: 3px;" title="Monthly Sale">
+      <BarChart fx:id="weeklySaleBarChart" layoutX="7.0" layoutY="266.0" prefHeight="444.0" prefWidth="608.0" style="-fx-border-color: #07f1e5; -fx-border-width: 3px;" title="Weekly Sale">
         <xAxis>
           <CategoryAxis label="Week" prefHeight="47.0" prefWidth="525.0" side="BOTTOM" tickLabelFill="#07f1e5" fx:id="xAxis" />
         </xAxis>
@@ -67,7 +67,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="toTF" layoutX="645.0" layoutY="86.0" prefHeight="31.0" prefWidth="515.0" style="-fx-border-color: White#07f1e5; -fx-border-width: 2px;" />
+      <TextField fx:id="toTF" layoutX="645.0" layoutY="86.0" prefHeight="31.0" prefWidth="515.0" promptText="alluser@gmail.com" style="-fx-border-color: White#07f1e5; -fx-border-width: 2px;" />
       <Text fill="#0f7fe1" layoutX="598.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cc:">
          <font>
             <Font name="System Bold" size="18.0" />

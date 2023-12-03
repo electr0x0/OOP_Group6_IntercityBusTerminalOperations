@@ -1,5 +1,5 @@
 package com.busterminal.model;
-import static com.busterminal.model.MaintenanceTask.getTaskList;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,14 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 public class Parts implements Serializable {
+
     private String name;
     private String model;
     private String category;
     private int price;
     private int quantity;
-
-    
 
     public Parts(String name, String model, int price, String category, int quantity) {
         this.name = name;
@@ -62,7 +62,7 @@ public class Parts implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -78,14 +78,17 @@ public class Parts implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Parts{" + "name=" + name + ", model=" + model + ", category=" + category + ", price=" + price + ", quantity=" + quantity + '}';
+    }
 
     public static boolean validateInput(String partsName, String partsModel, String partsPrice, String category) {
         return !partsName.isEmpty() && !partsModel.isEmpty() && !partsPrice.isEmpty() && category != null;
     }
-    
-     public static void addItems(Parts e) {
+
+    public static void addItems(Parts e) {
         File f = null;
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -113,9 +116,8 @@ public class Parts implements Serializable {
             }
         }
     }
-     
-     
-     public static ObservableList<Parts> getItems() {
+
+    public static ObservableList<Parts> getItems() {
         ObjectInputStream ois = null;
         ObservableList<Parts> list = FXCollections.observableArrayList();
         try {
@@ -138,10 +140,9 @@ public class Parts implements Serializable {
         }
         return list;
     }
-     
-     public static int totalstaff() {
+
+    public static int totalParts() {
         return getItems().size();
+
     }
-    
-    
 }

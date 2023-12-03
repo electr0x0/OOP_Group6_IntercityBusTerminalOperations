@@ -4,42 +4,83 @@
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantEmployeeReimbursementManagementController">
    <children>
-      <MFXLegacyTableView fx:id="reimbTableView" layoutX="17.0" layoutY="128.0" onMouseClicked="#onClickTableUpdateSelectedItem" prefHeight="556.0" prefWidth="1016.0" stylesheets="@../../css/AccountantTableStyle.css">
-         <columns>
-            <TableColumn fx:id="colEmployeeName" prefWidth="152.0" text="Employee Name" />
-            <TableColumn fx:id="colEmployeeDesignation" prefWidth="142.0" text="Designation" />
-            <TableColumn fx:id="colDateOfSubmission" prefWidth="134.0" text="Date of Submission" />
-            <TableColumn fx:id="colCauseForReimb" prefWidth="214.0" text="Expense Type" />
-            <TableColumn fx:id="colExpenseAmount" prefWidth="150.0" text="Amount (BDT)" />
-            <TableColumn fx:id="colReimbState" prefWidth="109.0" text="State" />
-            <TableColumn fx:id="colRecevingMethod" prefWidth="121.0" text="Receiving Method" />
-         </columns>
-      </MFXLegacyTableView>
-      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="909.0" layoutY="34.0" onAction="#onClickExpenseReportReim" prefHeight="36.0" prefWidth="113.0" text="Expense Report" />
-      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="786.0" layoutY="34.0" onAction="#onClickReimDashboard" prefHeight="36.0" prefWidth="113.0" text="Dashboard" />
-      <TextField fx:id="txtFieldSearch" layoutX="73.0" layoutY="71.0" onKeyPressed="#searchActionTableView" prefHeight="46.0" prefWidth="232.0" styleClass="search-bar" stylesheets="@../../css/DashboardAccountant.css" />
-      <ImageView fitHeight="29.0" fitWidth="27.0" layoutX="37.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../drawables/search.png" />
-         </image>
-      </ImageView>
-      <MFXRadioButton fx:id="radioSearchName" layoutX="331.0" layoutY="85.0" text="Name" />
-      <MFXRadioButton fx:id="radioSearchDesignation" layoutX="404.0" layoutY="85.0" text="Designation" />
-      <MFXRadioButton fx:id="radioSearchDate" layoutX="507.0" layoutY="85.0" text="Date" />
-      <Label layoutX="413.0" layoutY="62.0" text="Search By*">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <MFXButton fx:id="markPaidButton" buttonType="RAISED" depthLevel="LEVEL4" disable="true" layoutX="920.0" layoutY="694.0" onAction="#onClickDeleteSelectedItem" prefHeight="36.0" prefWidth="113.0" text="Mark Paid" />
+      <TabPane prefHeight="750.0" prefWidth="1050.0" stylesheets="@../../css/tabPaneStyle_Green.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Reimbursement Management">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="686.0" prefWidth="1038.0">
+                     <children>
+                        <MFXLegacyTableView fx:id="reimbTableView" layoutX="14.0" layoutY="75.0" onMouseClicked="#onClickTableUpdateSelectedItem" prefHeight="547.0" prefWidth="1016.0" stylesheets="@../../css/AccountantTableStyle.css">
+                           <columns>
+                              <TableColumn fx:id="colReimID" prefWidth="91.0" text="REIM-ID" />
+                              <TableColumn fx:id="colEmployeeID" prefWidth="107.0" text="Employee ID" />
+                              <TableColumn fx:id="colEmployeeDesignation" prefWidth="116.0" text="Designation" />
+                              <TableColumn prefWidth="174.0" text="Employee Name">
+                                 <columns>
+                                    <TableColumn fx:id="colFirstName" prefWidth="76.0" text="First" />
+                                    <TableColumn fx:id="colLastName" prefWidth="78.0" text="Last" />
+                                 </columns></TableColumn>
+                              <TableColumn fx:id="colCauseForReimb" prefWidth="112.0" text="Expense Type" />
+                              <TableColumn fx:id="colExpenseAmount" prefWidth="117.0" text="Amount (BDT)" />
+                              <TableColumn fx:id="colReimbState" prefWidth="76.0" text="State" />
+                              <TableColumn fx:id="colRecevingMethod" prefWidth="119.0" text="Receiving Method" />
+                              <TableColumn fx:id="colDateOfSubmission" prefWidth="121.0" text="Submission Date" />
+                           </columns>
+                        </MFXLegacyTableView>
+                        <TextField fx:id="txtFieldSearch" layoutX="78.0" layoutY="19.0" minHeight="39.0" onKeyPressed="#searchActionTableView" onKeyReleased="#searchActionTableView" prefHeight="39.0" prefWidth="183.0" promptText="Search Value" styleClass="search-bar" stylesheets="@../../css/DashboardAccountant.css" />
+                        <ImageView fitHeight="29.0" fitWidth="27.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/search.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="500.0" layoutY="18.0" text="Search By*">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <MFXButton fx:id="markPaidButton" buttonType="RAISED" depthLevel="LEVEL4" disable="true" layoutX="899.0" layoutY="630.0" onAction="#onClickDeleteSelectedItem" prefHeight="34.0" prefWidth="122.0" stylesheets="@accView.css" text="Mark Paid" />
+                        <HBox fx:id="hboxSearch" alignment="CENTER" layoutX="318.0" layoutY="36.0" prefHeight="25.0" prefWidth="384.0" spacing="10.0" visible="false">
+                           <children>
+                              <MFXRadioButton fx:id="radioSearchName" text="Name" />
+                              <MFXRadioButton fx:id="radioSearchExpense" text="Expense Type" />
+                              <MFXRadioButton fx:id="radioSearchDate" text="Date of Submission" />
+                              <MFXRadioButton fx:id="radioSearchDesignation" text="Designation" />
+                              <MFXRadioButton fx:id="radioSearchState" layoutX="338.0" layoutY="14.0" text="State" />
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="caretImageView" blendMode="DARKEN" fitHeight="27.0" fitWidth="24.0" layoutX="561.0" layoutY="15.0" onMouseClicked="#onClickCaret" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/down_arrow.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab onSelectionChanged="#updateReimChartsAndValues" text="Reimbursement Stats">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane fx:id="paneTopEmployeeReim" layoutX="20.0" layoutY="22.0" prefHeight="632.0" prefWidth="373.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
+                        <Pane fx:id="paneReimByDepartment" layoutX="416.0" layoutY="137.0" prefHeight="382.0" prefWidth="602.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

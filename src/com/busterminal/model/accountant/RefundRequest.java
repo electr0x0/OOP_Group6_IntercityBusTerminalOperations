@@ -4,8 +4,10 @@
  */
 package com.busterminal.model.accountant;
 
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -16,14 +18,27 @@ public class RefundRequest implements Serializable{
     private String passengerName;
     private int ticketID;
     private int amount;
+    private LocalDate journeyDate;
     private String status = "Pending",refundReason;
+    private String eligible;
 
-    public RefundRequest(LocalDate date, String passengerName, int ticketID, int amount, String refundReason) {
+    public RefundRequest(LocalDate date,LocalDate jourDate, String passengerName, int ticketID, int amount, String refundReason) {
         this.date = date;
         this.passengerName = passengerName;
         this.ticketID = ticketID;
         this.amount = amount;
         this.refundReason = refundReason;
+        this.journeyDate = jourDate;
+        setEligible();
+        autoCreateTransaction();
+    }
+    
+    public boolean checkIfEligible(){
+        return ChronoUnit.DAYS.between(date, journeyDate) >= 2;
+    }
+    
+    private void setEligible(){
+        this.eligible = (checkIfEligible())?"Yes":"No";
     }
 
     public LocalDate getDate() {
@@ -73,6 +88,29 @@ public class RefundRequest implements Serializable{
     public void setRefundReason(String refundReason) {
         this.refundReason = refundReason;
     }
+
+    public LocalDate getJourneyDate() {
+        return journeyDate;
+    }
+
+    public void setJourneyDate(LocalDate journeyDate) {
+        this.journeyDate = journeyDate;
+    }
+
+    public String getEligible() {
+        return eligible;
+    }
+
+    public void setEligible(String eligible) {
+        this.eligible = eligible;
+    }
+    
+    public void autoCreateTransaction(){
+        Transaction refundApprovedTxn = new Transaction(LocalDate.now(), "TICKET-REFUND", amount, "Paid","TICKETID-"+this.ticketID );
+        RelationshipDatabaseClass.getInstance().addItemToAllAvailableTransactions(refundApprovedTxn);
+    }
+    
+    
     
     
 }

@@ -12,7 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.time.LocalDate;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 public class ShowBusStatusController {
 
     @FXML
@@ -46,8 +45,6 @@ public class ShowBusStatusController {
                 new BusStatus("1", "Bus 101", "Samin", "10 mpg", LocalDate.of(2022, 8, 15)),
                 new BusStatus("2", "Bus 202", "Alif", "8 mpg", LocalDate.of(2022, 9, 22)),
                 new BusStatus("3", "Bus 303", "Mantaka", "12 mpg", LocalDate.of(2022, 7, 5))
-                
-                
         /*
                 fuel consumption
                 
@@ -55,7 +52,7 @@ public class ShowBusStatusController {
                 Fuel Consumption = (23,889 mi - 23,500 mi) / 12.5 gallons
                 Fuel Consumption = 389 mi / 12.5 gallons
                 Fuel Consumption = 31.1 mpg
-                */
+         */
         );
 
         busStatusTable.setItems(originalData);
@@ -74,7 +71,7 @@ public class ShowBusStatusController {
         // Add listeners to the filter fields for filtering the table
         filterBusNameField.textProperty().addListener((observable, oldValue, newValue) -> filterTable());
         filterMaintenanceDateField.textProperty().addListener((observable, oldValue, newValue) -> filterTable());
-        
+
         /*
         filterBusNameField.textProperty(): Retrieves the text property of the filterBusNameField TextField.
         addListener((observable, oldValue, newValue) -> filterTable()): Adds a listener to the text property. 
@@ -82,7 +79,7 @@ public class ShowBusStatusController {
         observable: The property that changed, in this case, the text property of the TextField.
         oldValue: The old value of the property (text before the change).
         newValue: The new value of the property (text after the change).
-        */
+         */
     }
 
     private void filterTable() {

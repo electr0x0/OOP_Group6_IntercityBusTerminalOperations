@@ -131,7 +131,6 @@ public class Administrator {
 
             while (true) {
                 c = (DummyEmployee) ois.readObject();
-                System.out.println(c.getID());
                 if (!(c.getID() == p.getID())) {
                     employeelist.add(c);
                 }
@@ -161,7 +160,6 @@ public class Administrator {
         try {
             fos = new FileOutputStream(f);
             oos = new ObjectOutputStream(fos);
-            System.out.println(employeelist);
             for (DummyEmployee e : employeelist) {
                 oos.writeObject(e);
             }
@@ -174,8 +172,7 @@ public class Administrator {
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Package.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            // System.out.println(employeelist);
+            };
         }
 
     }

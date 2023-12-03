@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.Employee.EmployeeSalaryDashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.Employee.EmployeeSalaryDashboardController">
    <left>
       <VBox prefHeight="598.0" prefWidth="190.0" styleClass="sidePanel" stylesheets="@../HumanResourceViews/humanResourceStyle.css" BorderPane.alignment="CENTER">
          <children>
@@ -44,6 +44,16 @@
                </VBox.margin>
             </Button>
             <Button layoutX="17.0" layoutY="184.0" mnemonicParsing="false" onAction="#toResign" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Resign">
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="17.0" layoutY="367.0" mnemonicParsing="false" onAction="#toMemo" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Membox">
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="17.0" layoutY="428.0" mnemonicParsing="false" onAction="#toReimbus" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@../HumanResourceViews/humanResourceStyle.css" text="Reimbusment">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>

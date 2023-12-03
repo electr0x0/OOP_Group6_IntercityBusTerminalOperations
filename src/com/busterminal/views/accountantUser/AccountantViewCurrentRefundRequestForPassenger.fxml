@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantViewCurrentRefundRequestForPassengerController">
+   <children>
+      <MFXLegacyTableView fx:id="refundReqViewTable" layoutX="22.0" layoutY="100.0" prefHeight="596.0" prefWidth="1006.0" stylesheets="@../../css/ManagerTableStyle.css" tableMenuButtonVisible="true">
+         <columns>
+            <TableColumn fx:id="colDate" prefWidth="103.0" text="Date Requested" />
+            <TableColumn fx:id="colPassengerName" prefWidth="121.0" text="Passenger Name" />
+            <TableColumn fx:id="colTicketID" prefWidth="125.0" text="Ticket ID" />
+            <TableColumn fx:id="colAmount" prefWidth="127.0" text="Amount" />
+            <TableColumn fx:id="colStatus" prefWidth="103.0" text="Status" />
+            <TableColumn fx:id="colRefundReason" prefWidth="301.0" text="Refund Reason" />
+            <TableColumn fx:id="colJourneyDate" prefWidth="125.0" text="Journey Date" />
+         </columns>
+      </MFXLegacyTableView>
+      <ImageView blendMode="GREEN" cache="true" fitHeight="54.0" fitWidth="45.0" layoutX="977.0" layoutY="20.0" onMouseClicked="#goBackToRefundApplyView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

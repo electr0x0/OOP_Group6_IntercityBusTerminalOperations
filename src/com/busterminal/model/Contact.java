@@ -29,7 +29,7 @@ public class Contact implements Serializable {
 
     public Contact() {
     }
-    
+    /*
     public void receiveResponse(){
         File f = null;
         FileInputStream fis = null;      
@@ -66,8 +66,8 @@ public class Contact implements Serializable {
             } catch (IOException ex) { }
         }           
     
+    */
     
-    }
     public String getInquiryType() {
         return inquiryType;
     }

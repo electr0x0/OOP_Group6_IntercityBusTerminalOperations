@@ -35,9 +35,7 @@ public class FeedbackController {
 
         // read from file
         feedbackTableView.getItems().addAll(Database.getInstanceBinFile("Feedback.bin"));
-        
-        
-        
+
         // Add a listener to display selected feedback in the TextArea
         // someting....
         feedbackTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Feedback>() {
@@ -69,11 +67,8 @@ public class FeedbackController {
     private void displaySelectedFeedback(Feedback selectedFeedback) {
         selectedFeedbackTextArea.setText("Feedback ID: " + selectedFeedback.getFeedbackID()
                 + "\nPassenger Name: " + selectedFeedback.getName()
-                + "\nSubject: " + selectedFeedback.getSubject()+"\n"+"coment:"+"\n"+
-        selectedFeedback.getBody());
+                + "\nSubject: " + selectedFeedback.getSubject() + "\n" + "coment:" + "\n"
+                + selectedFeedback.getBody());
     }
-    
-    
-    
 
 }

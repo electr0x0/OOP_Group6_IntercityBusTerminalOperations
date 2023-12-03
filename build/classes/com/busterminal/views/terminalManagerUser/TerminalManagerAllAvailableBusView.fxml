@@ -21,7 +21,7 @@
          </columns>
       </MFXLegacyTableView>
       <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="929.0" layoutY="673.0" onAction="#onClickDeleteBus" prefHeight="46.0" prefWidth="103.0" text="Delete" />
-      <ImageView blendMode="DIFFERENCE" fitHeight="59.0" fitWidth="81.0" layoutX="973.0" layoutY="14.0" onMouseClicked="#onClickBackButton" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="GREEN" fitHeight="59.0" fitWidth="81.0" layoutX="973.0" layoutY="14.0" onMouseClicked="#onClickBackButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../drawables/back_button_anim.gif" />
          </image>

@@ -9,6 +9,8 @@ package com.busterminal.model;
  * @author electr0
  */
 
+import com.busterminal.model.accountant.Transaction;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,6 +55,7 @@ public class Ticket implements Serializable {
         this.ticketQty= ticketQty;
         this.bookingStatus = bookingStatus;
         this.purchaseDate = purchaseDate;
+        autoCreateTransaciton();
         
     }
     
@@ -149,6 +152,13 @@ public class Ticket implements Serializable {
 
     public void setDummy(DummyClassForTableViewSchedule dummy) {
         this.dummy = dummy;
+    }
+    
+    public void autoCreateTransaciton(){
+        double totalAmnt = dummy.getAdultFare() * this.ticketQty;
+        String sourceToDesti = dummy.getSource()+"-"+dummy.getDestination();
+        Transaction ticketTransacion = new Transaction(LocalDate.now(),"TICKET-SALE",totalAmnt,"Paid",sourceToDesti);
+        RelationshipDatabaseClass.getInstance().addItemToAllAvailableTransactions(ticketTransacion);
     }
 
 }

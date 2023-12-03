@@ -4,6 +4,8 @@
  */
 package com.busterminal.views.Employee;
 
+import com.busterminal.controller.accountant.AccountantEmployeeReimbursementManagementController;
+import com.busterminal.controller.accountant.AccountantReimbursementApplyViewController;
 import com.busterminal.model.Employee;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -75,6 +77,7 @@ public class EmployeeDashboardController implements Initializable  {
 
     public void setEmpID(String empID) {
         this.empID = empID;
+        LoadData();
     }
 
    
@@ -118,8 +121,11 @@ public class EmployeeDashboardController implements Initializable  {
     
     
     public void LoadData(){
+        requestLog.clear();
         user = getEmployeeById("MyEmployee.bin",empID);
         id.setText(id.getText()+" "+ empID);
+        System.out.println(empID);
+        System.out.println(user.toString());
         name.setText("Name: "+user.getFirstName()+" "+ user.getLastName());
         designation.setText("Designation: "+" " +user.getEmpType());
         payedRecieved.setText("Payment Recieved: "+" "+ user.getSalStatus().getSalary()+"tk");
@@ -134,7 +140,7 @@ public class EmployeeDashboardController implements Initializable  {
                 if(emp.getSalStatus().getIncresedSalary()>0){
                     requestLog.appendText("A Request for increment was sent.\n");
                 }
-                if(emp.getSalStatus().getAskedForSalary()){
+                if(emp.getSalStatus().getAskedForSalary()!= null && emp.getSalStatus().getAskedForSalary()){
                     requestLog.appendText("A Request for Salary Pay was sent.\n");
                 }
                 if(emp.getHoliday().getAskedForLeave()){
@@ -151,11 +157,34 @@ public class EmployeeDashboardController implements Initializable  {
        
     @FXML
     private void goHome(ActionEvent event) throws IOException {
-            root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            if(user.getEmpType().equals("Administrator")){
+               SceneSwitch(event,"/com/busterminal/views/Addministrator/AdminDashbord.fxml");
+            } else if(user.getEmpType().equals("Maintenance Staff")){
+                SceneSwitch(event,"/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml");
+            } else if(user.getEmpType().equals("Driver")){
+                SceneSwitch(event,"/com/busterminal/views/driver/Dashboard_Driver.fxml");
+            } else if(user.getEmpType().equals("Terminal Manager")){
+                SceneSwitch(event,"/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml");
+            } else if(user.getEmpType().equals("Human Resource")){
+                
+                SceneSwitch(event,"/com/busterminal/views/HumanResourceViews/MyEmployee.fxml");
+                
+            } else if(user.getEmpType().equals("Accountant")){
+                SceneSwitch(event,"/com/busterminal/views/accountantUser/AccountantDashboard.fxml");
+            }                      
+        
+    }
+    
+      public void SceneSwitch(ActionEvent e, String fxmlLocal) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlLocal));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle the exception (e.g., logging or displaying an error message)
+        }   
     }
 
    
@@ -178,12 +207,7 @@ public class EmployeeDashboardController implements Initializable  {
             e.printStackTrace(); // or handle the exception as needed
         }
     }
-
-   
-
-   
-
-   
+ 
 
     @FXML
     private void toHoliday(ActionEvent event) {
@@ -221,6 +245,44 @@ public class EmployeeDashboardController implements Initializable  {
             } catch (IOException e) {
             e.printStackTrace(); // or handle the exception as needed
         }
+    }
+
+    @FXML
+    private void toMemo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeMemo.fxml"));
+            root = loader.load();
+            EmployeeMemoController controller = loader.getController();
+
+            controller.setEmpID(empID);
+            controller.LoadData();
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toReimburs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml"));
+            root = loader.load();
+            AccountantReimbursementApplyViewController controller = loader.getController();
+
+            controller.setEmployeeIDFromSceneSwitch(empID);
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+        
     }
     
     

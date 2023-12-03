@@ -46,7 +46,7 @@
                </font>
             </Label>
             <TextField fx:id="nameTextField" prefHeight="31.0" prefWidth="201.0" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" />
-            <TextField fx:id="empIDTextField" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="empIDTextField" editable="false" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="commentTextField" styleClass="addressTF" stylesheets="@../../css/signUp.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label lineSpacing="20.0" prefHeight="35.0" prefWidth="206.0" text="Resignation ID:" textFill="#008cff" GridPane.rowIndex="3">
                <font>

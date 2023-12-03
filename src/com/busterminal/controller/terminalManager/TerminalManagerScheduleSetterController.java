@@ -8,9 +8,11 @@ import com.busterminal.model.BusTrip;
 import com.busterminal.model.BusTripSchedule;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
@@ -34,11 +36,16 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 
 /**
@@ -72,37 +79,52 @@ public class TerminalManagerScheduleSetterController implements Initializable {
     private TableColumn<BusTripSchedule, String> colAssignedDriver;
     @FXML
     private TableColumn<BusTripSchedule, String> colAssignedVehicle;
-    
+
     @FXML
     private TableColumn<BusTripSchedule, Boolean> scheduleStatusCol;
-    
+
     @FXML
     private MFXLegacyTableView<BusTripSchedule> tripScheduleTable;
-    
-    
-    
+
     private ArrayList<BusTrip> allAvailableTripList;
     @FXML
     private AnchorPane rootPane;
-    
+
     private ObservableList<BusTripSchedule> obvForTableView = FXCollections.observableArrayList();
-    
+
     private ObservableList<BusTripSchedule> obvForTableViewFiltered = FXCollections.observableArrayList(); // Table where filtered items will go
-    
+
     private ArrayList<BusTripSchedule> allAvailableTripSchedules = new ArrayList<>();
-    
+
     private BusTripSchedule currentSchedule;
-    
+
     private int currentScheduleID = 0;
     @FXML
     private TextField txtFieldSearchBar;
     @FXML
     private MFXButton buttonClickable;
-    
+
     private MFXStageDialog dialog;
     private MFXGenericDialog dialogContent;
-    
-    
+    @FXML
+    private HBox filterHBOX;
+    @FXML
+    private MFXRadioButton radioFilterDate;
+    @FXML
+    private MFXRadioButton radioFilterTime;
+    @FXML
+    private MFXRadioButton radioFilterSourceDesti;
+    @FXML
+    private MFXRadioButton radioFilterDriver;
+    @FXML
+    private MFXRadioButton radioFilterStatus;
+
+    private ToggleGroup filterGroup;
+
+    private boolean isCaretExapanded = false;
+    @FXML
+    private ImageView caretImageView;
+
     /**
      * Initializes the controller class.
      */
@@ -110,33 +132,40 @@ public class TerminalManagerScheduleSetterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadData();
         setupColumns();
-        
+        TransitionUtility.materialScale(rootPane);
+
+        filterGroup = new ToggleGroup();
+
+        radioFilterDate.setToggleGroup(filterGroup);
+        radioFilterDriver.setToggleGroup(filterGroup);
+        radioFilterSourceDesti.setToggleGroup(filterGroup);
+        radioFilterStatus.setToggleGroup(filterGroup);
+        radioFilterTime.setToggleGroup(filterGroup);
+
         // Load last scheduleID
-        if (RelationshipDatabaseClass.getInstance().getCurrentScheduleID() != 0){
+        if (RelationshipDatabaseClass.getInstance().getCurrentScheduleID() != 0) {
             currentScheduleID = RelationshipDatabaseClass.getInstance().getCurrentScheduleID();
         }
-        
-        if (RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules() != null){
+
+        if (RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules() != null) {
             allAvailableTripSchedules = RelationshipDatabaseClass.getInstance().getAllAvailableTripSchedules();
             obvForTableView.setAll(allAvailableTripSchedules);
             System.out.println(obvForTableView);
             tripScheduleTable.setItems(obvForTableView);
         }
     }
-    
 
-    private void loadData(){
+    private void loadData() {
         try {
-        allAvailableTripList = RelationshipDatabaseClass.getInstance().getAllTripList();
-        System.out.println("Trip List assigned to Controller" + allAvailableTripList.get(0));
-        comboBoxAllTrips.getItems().addAll(allAvailableTripList);
-        }
-        catch(NullPointerException npe){
-            showErrorDialog("Error loading Data","Trip List Data loading faield, Please populate Trip Information before trying to Schedule one!");
+            allAvailableTripList = RelationshipDatabaseClass.getInstance().getAllTripList();
+            System.out.println("Trip List assigned to Controller" + allAvailableTripList.get(0));
+            comboBoxAllTrips.getItems().addAll(allAvailableTripList);
+        } catch (NullPointerException npe) {
+            showErrorDialog("Error loading Data", "Trip List Data loading faield, Please populate Trip Information before trying to Schedule one!");
         }
     }
-    
-    public void generateScheduleID(){
+
+    public void generateScheduleID() {
         currentScheduleID++;
         RelationshipDatabaseClass.getInstance().setCurrentScheduleID(currentScheduleID);
     }
@@ -159,14 +188,14 @@ public class TerminalManagerScheduleSetterController implements Initializable {
 
         // Validation: Check if this trip is already assigned on the selected date
         for (BusTripSchedule schedule : allAvailableTripSchedules) {
-            if (schedule.getTripId().equals(currentTrip.getTripID()) && schedule.getScheduleDate().equals(selectedDate)) {
+            if (schedule.getTripId().equals(currentTrip.getTripID()) && schedule.getScheduleDate().equals(selectedDate) && schedule.getTime().equals(currentTrip.getTimeSlot())) {
                 showErrorDialog("Schedule Conflict", "This trip is already scheduled on the selected date. Please select a different date or trip.");
                 return;
             }
         }
 
         // Proceed with schedule creation
-        currentSchedule = new BusTripSchedule(currentScheduleID,currentTrip, selectedDate);
+        currentSchedule = new BusTripSchedule(currentScheduleID, currentTrip, selectedDate);
         generateScheduleID();
         allAvailableTripSchedules.add(currentSchedule);
         obvForTableView.clear();
@@ -176,15 +205,14 @@ public class TerminalManagerScheduleSetterController implements Initializable {
         showSuccessDialog("Schedule Added", "The trip schedule has been successfully added.");
         clearAllFields();
     }
-    
-    private void clearAllFields(){
+
+    private void clearAllFields() {
         comboBoxAllTrips.clearSelection();
         labelAdultFare.setText("Adult Fare       :");
         labelChildFare.setText("Child Fare        :");
         labelWeekendFare.setText("Weekend Fare  :");
     }
 
-    
     private void setupColumns() {
         colScheduleId.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         colScheduleDate.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
@@ -195,118 +223,66 @@ public class TerminalManagerScheduleSetterController implements Initializable {
         colAssignedVehicle.setCellValueFactory(new PropertyValueFactory<>("assignedVehicle"));
         scheduleStatusCol.setCellValueFactory(new PropertyValueFactory<>("tripScheduleStatus"));
     }
-    
+
     private void showErrorDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert", rootPane);
         alertDialog.openMFXDialog();
     }
 
     private void showSuccessDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success", rootPane);
         alertDialog.openMFXDialog();
     }
 
     @FXML
     private void onTripSelection(ActionEvent event) {
-        String adFare = "Adult Fare       : "+comboBoxAllTrips.getSelectedItem().getAdultFare();
-        String chFare = "Child Fare        : "+comboBoxAllTrips.getSelectedItem().getChildrenFare();
-        String wkEndFare = "Weekend Fare  : "+comboBoxAllTrips.getSelectedItem().getWeekendFare();
+        String adFare = "Adult Fare       : " + comboBoxAllTrips.getSelectedItem().getAdultFare();
+        String chFare = "Child Fare        : " + comboBoxAllTrips.getSelectedItem().getChildrenFare();
+        String wkEndFare = "Weekend Fare  : " + comboBoxAllTrips.getSelectedItem().getWeekendFare();
         labelAdultFare.setText(adFare);
         labelChildFare.setText(chFare);
         labelWeekendFare.setText(wkEndFare);
-        
+
     }
 
     @FXML
     private void updateFareDetailsOnRowSelectionDetected(MouseEvent event) {
-        if (!tripScheduleTable.getItems().isEmpty() && tripScheduleTable.getSelectionModel().getSelectedItem() != null ){
+        if (!tripScheduleTable.getItems().isEmpty() && tripScheduleTable.getSelectionModel().getSelectedItem() != null) {
             BusTripSchedule selectedSchedule = tripScheduleTable.getSelectionModel().getSelectedItem();
-            labelAdultFare.setText("Adult Fare       : "+selectedSchedule.getTrip().getAdultFare());
-            labelChildFare.setText("Child Fare        : "+selectedSchedule.getTrip().getChildrenFare());
-            labelWeekendFare.setText("Weekend Fare  : "+selectedSchedule.getTrip().getWeekendFare());
-        }else{
+            labelAdultFare.setText("Adult Fare       : " + selectedSchedule.getTrip().getAdultFare());
+            labelChildFare.setText("Child Fare        : " + selectedSchedule.getTrip().getChildrenFare());
+            labelWeekendFare.setText("Weekend Fare  : " + selectedSchedule.getTrip().getWeekendFare());
+        } else {
             showErrorDialog("No Selection or Empty Table", "Please populate the table before clicking");
         }
-        
-    }
-    
-    private void dataFilter(){
-        String searchCriteria = txtFieldSearchBar.getText().toLowerCase();
 
-        // Creating a filtered list that wraps the original observable list
-        FilteredList<BusTripSchedule> filteredData = new FilteredList<>(obvForTableView, b -> true);
-
-        // Setting the filter predicate whenever the filter changes
-        filteredData.setPredicate(busTripSchedule -> {
-            // If filter text is empty, display all schedules.
-            if (searchCriteria == null || searchCriteria.isEmpty()) {
-                return true;
-            }
-
-            // Compare each column's value with the search text
-            String lowerCaseSearchCriteria = searchCriteria.toLowerCase();
-
-            if (String.valueOf(busTripSchedule.getScheduleId()).toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches schedule ID
-            } else if (busTripSchedule.getScheduleDate().toString().toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches schedule date
-            } else if (String.valueOf(busTripSchedule.getTripId()).toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches trip ID
-            } else if (busTripSchedule.getTime().toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches time
-            } else if (busTripSchedule.getSourceDestination().toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches source-destination
-            } else if (busTripSchedule.getAssignedDriver().toLowerCase().contains(lowerCaseSearchCriteria)) {
-                return true; // Filter matches assigned driver
-            } else return String.valueOf(busTripSchedule.getAssignedVehicle()).toLowerCase().contains(lowerCaseSearchCriteria); // Filter matches assigned vehicle // Filter matches assigned vehicle
-        });
-
-        // Binding the SortedList to TableView
-        SortedList<BusTripSchedule> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tripScheduleTable.comparatorProperty());
-
-        // Setting the filtered and sorted data to the table view
-        tripScheduleTable.setItems(sortedData);
-    }
-    
-    
-
-    @FXML
-    private void filterTableViewFromSearch(InputMethodEvent event) {
-        dataFilter();
-    }
-
-    @FXML
-    private void filterTableViewFromSearch(KeyEvent event) {
-        dataFilter();
     }
 
     @FXML
     private void OnClickdeleteModifyScheduleSelection(ActionEvent event) {
-        if(tripScheduleTable.getSelectionModel().getSelectedItem() != null){
+        if (tripScheduleTable.getSelectionModel().getSelectedItem() != null) {
             deleteItemDialogCustom();
-        }
-        else{
+        } else {
             showErrorDialog("No selection detected/Empty Table", "Please select an item from the table to modify it!");
         }
     }
-    
+
     public void deleteItemDialogCustom() {
         this.dialogContent = MFXGenericDialogBuilder.build().makeScrollable(true).get();
-        
+
         this.dialog = MFXGenericDialogBuilder.build(dialogContent)
-					.toStageDialogBuilder()
-					.initModality(Modality.APPLICATION_MODAL)
-					.setDraggable(true)
-					.setTitle("Modification Options")
-					.setOwnerNode(rootPane)
-					.setScrimPriority(ScrimPriority.WINDOW)
-					.setScrimOwner(true)
-					.get();
-        
+                .toStageDialogBuilder()
+                .initModality(Modality.APPLICATION_MODAL)
+                .setDraggable(true)
+                .setTitle("Modification Options")
+                .setOwnerNode(rootPane)
+                .setScrimPriority(ScrimPriority.WINDOW)
+                .setScrimOwner(true)
+                .get();
+
         MFXButton deletebutton = new MFXButton("Delete");
         MFXButton modifyButton = new MFXButton("Modify");
-        
+
         deletebutton.setOnAction(event -> {
             allAvailableTripSchedules.remove(tripScheduleTable.getSelectionModel().getSelectedItem()); // Schedule id is set to Index of item in List
             obvForTableView.clear();
@@ -315,27 +291,25 @@ public class TerminalManagerScheduleSetterController implements Initializable {
             dialog.close();
             showSuccessDialog("Success!", "Schedule Entry deletion has been successfull!");
         });
-        
+
         modifyButton.setOnAction(event -> {
             ModificationSceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerScheduleInformationUpdate.fxml");
             dialog.close();
         });
-        
-        dialogContent.addActions(deletebutton,modifyButton);
-        
-        
-        
+
+        dialogContent.addActions(deletebutton, modifyButton);
+
         dialogContent.setMaxSize(15, 10);
-	dialogContent.setHeaderText("Modification Options");
+        dialogContent.setHeaderText("Modification Options");
         dialogContent.setContentText("Select Delete to delete the selected Schedule or Modify");
         dialog.showDialog();
-        
-	}
-    
-    private void ModificationSceneSwitch(String fxmllocation){
+
+    }
+
+    private void ModificationSceneSwitch(String fxmllocation) {
         try {
             // Load the new content FXML file
-            
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmllocation));
             AnchorPane newContent = loader.load();
             TerminalManagerScheduleInformationUpdateController controller = loader.getController();
@@ -344,10 +318,90 @@ public class TerminalManagerScheduleSetterController implements Initializable {
             rootPane.getChildren().setAll(newContent);
         } catch (Exception e) {
             e.printStackTrace();
-            showErrorDialog("FXML not Found","Unable to swtich scene, make sure FXML is present in the specified path");
+            showErrorDialog("FXML not Found", "Unable to swtich scene, make sure FXML is present in the specified path");
         }
     }
-    
-    
+
+    @FXML
+    private void caretUpDownFilterView(MouseEvent event) {
+        Image caretDownImage = new Image(getClass().getResourceAsStream("/drawables/down_arrow.png"));
+        Image caretUpImage = new Image(getClass().getResourceAsStream("/drawables/up_arrow.png"));
+        if (!isCaretExapanded) {
+            caretImageView.setImage(caretUpImage); // modify this
+            isCaretExapanded = true;
+            filterHBOX.setVisible(true);
+            TransitionUtility.materialScale(filterHBOX);
+        } else {
+            if(filterGroup.getSelectedToggle()!=null){
+                filterGroup.getSelectedToggle().setSelected(false);
+            }
+            
+            caretImageView.setImage(caretDownImage);
+            isCaretExapanded = false;
+            TransitionUtility.materialScaleOpposite(filterHBOX);
+        }
+    }
+
+    @FXML
+    private void filterTableViewFromSearch(KeyEvent event) {
+        String searchCriteria = txtFieldSearchBar.getText().toLowerCase();
+
+        if (filterGroup.getSelectedToggle() == null) {
+            MFXDialog.showErrorDialog("No Fitler Category!", "Please select a filter category before trying to perform search!", rootPane);
+            return;
+        }
+
+        if (!searchCriteria.isEmpty()) {
+            obvForTableViewFiltered.clear();
+            Toggle selectedToggle = filterGroup.getSelectedToggle();
+            MFXRadioButton selectedRadioButton = (MFXRadioButton) selectedToggle;
+            
+            switch (selectedRadioButton.getText()) {
+                
+                case ("Date"):
+                    for (BusTripSchedule scheduleObj : allAvailableTripSchedules) {
+                        if (scheduleObj.getScheduleDate().toString().toLowerCase().contains(searchCriteria)) {
+                            obvForTableViewFiltered.add(scheduleObj);
+                        }
+                    }
+                    tripScheduleTable.setItems(obvForTableViewFiltered);
+                    break;
+                case ("Time"):
+                    for (BusTripSchedule scheduleObj : allAvailableTripSchedules) {
+                        if (scheduleObj.getTime().toLowerCase().contains(searchCriteria)) {
+                            obvForTableViewFiltered.add(scheduleObj);
+                        }
+                    }
+                    tripScheduleTable.setItems(obvForTableViewFiltered);
+                    break;
+                case ("Source-Destination"):
+                    for (BusTripSchedule scheduleObj : allAvailableTripSchedules) {
+                        if (scheduleObj.getSourceDestination().toLowerCase().contains(searchCriteria)) {
+                            obvForTableViewFiltered.add(scheduleObj);
+                        }
+                    }
+                    tripScheduleTable.setItems(obvForTableViewFiltered);
+                    break;
+                case ("Driver"):
+                    for (BusTripSchedule scheduleObj : allAvailableTripSchedules) {
+                        if (scheduleObj.getAssignedDriver().toLowerCase().contains(searchCriteria)) {
+                            obvForTableViewFiltered.add(scheduleObj);
+                        }
+                    }
+                    tripScheduleTable.setItems(obvForTableViewFiltered);
+                    break;
+                case ("Status"):
+                    for (BusTripSchedule scheduleObj : allAvailableTripSchedules) {
+                        if (String.valueOf(scheduleObj.isTripScheduleStatus()).toLowerCase().contains(searchCriteria)) {
+                            obvForTableViewFiltered.add(scheduleObj);
+                        }
+                    }
+                    tripScheduleTable.setItems(obvForTableViewFiltered);
+                    break;
+            }
+        } else {
+            tripScheduleTable.setItems(obvForTableView);
+        }
+    }
 
 }

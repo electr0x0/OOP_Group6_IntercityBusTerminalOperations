@@ -7,6 +7,7 @@ package com.busterminal.controller.terminalManager;
 import com.busterminal.model.BusTripSchedule;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import com.busterminal.utilityclass.Validator;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -53,6 +54,7 @@ public class TerminalManagerScheduleInformationUpdateController implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(rootPane);
     }
 
     @FXML

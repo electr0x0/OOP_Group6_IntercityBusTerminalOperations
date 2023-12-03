@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.HumanResourceViews.SalaryRequestController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.views.HumanResourceViews.SalaryRequestController">
    <left>
       <VBox prefHeight="622.0" prefWidth="171.0" styleClass="sidePanel" stylesheets="@humanResourceStyle.css" BorderPane.alignment="CENTER">
          <children>
@@ -27,7 +27,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="17.0" layoutY="123.0" mnemonicParsing="false" onAction="#myEmployees" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="Overtime Requests">
+            <Button layoutX="17.0" layoutY="123.0" mnemonicParsing="false" onAction="#toOvertime" prefHeight="47.0" prefWidth="141.0" styleClass="sideBtn" stylesheets="@humanResourceStyle.css" text="Overtime Requests">
                <VBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </VBox.margin>
@@ -66,23 +66,24 @@
                </children>
             </AnchorPane>
             <Button layoutX="593.0" layoutY="26.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-color: skyblue; -fx-border-width: 2px;" text="My Account" textFill="#03a2ff" />
-            <TabPane layoutX="38.0" layoutY="82.0" prefHeight="439.0" prefWidth="674.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="16.0" layoutY="82.0" prefHeight="485.0" prefWidth="739.0" stylesheets="@../../css/tabPaneStyle.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                   <Tab text="All Salary">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="salaryTable" layoutX="-1.0" layoutY="-3.0" prefHeight="418.0" prefWidth="675.0">
+                              <TableView fx:id="salaryTable" layoutX="-1.0" layoutY="-3.0" prefHeight="367.0" prefWidth="722.0" stylesheets="@../../css/ManagerTableStyle.css">
                                 <columns>
                                   <TableColumn fx:id="tableID" prefWidth="88.66664505004883" text="ID" />
                                   <TableColumn fx:id="tableFname" prefWidth="105.33334350585938" text="First Name" />
-                                    <TableColumn fx:id="tableLname" prefWidth="95.99998474121094" text="Last Name" />
-                                    <TableColumn fx:id="tableDesignation" prefWidth="106.00003051757812" text="Designation" />
-                                    <TableColumn fx:id="tableSal" prefWidth="74.0" text="Salary" />
-                                    <TableColumn fx:id="tableLastPaid" prefWidth="111.99996948242188" text="Last Paid" />
-                                    <TableColumn fx:id="tableIsPaid" prefWidth="95.33331298828125" text="Is Paid" />
+                                    <TableColumn fx:id="tableLname" prefWidth="107.0" text="Last Name" />
+                                    <TableColumn fx:id="tableDesignation" prefWidth="107.0" text="Designation" />
+                                    <TableColumn fx:id="tableSal" prefWidth="83.0" text="Salary" />
+                                    <TableColumn fx:id="tableLastPaid" prefWidth="120.0" text="Last Paid" />
+                                    <TableColumn fx:id="tableIsPaid" prefWidth="110.0" text="Is Paid" />
                                 </columns>
                               </TableView>
+                              <Button layoutX="628.0" layoutY="384.0" mnemonicParsing="false" onAction="#salaryPay" style="-fx-background-color: #3394f5;" text="Pay Salary" textFill="WHITE" />
                            </children>
                         </AnchorPane>
                     </content>

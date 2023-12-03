@@ -119,8 +119,8 @@ public class SalaryRequestController implements Initializable {
         tableIsPaid.setCellValueFactory(new PropertyValueFactory<Employee,Boolean>("isPaid"));
        
 
-    employeeList.addAll(salList);
-    salaryTable.setItems(employeeList);
+        employeeList.addAll(salList);
+        salaryTable.setItems(employeeList);
     }    
 
     @FXML
@@ -293,5 +293,48 @@ public class SalaryRequestController implements Initializable {
             e.printStackTrace(); // or handle the exception as needed
         }
     }
+
+    @FXML
+    private void toOvertime(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/HumanResourceViews/OvertimeRequest.fxml"));
+            root = loader.load();
+            OvertimeRequestController controller = loader.getController();
+
+            controller.setEmpID(empID);
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void salaryPay(ActionEvent event) {
+        Employee selectedEmp = salaryTable.getSelectionModel().getSelectedItem();
+        Salary sal = new Salary(selectedEmp.getId(), selectedEmp.getSalary(),
+                false, true, LocalDate.now(), selectedEmp.getSalStatus().getIncresedSalary(),
+                selectedEmp.getSalStatus().getReason());
+
+        for (Employee emp : salList) {
+            if (emp.getId().equals(selectedEmp.getId())) {
+                emp.setSalStatus(sal);
+                emp.setIsPaid(true);
+                emp.setLastPaid(LocalDate.now());
+
+                // Perform file writing outside the loop (if possible)
+                Employee.writeEmployeesToFile("MyEmployee.bin", salList);
+
+                // Update the ObservableList
+                employeeList.setAll(salList); // Assuming employeeList is an ObservableList
+
+                return;
+            }
+        }
+    }
+
     
 }

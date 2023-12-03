@@ -16,7 +16,9 @@ public class ReimbursementInfo implements Serializable {
     private String reimbursementID,empID;
     private int expenseAmount;
     
-    private String expenseType, prefPaymentMethod;
+    private String firstName, lastName;
+    
+    private String expenseType, prefPaymentMethod, designation;
     
     private String status = "Unpaid";
     
@@ -24,19 +26,34 @@ public class ReimbursementInfo implements Serializable {
     
     private LocalDate submissionDate;
     
+    
+    
 
-    public ReimbursementInfo(String empID, int expenseAmount, String expenseType, String prefPaymentMethod, LocalDate cDate) {
+    public ReimbursementInfo( String empID, int expenseAmount, String firstName, String lastName, String expenseType, String prefPaymentMethod, LocalDate submissionDate, String designation) {
         this.empID = empID;
         this.expenseAmount = expenseAmount;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.expenseType = expenseType;
         this.prefPaymentMethod = prefPaymentMethod;
-        this.submissionDate = cDate;
+        this.submissionDate = submissionDate;
+        this.designation = designation;
+        
         if(RelationshipDatabaseClass.getInstance().getReimbursementIDCounter() != 0){
             reimbursementIDCounter = RelationshipDatabaseClass.getInstance().getReimbursementIDCounter();
             reimbursementIDCounter++;
         }
         genReimID();
     }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+    
     
     public void genReimID(){
         String format = "REIM-";
@@ -107,5 +124,23 @@ public class ReimbursementInfo implements Serializable {
     public void setSubmissionDate(LocalDate submissionDate) {
         this.submissionDate = submissionDate;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
+    
 
 }

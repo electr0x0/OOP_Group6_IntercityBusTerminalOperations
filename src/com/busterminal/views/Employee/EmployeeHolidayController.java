@@ -4,6 +4,7 @@
  */
 package com.busterminal.views.Employee;
 
+import com.busterminal.controller.accountant.AccountantReimbursementApplyViewController;
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Leave;
 import static com.busterminal.views.Employee.EmployeeSalaryDashboardController.getEmployeeById;
@@ -20,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -150,11 +152,34 @@ public class EmployeeHolidayController implements Initializable {
 
     @FXML
     private void goHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            if(user.getEmpType().equals("Administrator")){
+               SceneSwitch(event,"/com/busterminal/views/Addministrator/AdminDashbord.fxml");
+            } else if(user.getEmpType().equals("Maintenance Staff")){
+                SceneSwitch(event,"/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml");
+            } else if(user.getEmpType().equals("Driver")){
+                SceneSwitch(event,"/com/busterminal/views/accountUser/AccountDashbord.fxml");
+            } else if(user.getEmpType().equals("Terminal Manager")){
+                SceneSwitch(event,"/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml");
+            } else if(user.getEmpType().equals("Human Resource")){
+                
+                SceneSwitch(event,"/com/busterminal/views/HumanResourceViews/MyEmployee.fxml");
+                
+            } else if(user.getEmpType().equals("Accountant")){
+                SceneSwitch(event,"/com/busterminal/views/accountantUser/AccountantDashboard.fxml");
+            }                      
+        
+    }
+    
+      public void SceneSwitch(ActionEvent e, String fxmlLocal) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlLocal));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle the exception (e.g., logging or displaying an error message)
+        }   
     }
 
     @FXML
@@ -221,5 +246,68 @@ public class EmployeeHolidayController implements Initializable {
             e.printStackTrace(); // or handle the exception as needed
         }
     }
+
+    @FXML
+    private void toReimburs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml"));
+            root = loader.load();
+            AccountantReimbursementApplyViewController controller = loader.getController();
+
+            controller.setEmployeeIDFromSceneSwitch(empID);
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toMemo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeMemo.fxml"));
+            root = loader.load();
+            EmployeeMemoController controller = loader.getController();
+
+            controller.setEmpID(empID);
+            controller.LoadData();
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void finishHoliday(ActionEvent event) {
+        System.out.println(user.getId());
+        empList = user.readEmployeesFromFile("MyEmployee.bin");
+        if(user.getHoliday().getOnLeave()){
+            Leave chuti = new Leave(empID, false, false,"");
+            for(Employee emp: empList){
+                    if(emp.getId().equals(empID)){
+                        emp.setOnLeave(false);
+                        emp.setHoliday(chuti);
+                        Employee.writeEmployeesToFile("MyEmployee.bin", empList);
+                         Alert a = new Alert(AlertType.CONFIRMATION,"We are thrilled to have you back!");
+                        a.show();
+                        onLeaveGrid.setText("On Leave: "+ emp.getHoliday().getOnLeave());
+                         leaveStartGrid.setText("Not on leave.");
+                           leaveEndGrid.setText("Not on leave.");
+                           return;
+                     }
+            }
+        } else{
+            Alert a = new Alert(AlertType.INFORMATION,"You are not on leave");
+            a.show();
+        }
+    }
+
     
 }

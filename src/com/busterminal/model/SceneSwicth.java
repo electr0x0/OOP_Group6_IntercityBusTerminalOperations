@@ -6,7 +6,7 @@ package com.busterminal.model;
 
 import com.busterminal.MainTerminalApplication;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
@@ -23,7 +23,10 @@ public class SceneSwicth {
 }
 */
 public class SceneSwicth {
+    /*
+
     public SceneSwicth(AnchorPane currentAnchorPane, String fxml) throws IOException {
+        /*
         URL resource = MainTerminalApplication.class.getResource(fxml);
 
         if (resource == null) {
@@ -34,4 +37,10 @@ public class SceneSwicth {
         currentAnchorPane.getChildren().removeAll();
         currentAnchorPane.getChildren().setAll(nextAnchorPane);
     }
+*/
+    public SceneSwicth (AnchorPane currentAnchorPane, String fxml) throws IOException {
+        AnchorPane nextAnchorPane = FXMLLoader.load(Objects.requireNonNull (MainTerminalApplication.class.getResource(fxml)));
+        currentAnchorPane.getChildren().removeAll();
+        currentAnchorPane.getChildren().setAll(nextAnchorPane);}
+        
 }

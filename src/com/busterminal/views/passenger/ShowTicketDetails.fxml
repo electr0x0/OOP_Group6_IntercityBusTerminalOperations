@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorpaneShowTicketDetails" prefHeight="645.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.ShowTicketDetailsController">
+<AnchorPane id="AnchorPane" fx:id="anchorpaneShowTicketDetails" prefHeight="645.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.passenger.ShowTicketDetailsController">
    <children>
-      <Label layoutX="105.0" layoutY="14.0" prefHeight="17.0" prefWidth="266.0" text="Ticket Details">
+      <Label layoutX="67.0" layoutY="14.0" prefHeight="17.0" prefWidth="266.0" text="Ticket Details">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="736.0" layoutY="606.0" mnemonicParsing="false" onAction="#swicthToPurchaseHistoryScene" prefHeight="25.0" prefWidth="119.0" text="Back" />
-      <TextArea fx:id="ticketDetailsTextArea" editable="false" layoutX="79.0" layoutY="82.0" prefHeight="514.0" prefWidth="731.0" wrapText="true">
+      <Button layoutX="713.0" layoutY="594.0" mnemonicParsing="false" onAction="#swicthToPurchaseHistoryScene" prefHeight="25.0" prefWidth="90.0" text="Back" />
+      <TextArea fx:id="ticketDetailsTextArea" editable="false" layoutX="47.0" layoutY="69.0" prefHeight="461.0" prefWidth="737.0" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -23,5 +23,10 @@
             <DropShadow />
          </effect>
       </TextArea>
+      <Button layoutX="333.0" layoutY="547.0" mnemonicParsing="false" onAction="#downloadTicketOnClick" prefHeight="31.0" prefWidth="143.0" text="Download Ticket">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

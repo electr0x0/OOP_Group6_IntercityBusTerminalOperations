@@ -34,9 +34,9 @@
         <padding>
             <Insets bottom="10.0" left="10.0" top="60.0" />
         </padding>
-      <ImageView fitHeight="145.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+      <ImageView cache="true" cacheHint="SPEED" fitHeight="327.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" smooth="false" VBox.vgrow="ALWAYS">
          <image>
-            <Image url="@../../../../drawables/dashboard_logo.gif" />
+            <Image url="@../../../../drawables/manager_anim.gif" />
          </image>
       </ImageView>
         <Label graphicTextGap="15.0" prefHeight="31.0" prefWidth="266.0" styleClass="header" text="Manager Dashboard">
@@ -121,6 +121,15 @@
                         <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../drawables/com_hub-512x512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="btnMyAccount" buttonType="RAISED" defaultButton="true" depthLevel="LEVEL5" onAction="#onClickMyAccount" prefHeight="29.0" prefWidth="269.0" styleClass="btnNotSelected" stylesheets="@../../css/ManagerDashboard.css" text="My Account" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../drawables/myAccount_logo.png" />
                            </image>
                         </ImageView>
                      </graphic>

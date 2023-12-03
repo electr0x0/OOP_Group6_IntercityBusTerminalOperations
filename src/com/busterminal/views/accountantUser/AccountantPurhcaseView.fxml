@@ -9,19 +9,23 @@
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantPurhcaseViewController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@accView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantPurhcaseViewController">
    <children>
-      <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="656.0" layoutY="170.0" onAction="#onClickCreatePurchaseEntry" prefHeight="38.0" prefWidth="150.0" text="Create Purchase Entry" />
-      <MFXDatePicker fx:id="itemPurchaseDate" floatMode="BORDER" floatingText="Select Date" layoutX="58.0" layoutY="95.0" prefHeight="38.0" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL5" layoutX="691.0" layoutY="179.0" onAction="#onClickCreatePurchaseEntry" prefHeight="38.0" prefWidth="174.0" text="Create Purchase Entry" />
+      <MFXDatePicker fx:id="itemPurchaseDate" floatMode="BORDER" floatingText="Select Date" layoutX="58.0" layoutY="93.0" prefHeight="27.0" />
       <MFXTextField fx:id="txtFieldSellerName" floatMode="BORDER" floatingText="Seller" layoutX="278.0" layoutY="95.0" prefHeight="38.0" prefWidth="174.0" />
-      <MFXTextField fx:id="txtFieldPurchaseRate" floatMode="BORDER" floatingText="Rate" layoutX="58.0" layoutY="179.0" onKeyTyped="#onRateChangeCalUpdateTotalAmount" prefHeight="38.0" prefWidth="200.0" />
-      <MFXTextField fx:id="txtFieldTotalAmount" editable="false" floatMode="BORDER" floatingText="Total Amount" layoutX="278.0" layoutY="179.0" prefHeight="38.0" prefWidth="174.0" />
+      <MFXTextField fx:id="txtFieldPurchaseRate" floatMode="BORDER" floatingText="Rate" layoutX="665.0" layoutY="95.0" onKeyTyped="#onRateChangeCalUpdateTotalAmount" prefHeight="38.0" prefWidth="200.0" />
+      <MFXTextField fx:id="txtFieldTotalAmount" editable="false" floatMode="BORDER" floatingText="Total Amount" layoutX="278.0" layoutY="179.0" prefHeight="18.0" prefWidth="174.0" />
       <MFXComboBox fx:id="comboBoxPurchaseItems" floatMode="BORDER" floatingText="Select Item" layoutX="470.0" layoutY="95.0" prefHeight="38.0" prefWidth="174.0" />
-      <MFXSlider fx:id="spinnerItemQty" decimalPrecision="1" layoutX="670.0" layoutY="111.0" min="1.0" minorTicksCount="1" onMouseReleased="#onQtyChangeCalUpdateTotalAmount" popupPadding="1.0" prefHeight="8.0" prefWidth="142.0" sliderMode="SNAP_TO_TICKS" tickUnit="1.0" unitIncrement="1.0" />
-      <Label layoutX="716.0" layoutY="87.0" text="Quantity">
+      <MFXSlider fx:id="spinnerItemQty" decimalPrecision="1" layoutX="58.0" layoutY="195.0" min="1.0" minorTicksCount="1" onMouseReleased="#onQtyChangeCalUpdateTotalAmount" popupPadding="1.0" prefHeight="10.0" prefWidth="200.0" sliderMode="SNAP_TO_TICKS" tickUnit="1.0" unitIncrement="1.0">
+         <effect>
+            <ColorAdjust brightness="-0.05" contrast="-0.29" hue="0.64" saturation="-0.16" />
+         </effect></MFXSlider>
+      <Label layoutX="133.0" layoutY="171.0" text="Quantity">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -44,7 +48,7 @@
       </Label>
       <MFXRadioButton fx:id="radioPaid" layoutX="473.0" layoutY="189.0" text="Paid" />
       <MFXRadioButton fx:id="radioUnpaid" layoutX="545.0" layoutY="189.0" text="Unpaid" />
-      <Label layoutX="525.0" layoutY="162.0" prefHeight="17.0" prefWidth="40.0" text="Status">
+      <Label layoutX="525.0" layoutY="163.0" prefHeight="17.0" prefWidth="40.0" text="Status">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

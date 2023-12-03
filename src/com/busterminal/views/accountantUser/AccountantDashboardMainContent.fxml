@@ -50,7 +50,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="thirdTileContainer" layoutX="554.0" layoutY="491.0" prefHeight="254.0" prefWidth="488.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
+      <Pane fx:id="thirdTileContainer1" layoutX="554.0" layoutY="491.0" prefHeight="254.0" prefWidth="488.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
       <Pane fx:id="secondTileContainer" layoutX="47.0" layoutY="199.0" prefHeight="326.0" prefWidth="500.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css">
          <children>
             <Label fx:id="labelTotalPurchases" alignment="CENTER" layoutX="27.0" layoutY="295.0" prefHeight="17.0" prefWidth="459.0">
@@ -78,6 +78,6 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="thirdTileContainer1" layoutX="47.0" layoutY="531.0" prefHeight="212.0" prefWidth="500.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
+      <Pane fx:id="thirdTileContainer" layoutX="47.0" layoutY="531.0" prefHeight="212.0" prefWidth="500.0" styleClass="vbox-container" stylesheets="@../../css/chartsAndOtherInfographicStyles.css" />
    </children>
 </AnchorPane>

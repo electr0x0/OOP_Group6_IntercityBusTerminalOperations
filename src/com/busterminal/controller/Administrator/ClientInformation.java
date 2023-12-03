@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.busterminal.controller.Administrator;
 
 import com.busterminal.model.Administrator;
 import com.busterminal.model.Client;
-import com.busterminal.model.MaintenanceTask;
 import com.busterminal.model.PopUp;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,14 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
 public class ClientInformation implements Initializable {
 
-    //Client.bin
     @FXML
     private TableView<Client> passengerTable;
     @FXML
@@ -80,7 +68,7 @@ public class ClientInformation implements Initializable {
                     clientNameSearchbar.clear();
 
                 }
-                 
+
             }
 
             passengerTable.setItems(filteredData);

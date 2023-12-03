@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -99,11 +100,27 @@ public class ForgetPasswordController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Scene scene = new Scene(root);
             forgotPassword.setScene(scene);
+            forgotPassword.setResizable(false);
             forgotPassword.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    private void goToLoginOnMouseClick(MouseEvent event) {
+        Stage forgotPassword = new Stage();
+        try {
+            confirmButton.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Scene scene = new Scene(root);
+            forgotPassword.setScene(scene);
+            forgotPassword.setResizable(false);
+            forgotPassword.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

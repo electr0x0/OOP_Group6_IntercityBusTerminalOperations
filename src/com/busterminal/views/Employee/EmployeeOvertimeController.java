@@ -4,6 +4,7 @@
  */
 package com.busterminal.views.Employee;
 
+import com.busterminal.controller.accountant.AccountantReimbursementApplyViewController;
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Overtime;
 import com.busterminal.utilityclass.Validator;
@@ -80,6 +81,11 @@ public class EmployeeOvertimeController implements Initializable {
     public void LoadData(){
         user = getEmployeeById("MyEmployee.bin",empID);
         overtimeText2.setText("Overtime Status: "+" "+ user.getOverTime().getIsOvertime());
+        if(user.getOverTime().getOvertimeHours() < 1 || user.getOverTime().getOvertimeRate() < 1)
+        {
+            OPHours.setText("Not doing overtime.");
+            overtimeRate.setText("Not doing overtime.");
+        }
         if(!user.getOverTime().getIsOvertime()){
             overtimeBtn.setDisable(true);
         } else{
@@ -193,11 +199,34 @@ public class EmployeeOvertimeController implements Initializable {
 
     @FXML
     private void goHome(ActionEvent event) throws IOException {
-            root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            if(user.getEmpType().equals("Administrator")){
+               SceneSwitch(event,"/com/busterminal/views/Addministrator/AdminDashbord.fxml");
+            } else if(user.getEmpType().equals("Maintenance Staff")){
+                SceneSwitch(event,"/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml");
+            } else if(user.getEmpType().equals("Driver")){
+                SceneSwitch(event,"/com/busterminal/views/accountUser/AccountDashbord.fxml");
+            } else if(user.getEmpType().equals("Terminal Manager")){
+                SceneSwitch(event,"/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml");
+            } else if(user.getEmpType().equals("Human Resource")){
+                
+                SceneSwitch(event,"/com/busterminal/views/HumanResourceViews/MyEmployee.fxml");
+                
+            } else if(user.getEmpType().equals("Accountant")){
+                SceneSwitch(event,"/com/busterminal/views/accountantUser/AccountantDashboard.fxml");
+            }                      
+        
+    }
+    
+      public void SceneSwitch(ActionEvent e, String fxmlLocal) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlLocal));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle the exception (e.g., logging or displaying an error message)
+        }   
     }
 
     @FXML
@@ -294,6 +323,43 @@ public class EmployeeOvertimeController implements Initializable {
         }
 
         Employee.writeEmployeesToFile("MyEmployee.bin", empList);
+    }
+
+    @FXML
+    private void toMemo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeMemo.fxml"));
+            root = loader.load();
+            EmployeeMemoController controller = loader.getController();
+
+            controller.setEmpID(empID);
+            controller.LoadData();
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toReimburs(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml"));
+            root = loader.load();
+            AccountantReimbursementApplyViewController controller = loader.getController();
+
+            controller.setEmployeeIDFromSceneSwitch(empID);
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
     }
     
 }

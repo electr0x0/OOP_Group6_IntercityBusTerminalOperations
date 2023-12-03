@@ -27,6 +27,10 @@ public class DummyEmployee extends User implements Serializable {
         this.salary = Salary;
      }
      
+     public DummyEmployee(){
+         
+     }
+     
      
     public int getiD() {
         return iD;

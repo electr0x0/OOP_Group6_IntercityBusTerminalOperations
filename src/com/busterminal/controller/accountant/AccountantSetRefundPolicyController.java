@@ -6,6 +6,7 @@ package com.busterminal.controller.accountant;
 
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,7 @@ public class AccountantSetRefundPolicyController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(rootPane);
         if (RelationshipDatabaseClass.getInstance().getRefundPolicy() != null) {
             textAreaRefundPolicyContent.setText(RelationshipDatabaseClass.getInstance().getRefundPolicy());
         }

@@ -9,6 +9,7 @@ import com.busterminal.model.accountant.InvoiceService;
 import com.busterminal.model.accountant.Transaction;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import com.busterminal.utilityclass.Validator;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -143,10 +144,11 @@ public class AccountantInvoiceGenerationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtFieldFromCompanyName.setText("XYZ Bus Company");
-        txtFieldFromCompanyEmail.setText("xyzbus@xyzbus.com");
-        txtFieldFromCompanyAddress.setText("123 Street Dhaka");
-        txtFieldFromCompanyPhone.setText("01777777420");
+        TransitionUtility.materialScale(rootPane);
+        txtFieldFromCompanyName.setText(CompanyEnvironmentVariables.COMPANY.NAME);
+        txtFieldFromCompanyEmail.setText(CompanyEnvironmentVariables.COMPANY.EMAIL);
+        txtFieldFromCompanyAddress.setText(CompanyEnvironmentVariables.COMPANY.ADDRESS);
+        txtFieldFromCompanyPhone.setText(CompanyEnvironmentVariables.COMPANY.PHONENUMBER);
         if (RelationshipDatabaseClass.getInstance().getCurrentInvoiceCounter() != 0) {
             currentInvoiceCounter = RelationshipDatabaseClass.getInstance().getCurrentInvoiceCounter();
         }
@@ -232,13 +234,13 @@ public class AccountantInvoiceGenerationController implements Initializable {
                 pdf.addNewPage();
 
                 Document document = new Document(pdf);
-                document.setMargins(20, 20, 20, 20); // Set appropriate margins if needed
+                document.setMargins(20, 20, 20, 20);
 
                 //Line separtor
                 LineSeparator separator = new LineSeparator(new SolidLine(.3f));
-                separator.setWidth(UnitValue.createPercentValue(100)); // Set width as 100% of page
-                separator.setMarginTop(10); // Optionally, set a top margin
-                separator.setMarginBottom(10); // Optionally, set a bottom margin
+                separator.setWidth(UnitValue.createPercentValue(100)); 
+                separator.setMarginTop(10);
+                separator.setMarginBottom(10);
 
                 // Set logo and Company Name
                 Image companyLogo = getCompanyLogoAsImage();
@@ -290,7 +292,7 @@ public class AccountantInvoiceGenerationController implements Initializable {
 
                 // Service Item Table
                 document.add(new Paragraph("Service Items").setBold());
-                Table servicesTable = new Table(new float[]{50, 100, 50, 50, 50, 100}); // Adjust column widths as needed
+                Table servicesTable = new Table(new float[]{50, 100, 50, 50, 50, 100});
                 servicesTable.addCell("Service");
                 servicesTable.addCell("Description");
                 servicesTable.addCell("Rate");

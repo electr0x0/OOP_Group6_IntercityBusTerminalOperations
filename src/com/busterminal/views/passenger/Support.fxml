@@ -38,6 +38,5 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="readOnClick" layoutX="505.0" layoutY="576.0" mnemonicParsing="false" onAction="#readOnClick" prefHeight="25.0" prefWidth="88.0" text="Read" />
    </children>
 </AnchorPane>

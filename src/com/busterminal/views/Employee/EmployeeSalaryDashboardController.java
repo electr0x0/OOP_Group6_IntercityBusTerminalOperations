@@ -4,6 +4,7 @@
  */
 package com.busterminal.views.Employee;
 
+import com.busterminal.controller.accountant.AccountantReimbursementApplyViewController;
 import com.busterminal.model.Employee;
 import com.busterminal.model.employeeModels.Salary;
 import com.busterminal.utilityclass.Validator;
@@ -11,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,8 +38,6 @@ import javafx.stage.Stage;
  */
 public class EmployeeSalaryDashboardController implements Initializable {
 
-    @FXML
-    private Button loadButton;
     @FXML
     private AnchorPane homePane;
     @FXML
@@ -136,11 +137,34 @@ public class EmployeeSalaryDashboardController implements Initializable {
 
     @FXML
     private void goHome(ActionEvent event) throws IOException {
-       root = FXMLLoader.load(getClass().getResource("/com/busterminal/views/HumanResourceViews/MyEmployee.fxml"));
-       stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-       scene = new Scene(root);
-       stage.setScene(scene);
-       stage.show();
+            if(user.getEmpType().equals("Administrator")){
+               SceneSwitch(event,"/com/busterminal/views/Addministrator/AdminDashbord.fxml");
+            } else if(user.getEmpType().equals("Maintenance Staff")){
+                SceneSwitch(event,"/com/busterminal/views/MaintenanceStaff/MaintenanceStaffDashbord.fxml");
+            } else if(user.getEmpType().equals("Driver")){
+                SceneSwitch(event,"/com/busterminal/views/accountUser/AccountDashbord.fxml");
+            } else if(user.getEmpType().equals("Terminal Manager")){
+                SceneSwitch(event,"/com/busterminal/views/terminalManagerUser/TerminalManagerDashboard.fxml");
+            } else if(user.getEmpType().equals("Human Resource")){
+                
+                SceneSwitch(event,"/com/busterminal/views/HumanResourceViews/MyEmployee.fxml");
+                
+            } else if(user.getEmpType().equals("Accountant")){
+                SceneSwitch(event,"/com/busterminal/views/accountantUser/AccountantDashboard.fxml");
+            }                      
+        
+    }
+    
+      public void SceneSwitch(ActionEvent e, String fxmlLocal) {
+        try {
+            root = FXMLLoader.load(getClass().getResource(fxmlLocal));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle the exception (e.g., logging or displaying an error message)
+        }   
     }
 
     @FXML
@@ -166,9 +190,28 @@ public class EmployeeSalaryDashboardController implements Initializable {
             a.setContentText("You already have a pending request!");
             a.show();
         } else if (user.getSalStatus().getIsPaid() != null && user.getSalStatus().getIsPaid()) {
+            if(user.getSalStatus().getLastPaid()!= null && ChronoUnit.DAYS.between(user.getSalStatus().getLastPaid(),LocalDate.now()) >= 25){
+                user.getSalStatus().setAskedForSalary(true);
+                Salary sal = new Salary(empID, user.getSalary(), true,
+                        false, user.getSalStatus().getLastPaid(), 0, "");
+
+                empList = user.readEmployeesFromFile("MyEmployee.bin");
+                for (Employee emp : empList) {
+                    if (emp.getId().equals(empID)) {
+                        emp.setSalStatus(sal);
+                        Employee.writeEmployeesToFile("MyEmployee.bin", empList);
+
+                        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                        a.setContentText("Request submitted successfully!");
+                        a.show();
+
+                        return;
+                    }
+                }
+            }
             // Already paid
             Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setContentText("You have already been paid");
+            a.setContentText("You have already been paid next salary request can be made after 25 days");
             a.show();
         } else {
             if (user.getSalStatus().getAskedForSalary() == null || !user.getSalStatus().getAskedForSalary()) {
@@ -209,7 +252,7 @@ public class EmployeeSalaryDashboardController implements Initializable {
 
         if (!reason.isEmpty() && Validator.containsOnlyNumbers(amount)) {
             int increment = Integer.parseInt(amount);
-            System.out.println(empID+" from salaryDashboard");
+            System.out.println(increment+" from salaryDashboard");
             Salary sal = new Salary(
                 empID,
                 user.getSalary(),
@@ -236,7 +279,7 @@ public class EmployeeSalaryDashboardController implements Initializable {
                 }
             }
 
-            // Show error if the employee ID is not found
+            // Show error if the employee ID is notfound
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText("Employee ID not found!");
             a.show();
@@ -294,6 +337,43 @@ public class EmployeeSalaryDashboardController implements Initializable {
             controller.setEmpID(empID);
              controller.LoadData();
             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toMemo(ActionEvent event) {
+           try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/Employee/EmployeeMemo.fxml"));
+            root = loader.load();
+            EmployeeMemoController controller = loader.getController();
+
+            controller.setEmpID(empID);
+            controller.LoadData();
+             
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException e) {
+            e.printStackTrace(); // or handle the exception as needed
+        }
+    }
+
+    @FXML
+    private void toReimbus(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/busterminal/views/accountantUser/AccountantReimbursementApplyView.fxml"));
+            root = loader.load();
+            AccountantReimbursementApplyViewController controller = loader.getController();
+
+            controller.setEmployeeIDFromSceneSwitch(empID);
+
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

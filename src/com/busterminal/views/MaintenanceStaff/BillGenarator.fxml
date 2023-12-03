@@ -89,7 +89,7 @@
                                 <TableColumn fx:id="totalCol" prefWidth="163.0" text="total" />
                             </columns>
                         </TableView>
-                        <TextArea layoutX="630.0" layoutY="74.0" prefHeight="695.0" prefWidth="571.0" />
+                        <TextArea fx:id="memo" layoutX="630.0" layoutY="74.0" prefHeight="695.0" prefWidth="571.0" />
                         <Text fill="#59a7f0" layoutX="869.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Slip" wrappingWidth="109.6708984375">
                             <font>
                                 <Font name="System Bold" size="18.0" />
@@ -98,7 +98,7 @@
                         <HBox layoutX="131.0" layoutY="246.0" prefHeight="40.0" prefWidth="308.0" spacing="50.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#addPartsOnMouseClick" prefHeight="39.0" prefWidth="132.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Add Parts" textFill="#59a7f0" />
-                                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Delete Parts" textFill="#59a7f0" />
+                                <Button mnemonicParsing="false" onAction="#DeletePartsOnMouseClick" prefHeight="39.0" prefWidth="132.0" styleClass="departureMenuButton" stylesheets="@../../css/AdminDashBord.css" text="Delete Parts" textFill="#59a7f0" />
                             </children>
                         </HBox>
                         <HBox layoutX="332.0" layoutY="609.0" prefHeight="24.0" prefWidth="282.0" spacing="30.0">

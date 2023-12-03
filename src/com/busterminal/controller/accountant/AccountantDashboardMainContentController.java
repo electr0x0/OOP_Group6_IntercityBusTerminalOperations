@@ -4,17 +4,21 @@
  */
 package com.busterminal.controller.accountant;
 
+import com.busterminal.model.Ticket;
 import com.busterminal.model.accountant.PurchaseEntry;
 import com.busterminal.model.accountant.RefundRequest;
 import com.busterminal.model.accountant.Transaction;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
+import com.busterminal.utilityclass.DataLoader;
+import com.busterminal.utilityclass.TransitionUtility;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.PieChart;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
@@ -22,7 +26,9 @@ import eu.hansolo.tilesfx.TimeSection;
 import eu.hansolo.tilesfx.TimeSectionBuilder;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.skins.BarChartItem;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -36,7 +42,6 @@ import javafx.scene.text.TextAlignment;
  * @author electr0
  */
 public class AccountantDashboardMainContentController implements Initializable {
-
 
     private ArrayList<Transaction> allAvailableTransactions;
 
@@ -73,17 +78,24 @@ public class AccountantDashboardMainContentController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private Text labelTotalReimbursement;
-    
+
     private ArrayList<RefundRequest> allRefundRequest;
-    
+
+    private ArrayList<Ticket> allTicketList;
+
     //Refund Req params
-    private int pending,approved,rejected;
+    private int pending, approved, rejected;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(tilesContainerSecond);
+        TransitionUtility.materialScale(tilesContainerPie);
+        TransitionUtility.materialScale(thirdTileContainer);
+        TransitionUtility.materialScale(secondTileContainer);
+        TransitionUtility.materialScale(thirdTileContainer1);
         if (RelationshipDatabaseClass.getInstance().getAllAvailableTransactions() != null) {
             allAvailableTransactions = RelationshipDatabaseClass.getInstance().getAllAvailableTransactions();
             setPaidUnpaidInvoice();
@@ -93,20 +105,23 @@ public class AccountantDashboardMainContentController implements Initializable {
         if (RelationshipDatabaseClass.getInstance().getCurrentInventory() != null) {
             currentInventory = RelationshipDatabaseClass.getInstance().getCurrentInventory();
             totalPurchases = currentInventory.size();
-            labelTotalPurchases.setText("Total Purchase Transactions : "+totalPurchases);
+            labelTotalPurchases.setText("Total Purchase Transactions : " + totalPurchases);
             setupInvStats();
         }
-        
-        if(RelationshipDatabaseClass.getInstance().getAllRefundRequest() != null){
+
+        if (RelationshipDatabaseClass.getInstance().getAllRefundRequest() != null) {
             labelTotalRefundRequest.setText(String.valueOf(RelationshipDatabaseClass.getInstance().getAllRefundRequest().size()));
             allRefundRequest = RelationshipDatabaseClass.getInstance().getAllRefundRequest();
             calcRefundStats();
-            
+
         }
-        
-        if(RelationshipDatabaseClass.getInstance().getReimbursementList() != null){
+
+        if (RelationshipDatabaseClass.getInstance().getReimbursementList() != null) {
             labelTotalReimbursement.setText(String.valueOf(RelationshipDatabaseClass.getInstance().getReimbursementList().size()));
         }
+
+        allTicketList = DataLoader.loadTicketsFromFile();
+        CalcTicketValues();
 
         //Tiles FX Objects Instantiate
         setupClockTile();
@@ -115,24 +130,66 @@ public class AccountantDashboardMainContentController implements Initializable {
         setupRefundPieChart();
 
     }
-    
-    private void calcRefundStats(){
-        for (RefundRequest refObj: allRefundRequest){
-            switch( refObj.getStatus() ){
+
+    private void CalcTicketValues() {
+        if (allTicketList != null) {
+            ArrayList<String> datesOfPurchase = new ArrayList<>();
+            int[] volumeOfSaleByDate;
+
+            for (Ticket ticketobj : allTicketList) {
+                if (!datesOfPurchase.contains(ticketobj.getPurchaseDate()) && ticketobj.getBookingStatus().equals("Confirmed")) {
+                    datesOfPurchase.add(ticketobj.getPurchaseDate());
+                }
+            }
+            volumeOfSaleByDate = new int[datesOfPurchase.size()];
+            
+            XYChart.Series<String, Number> series1 = new XYChart.Series();
+            series1.setName("Dates");
+
+            for (int i = 0; i < datesOfPurchase.size(); i++) {
+                for (Ticket ticketobj : allTicketList) {
+                    if (ticketobj.getPurchaseDate().equals(datesOfPurchase.get(i))){
+                        volumeOfSaleByDate[i] += ticketobj.getDummy().getAdultFare() * ticketobj.getTicketQty();
+                    }
+                }
+                series1.getData().add(new XYChart.Data(datesOfPurchase.get(i), volumeOfSaleByDate[i]));
+            }
+            
+            Tile ticketSalesLineChart = TileBuilder.create()
+                                   .skinType(SkinType.SMOOTHED_CHART)
+                                   .prefSize(thirdTileContainer1.getPrefWidth(), thirdTileContainer1.getPrefHeight())
+                                   .title("Ticket Sale Volume by Date")
+                                   .titleAlignment(TextAlignment.CENTER)
+                                   .animationDuration(50000)
+                                   .animated(true)
+                                   .dataPointsVisible(true)
+                                   .smoothing(true)
+                                   .backgroundColor(Color.TRANSPARENT)
+                                   .series(series1)
+                                   .build();
+            thirdTileContainer1.getChildren().clear();
+            thirdTileContainer1.getChildren().setAll(ticketSalesLineChart);
+        }
+
+    }
+
+    private void calcRefundStats() {
+        for (RefundRequest refObj : allRefundRequest) {
+            switch (refObj.getStatus()) {
                 case "Rejected":
-                   rejected += 1;
-                   break;
+                    rejected += 1;
+                    break;
                 case "Approved":
                     approved += 1;
                     break;
                 case "Pending":
-                    pending +=1;
+                    pending += 1;
                     break;
             }
         }
     }
-    
-    private void setupRefundPieChart(){
+
+    private void setupRefundPieChart() {
         ChartData approvedCount = new ChartData("Approved", approved, Tile.BLUE);
         ChartData rejectedCount = new ChartData("Rejected", rejected, Tile.RED);
         ChartData pendingCount = new ChartData("Pending", pending, Tile.YELLOW);
@@ -143,7 +200,7 @@ public class AccountantDashboardMainContentController implements Initializable {
                 .prefSize(thirdTileContainer.getPrefWidth(), thirdTileContainer.getPrefHeight())
                 .title("Refund Request Information")
                 .titleAlignment(TextAlignment.CENTER)
-                .chartData(approvedCount, rejectedCount,pendingCount)
+                .chartData(approvedCount, rejectedCount, pendingCount)
                 .backgroundColor(Color.TRANSPARENT)
                 .titleColor(Color.BLACK)
                 .textColor(Color.BLACK)
@@ -175,32 +232,31 @@ public class AccountantDashboardMainContentController implements Initializable {
             }
             totalInventoryVal += purchaseObj.getTotalAmount();
         }
-        
+
     }
-    
-    private void setupInvBarChart(){
-        BarChartItem busParts              = new BarChartItem("Bus Parts", totalBusParts, Tile.BLUE);
+
+    private void setupInvBarChart() {
+        BarChartItem busParts = new BarChartItem("Bus Parts", totalBusParts, Tile.BLUE);
         BarChartItem terminalInfraSupplies = new BarChartItem("Terminal Infrastructure Supplies", totalTerminalInfraEquipment, Tile.RED);
-        BarChartItem mtSupplies            = new BarChartItem("Maintenance Supplies", totalMtSupplies, Tile.YELLOW);
+        BarChartItem mtSupplies = new BarChartItem("Maintenance Supplies", totalMtSupplies, Tile.YELLOW);
         BarChartItem fuelAndEnergySupplies = new BarChartItem("Fuel and Energy Supplies", totalFuelAndEneryStock, Tile.GREEN);
-        BarChartItem misItems              = new BarChartItem("Miscellaneous", totalMisc, Tile.ORANGE);
-        
-        
+        BarChartItem misItems = new BarChartItem("Miscellaneous", totalMisc, Tile.ORANGE);
+
         Tile barChartTile = TileBuilder.create()
-                                  .skinType(SkinType.BAR_CHART)
-                                  .prefSize(500, 300)
-                                  .animated(true)
-                                  .title("Total Inventory Value : "+ totalInventoryVal)
-                                  .barChartItems(busParts, terminalInfraSupplies, mtSupplies, fuelAndEnergySupplies,misItems)
-                                  .decimals(0)
-                                  .autoScale(true)
-                                  .backgroundColor(Color.TRANSPARENT)
-                                  .textColor(Color.BLACK)
-                                  .titleColor(Color.BLACK)
-                                  .sortedData(true)
-                                  .titleAlignment(TextAlignment.CENTER)
-                                  .build();
-        
+                .skinType(SkinType.BAR_CHART)
+                .prefSize(500, 300)
+                .animated(true)
+                .title("Total Inventory Value : " + totalInventoryVal)
+                .barChartItems(busParts, terminalInfraSupplies, mtSupplies, fuelAndEnergySupplies, misItems)
+                .decimals(0)
+                .autoScale(true)
+                .backgroundColor(Color.TRANSPARENT)
+                .textColor(Color.BLACK)
+                .titleColor(Color.BLACK)
+                .sortedData(true)
+                .titleAlignment(TextAlignment.CENTER)
+                .build();
+
         secondTileContainer.getChildren().add(barChartTile);
     }
 
@@ -210,13 +266,12 @@ public class AccountantDashboardMainContentController implements Initializable {
                 paid += txnObj.getTxnAmount();
                 System.out.println(txnObj.getTxnAmount());
             }
-            if(txnObj.getTxnStatus().equals("Unpaid") && txnObj.getTxnType().equals("INV")) {
+            if (txnObj.getTxnStatus().equals("Unpaid") && txnObj.getTxnType().equals("INV")) {
                 unpaid += txnObj.getTxnAmount();
                 System.out.println(txnObj.getTxnAmount());
             }
         }
     }
-
 
 // JAVA FX properties which I'm not using (might need later)
 //    private void setupPieChart() {

@@ -24,11 +24,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author DELL
- */
+
 public class AddMaintenanceMemberController implements Initializable {
 
     @FXML
@@ -94,13 +90,11 @@ public class AddMaintenanceMemberController implements Initializable {
     @FXML
     private ComboBox<String> searchCB;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        searchCB.getItems().addAll("Tire Technicians", "Oil Change Technicians", "Brake Technicians","Engine Technicians");
-        designationCB.getItems().addAll("Tire Technicians", "Oil Change Technicians", "Brake Technicians","Engine Technicians");
+        searchCB.getItems().addAll("Tire Technicians", "Oil Change Technicians", "Brake Technicians", "Engine Technicians");
+        designationCB.getItems().addAll("Tire Technicians", "Oil Change Technicians", "Brake Technicians", "Engine Technicians");
         employeeObjectlist = FXCollections.observableArrayList();
         IdCol.setCellValueFactory(new PropertyValueFactory<>("iD"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -110,7 +104,6 @@ public class AddMaintenanceMemberController implements Initializable {
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         userDataTable.getItems().addAll(MaintenanceStaff.getEmployeeList());
-        System.out.println(MaintenanceStaff.getEmployeeList());
         userDataTable.setVisible(true);
 
     }
@@ -225,7 +218,8 @@ public class AddMaintenanceMemberController implements Initializable {
         Administrator.deleteEmployee(selectedItem);
 
     }
-    private void clear(){
+
+    private void clear() {
         firstNameTF.clear();
         lastNameTF.clear();
         phoneNumberTF.clear();
@@ -242,7 +236,7 @@ public class AddMaintenanceMemberController implements Initializable {
         addressLabel.setText("");
         birthdateLabel.setText("");
         salaryLabel.setText("");
- 
+
     }
 
 }

@@ -149,6 +149,7 @@ public class TicketDetailsController implements Initializable {
     //System.out.println(t1);
     passengerList.add(p);
     p.purchaseTicket(ticketIdTextField.getText(), d1, seathelperList, "Confirmed", currentDate.toString());
+    
         System.out.println(bookingDateLabel.getText());
     //ticketList.add(t1);
     

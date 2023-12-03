@@ -3,8 +3,17 @@ package com.busterminal.controller.MaintenanceStaff;
 import com.busterminal.model.BillItems;
 import com.busterminal.model.Parts;
 import com.busterminal.model.PopUp;
+import com.busterminal.model.accountant.Transaction;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
-import java.util.Observable;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 public class BillGenaratorController implements Initializable {
 
@@ -40,7 +50,7 @@ public class BillGenaratorController implements Initializable {
     @FXML
     private TableColumn<BillItems, Integer> quantityCol;
     @FXML
-    private TableColumn<BillItems, Float> unitCost;
+    private TableColumn<BillItems, Integer> unitCost;
     @FXML
     private TableColumn<BillItems, Float> totalCol;
     @FXML
@@ -48,6 +58,8 @@ public class BillGenaratorController implements Initializable {
     private ObservableList<Parts> cart;
     @FXML
     private TextField busId;
+    @FXML
+    private TextArea memo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,12 +82,36 @@ public class BillGenaratorController implements Initializable {
             }
 
         }
-        //totalLabel.setText(Integer.toString(Integer.parseInt(unitCost.getText())*Integer.parseInt(Quantity.getText())));
 
     }
 
     @FXML
     private void createBillOnMouseClick(ActionEvent event) {
+        memo.clear();
+        StringBuilder billDetails = new StringBuilder();
+
+        billDetails.append("Bill ID: ").append(busId.getText()).append("\n\n");
+        billDetails.append(String.format("%-20s %-15s %-10s %-10s %-10s\n", "Parts Name", "Model", "Unit Cost", "Quantity", "Total"));
+        billDetails.append("---------------------------------------------------------\n");
+
+        for (BillItems item : cartListTable.getItems()) {
+            String line = String.format("%-20s %-15s %-10.2f %-10.2f %-10.2f\n",
+                    item.getPartsName(),
+                    item.getPartsModel(),
+                    item.getPartsPrice(),
+                    item.getQuantity(),
+                    item.getTotal());
+            billDetails.append(line);
+        }
+
+        float totalBill = Float.parseFloat(totalBillTF.getText());
+        billDetails.append("\nTotal Bill: ").append(totalBill);
+
+        memo.setText(billDetails.toString());
+
+        // send to manager
+        Transaction t = new Transaction(LocalDate.now(), "Maintenance Bill", Double.parseDouble(totalBillTF.getText()), "Unpaid", billDetails.toString());
+        RelationshipDatabaseClass.getInstance().addItemToAllAvailableTransactions(t);
 
     }
 
@@ -83,40 +119,81 @@ public class BillGenaratorController implements Initializable {
     private void addPartsOnMouseClick(ActionEvent event) {
         try {
             int busIdValue = Integer.parseInt(busId.getText());
-            String partsName = partsNameCB.getSelectionModel().getSelectedItem();
-            String partsModel = partsModelCB.getSelectionModel().getSelectedItem();
-            double partsCostValue = Double.parseDouble(partsCost.getText());
-            double quantityValue = Double.parseDouble(Quantity.getSelectionModel().getSelectedItem());
-            double totalBillValue = Double.parseDouble(totalLabel.getText());
+            String partsName = partsNameCB.getValue();
+            String partsModel = partsModelCB.getValue();
+            float partsCostValue = Float.parseFloat(partsCost.getText());
+            float quantityValue = Float.parseFloat(Quantity.getValue());
+            float totalBillValue = Float.parseFloat(totalLabel.getText());
 
-            // Check for empty strings before parsing
             if (partsName.isEmpty() || partsModel.isEmpty()) {
                 PopUp.showMessage("Warning", "Parts Name or Parts Model cannot be empty.");
                 return;
             }
 
-            // Create a new BillItems object
-            BillItems data = new BillItems(busIdValue, partsName, partsModel, partsCostValue, quantityValue, totalBillValue);
+            // Check if the part is already in the table
+            boolean partExists = false;
+            for (BillItems item : cartListTable.getItems()) {
+                if (item.getPartsName().equals(partsName) && item.getPartsModel().equals(partsModel)) {
+                    item.setQuantity(item.getQuantity() + quantityValue);
+                    item.setTotal(item.getTotal() + totalBillValue);
+                    partExists = true;
+                    cartListTable.refresh();
+                    break;
 
-            // Add the new object to the table
-            cartListTable.getItems().add(data);
+                }
+            }
+
+            if (!partExists) {
+                BillItems data = new BillItems(busIdValue, partsName, partsModel, (int) partsCostValue, quantityValue, totalBillValue);
+                cartListTable.getItems().add(data);
+                cartListTable.refresh();
+            }
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            System.out.println("Error parsing numeric values. Check if all fields are filled correctly.");
+
         }
+        totalBillTF.setText(Integer.toString(calculateTotalAmount()));
+        clear();
     }
 
     @FXML
     private void ConvertPdfOnMouseClick(ActionEvent event) {
+        if (!memo.getText().isEmpty()) {
+            try {
+                FileChooser fc = new FileChooser();
+                fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+                File f = fc.showSaveDialog(null);
+                if (f != null) {
+                    PdfWriter pw = new PdfWriter(new FileOutputStream(f));
+                    PdfDocument pdf = new PdfDocument(pw);
+                    pdf.addNewPage();
+
+                    Document document = new Document(pdf);
+                    document.setMargins(20, 20, 20, 20);
+
+                    document.add(new Paragraph(memo.getText()).setBold().setTextAlignment(TextAlignment.CENTER));
+
+                    // Close the document
+                    document.close();
+
+                    PopUp.showMessage("Success", "Bill Generated");
+                } else {
+                    PopUp.showMessage("Export Cancelled", "Bill export was cancelled.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else{
+            PopUp.showMessage("Empty Memo", "Please generate bill slip before creating pdf!");
+        }
+
     }
 
     @FXML
     private void selectPartsMouseClick(ActionEvent event) {
-        String partsName = partsNameCB.getValue();
-        String partsModel = partsModelCB.getValue();
 
-        if (partsName != null && !partsName.isEmpty() && partsModel != null && !partsModel.isEmpty()) {
+        if (!partsNameCB.getValue().isEmpty() && !partsModelCB.getValue().isEmpty()) {
             boolean partFound = false;
 
             for (Parts p : cart) {
@@ -141,16 +218,50 @@ public class BillGenaratorController implements Initializable {
 
     @FXML
     private void qunatityOnMouseClick(ActionEvent event) {
-        String quantityValue = Quantity.getValue();
-        String costText = partsCost.getText();
-
-        if (quantityValue != null && !quantityValue.equals("") && costText != null && !costText.equals("")) {
+        if (!Quantity.getValue().equals("") && !partsCost.getText().equals("")) {
             try {
-                float total = Float.parseFloat(costText) * Float.parseFloat(quantityValue);
+                float total = Float.parseFloat(partsCost.getText()) * (float) Float.parseFloat(Quantity.getValue());
                 totalLabel.setText(Float.toString(total));
-            } catch (NumberFormatException e) {
-                PopUp.showMessage("Error", "Invalid number format.");
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+
     }
+
+    private int calculateTotalAmount() {
+        int totalAmount = 0;
+        // Add All data after filtered and get the total 
+        ObservableList<BillItems> filteredData = cartListTable.getItems();
+
+        // Now traverse throgh the filterData list take salary and increase the total Amount local field
+        for (BillItems b : filteredData) {
+            totalAmount += b.getTotal();
+        }
+        return totalAmount;
+    }
+
+    private void clear() {
+        partsNameCB.setValue(null);
+        partsModelCB.setValue(null);
+        Quantity.setValue(null);
+
+    }
+
+    @FXML
+    private void DeletePartsOnMouseClick(ActionEvent event) {
+        if (cartListTable.getSelectionModel().getSelectedItems().isEmpty()) {
+            PopUp.showMessage("No value selected", "Please select row for delete.");
+        } else {
+            ObservableList<BillItems> selectedRows, addAllProduct;
+            addAllProduct = cartListTable.getItems();
+            selectedRows = cartListTable.getSelectionModel().getSelectedItems();
+            System.out.println(selectedRows);
+            addAllProduct.removeAll(selectedRows);
+            PopUp.showConfirmationMessage();
+
+        }
+    }
+
 }

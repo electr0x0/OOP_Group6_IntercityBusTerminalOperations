@@ -8,6 +8,7 @@ import com.busterminal.model.employeeModels.Leave;
 import com.busterminal.model.employeeModels.Overtime;
 import com.busterminal.model.employeeModels.Resignation;
 import com.busterminal.model.employeeModels.Salary;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class Employee extends User {
     Boolean onLeave;
     Boolean isPaid;
     LocalDate lastPaid;
+    
+    String performance;
     
 
     public Employee(int Salary, String empType, String firstname, String lastname, String gender, String email, String phonenumber, LocalDate dateofbirth, String address) {
@@ -94,6 +97,22 @@ public class Employee extends User {
 
     public void setHoliday(Leave holiday) {
         this.holiday = holiday;
+    }
+
+    public String getPerformance() {
+        return performance;
+    }
+
+    public void setPerformance(String performance) {
+        this.performance = performance;
+    }
+
+    public int getiD() {
+        return iD;
+    }
+
+    public void setiD(int iD) {
+        this.iD = iD;
     }
     
     
@@ -258,6 +277,16 @@ public class Employee extends User {
             }
         }
         return null; // Return null if the Leave object with the specified ID is not found
+    }
+    
+    public static void setCurrentUser(String email){
+        ArrayList<Employee> empList = readEmployeesFromFile("MyEmployee.bin");
+        for(Employee emp: empList){
+            if(emp.getEmail().equals(email)){
+                RelationshipDatabaseClass.getInstance().setCurrentLoggedIn(emp.getId());
+                return;
+            }
+        }
     }
     
     
