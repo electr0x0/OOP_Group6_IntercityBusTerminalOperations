@@ -96,4 +96,14 @@ public class MFXDialog {
         dialog.showDialog();
         
 	}
+    
+    public static void showErrorDialog(String title, String content, AnchorPane rootPane) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        alertDialog.openMFXDialog();
+    }
+
+    public static void showSuccessDialog(String title, String content, AnchorPane rootPane) {
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        alertDialog.openMFXDialog();
+    }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantInvoiceGenerationAddItemController">
+   <children>
+      <Label layoutX="212.0" layoutY="350.0" prefHeight="16.0" prefWidth="96.0" stylesheets="@accView.css" text="Select Service*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXComboBox fx:id="comboBoxService" floatMode="BORDER" floatingText="Select A Service" layoutX="233.0" layoutY="377.0" onAction="#updateIfAlreadyAvailable" prefHeight="40.0" prefWidth="242.0" stylesheets="@accView.css" />
+      <Label layoutX="212.0" layoutY="431.0" prefHeight="17.0" prefWidth="125.0" stylesheets="@accView.css" text="Provide Description*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="212.0" layoutY="508.0" prefHeight="17.0" prefWidth="125.0" stylesheets="@accView.css" text="Set Rate and Qty*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="txtFieldServiceRate" floatMode="BORDER" floatingText="Price" layoutX="229.0" layoutY="536.0" prefHeight="38.0" prefWidth="125.0" stylesheets="@accView.css" />
+      <MFXSlider fx:id="spinnerServiceQty" decimalPrecision="1" layoutX="373.0" layoutY="552.0" max="50.0" min="1.0" minorTicksCount="1" popupPadding="1.0" prefHeight="7.0" prefWidth="90.0" sliderMode="SNAP_TO_TICKS" stylesheets="@accView.css" tickUnit="1.0" unitIncrement="1.0">
+         <effect>
+            <ColorAdjust brightness="0.54" contrast="0.21" hue="0.55" />
+         </effect></MFXSlider>
+      <Label layoutX="212.0" layoutY="587.0" prefHeight="17.0" prefWidth="96.0" stylesheets="@accView.css" text="Set Tax %">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXSlider fx:id="spinnerServiceTaxPercent" decimalPrecision="1" layoutX="230.0" layoutY="616.0" max="30.0" min="1.0" minorTicksCount="1" popupPadding="1.0" prefHeight="7.0" prefWidth="90.0" sliderMode="SNAP_TO_TICKS" stylesheets="@accView.css" tickUnit="1.0" unitIncrement="1.0">
+         <effect>
+            <ColorAdjust brightness="0.38" contrast="0.33" hue="0.63" />
+         </effect></MFXSlider>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="879.0" layoutY="675.0" onAction="#onClickAddInvoiceToTable" prefHeight="38.0" prefWidth="90.0" stylesheets="@accView.css" text="Add" />
+      <MFXTextField fx:id="txtFieldServiceDescriptionA" floatMode="BORDER" floatingText="Description" layoutX="233.0" layoutY="467.0" prefHeight="38.0" prefWidth="242.0" stylesheets="@accView.css" />
+      <VBox alignment="CENTER" layoutX="-5.0" prefHeight="335.0" prefWidth="1050.0" styleClass="addItemSidebarNew" stylesheets="@../../css/DashboardAccountant.css">
+         <children>
+            <ImageView fitHeight="346.0" fitWidth="448.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../drawables/invoice_receipt_animation.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -7,6 +7,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : electr0
 */
 
+@import 'MFXColors.css';
+
 .root{
     -fx-background-color: #EAEEF4 ;
 }
@@ -40,6 +42,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .btnCurrentSelected{
     -fx-background-color: #000000 ;
+    -fx-border-color: #FFFFFF ;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.btnCurrentSelectedAcc{
+    -fx-background-color: #000000 ;
+    -fx-border-color: #FFFFFF ;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.btnNotSelectedAcc{
+    -fx-background-color: #03A9F4 ;
     -fx-border-color: #FFFFFF ;
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 15px;

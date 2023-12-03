@@ -7,12 +7,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : electr0
 */
 
+@import '../fonts/Fonts.css';
+@import 'MFXColors.css';
+
 .btnCurrentSelected{
     -fx-background-color: #000000 ;
     -fx-border-color: #FFFFFF ;
     -fx-border-width: 2px 2px 2px 2px;
     -fx-border-radius: 15px;
     -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-font-family: 'Visby Round CF Heavy';
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+}
+
+.btnCurrentSelectedAcc{
+    -fx-background-color: #000000 ;
+    -fx-border-color: -common-gradient ;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-font-family: 'Visby Round CF Heavy';
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+}
+
+.btnNotSelectedAcc{
+    -fx-background-color: #90EE90 ;
+    -fx-border-color: -common-gradient ;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 15px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;
     -fx-font-family: 'Visby Round CF Heavy';
@@ -31,4 +58,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-family: 'Visby Round CF Heavy';
     -fx-font-size: 12;
     -fx-text-fill: white;
+}
+
+.vbox-container {
+    -fx-background-color: linear-gradient(to right bottom, #999999,#7a0ed9 ,#7a0ed9); /* White background */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-padding: 20px; /* Padding inside the VBox */
+    -fx-spacing: 10px; /* Spacing between elements inside the VBox */
+    -fx-alignment: center; /* Align children to center */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0, 0, 5); /* Subtle shadow for depth */
+}
+
+.vbox-header {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
 }

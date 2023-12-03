@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1062" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantTicketRefundApplyViewController">
+   <children>
+      <MFXComboBox fx:id="comboTicketList" floatingText="Select Ticket to Refund" layoutX="485.0" layoutY="266.0" onAction="#updateTicketDetails" prefHeight="40.0" prefWidth="194.0" stylesheets="@refundViewStyle.css" />
+      <TextArea fx:id="txtCustomReasonRefund" disable="true" layoutX="485.0" layoutY="389.0" prefHeight="106.0" prefWidth="194.0" stylesheets="@refundViewStyle.css" />
+      <Label layoutX="368.0" layoutY="338.0" text="Reason for Refund*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXComboBox fx:id="refundReasonList" floatingText="Refund Reason" layoutX="485.0" layoutY="326.0" onAction="#updateReasonIfCustom" prefHeight="40.0" prefWidth="194.0" stylesheets="@refundViewStyle.css" />
+      <Label layoutX="402.0" layoutY="278.0" text="Select Ticket*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="386.0" layoutY="426.0" text="Custom Reason*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="passengerNameField" allowEdit="false" editable="false" floatMode="DISABLED" layoutX="485.0" layoutY="214.0" prefHeight="40.0" prefWidth="194.0" stylesheets="@refundViewStyle.css" />
+      <Label layoutX="386.0" layoutY="226.0" text="Passenger Name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtAreaTicketInformation" disable="true" editable="false" layoutX="709.0" layoutY="215.0" prefHeight="281.0" prefWidth="254.0" stylesheets="@refundViewStyle.css" />
+      <Label layoutX="776.0" layoutY="188.0" text="Ticket Information">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <VBox id="b" alignment="CENTER" prefHeight="759.0" prefWidth="303.0" styleClass="refundSidebar" stylesheets="@../../css/DashboardAccountant.css">
+         <children>
+            <ImageView fitHeight="383.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../drawables/returnTicketRequest_anim.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL3" layoutX="793.0" layoutY="643.0" onAction="#onClickSubmitRefundReq" prefHeight="40.0" prefWidth="179.0" rippleAnimateShadow="true" stylesheets="@refundViewStyle.css" text="Submit Refund Request" wrapText="true" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL3" layoutX="605.0" layoutY="643.0" onAction="#onClickViewCurrentRequests" prefHeight="40.0" prefWidth="171.0" rippleAnimateShadow="true" stylesheets="@refundViewStyle.css" text="View Current Requests" wrapText="true" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL3" layoutX="760.0" layoutY="49.0" onAction="#onClickViewRefundPolicy" prefHeight="40.0" prefWidth="152.0" rippleAnimateShadow="true" stylesheets="@refundViewStyle.css" text="View Refund Policy" wrapText="true" />
+      <Label fx:id="txtFiledWarningPolicy" layoutX="402.0" layoutY="23.0" text="Please View Refund Policy and Acknowledge before proceeding to Submit Refund Request" textFill="#ff0c0c">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="51.0" fitWidth="60.0" layoutX="990.0" layoutY="49.0" onMouseClicked="#onClickGoBackToPassenger" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

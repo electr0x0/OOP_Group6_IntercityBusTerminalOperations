@@ -7,6 +7,7 @@ package com.busterminal.controller.terminalManager;
 import com.busterminal.model.Bus;
 import com.busterminal.storage.db.RelationshipDatabaseClass;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import com.busterminal.utilityclass.Validator;
 import io.github.palexdev.materialfx.controls.MFXCheckListView;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -21,7 +22,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -47,22 +52,23 @@ public class TerminalManagerBusManagementController implements Initializable {
     private MFXCheckListView<String> driverCheckListView;
     @FXML
     private MFXTextField txtFieldBusYear;
-    
+
     private int idCounter = 0;
-    
 
     private ObservableList<String> driverNames = FXCollections.observableArrayList();
-    private ArrayList<String> selectedDrivers = new ArrayList<>();
     
+
     private Bus currentBus;
-    
+
     private ArrayList<Bus> allAvailableBuses = new ArrayList<>();
     @FXML
     private MFXTextField txtFiledBusRegNum;
-    
+    @FXML
+    private ImageView imageViewMoreSettings;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TransitionUtility.materialScale(rootPane);
         //Example driver names (For now) will add driver instances from Samin later
         driverNames.addAll("Driver A", "Driver B", "Driver C", "Driver D", "Driver E");
         // Populate bus types
@@ -70,7 +76,7 @@ public class TerminalManagerBusManagementController implements Initializable {
 
         // Populate bus manufacturers
         comboBusManufacturer.setItems(FXCollections.observableArrayList(
-            "Manufacturer A", "Manufacturer B", "Manufacturer C" // Replace with actual names
+                "Manufacturer A", "Manufacturer B", "Manufacturer C" // Have to Replace with actual names
         ));
 
         // Populate driver names
@@ -80,38 +86,47 @@ public class TerminalManagerBusManagementController implements Initializable {
         spinnerBusCapacity.valueProperty().addListener((obs, oldVal, newVal) -> {
             txtFieldBusCapacity.setText(String.valueOf(newVal.intValue()));
         });
-        
-        RelationshipDatabaseClass.getInstance().loadFromFile();
 
-        // Sync text field with slider
-        txtFieldBusCapacity.textProperty().addListener((obs, oldVal, newVal) -> {
-            try {
-                int capacity = Integer.parseInt(newVal);
-                spinnerBusCapacity.setValue(capacity);
-            } catch (NumberFormatException e) {
-                // Handle invalid input in text field
+
+        if (RelationshipDatabaseClass.getInstance().getBusIdCounter() != 0) {
+            idCounter = RelationshipDatabaseClass.getInstance().getBusIdCounter();
+        }
+
+        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses() != null) {
+            allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
+        }
+        
+        setupContextMenuOnGear();
+    }
+
+    public void setupContextMenuOnGear() {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem option1 = new MenuItem("View and Modify All Available Buses");
+        option1.setOnAction(x -> 
+                SceneSwitch("/com/busterminal/views/terminalManagerUser/TerminalManagerAllAvailableBusView.fxml"));
+        
+        contextMenu.getItems().add(option1);
+        
+        imageViewMoreSettings.setOnMouseClicked(e -> {
+            if (e.getButton().toString().equals("PRIMARY")) {
+                contextMenu.show(imageViewMoreSettings, e.getScreenX(), e.getScreenY());
             }
         });
         
-        if (RelationshipDatabaseClass.getInstance().getBusIdCounter() != 0){
-            idCounter = RelationshipDatabaseClass.getInstance().getBusIdCounter();
-        }
-        
-        if (RelationshipDatabaseClass.getInstance().getAllAvailableBuses() != null){
-            allAvailableBuses = RelationshipDatabaseClass.getInstance().getAllAvailableBuses();
-        }
     }
     
-    public void AddSelectedDriversToCurrentDrivers(){
-        selectedDrivers.clear();
-        String driverNames = "\n";
-        for (String driverName : driverCheckListView.getSelectionModel().getSelectedValues()){
-            selectedDrivers.add(driverName);
-            driverNames += driverName+"\n";
+    private void SceneSwitch(String fxmllocation) {
+        try {
+            // Load the new content FXML file
+            AnchorPane newContent = FXMLLoader.load(getClass().getResource(fxmllocation));
+
+            // Clear existing content and set the new content
+            rootPane.getChildren().setAll(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorDialog("FXML not Found", "Unable to swtich scene, make sure FXML is present in the specified path");
         }
-        driverCheckListView.getSelectionModel().clearSelection();
-        MFXDialog alertDialog = new MFXDialog("Drivers Added","Assinged Drivers:"+driverNames, "Close",rootPane);
-        alertDialog.openMFXDialog();
     }
 
     @FXML
@@ -125,18 +140,15 @@ public class TerminalManagerBusManagementController implements Initializable {
         // Update the text field with the new ID
         txtFieldBusID.setText(busId);
 
-
         // Increment the counter for the next ID
         idCounter++;
-        
+
         RelationshipDatabaseClass.getInstance().setBusIdCounter(idCounter);
         RelationshipDatabaseClass.getInstance().saveToFile();
-        
-        
+
     }
 
-    
-    private void AddBus(){
+    private void AddBus() {
         String busID = txtFieldBusID.getText();
         String busType = comboBoxBusType.getValue();
         String busCapacity = txtFieldBusCapacity.getText();
@@ -174,35 +186,43 @@ public class TerminalManagerBusManagementController implements Initializable {
             return;
         }
 
-        if (selectedDrivers.isEmpty()) {
+        if (driverCheckListView.getSelectionModel().getSelectedValues().isEmpty()) {
             showErrorDialog("No Drivers Assigned", "Please assign at least one driver.");
             return;
         }
-
         
-        currentBus = new Bus(Integer.parseInt(busID), Integer.parseInt(busCapacity), busType, Integer.parseInt(busRegNum), busManufacturer, Integer.parseInt(busManYear), selectedDrivers);
+        ArrayList<String> busSpecificDrivers = new ArrayList<>(driverCheckListView.getSelectionModel().getSelectedValues());
+
+        currentBus = new Bus(Integer.parseInt(busID), Integer.parseInt(busCapacity), busType, Integer.parseInt(busRegNum), busManufacturer, Integer.parseInt(busManYear), busSpecificDrivers);
         allAvailableBuses.add(currentBus);
         
-        RelationshipDatabaseClass.getInstance().setAllAvailableBuses(allAvailableBuses);
-        RelationshipDatabaseClass.getInstance().saveToFile();
 
-        
+        RelationshipDatabaseClass.getInstance().setAllAvailableBuses(allAvailableBuses);
+
         showSuccessDialog("Bus Added Successfully", "The bus has been added to the system.");
+        clearAll();
+    }
+    
+    
+    private void clearAll(){
+        txtFieldBusCapacity.clear();
+        txtFieldBusID.clear();
+        txtFieldBusYear.clear();
+        txtFiledBusRegNum.clear();
+        comboBoxBusType.clearSelection();
+        comboBusManufacturer.clearSelection();
+        spinnerBusCapacity.setValue(0);
+        driverCheckListView.getSelectionModel().clearSelection();
     }
 
     private void showErrorDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "alert", rootPane);
         alertDialog.openMFXDialog();
     }
 
     private void showSuccessDialog(String title, String content) {
-        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success",rootPane);
+        MFXDialog alertDialog = new MFXDialog(title, content, "Close", "success", rootPane);
         alertDialog.openMFXDialog();
-    }
-
-    
-    public void clearALlFields(){
-        
     }
 
     @FXML
@@ -210,9 +230,4 @@ public class TerminalManagerBusManagementController implements Initializable {
         AddBus();
     }
 
-    @FXML
-    private void onClickAssignDrivers(ActionEvent event) {
-        AddSelectedDriversToCurrentDrivers();
-    }
-    
 }

@@ -1,0 +1,76 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 2, 2023, 6:53:46 AM
+    Author     : electr0
+*/
+
+/* General AnchorPane styling */
+.anchor-pane {
+    -fx-background-color: #FAFAFA;
+}
+
+/* Style for MFXButtons */
+.mfx-button {
+    -fx-background-color: #4CAF50; /* Material Green */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    -fx-padding: 10px 15px;
+}
+
+.mfx-button:hover {
+    -fx-background-color: #388E3C; /* Darker Green */
+}
+
+/* Style for MFXTextFields */
+.mfx-text-field {
+    -fx-background-color: #C8E6C9; /* Light Green */
+    -fx-text-fill: #424242;
+    -fx-prompt-text-fill: #9E9E9E;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.mfx-text-field:focused {
+    -fx-background-color: #A5D6A7; /* Lighter Green */
+}
+
+/* Style for MFXComboBox */
+.mfx-combo-box {
+    -fx-background-color: #C8E6C9; /* Light Green */
+    -fx-background-radius: 5px;
+}
+
+/* Style for labels */
+.label {
+    -fx-text-fill: #424242;
+    -fx-font-weight: bold;
+}
+
+/* Style for lines */
+.line {
+    -fx-stroke: #C8E6C9; /* Light Green */
+    -fx-stroke-width: 4;
+}
+
+/* Style for TextArea */
+.text-area {
+    -fx-background-color: #C8E6C9; /* Light Green */
+    -fx-text-fill: #424242;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.text-area:focused {
+    -fx-background-color: #A5D6A7; /* Lighter Green */
+}
+
+.addItemSidebar{
+    -fx-background-color: #4CAF50; /* Material Green */
+    -fx-background-insets: -1 -5 -1 -1;
+    -fx-background-radius: 0 20 20 0;
+}

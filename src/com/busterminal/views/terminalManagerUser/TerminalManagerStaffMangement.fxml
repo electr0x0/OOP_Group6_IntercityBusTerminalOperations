@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="750" prefWidth="1050" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerStaffMangementController">
-    
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@../accountantUser/refundViewStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerStaffMangementController">
+   <children>
+      <MFXLegacyTableView fx:id="empMangeTableView" layoutX="14.0" layoutY="87.0" prefHeight="547.0" prefWidth="1022.0" stylesheets="@../../css/ManagerTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colEmpName" prefWidth="167.0" text="Employee Name">
+               <columns>
+                  <TableColumn fx:id="colEmployeeFirstName" prefWidth="99.0" text="First" />
+                  <TableColumn fx:id="colEmployeeLastName" prefWidth="89.0" text="Last" />
+               </columns></TableColumn>
+            <TableColumn fx:id="colEmpID" prefWidth="103.0" text="ID" />
+            <TableColumn fx:id="colEmpDesignation" prefWidth="133.0" text="Designation" />
+            <TableColumn fx:id="colEmpSalary" prefWidth="176.0" text="Salary (BDT)" />
+            <TableColumn fx:id="colEmpStatus" prefWidth="82.0" text="On Leave" />
+            <TableColumn fx:id="colEmployeePerformanceRep" prefWidth="339.0" text="Employee Performance Report" />
+         </columns>
+      </MFXLegacyTableView>
+      <MFXButton buttonType="RAISED" layoutX="828.0" layoutY="673.0" onAction="#onClickSendAudit" prefHeight="38.0" prefWidth="208.0" text="Modify/Create Audit Report" wrapText="true" />
+      <ImageView fx:id="imageViewGear" blendMode="GREEN" fitHeight="66.0" fitWidth="65.0" layoutX="965.0" layoutY="14.0" onMouseClicked="#onClickShowContextMenu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/gear_animated.gif" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

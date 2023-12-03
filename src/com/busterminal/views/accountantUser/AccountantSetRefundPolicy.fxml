@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750" prefWidth="1050" stylesheets="@accView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantSetRefundPolicyController">
+   <children>
+      <TextArea fx:id="textAreaRefundPolicyContent" layoutX="14.0" layoutY="78.0" prefHeight="581.0" prefWidth="1020.0" styleClass="text-area-policy" stylesheets="@../../css/DashboardAccountant.css" wrapText="true" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="758.0" layoutY="693.0" onAction="#onClickLoadFromTextFile" text="Load From Text File" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="908.0" layoutY="693.0" onAction="#onClickSetPolicy" prefHeight="25.0" prefWidth="126.0" text="Set Policy" />
+      <Label layoutX="483.0" layoutY="53.0" prefHeight="17.0" prefWidth="84.0" text="Refund Policy">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="54.0" fitWidth="64.0" layoutX="980.0" layoutY="14.0" onMouseClicked="#onClickGoBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim_green.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

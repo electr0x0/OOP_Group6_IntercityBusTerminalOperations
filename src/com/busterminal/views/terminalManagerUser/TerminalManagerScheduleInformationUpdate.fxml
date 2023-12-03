@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" stylesheets="@../accountantUser/refundViewStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerScheduleInformationUpdateController">
+   <children>
+      <Label layoutX="271.0" layoutY="227.0" prefHeight="26.0" prefWidth="98.0" text="Sheduled Date : " />
+      <MFXDatePicker fx:id="modifiedDatePicker" layoutX="380.0" layoutY="221.0" prefHeight="38.0" prefWidth="203.0" />
+      <Label layoutX="272.0" layoutY="292.0" prefHeight="17.0" prefWidth="92.0" text="Trip Status       :" />
+      <Label layoutX="239.0" layoutY="182.0" prefHeight="26.0" prefWidth="158.0" text="Modify Trip Paramters*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="236.0" layoutY="383.0" prefHeight="26.0" prefWidth="168.0" text="Modify Trip Fare Paramters*">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="txtFieldAdFare" floatMode="DISABLED" layoutX="260.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXTextField fx:id="txtFieldChFare" floatMode="DISABLED" layoutX="459.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXTextField fx:id="txtFieldWkndFare" floatMode="DISABLED" layoutX="647.0" layoutY="442.0" prefHeight="38.0" prefWidth="168.0" />
+      <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="847.0" layoutY="667.0" onAction="#onClickConfirmModification" prefHeight="47.0" prefWidth="158.0" text="Confirm Modification" />
+      <ImageView blendMode="GREEN" fitHeight="69.0" fitWidth="64.0" layoutX="973.0" layoutY="14.0" onMouseClicked="#onClickGoBackIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim.gif" />
+         </image>
+      </ImageView>
+      <MFXToggleButton fx:id="tripStatus" layoutX="380.0" layoutY="280.0" onMouseClicked="#updateToggleStatus" />
+      <Label layoutX="459.0" layoutY="418.0" prefHeight="17.0" prefWidth="104.0" text="Modify Child Fare" />
+      <Label layoutX="260.0" layoutY="418.0" prefHeight="17.0" prefWidth="104.0" text="Modify Adult Fare" />
+      <Label layoutX="647.0" layoutY="418.0" prefHeight="17.0" prefWidth="142.0" text="Modify Weekend Fare" />
+      <Label layoutX="430.0" layoutY="200.0" prefHeight="17.0" prefWidth="104.0" text="Modify Trip Date" />
+   </children>
+</AnchorPane>

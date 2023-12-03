@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" stylesheets="@../../css/ManagerTableStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.terminalManager.TerminalManagerViewCurrentTripTableController">
+   <children>
+      <MFXLegacyTableView fx:id="tripTableView" layoutX="18.0" layoutY="80.0" prefHeight="627.0" prefWidth="1014.0">
+         <columns>
+            <TableColumn fx:id="colTripID" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colBusID" prefWidth="98.0" text="Assigned Bus" />
+            <TableColumn fx:id="colTime" minWidth="0.0" prefWidth="98.0" text="Time Slot" />
+            <TableColumn fx:id="colBusType" prefWidth="110.0" text="Bus Type" />
+            <TableColumn prefWidth="177.0" text="Fare">
+               <columns>
+                  <TableColumn fx:id="colChildFare" prefWidth="61.0" text="Child" />
+                  <TableColumn fx:id="colAdultFare" prefWidth="64.0" text="Adult" />
+                  <TableColumn fx:id="colWeekendFare" prefWidth="63.0" text="Weekend" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="colSource" prefWidth="118.0" text="Source" />
+            <TableColumn fx:id="colDestination" prefWidth="114.0" text="Destination" />
+            <TableColumn fx:id="colDriver" prefWidth="139.0" text="Driver" />
+            <TableColumn fx:id="colStatus" prefWidth="73.0" text="Status" />
+         </columns>
+      </MFXLegacyTableView>
+      <ImageView blendMode="GREEN" fitHeight="62.0" fitWidth="97.0" layoutX="970.0" layoutY="8.0" onMouseClicked="#goBackToFareManagementView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

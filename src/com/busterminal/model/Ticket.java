@@ -9,6 +9,8 @@ package com.busterminal.model;
  * @author electr0
  */
 
+import com.busterminal.model.accountant.Transaction;
+import com.busterminal.storage.db.RelationshipDatabaseClass;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 public class Ticket implements Serializable {
     private String ticketId;
     private Passenger passenger; // Passenger object who bought the ticket
-    private BusSchedule schedule;
+    private BusTripSchedule schedule;
     private int seatNumber;
     private double price;
     private LocalDateTime bookingTime;
@@ -27,7 +29,7 @@ public class Ticket implements Serializable {
     private DummyClassForTableViewSchedule dummy;
     private String purchaseDate;
 
-    public Ticket(String ticketId, Passenger passenger, BusSchedule schedule, int seatNumber, int ticketQty) {
+    public Ticket(String ticketId, Passenger passenger, BusTripSchedule schedule, int seatNumber, int ticketQty) {
         this.ticketId = ticketId;
         this.passenger = passenger;
         this.schedule = schedule;
@@ -53,6 +55,7 @@ public class Ticket implements Serializable {
         this.ticketQty= ticketQty;
         this.bookingStatus = bookingStatus;
         this.purchaseDate = purchaseDate;
+        autoCreateTransaciton();
         
     }
     
@@ -87,11 +90,11 @@ public class Ticket implements Serializable {
         this.passenger = passenger;
     }
 
-    public BusSchedule getSchedule() {
+    public BusTripSchedule getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(BusSchedule schedule) {
+    public void setSchedule(BusTripSchedule schedule) {
         this.schedule = schedule;
     }
 
@@ -149,6 +152,13 @@ public class Ticket implements Serializable {
 
     public void setDummy(DummyClassForTableViewSchedule dummy) {
         this.dummy = dummy;
+    }
+    
+    public void autoCreateTransaciton(){
+        double totalAmnt = dummy.getAdultFare() * this.ticketQty;
+        String sourceToDesti = dummy.getSource()+"-"+dummy.getDestination();
+        Transaction ticketTransacion = new Transaction(LocalDate.now(),"TICKET-SALE",totalAmnt,"Paid",sourceToDesti);
+        RelationshipDatabaseClass.getInstance().addItemToAllAvailableTransactions(ticketTransacion);
     }
 
 }

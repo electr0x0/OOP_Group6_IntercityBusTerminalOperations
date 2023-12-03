@@ -7,7 +7,13 @@ package com.busterminal.storage.db;
 import com.busterminal.model.Bus;
 import com.busterminal.model.BusTrip;
 import com.busterminal.model.BusTripSchedule;
+import com.busterminal.model.Employee;
 import com.busterminal.model.Ticket;
+import com.busterminal.model.accountant.PurchaseEntry;
+import com.busterminal.model.accountant.RefundRequest;
+import com.busterminal.model.accountant.ReimbursementInfo;
+import com.busterminal.model.accountant.Transaction;
+import com.busterminal.model.terminalManager.ChatModel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +26,6 @@ import java.util.ArrayList;
  *
  * @author electr0
  */
-
 public class RelationshipDatabaseClass implements Serializable {
 
     private static RelationshipDatabaseClass instance;
@@ -32,18 +37,31 @@ public class RelationshipDatabaseClass implements Serializable {
     private int busIdCounter;
     private ArrayList<BusTrip> allTripList;
     private ArrayList<BusTripSchedule> allAvailableTripSchedules;
-    //private ArrayList<Ticket> allTicketList;
+    private int currentScheduleID;
+    private int currentInvoiceCounter;
+    private int reimbursementIDCounter;
+    private ArrayList<ReimbursementInfo> reimbursementList;
+    private ArrayList<ChatModel> allAvailableChats;
+    private ArrayList<Transaction> allAvailableTransactions;
+    private ArrayList<PurchaseEntry> currentInventory;
+    private ArrayList<RefundRequest> allRefundRequest;
+    private ArrayList<Ticket> allTickets;
+    private String refundPolicy;
 
-    //public ArrayList<Ticket> getAllTicketList() {
-        //return allTicketList;
-    //}
+    private ArrayList<Employee> allEmployees;
+    
+    private String currentLoggedIn;
+    
+    private String currentUserEmail;
 
-    //public void setAllTicketList(ArrayList<Ticket> allTicketList) {
-        //this.allTicketList = allTicketList;
-    //}
+    public void setCurrentInvoiceCounter(int currentInvoiceCounter) {
+        this.currentInvoiceCounter = currentInvoiceCounter;
+        saveToFile();
+    }
 
     // Private constructor to prevent instantiation
-    private RelationshipDatabaseClass() {}
+    private RelationshipDatabaseClass() {
+    }
 
     // Static method to get the singleton instance
     public static RelationshipDatabaseClass getInstance() {
@@ -73,7 +91,7 @@ public class RelationshipDatabaseClass implements Serializable {
     }
 
     public ArrayList<String> getAllBusStands() {
-        
+
         return allBusStands;
     }
 
@@ -103,7 +121,7 @@ public class RelationshipDatabaseClass implements Serializable {
         this.busIdCounter = busIdCounter;
         saveToFile();
     }
-    
+
     public void saveToFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("GlobalClassDatabase.bin"))) {
             out.writeObject(instance);
@@ -111,7 +129,7 @@ public class RelationshipDatabaseClass implements Serializable {
             e.printStackTrace();
         }
     }
-    
+
     public static void loadFromFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("GlobalClassDatabase.bin"))) {
             instance = (RelationshipDatabaseClass) in.readObject();
@@ -137,10 +155,169 @@ public class RelationshipDatabaseClass implements Serializable {
         this.allAvailableTripSchedules = allAvailableTripSchedules;
         saveToFile();
     }
+
+    public int getCurrentScheduleID() {
+        return currentScheduleID;
+    }
+
+    public void setCurrentScheduleID(int currentScheduleID) {
+        this.currentScheduleID = currentScheduleID;
+        saveToFile();
+    }
+
+    public int getReimbursementIDCounter() {
+        return reimbursementIDCounter;
+    }
+
+    public void setReimbursementIDCounter(int reimbursementIDCounter) {
+        this.reimbursementIDCounter = reimbursementIDCounter;
+        saveToFile();
+    }
+
+    public void addItemToReimbursementList(ReimbursementInfo reimObj) {
+        if (this.reimbursementList == null) {
+            this.reimbursementList = new ArrayList<>();
+            this.reimbursementList.add(reimObj);
+        } else {
+            this.reimbursementList.add(reimObj);
+        }
+
+        saveToFile();
+
+    }
+
+    public ArrayList<ReimbursementInfo> getReimbursementList() {
+        return reimbursementList;
+    }
+
+    public void setReimbursementList(ArrayList<ReimbursementInfo> reimbursementList) {
+        this.reimbursementList = reimbursementList;
+
+        saveToFile();
+    }
+
+    public ArrayList<ChatModel> getAllAvailableChats() {
+        return allAvailableChats;
+    }
+
+    public void setAllAvailableChats(ArrayList<ChatModel> allAvailableChats) {
+        this.allAvailableChats = allAvailableChats;
+        saveToFile();
+    }
+
+    public ArrayList<Transaction> getAllAvailableTransactions() {
+        return allAvailableTransactions;
+    }
+
+    public void setAllAvailableTransactions(ArrayList<Transaction> allAvailableTransactions) {
+        this.allAvailableTransactions = allAvailableTransactions;
+        saveToFile();
+    }
+
+    public void addItemToAllAvailableTransactions(Transaction txnObj) {
+        if (this.allAvailableTransactions == null) {
+            this.allAvailableTransactions = new ArrayList<>();
+            this.allAvailableTransactions.add(txnObj);
+        } else {
+            this.allAvailableTransactions.add(txnObj);
+        }
+
+        saveToFile();
+
+    }
+
+    public ArrayList<PurchaseEntry> getCurrentInventory() {
+        return currentInventory;
+    }
+
+    public void setCurrentInventory(ArrayList<PurchaseEntry> currentInventory) {
+        this.currentInventory = currentInventory;
+        saveToFile();
+    }
+
+    public String getRefundPolicy() {
+        return refundPolicy;
+    }
+
+    public void setRefundPolicy(String refundPolicy) {
+        this.refundPolicy = refundPolicy;
+        saveToFile();
+    }
+
+    public void addItemToAllRefundRequest(RefundRequest refundObj) {
+        if (this.allRefundRequest == null) {
+            this.allRefundRequest = new ArrayList<>();
+            this.allRefundRequest.add(refundObj);
+        } else {
+            this.allRefundRequest.add(refundObj);
+        }
+
+        saveToFile();
+
+    }
+
+    public ArrayList<RefundRequest> getAllRefundRequest() {
+        return allRefundRequest;
+    }
+
+    public void setAllRefundRequest(ArrayList<RefundRequest> allRefundRequest) {
+        this.allRefundRequest = allRefundRequest;
+        saveToFile();
+    }
+
+    public int getCurrentInvoiceCounter() {
+        return currentInvoiceCounter;
+    }
+
+    public ArrayList<Employee> getAllEmployees() {
+        return allEmployees;
+    }
+
+    public void setAllEmployees(ArrayList<Employee> allEmployees) {
+        this.allEmployees = allEmployees;
+        saveToFile();
+    }
+
+    public ArrayList<Ticket> getAllTickets() {
+        return allTickets;
+    }
+
+    public void setAllTickets(ArrayList<Ticket> allTickets) {
+        this.allTickets = allTickets;
+        saveToFile();
+    }
+
+    public String getCurrentLoggedIn() {
+        return currentLoggedIn;
+    }
+
+    public void setCurrentLoggedIn(String currentLoggedIn) {
+        this.currentLoggedIn = currentLoggedIn;
+        saveToFile();
+    }
     
-    
+    public void addItemToTicketList(Ticket t){
+        if (this.allTickets == null) {
+            this.allTickets = new ArrayList<>();
+            this.allTickets.add(t);
+        } else {
+            this.allTickets.add(t);
+        }
+
+        saveToFile();
+        
+        System.out.println(t.toString());
+        System.out.println(allTickets);
+    }
+
+    public String getCurrentUserEmail() {
+        return currentUserEmail;
+    }
+
+    public void setCurrentUserEmail(String currentUserEmail) {
+        this.currentUserEmail = currentUserEmail;
+        saveToFile();
+    }
     
     
 }
-
-                                        

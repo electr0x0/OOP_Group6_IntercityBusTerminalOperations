@@ -6,6 +6,7 @@ package com.busterminal.controller.terminalManager;
 
 import com.busterminal.model.DummyTableViewAllAvailableLocationTimeSlots;
 import com.busterminal.utilityclass.MFXDialog;
+import com.busterminal.utilityclass.TransitionUtility;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -51,7 +52,7 @@ public class TerminalManagerCurrentBusRoutesAndStandsController implements Initi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        TransitionUtility.materialScale(rootPane);
         
     }
     

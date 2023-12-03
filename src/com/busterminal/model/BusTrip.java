@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BusTrip implements Serializable {
-    private int scheduleId;
+    private String tripID;
     private Bus bus; // Bus object reference for strong link
     private String source;
     private String destination;
@@ -25,9 +25,11 @@ public class BusTrip implements Serializable {
     private double distance;
     private String driver;
     private boolean tripStatus = true;
+    
+    private int tripBusID;
 
-    public BusTrip(int scheduleId, Bus bus, String source, String destination, String timeSlot, int adultFare, int childrenFare, int weekendFare, double distance, String driver) {
-        this.scheduleId = scheduleId;
+    public BusTrip(String tripID, Bus bus, String source, String destination, String timeSlot, int adultFare, int childrenFare, int weekendFare, double distance, String driver) {
+        this.tripID = tripID;
         this.bus = bus;
         this.source = source;
         this.destination = destination;
@@ -38,6 +40,7 @@ public class BusTrip implements Serializable {
         this.weekendFare = weekendFare;
         this.distance = distance;
         this.driver = driver;
+        this.tripBusID = bus.getBusId();
         bus.addOccupiedTimeSlot(timeSlot);
         updateAvailableTimeSlot();
         updateBusInstanceInObjectDB();
@@ -69,12 +72,12 @@ public class BusTrip implements Serializable {
         return tripStatus;
     }
 
-    public int getScheduleId() {
-        return scheduleId;
+    public String getTripID() {
+        return tripID;
     }
 
-    public void setScheduleId(int scheduleId) {
-        this.scheduleId = scheduleId;
+    public void setTripID(String tripID) {
+        this.tripID = tripID;
     }
 
     public Bus getBus() {
@@ -166,7 +169,15 @@ public class BusTrip implements Serializable {
 
     @Override
     public String toString() {
-        return "ID- "+scheduleId+" "+source+"-"+destination+"-"+fleetType+" Cap-"+bus.getNumberOfSeats();
+        return "ID- "+tripID+" "+source+"-"+destination+"-"+fleetType+" Cap-"+bus.getNumberOfSeats();
+    }
+
+    public int getTripBusID() {
+        return tripBusID;
+    }
+
+    public void setTripBusID(int tripBusID) {
+        this.tripBusID = tripBusID;
     }
 
 

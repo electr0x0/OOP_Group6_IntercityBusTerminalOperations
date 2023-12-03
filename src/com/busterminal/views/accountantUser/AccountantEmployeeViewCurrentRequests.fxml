@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.busterminal.controller.accountant.AccountantEmployeeViewCurrentRequestsController">
+   <children>
+      <MFXLegacyTableView fx:id="reimbTableView" layoutX="14.0" layoutY="132.0" onMouseClicked="#onClickTableUpdateSelectedItem" prefHeight="556.0" prefWidth="1016.0" stylesheets="@../../css/AccountantTableStyle.css">
+         <columns>
+            <TableColumn fx:id="colReimID" prefWidth="91.0" text="REIM-ID" />
+            <TableColumn fx:id="colEmployeeID" prefWidth="107.0" text="Employee ID" />
+            <TableColumn fx:id="colEmployeeDesignation" prefWidth="116.0" text="Designation" />
+            <TableColumn prefWidth="174.0" text="Employee Name">
+               <columns>
+                  <TableColumn fx:id="colFirstName" prefWidth="76.0" text="First" />
+                  <TableColumn fx:id="colLastName" prefWidth="78.0" text="Last" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="colCauseForReimb" prefWidth="112.0" text="Expense Type" />
+            <TableColumn fx:id="colExpenseAmount" prefWidth="117.0" text="Amount (BDT)" />
+            <TableColumn fx:id="colReimbState" prefWidth="76.0" text="State" />
+            <TableColumn fx:id="colRecevingMethod" prefWidth="119.0" text="Receiving Method" />
+            <TableColumn fx:id="colDateOfSubmission" prefWidth="121.0" text="Submission Date" />
+         </columns>
+      </MFXLegacyTableView>
+      <ImageView fitHeight="47.0" fitWidth="54.0" layoutX="977.0" layoutY="27.0" onMouseClicked="#onClickBackIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../drawables/back_button_anim_green.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

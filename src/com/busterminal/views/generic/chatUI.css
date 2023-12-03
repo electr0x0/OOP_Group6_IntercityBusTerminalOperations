@@ -34,3 +34,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-padding: 10px 20px;
     -fx-background-radius: 5px;
 }
+
+
+.button-send {
+    -fx-background-color: #6200EE;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.button-send:hover {
+    -fx-background-color: #3700B3;
+}
+
+.button-send:pressed {
+    -fx-background-color: #03DAC5;
+}
+
+
+.combo-box-recipient {
+    -fx-background-color: white;
+    -fx-border-color: #6200EE;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-background-radius: 5px;
+}
+
+.combo-box-recipient .list-cell {
+    -fx-text-fill: #6200EE;
+    -fx-font-weight: normal;
+}
+
+.combo-box-recipient:hover {
+    -fx-border-color: #3700B3;
+}
+
+.text-area-chat, .text-field-message {
+    -fx-background-color: white;
+    -fx-border-color: #2196f3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 1px;
+}
+
+.text-area-chat:focused, .text-field-message:focused {
+    -fx-border-color: #03DAC5;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
